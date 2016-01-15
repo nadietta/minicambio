@@ -6,10 +6,9 @@
  * Time: 17:12
  */
 
-
 $nome_valuta=$_POST['nome_valuta'];
 $simbolo_valuta=$_POST['simbolo_valuta'];
 
 
 
-print($nome_valuta." ".$simbolo_valuta);
+echo('prova');

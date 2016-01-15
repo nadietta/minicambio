@@ -54,11 +54,12 @@
         function add_valuta(){
             var nome_valuta = $("#nome_valuta").val();
             var simbolo_valuta = $("#simbolo_valuta").val();
+            alert('d');
             $.ajax({
                 type: "POST",
                 url: "add_valuta.php",
-                data: "nome_valuta=" + nome_valuta + "&simbolo_valuta=" + simbolo_valuta//,
-                /** dataType: "html",
+                data: "nome_valuta=" + nome_valuta + "&simbolo_valuta=" + simbolo_valuta,
+                dataType: "html",
                 success: function(msg)
                 {
                     $("#risultato").html(msg);
@@ -66,7 +67,7 @@
                 error: function()
                 {
                     alert("Chiamata fallita, si prega di riprovare...");
-                }**/
+                }
             });
 
         }
