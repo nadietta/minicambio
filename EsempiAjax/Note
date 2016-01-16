@@ -1,0 +1,12 @@
+NOTE NADIA)
+
+- Ci sono troppi files jQuery. Tutti utilizzati? Inoltre quelli che sembrano utilizzati sono vecchi (lib 1.5) e usano funzioni deprecate.
+Nell'esempio sto mettendo il link alla libreria 1.10, che dovremmo cambiare ovunque. Togliere quelle inutili
+
+- Tutti questi css alla fine sono tipo dei surrogati di bootstrap (che è il più famoso css standard html5)...
+Secondo me conviene usare quello in modo da abituarsi alla sintassi bootstrap. Poi boh. Che dici?
+
+
+
+NOTE SARA)
+

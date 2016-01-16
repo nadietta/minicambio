@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="esempio.js"></script>
+    <link href="esempio.css" rel="stylesheet">
+    <title>Esempio</title>
+</head>
+<body>
+    <div id="content">
+        <div id="left">
+            <p>
+                1) AJAX GET - Carica dati dal server<br>
+                <input type="button" id="button1" value="BOTTONE_1"/>
+            </p>
+
+            <p>
+                2) AJAX POST - Manda i valori selezionati al php che ci fa qualcosa e ti restituisce il risultato<br>
+                <select id="select1">
+                    <option disabled selected>Scegli Opzione:</option>
+                    <option value="1">Opzione_1</option>
+                    <option value="2">Opzione_2</option>
+                    <option value="3">Opzione_3</option>
+                </select>
+            </p>
+        </div>
+
+        <div id="right">
+            <p>
+                Risultato:<br>
+                <div id="risultato">
+
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
