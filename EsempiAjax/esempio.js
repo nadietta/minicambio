@@ -33,7 +33,7 @@ $(document).ready(function() {
             {
                 var myresponse = $.parseJSON(data);
                 var risultatoDiv = "Ho scelto " + myresponse.mySelect + ",<br>e aggiunto " + myresponse.altro + ".";
-                //$("#risultato").html(risultatoDiv);
+                $("#risultato").html(risultatoDiv);
                 //Se invece vuoi concatenare
                 //$("#risultato").append("<br>" + risultatoDiv);
             },
