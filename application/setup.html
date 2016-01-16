@@ -17,71 +17,16 @@
 <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="../js/menu.js"></script>
-    <script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $( "#tasso" ).hide();
-            $( "#valuta" ).hide();
-            $.ajax({
-                url: 'menu.php'
-            }).done(function(data) {
-                $('#menu').append(data);
-            });
+    <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="function.js"></script>
 
-            $( "#add_valuta" ).click(function() {
-                $( "#tasso" ).hide();
-                $( "#valuta" ).show();
-
-            });
-            $( "#add_tasso" ).click(function() {
-                $( "#tasso" ).show();
-                $( "#valuta" ).hide();
-
-            });
-
-        });
-
-
-        function lista_valute(){
-            alert('return sent');
-            $.ajax({
-                type: "GET",
-                url: "lista_valute.php"
-        });
-
-        }
-
-        function add_valuta(){
-            var nome_valuta = $("#nome_valuta").val();
-            var simbolo_valuta = $("#simbolo_valuta").val();
-            alert('d');
-            $.ajax({
-                type: "POST",
-                url: "add_valuta.php",
-                data: "nome_valuta=" + nome_valuta + "&simbolo_valuta=" + simbolo_valuta,
-                dataType: "html",
-                success: function(msg)
-                {
-                    $("#risultato").html(msg);
-                },
-                error: function()
-                {
-                    alert("Chiamata fallita, si prega di riprovare...");
-                }
-            });
-
-        }
-
-
-    </script>
 
     <link rel="icon" href="../img/biglietto_visita.PNG" type="image/gif" />
     <title>miniCAMBIO S.a.g.l.</title>
 
     <link rel="stylesheet" href="../css/layouts/pure-min.css">
-
     <!--[if gt IE 8]><!-->
-
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <!--<![endif]-->
     <!--[if gt IE 8]><!-->
@@ -105,14 +50,14 @@
 <div class="pure-menu custom-restricted-width" id="menu_scelta" width="50%">
     <ul class="pure-menu-list" width="50%">
         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            <a href="#" id="menuLink1" class="pure-menu-link" aria-haspopup="false">Valute</a>
+            <a href="#" id="menuValute" class="pure-menu-link" aria-haspopup="false">Valute</a>
             <ul class="pure-menu-children">
                 <li class="pure-menu-item" id="add_valuta"><a href="#" class="pure-menu-link">Aggiungi</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifica</a></li>
             </ul>
         </li>
         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            <a href="#" id="menuLink1" class="pure-menu-link" aria-haspopup="false">Tassi</a>
+            <a href="#" id="menuTassi" class="pure-menu-link" aria-haspopup="false">Tassi</a>
             <ul class="pure-menu-children">
                 <li class="pure-menu-item" id="add_tasso"><a href="#" class="pure-menu-link">Aggiungi</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifica</a></li>
@@ -123,6 +68,7 @@
 </div>
   </div>
     <div class="pure-u-1-8"> </div>
+    <div id="risultato"></div>
 <div class="pure-u-1-3" width="100%" >
     <form class="pure-form pure-form-stacked"  id="valuta">
     <fieldset>
@@ -144,7 +90,7 @@
 
 
         </div>
-        <button   type="submit" class="pure-button pure-button-primary" onclick="add_valuta();">Salva</button>
+        <button   type="submit" class="pure-button pure-button-primary" id="add_valuta_function">Salva</button>
 
     </fieldset>
 </form>
