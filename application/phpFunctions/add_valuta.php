@@ -23,7 +23,7 @@ if(mysqli_affected_rows($conn)){
 }
 else $msg="Errore, riprovare";
 echo $msg;**/
-$risultato[msg]="ok";
+$risultato['msg']="ok";
 echo json_encode($risultato);
 
 

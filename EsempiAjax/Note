@@ -2,18 +2,26 @@ NOTE NADIA)
 
 - Ci sono troppi files jQuery. Tutti utilizzati? Inoltre quelli che sembrano utilizzati sono vecchi (lib 1.5) e usano funzioni deprecate.
 Nell'esempio sto mettendo il link alla libreria 1.10, che dovremmo cambiare ovunque. Togliere quelle inutili
-
 - Tutti questi css alla fine sono tipo dei surrogati di bootstrap (che è il più famoso css standard html5)...
 Secondo me conviene usare quello in modo da abituarsi alla sintassi bootstrap. Poi boh. Che dici?
 
+-------------------------------
+- Ho spostato il file js e i php (modificando i path quando usati).
+- Cosa fa il file menu.js?
 
 
 
 NOTE SARA)
 - Come già ti avevo detto i jquery li ho presi dalla tua cartella Richieste
-
 - Per me va bene bootstrap solo che mi sembra che stiamo perdendo fin troppo tempo
-
 - Il mio Ajax non funziona e non ne capisco il motivo, per questo ieri ti avevo messo il msg nel push che ajax non funzionava
 speravo lo guardassi.
+    -- No non l'avevo visto l'ho visto stamattina quando ho pushato l'esempio ma era già troppo tardi per guardarci.Sorry
+    Cmq il motivo erano questi due punti:
+    Nel php) $risultato[msg] --> $risultato['msg']
+    Nel js)  alert(myresponse) --> alert(myresponse.msg)
+
+
+--------------------------------
+
 

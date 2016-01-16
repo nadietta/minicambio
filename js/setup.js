@@ -23,21 +23,20 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click','#add_valuta_function', function(){
+    $(document).on('submit','#valuta', function(){
+
         var nome_valuta = $("#nome_valuta").val();
         var simbolo_valuta = $("#simbolo_valuta").val();
 
         $.ajax({
             type: "POST",
-            url: "add_valuta.php",
+            url: "phpFunctions/add_valuta.php",
             data: {},
             success: function(data)
             {
                 var myresponse = $.parseJSON(data);
-                alert(myresponse);
+                alert(myresponse.msg);
 
-                //Se invece vuoi concatenare
-                //$("#risultato").append("<br>" + risultatoDiv);
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);

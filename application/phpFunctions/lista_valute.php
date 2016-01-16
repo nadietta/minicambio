@@ -10,4 +10,4 @@ include("../connessione.php");
 
 $query = mysqli_query($conn,"SELECT * FROM valute");
 $results=mysqli_affected_rows($conn);
-echo json_encode("ok");
+echo json_encode("ok"); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati
