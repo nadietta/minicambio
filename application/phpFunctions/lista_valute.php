@@ -6,8 +6,8 @@
  * Time: 20:49
  */
 
-include("../connessione.php");
-
+include("../../connessione.php");
+$results="";
 $query = mysqli_query($conn,"SELECT * FROM valute");
 $results=mysqli_affected_rows($conn);
-echo json_encode("ok"); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati
+echo json_encode($results); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati

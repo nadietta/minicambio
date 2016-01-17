@@ -45,4 +45,23 @@ $(document).ready(function() {
         });
     });
 
+    $(document).on('click','#edit_valuta', function(){
+        alert('edit');
+        $.ajax({
+            type: "GET",
+            url: "phpFunctions/lista_valute.php",
+            data: {},
+            success: function(data)
+            {
+                var myresponse = $.parseJSON(data);
+                alert(myresponse);
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+    });
+
 });

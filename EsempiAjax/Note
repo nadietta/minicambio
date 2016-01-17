@@ -21,7 +21,8 @@ speravo lo guardassi.
     Nel php) $risultato[msg] --> $risultato['msg']
     Nel js)  alert(myresponse) --> alert(myresponse.msg)
     non ci voglio credere... il secondo l'ho fatto dopo che non funzionava.. credo che l'unico errore era il primo. che vergogna
-
+Cmq ho riguardato l'ajax messo come era all'inizio e l'errore iniziale era anche peggiore... era nella query avevo messo gli apici
+tipo `valute` e gli davano noia
 
 Hai iniziato a strutturare i file tipo PSICOPATICA hahaha
 --------------------------------
