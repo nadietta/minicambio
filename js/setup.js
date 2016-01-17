@@ -23,6 +23,7 @@ $(document).ready(function() {
 
     });
 
+
     $(document).on('submit','#valuta', function(){
 
         var nome_valuta = $("#nome_valuta").val();

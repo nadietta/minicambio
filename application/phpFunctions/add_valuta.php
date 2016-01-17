@@ -18,7 +18,7 @@ $nome_valuta=$_POST['nome_valuta'];
 $simbolo_valuta=$_POST['simbolo_valuta'];
 
 
-$query = mysqli_query($conn, "INSERT INTO `valute`(`pk_valuta`, `descrizione`, `simbolo`)
+$query = mysqli_query($conn, "INSERT INTO `valute`(pk_valuta, descrizione, simbolo)
 VALUES (NULL, '$nome_valuta','$simbolo_valuta')");
 if(mysqli_affected_rows($conn)){
     $risultato['msg']="Inserimento avventuo con successo";
