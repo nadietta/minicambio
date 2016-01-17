@@ -1,0 +1,78 @@
+html{
+    position: relative;
+    min-height: 100%;
+
+}
+
+body{
+    /* Margin bottom by footer height */
+    margin-bottom: 40px;
+    width:100%;
+}
+
+#header{
+    background-color: #f7f7f7;
+}
+
+#intestazione{
+    text-align: center;
+    padding-top: 15px;
+    font-size: 30px;
+}
+
+.rosso{
+    color: red;
+}
+
+.blu{
+    color: blue;
+}
+
+.bianco{
+    color: white;
+}
+
+.container {
+    width: auto;
+    padding: 0 15px;
+    background-color: #eaeded;
+}
+
+.centered{
+    max-width: 1000px;
+    margin: auto;
+    left: 1%;
+    right: 1%;
+    position: absolute;
+}
+
+#tableHome{
+    width: 100%;
+    font-family: Century Gothic, sans-serif;
+}
+
+#tableHome tr{
+    border: solid #cad2d3 1px;
+}
+
+.provaText{
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    background-color: #3FA9F5;
+    text-shadow: rgb(71, 71, 71) 3px 5px 2px;
+}
+
+.myfooter {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    background-color: #f7f7f7;
+}
+
+.footerContent{
+    margin: auto;
+    padding: 10px;
+}

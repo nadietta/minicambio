@@ -1,85 +1,88 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Sara
- * Date: 14/01/2016
- * Time: 17:18
- */
-
-?>
-
-
 <!doctype html>
+<html>
 
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
 
+        <title>miniCAMBIO S.a.g.l.</title>
+        <link rel="stylesheet" href="../css/minicambio.css">
+        <link rel="stylesheet" href="../css/layouts/pure-min.css">
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+        <!--<![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="../css/layouts/pricing.css">
+        <!--<![endif]-->
+        <link rel="icon" href="../img/money_bag.png" type="image/gif" />
 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.ajax({
-                url: 'menu.php'
-            }).done(function(data) {
-                $('#menu').append(data);
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $(function() {
+                    $(window).on('resize', function resize()  {
+                        $(window).off('resize', resize);
+                        setTimeout(function () {
+                            var content = $('.centered');
+                            var top = (window.innerHeight - content.height()) / 2;
+                            content.css('top', Math.max(0, top) + 'px');
+                            $(window).on('resize', resize);
+                        }, 50);
+                    }).resize();
+                });
+
+                 $.ajax({
+                     url: 'menu.php'
+                 }).done(function(data){
+                     $('#menu').append(data);
+                 });
+
             });
-        });
 
-    </script>
-    <title>miniCAMBIO S.a.g.l.</title>
-    <link rel="stylesheet" href="../css/layouts/pure-min.css">
+        </script>
 
-    <!--[if gt IE 8]><!-->
+    </head>
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <body>
 
-    <!--<![endif]-->
+        <div id="header" class="row text-center">
+            <div id="intestazione">
+                <b class="blu">MINICAMBIO S.a.g.l.</b>
+            </div>
+            <div id="menu"></div>
+        </div>
 
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="../css/layouts/pricing.css">
-    <!--<![endif]-->
-    <link rel="icon" href="../img/biglietto_visita.PNG" type="image/gif" />
+        <div class="container">
 
+            <div class="centered">
 
+                <table id="tableHome">
+                    <tr>
+                        <td  align="center">
+                            <h1>
+                                <small>MINI</small>CAMBIO <small>S.a.g.l</small>.
+                            </h1>
+                        </td>
+                    </tr>
 
+                    <tr>
+                        <td align="center">
+                            <img  src="../img/currencies.png" style="width: 23%;">
+                            <img  src="../img/biglietto_visita.PNG">
+                        </td>
+                    </tr>
+                </table>
 
+            </div>
 
+        </div>
 
-</head>
-<body>
-<div id="menu">
-</div> <!-- end l-content -->
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-    <table width="100%" height="100%" border="0">
-        <tr>   <td valign="middle" align="center" height="110">
-        <h1 class="banner-head">
-            miniCAMBIO S.a.g.l.
-        </h1></td></tr>
+        <div class="myfooter">
+            <div class="footerContent">
+                miniCAMBIO S.a.g.l.
+            </div>
+        </div>
 
-        <tr>
-            <td valign="middle" align="center">    <img  src="../img/biglietto_visita.PNG"></td>
-        </tr>
-    </table>
-
-<br><br>
-<br><br>
-
-
-
-
-<div class="footer l-box">
-    <p>
-
-    </p>
-</div>
-
-
-
-
-</body>
+    </body>
 </html>
 
