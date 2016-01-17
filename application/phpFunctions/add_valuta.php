@@ -26,7 +26,7 @@ if(mysqli_affected_rows($conn)){
 }
 else $risultato['msg']="Errore, riprovare";
 
-
+$mysqli->close();
 echo json_encode($risultato);
 
 
