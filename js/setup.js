@@ -6,15 +6,7 @@ $(document).ready(function() {
 
     $( "#tasso" ).hide();
     $( "#valuta" ).hide();
-<<<<<<< Updated upstream
-=======
     $( "#lista_valute_table" ).hide();
-    $.ajax({
-        url: 'menu.php'
-    }).done(function(data) {
-        $('#menu').append(data);
-    });
->>>>>>> Stashed changes
 
     $( "#add_valuta" ).click(function() {
         $( "#tasso" ).hide();
@@ -28,12 +20,14 @@ $(document).ready(function() {
         $( "#lista_valute_table" ).hide();
 
     });
+
     $( "#edit_valuta" ).click(function() {
         $( "#tasso" ).hide();
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).show();
 
     });
+
 
     $(document).on('submit','#valuta', function(){
 
@@ -57,6 +51,7 @@ $(document).ready(function() {
         });
     });
 
+
     $(document).on('click','#edit_valuta', function(){
 
         $.ajax({
@@ -77,4 +72,7 @@ $(document).ready(function() {
         });
     });
 
+
+
 });
+

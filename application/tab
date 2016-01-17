@@ -1,0 +1,11 @@
+
+
+
+$( "#lista_valute_table" ).hide();
+    $.ajax({
+        url: 'menu.php'
+    }).done(function(data) {
+        $('#menu').append(data);
+    });
+
+
