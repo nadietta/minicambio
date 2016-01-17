@@ -5,6 +5,7 @@
 $(document).ready(function() {
 
     $(function() {
+        //$('.centered').hide();
         $(window).on('resize', function resize()  {
             $(window).off('resize', resize);
             setTimeout(function () {
@@ -14,6 +15,7 @@ $(document).ready(function() {
                 $(window).on('resize', resize);
             }, 50);
         }).resize();
+
     });
 
     $.ajax({
