@@ -6,11 +6,6 @@ $(document).ready(function() {
 
     $( "#tasso" ).hide();
     $( "#valuta" ).hide();
-    $.ajax({
-        url: 'menu.php'
-    }).done(function(data) {
-        $('#menu').append(data);
-    });
 
     $( "#add_valuta" ).click(function() {
         $( "#tasso" ).hide();
@@ -22,7 +17,6 @@ $(document).ready(function() {
         $( "#valuta" ).hide();
 
     });
-
 
     $(document).on('submit','#valuta', function(){
 

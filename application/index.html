@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="../js/minicambio.js"></script>
 
         <title>miniCAMBIO S.a.g.l.</title>
         <link rel="stylesheet" href="../css/minicambio.css">
@@ -15,32 +16,6 @@
         <link rel="stylesheet" href="../css/layouts/pricing.css">
         <!--<![endif]-->
         <link rel="icon" href="../img/money_bag.png" type="image/gif" />
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-
-                $(function() {
-                    $(window).on('resize', function resize()  {
-                        $(window).off('resize', resize);
-                        setTimeout(function () {
-                            var content = $('.centered');
-                            var top = (window.innerHeight - content.height()) / 2;
-                            content.css('top', Math.max(0, top) + 'px');
-                            $(window).on('resize', resize);
-                        }, 50);
-                    }).resize();
-                });
-
-                 $.ajax({
-                     url: 'menu.php'
-                 }).done(function(data){
-                     $('#menu').append(data);
-                 });
-
-            });
-
-        </script>
-
     </head>
 
     <body>
