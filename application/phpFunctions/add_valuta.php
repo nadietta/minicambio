@@ -9,7 +9,7 @@
  */
 
 $risultato = array();
-/**
+
 include "../connessione.php";
 $nome_valuta="";
 $simbolo_valuta="";
@@ -19,11 +19,10 @@ print("nome_valiuta".$nome_valuta);
 
 $query = mysqli_query($conn, "INSERT INTO valute VALUE (null, $nome_valuta,$simbolo_valuta)");
 if(mysqli_affected_rows($conn)){
-    $msg="Inserimento avventuo con successo";
+    $risultato['msg']="Inserimento avventuo con successo";
 }
-else $msg="Errore, riprovare";
-echo $msg;**/
-$risultato['msg']="ok";
+else $risultato['msg']="Errore, riprovare";
+
 echo json_encode($risultato);
 
 

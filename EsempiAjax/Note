@@ -20,8 +20,10 @@ speravo lo guardassi.
     Cmq il motivo erano questi due punti:
     Nel php) $risultato[msg] --> $risultato['msg']
     Nel js)  alert(myresponse) --> alert(myresponse.msg)
+    non ci voglio credere... il secondo l'ho fatto dopo che non funzionava.. credo che l'unico errore era il primo. che vergogna
 
 
+Hai iniziato a strutturare i file tipo PSICOPATICA hahaha
 --------------------------------
 
 

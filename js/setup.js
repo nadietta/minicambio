@@ -31,7 +31,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "phpFunctions/add_valuta.php",
-            data: {},
+            data: {nome_valuta: nome_valuta, simbolo_valuta: simbolo_valuta },
             success: function(data)
             {
                 var myresponse = $.parseJSON(data);
