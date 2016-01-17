@@ -75,3 +75,9 @@ body{
     margin: auto;
     padding: 10px;
 }
+
+.img_icon{
+    border:0;
+    height:30px;
+    width:30px;
+}
