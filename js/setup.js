@@ -29,6 +29,7 @@ $(document).ready(function() {
     });
 
 
+
     $(document).on('submit','#valuta', function(){
 
         var nome_valuta = $("#nome_valuta").val();
@@ -75,7 +76,7 @@ $(document).ready(function() {
                             "<td id='nome_valuta" + id + "'>" + nome_valuta + "</td>" +
                             "<td id='simbolo_valuta" + id + "'>" + simbolo_valuta + "</td>" +
                             "<td align='center'><img class='img_icon' src='../img/edit_icon.png'></td>" +
-                            "<td align='center'><img class='img_icon' src='../img/delete_icon.png'></td>" +
+                            "<td align='center'><a href='#'  onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
                             "</tr>";
 
 
