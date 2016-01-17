@@ -25,15 +25,12 @@
 
 <div id="header" class="row text-center">
     <div id="intestazione">
-        <b class="blu">MINICAMBIO S.a.g.l.</b>
+        <b class="grigioScuro">MINICAMBIO S.a.g.l.</b>
     </div>
     <div id="menu"></div>
 </div>
 
-<br><br>
-<br><br>
-
-<div class="container">
+<div class="wrapper">
     <div class="pure-g">
         <div class="pure-u-1-5">
             <div class="pure-menu custom-restricted-width" id="menu_scelta" width="50%">
@@ -111,13 +108,32 @@
 
 
 
-    <div id="lista_valute_table"  style="width:600px; height:300px; overflow:auto;">
+            <div id="lista_valute_table">
+                Lista Valute
+                <table  class="pure-table" >
+                    <thead>
 
-    </div>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Nome Valuta</th>
+                        <th>Simbolo Valuta</th>
+                        <th>Modifica</th>
+                        <th>Cancella</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td id="numero_valuta_table">2</td>
+                        <td id="nome_valuta_table">Fiat</td>
+                        <td id="simbolo_valuta_table">Toyota</td>
+                        <td align="center"><img src="../img/edit_icon.png" height="42" width="42"></td>
+                        <td align="center"><img src="../img/delete_icon.png" height="42" width="42"></td>
+                    </tr>
+
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
 
 
 <div class="myfooter">
