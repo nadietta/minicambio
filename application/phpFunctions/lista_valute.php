@@ -11,17 +11,17 @@ include("../../connessione.php");
 $query ="SELECT * FROM valute";
 $risultato=array();
 //$results_db=mysqli_affected_rows($conn);
-$i=1;
+$i=0;
 if ($result =  mysqli_query($conn,$query)) {
 
     /* fetch object array */
 
     while ($row = $result->fetch_row()) {
-        $risultato['$i']=array();
 
-        $risultato['$i']['numero']=$i;
-        $risultato['$i']['nome_valuta']=$row[0];
-        $risultato['$i']['simbolo_valuta']=$row[1];
+        $risultato[$i]=array();
+        $risultato[$i]['id']=$row[0];
+        $risultato[$i]['nome_valuta']=$row[1];
+        $risultato[$i]['simbolo_valuta']=$row[2];
         $i++;
 
     }
@@ -29,6 +29,6 @@ if ($result =  mysqli_query($conn,$query)) {
     /* free result set */
 
 }
-$result->close();
+$risultato['length']=$i;
 
 echo json_encode($risultato); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati

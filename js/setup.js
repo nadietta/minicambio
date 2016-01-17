@@ -58,12 +58,36 @@ $(document).ready(function() {
             type: "GET",
             url: "phpFunctions/lista_valute.php",
             data: {},
-            success: function(data)
-            {
+            success: function(data) {
                 var myresponse = $.parseJSON(data);
-                alert(myresponse);
+                if (myresponse.length>0) {
 
+                    table = " Lista Valute <table  class='pure-table'> " +
+                        "<thead> <tr> <th>Numero</th> <th>Nome Valuta</th> <th>Simbolo Valuta</th> <th>Modifica</th> <th>Cancella</th>" +
+                        "</tr> </thead> </table>";
+                    for (var i = 0; i <= myresponse.length; i++) {
+                        id = myresponse[i].id;
+                        nome_valuta = myresponse[i].nome_valuta;
+                        simbolo_valuta = myresponse[i].simbolo_valuta;
 
+                        table += " <tr>" +
+                            "<td id='id_valuta" + id + "'>" + id + "</td>" +
+                            "<td id='nome_valuta" + id + "'>" + nome_valuta + "</td>" +
+                            "<td id='simbolo_valuta" + id + "'>" + simbolo_valuta + "</td>" +
+                            "<td align='center'><img src='../img/edit_icon.png' height='42' width='42'></td>" +
+                            "<td align='center'><img src='../img/delete_icon.png' height='42' width='42'></td>" +
+                            "</tr>";
+                        alert(tr_table);
+
+                    }
+
+                    table +="</table>"
+                        $('#lista_valute_table').html(tr_table);
+                }
+                else{
+                    msg += "<br>Nessuna Valuta Presente.";
+                    $("#lista_valute_table").html(msg);
+                }
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
