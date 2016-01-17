@@ -15,6 +15,7 @@ include "../../connessione.php";
 $nome_valuta="";
 $simbolo_valuta="";
 $nome_valuta=$_POST['nome_valuta'];
+
 $simbolo_valuta=$_POST['simbolo_valuta'];
 
 
