@@ -12,19 +12,10 @@ Secondo me conviene usare quello in modo da abituarsi alla sintassi bootstrap. P
 
 
 NOTE SARA)
-- Come già ti avevo detto i jquery li ho presi dalla tua cartella Richieste
-- Per me va bene bootstrap solo che mi sembra che stiamo perdendo fin troppo tempo
-- Il mio Ajax non funziona e non ne capisco il motivo, per questo ieri ti avevo messo il msg nel push che ajax non funzionava
-speravo lo guardassi.
-    -- No non l'avevo visto l'ho visto stamattina quando ho pushato l'esempio ma era già troppo tardi per guardarci.Sorry
-    Cmq il motivo erano questi due punti:
-    Nel php) $risultato[msg] --> $risultato['msg']
-    Nel js)  alert(myresponse) --> alert(myresponse.msg)
-    non ci voglio credere... il secondo l'ho fatto dopo che non funzionava.. credo che l'unico errore era il primo. che vergogna
-Cmq ho riguardato l'ajax messo come era all'inizio e l'errore iniziale era anche peggiore... era nella query avevo messo gli apici
-tipo `valute` e gli davano noia
+PUOI LEVARE LO SFONDO AI PNG CHE HO INSERITO?
 
-Hai iniziato a strutturare i file tipo PSICOPATICA hahaha
+
+
 --------------------------------
 
 
