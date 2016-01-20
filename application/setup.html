@@ -46,7 +46,7 @@
                         <a href="#" id="menuTassi" class="pure-menu-link" aria-haspopup="false">Tassi</a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item" id="add_tasso"><a href="#" class="pure-menu-link">Aggiungi</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Modifica</a></li>
+                            <li class="pure-menu-item" id="edit_tasso"><a href="#" class="pure-menu-link">Modifica</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -79,8 +79,8 @@
                     <legend>Nuovo Tasso</legend>
 
 
-                        <div class="pure-u-1 pure-u-md-1" align="left">
-                            <label for="valuta_da">Da</label>
+                        <div class="pure-u-1 pure-u-md-1 valuta_da" align="left">
+                            <label for="valuta_da">Valuta Entrata</label>
                             <select id="valuta_da" required class="pure-input-1">
 
                             </select>
@@ -89,7 +89,7 @@
                              <a href='#' id="reverse"><img class='img_icon' src='../img/reverse.png'></a>
                          </div>
                         <div  class="pure-u-1 pure-u-md-1" align="left" >
-                            <label for="valuta_a">A</label>
+                            <label for="valuta_a">Valuta Uscita</label>
 
                             <select id="valuta_a" required class="pure-input-1" >
 
@@ -97,7 +97,7 @@
                         </div>
 
                     <label for="valore_tasso">Valore Tasso</label>
-                    <input id="valore_tasso" required class="pure-u-1" type="number">
+                    <input id="valore_tasso" required class="pure-u-1" type="number" step="0.000001" min="0">
 
                     <button type="submit" class="pure-button pure-button-primary">Salva</button>
                 </fieldset>
@@ -106,6 +106,14 @@
 
 
             <div id="lista_valute_table">
+
+
+            </div>
+            <div id="lista_tassi_table">
+
+
+            </div>
+            <div id="risposta">
 
 
             </div>

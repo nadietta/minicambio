@@ -7,17 +7,25 @@ $(document).ready(function() {
     $( "#tasso" ).hide();
     $( "#valuta" ).hide();
     $( "#lista_valute_table" ).hide();
+    $( "#lista_tassi_table" ).hide();
+    $('#risposta').hide();
 
     $( "#add_valuta" ).click(function() {
         $( "#tasso" ).hide();
         $( "#valuta" ).show();
         $( "#lista_valute_table" ).hide();
+        $( "#lista_tassi_table" ).hide();
+        $('#risposta').hide();
+
 
     });
     $( "#add_tasso" ).click(function() {
         $( "#tasso" ).show();
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).hide();
+        $( "#lista_tassi_table" ).hide();
+        $('#risposta').hide();
+
 
     });
 
@@ -25,6 +33,18 @@ $(document).ready(function() {
         $( "#tasso" ).hide();
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).show();
+        $( "#lista_tassi_table" ).hide();
+        $('#risposta').hide();
+
+
+    });
+    $( "#edit_tasso" ).click(function() {
+        $( "#tasso" ).hide();
+        $( "#valuta" ).hide();
+        $( "#lista_valute_table" ).hide();
+        $( "#lista_tassi_table" ).show();
+        $('#risposta').hide();
+
 
     });
 
@@ -42,14 +62,18 @@ $(document).ready(function() {
             success: function(data)
             {
                 var myresponse = $.parseJSON(data);
-                alert(myresponse.msg);
+                $('#risposta').html('<h2>'+myresponse.msg+'</h2>');
+
 
             },
             error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
+                $('#risposta').html("ERRORE: Riprovare");
+
             }
+
         });
+
+        $( "#valuta" ).hide();
     });
 
 
@@ -76,7 +100,7 @@ $(document).ready(function() {
                             "<td id='nome_valuta" + id + "'>" + nome_valuta + "</td>" +
                             "<td id='simbolo_valuta" + id + "'>" + simbolo_valuta + "</td>" +
                             "<td align='center'><img class='img_icon' src='../img/edit_icon.png'></td>" +
-                            "<td align='center'><a href='#'  onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
+                            "<td align='center'><a href='#' id='delete_valuta' onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
                             "</tr>";
 
 
@@ -98,6 +122,53 @@ $(document).ready(function() {
         });
     });
 
+
+    $(document).on('click','#edit_tasso', function(){
+
+        $.ajax({
+            type: "GET",
+            url: "phpFunctions/lista_tassi.php",
+            data: {},
+            success: function(data) {
+                var myresponse = $.parseJSON(data);
+
+                if (myresponse.length>0) {
+
+                    table = "<legend> Lista Tassi </legend> <table  class='pure-table'> " +
+                        "<thead> <tr><th>Numero</th> <th>Valuta Entrata</th> <th>Valuta Uscita</th>  <th>Tasso</th> <th>Modifica</th> <th>Cancella</th>" +
+                        "</tr> </thead> ";
+                    for (var i = 0; i <myresponse.length; i++) {
+                        id = myresponse[i].id;
+                        valutada = myresponse[i].valutada;
+                        valutaa = myresponse[i].valutaa;
+                        tasso = myresponse[i].tasso;
+                        table += " <tr>" +
+                            "<td id='idtasso" + id + "'>" + id + "</td>" +
+                            "<td id='valuta_da" + id + "'>" + valutada + "</td>" +
+                            "<td id='valuta_a" + id + "'>" + valutaa + "</td>" +
+                            "<td id='tasso" + id + "'>" + tasso + "</td>" +
+                            "<td align='center'><img class='img_icon' src='../img/edit_icon.png'></td>" +
+                            "<td align='center'><a href='#'  onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
+                            "</tr>";
+
+
+                    }
+
+                    table +="</table>"
+
+                    $('#lista_tassi_table').html(table);
+                }
+                else{
+                    msg += "<br>Nessun Tasso Presente.";
+                    $("#lista_tassi_table").html(msg);
+                }
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+    });
 
 
     $(document).on('click','#add_tasso', function(){
@@ -127,8 +198,8 @@ $(document).ready(function() {
 
 
 
-                    $('#valuta_da').append(voce_select_da);
-                    $('#valuta_a').append(voce_select_a);
+                    $('#valuta_da').html(voce_select_da);
+                    $('#valuta_a').html(voce_select_a);
                     $('#valuta_a').attr('disabled',true);
                 }
                 else{
@@ -187,12 +258,16 @@ $(document).on('submit','#tasso', function(){
         success: function(data)
         {
             var myresponse = $.parseJSON(data);
-            alert(myresponse.msg);
+
+            $('#risposta').html('<h2>'+myresponse.msg+'</h2>');
 
         },
         error: function(xhr, desc, err) {
             //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
+            $('#risposta').html('<h2>'+'ERRORE: Riprovare'+'</h2>');
         }
     });
+    $( "#tasso" ).hide();
+
+
 });

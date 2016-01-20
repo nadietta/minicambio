@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="../js/menu.js"></script>
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="../js/setup.js"></script>
+    <script type="text/javascript" src="../js/setup_delete.js"></script>
     <script type="text/javascript" src="../js/minicambio.js"></script>
+
 
     <link rel="icon" href="../img/money_bag.png" type="image/gif" />
     <title>miniCAMBIO S.a.g.l.</title>
@@ -33,14 +34,13 @@
 <div class="wrapper">
     <div class="pure-g">
         <div class="pure-u-1" width="100%" align="center">
-            <form class="pure-form" >
+            <form class="pure-form" id="delete_valuta" >
                 <fieldset>
                     <legend>Sicuro di voler elimianare la valuta</legend>
 
 
-
                     <button type="cancel" class="pure-button pure-button-primary">Annulla</button>
-                    <button type="submit" class="pure-button pure-button-primary">Si</button>
+                    <button type="submit" id="confirm" class="pure-button pure-button-primary">Si</button>
                 </fieldset>
             </form>
         </div>
