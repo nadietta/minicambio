@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/menu.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/nuova_operazione.js"></script>
+    <script type="text/javascript" src="../js/minicambio.js"></script>
+
+    <link rel="icon" href="../img/money_bag.png" type="image/gif" />
+    <title>miniCAMBIO S.a.g.l.</title>
+
+    <link rel="stylesheet" href="../css/minicambio.css">
+    <link rel="stylesheet" href="../css/layouts/pure-min.css">
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="../css/layouts/pricing.css">
+    <!--<![endif]-->
+</head>
+
+<body>
+
+<div id="header" class="row text-center">
+    <div id="intestazione">
+        <b class="grigioScuro">MINICAMBIO S.a.g.l.</b>
+    </div>
+    <div id="menu"></div>
+</div>
+
+<div class="wrapper">
+    <div class="pure-g">
+        <div class="pure-u-1-5">
+            <div class="pure-menu custom-restricted-width" id="menu_scelta" width="50%">
+                <ul class="pure-menu-list" width="50%">
+                    <li class="pure-menu-item  pure-menu-allow-hover">
+                        <a href="#" id="menuSoldi" class="pure-menu-link" aria-haspopup="false">Soldi</a>
+
+                    </li>
+                    <li class="pure-menu-item pure-menu-allow-hover">
+                        <a href="#" id="menuOro" class="pure-menu-link" aria-haspopup="false">Oro</a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="pure-u-1-8"></div>
+
+        <form class="pure-form pure-form-stacked" id="soldi_change" >
+            <fieldset>
+                <legend></legend>
+
+
+                <div class="pure-u-1 pure-u-md-1 valuta_da" align="left">
+                    <label for="valuta_da">Valuta Entrata</label>
+                    <select id="valuta_da" required class="pure-input-1">
+
+                    </select>
+                </div>
+                <div class="pure-u-1 pure-u-md-1" align="center">
+                    <a href='#' id="reverse"><img class='img_icon' src='../img/reverse.png'></a>
+                </div>
+                <div  class="pure-u-1 pure-u-md-1" align="left" >
+                    <label for="valuta_a">Valuta Uscita</label>
+
+                    <select id="valuta_a" required class="pure-input-1" >
+
+                    </select>
+                </div>
+                <div id="form_operazione" class="pure-form pure-form-stacked">
+
+                    <label for="oggi">Data</label>
+                    <input type="datetime" id="oggi" disabled value="">
+                    <label for="numOp">Numero Operazione</label>
+                    <input type="numbre" id="numOp" disabled value="">
+
+                </div>
+                <button type="submit" class="pure-button pure-button-primary">Continua</button>
+            </fieldset>
+        </form>
+
+
+
+    </div>
+</div>
+
+
+<div class="myfooter">
+    <div class="footerContent">
+        miniCAMBIO S.a.g.l.
+    </div>
+</div>
+
+</body>
+</html>
+

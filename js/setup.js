@@ -8,14 +8,14 @@ $(document).ready(function() {
     $( "#valuta" ).hide();
     $( "#lista_valute_table" ).hide();
     $( "#lista_tassi_table" ).hide();
-    $('#risposta').hide();
+    $('#risposta').html('');
 
     $( "#add_valuta" ).click(function() {
         $( "#tasso" ).hide();
         $( "#valuta" ).show();
         $( "#lista_valute_table" ).hide();
         $( "#lista_tassi_table" ).hide();
-        $('#risposta').hide();
+        $('#risposta').html('');
 
 
     });
@@ -24,7 +24,7 @@ $(document).ready(function() {
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).hide();
         $( "#lista_tassi_table" ).hide();
-        $('#risposta').hide();
+        $('#risposta').html('');
 
 
     });
@@ -34,7 +34,7 @@ $(document).ready(function() {
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).show();
         $( "#lista_tassi_table" ).hide();
-        $('#risposta').hide();
+        $('#risposta').html('');
 
 
     });
@@ -43,7 +43,7 @@ $(document).ready(function() {
         $( "#valuta" ).hide();
         $( "#lista_valute_table" ).hide();
         $( "#lista_tassi_table" ).show();
-        $('#risposta').hide();
+        $('#risposta').html('');
 
 
     });
@@ -159,8 +159,7 @@ $(document).ready(function() {
                     $('#lista_tassi_table').html(table);
                 }
                 else{
-                    msg += "<br>Nessun Tasso Presente.";
-                    $("#lista_tassi_table").html(msg);
+                    $('#risposta').html('<h2>'+'Nessun Tasso Presente'+'</h2>');
                 }
             },
             error: function(xhr, desc, err) {
@@ -203,8 +202,9 @@ $(document).ready(function() {
                     $('#valuta_a').attr('disabled',true);
                 }
                 else{
-                    msg += "<br>Nessuna Valuta Presente.";
-                    $("#lista_valute_table").html(msg);
+                    $('#risposta').html('<h2>'+'Nessuna Valuta Presente'+'</h2>');
+
+
                 }
             },
             error: function(xhr, desc, err) {
