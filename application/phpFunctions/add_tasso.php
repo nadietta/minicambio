@@ -20,10 +20,10 @@
     $tasso=$_POST['tasso'];
     $tipo_op=-1;
     if($id_franco==$valuta_da){
-     $tipo_op=0;
+     $tipo_op=1;
     }
     if($id_franco==$valuta_a){
-        $tipo_op=1;
+        $tipo_op=0;
     }
     $query = mysqli_query($conn,
                 "INSERT INTO `tassi`(pk_tasso, fk_valuta_entrata, fk_valuta_uscita, valore, tipo_operazione)
