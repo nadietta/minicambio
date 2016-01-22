@@ -121,7 +121,7 @@ $(document).ready(function() {
                     where="importo_entrata >= "+$('#maggiore').val()+" AND fk_valuta_entrata = "+$('#valuta').val();
                     break;
         }
-        alert(where);
+
             $.ajax({
                 type: "POST",
                 url: "phpFunctions/lista_operazioni.php",
