@@ -100,15 +100,16 @@ $(document).ready(function() {
 
 
     $(document).on('click','#cerca', function(){
-        alert();
-/**
+
+
             $.ajax({
                 type: "GET",
                 url: "phpFunctions/lista_operazioni.php",
                 data: {},
                 success: function(data) {
-                    var myresponse = $.parseJSON(data);
 
+                    var myresponse = $.parseJSON(data);
+/**
                      if (myresponse.length>0) {
                          table = "<legend> Lista Operazioni </legend> <table  class='pure-table'> " +
                             "<thead> <tr><th>Numero operazione</th> <th>Data</th> <th>Valuta Entrata</th>  <th>Importo Entrata</th>" +
@@ -116,11 +117,16 @@ $(document).ready(function() {
                             " <th>Valuta Uscita</th> <th>Modifica</th> <th>Cancella</th>" +
                             "</tr> </thead> ";
                         for (var i = 0; i < myresponse.length; i++) {
-                            // alert(myresponse.length);
+                            // alert(myresponse.length);/
                             id = myresponse[i].id;
-                            valutada = myresponse[i].valutada;
-                            valutaa = myresponse[i].valutaa;
+                            valutada = myresponse[i].data;
+                            valutaa = myresponse[i].valuta_entrata;
+                            tasso = myresponse[i].importo_entrata;
+                            valutaa = myresponse[i].valuta_uscita;
+                            tasso = myresponse[i].importo_uscita;
                             tasso = myresponse[i].tasso;
+                            tasso = myresponse[i].cod_op;
+                            tasso = myresponse[i].tipo_op;
                             table += " <tr>" +
                                 "<td id='idtasso" + id + "'>" + id + "</td>" +
                                 "<td id='valuta_da" + id + "'>" + valutada + "</td>" +
@@ -140,13 +146,13 @@ $(document).ready(function() {
                     else{
                         $('#risposta').html('<h2>'+'Nessuna Operazione Presente'+'</h2>');
                     }
-
+**/
                 },
                 error: function(xhr, desc, err) {
                     //alert(xhr);
                     alert("Details: " + desc + "\nError:" + err);
                 }
-            });**/
+            });
         });
 });
 

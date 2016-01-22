@@ -8,22 +8,22 @@
 
 include("../../connessione.php");
 
-$query ="SELECT data, v1.descrizione, importo_entrata, v2.descrizione, importo_uscita, tasso, cod_op, tipo_operazione
-                FROM operazioni, valute v1, valute v2
-                WHERE fk_valuta_entrata = v1.pk_valuta AND  fk_valuta_uscita = v2.pk_valuta
+$query ="SELECT data_op, v1.descrizione, importo_entrata, v2.descrizione, importo_uscita, tasso, cod_op, tipo_operazione FROM operazioni, valute v1, valute v2
+ WHERE fk_valuta_entrata = v1.pk_valuta AND  fk_valuta_uscita = v2.pk_valuta
 ";
 $risultato=array();
-//$results_db=mysqli_affected_rows($conn);
+
+$results_db=mysqli_affected_rows($conn);
 $i=0;
 if ($result =  mysqli_query($conn,$query)) {
 
     /* fetch object array */
 
-    while ($row = $result->fetch_row()) {
+  //  while ($row = $result->fetch_row()) {
 
       /**  $risultato[$i]=array();
         $risultato[$i]['id']=$row[0];
-        $risultato[$i]['data']=$row[1];
+        $risultato[$i]['data_op']=$row[1];
         $risultato[$i]['valuta_entrata']=$row[3];
         $risultato[$i]['importo_entrata']=$row[4];
         $risultato[$i]['valuta_uscita']=$row[5];
@@ -33,7 +33,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['tipo_op']=$row[9];
         $i++;**/
 
-    }
+  // }
 
     /* free result set */
 
