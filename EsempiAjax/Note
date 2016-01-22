@@ -9,11 +9,18 @@ Secondo me conviene usare quello in modo da abituarsi alla sintassi bootstrap. P
 - Ho spostato il file js e i php (modificando i path quando usati).
 - Cosa fa il file menu.js?
 
+- simboli e caratteri speciale
+
 
 
 NOTE SARA)
 PUOI LEVARE LO SFONDO AI PNG CHE HO INSERITO?
 CONTROLLARE CARATTERI SPECIALI (SIA INSERIMENTO CHE RICEZIONE DAL DB)
+aggiormaneto op doppia in caso di cambio tasso
+---vedere valuta uscita in tabella
+
+
 --------------------------------
 
-
+PER FRA
+chiedere come vuole l'arrotondamento

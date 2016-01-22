@@ -55,16 +55,24 @@
                     </div>
                     <div class="pure-u-1 pure-u-md-1-3">
                     </div>
-                    <div class="pure-u-1 pure-u-md-1-3" id="da_a" >
+                    <div class="pure-u-1 pure-u-md-1-3" id="rangeData" >
 
-                        <label class="da" for="valore_da"><h2>Da:</h2></label>
-                        <input class="da" type="text" id="valore_da"  value=""  style="width: 60%">
-                        <label class="a" for="valore_a"><h2>A:</h2></label>
-                        <input class="a" type="text" id="valore_a"  value=""  style="width: 60%">
-                    </div> <div class="pure-u-1 pure-u-md-1-3" id="maggiore_di" >
+                        <label class="da" for="rangeData_da"><h2>Da:</h2></label>
+                        <input class="da" type="date" id="rangeData_da"  value=""  style="width: 60%">
+                        <label class="a" for="rangeData_a"><h2>A:</h2></label>
+                        <input class="a" type="date" id="rangeData_a"  value=""  style="width: 60%">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-3" id="rangeOperazione" >
 
-                        <label for="maggiore"><h2>Maggiore di:</h2></label>
-                        <input type="text" id="maggiore"  value="" style="width: 60%">
+                        <label class="da" for="rangeOperazione_da"><h2>Da:</h2></label>
+                        <input class="da" type="number" id="rangeOperazione_da"  value="" style="width: 60%">
+                        <label class="a" for="rangeOperazione_a"><h2>A:</h2></label>
+                        <input class="a" type="number" id="rangeOperazione_a"  value=""  style="width: 60%">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-3" id="maggioreImporto" >
+
+                        <label for="maggioreImporto_da"><h2>Maggiore di:</h2></label>
+                        <input type="number" id="maggioreImporto_da" step=".0001" value="" style="width: 60%">
                         <label for="valuta">Valuta</label>
                         <select id="valuta"  class="pure-input-1" style="width: 60%">
 

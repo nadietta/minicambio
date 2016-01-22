@@ -4,44 +4,40 @@
 
 $(document).ready(function() {
     var option;
-    $('#da_a').hide();
-    $('#maggiore_di').hide();
+    $('#rangeData').hide();
+    $('#rangeOperazione').hide();
+    $('#maggioreImporto').hide();
     $('#bottoni').hide();
+
     $(document).on('click','.scelta_ricerca', function(){
         option= $(this).val();
-
+        alert(option);
         switch (option){
             case '1':
-                $('#da_a').show();
-                $('#maggiore_di').hide();
-                $('#valore_da').attr('type','date');
-                $('#valore_a').attr('type','date');
-                var valore= $('#valore_da').val();
-                $('#valore_a').val(valore);
-                $('#valore_a').attr('min',valore);
-                $('#valore_da').attr('required',true);
-                $('#valore_a').attr('required',true);
+                $('#rangeData').show();
+                $('#rangeOperazione').hide();
+                $('#maggioreImporto').hide();
+                var valore= $('#rangeData_da').val();
+                $('#rangeData_a').val(valore);
+                $('#rangeData_a').attr('min',valore);
+                $('#rangeData_da').attr('required',true);
+                $('#rangeData_a').attr('required',true);
 
                 break;
             case '2':
-                $('#da_a').show();
-                $('#maggiore_di').hide();
-                $('#valore_da').attr('type','number');
-                $('#valore_a').attr('type','number');
-                $('#valore_da').attr('value','201601000000000');
-                //TODO: cercare di capire perchè cambiando radio e tornando in
-                //questo il valore_a si sbianca
-                $('#valore_a').attr('value','201601000000000');
-                $('#valore_a').attr('min','201601000000000');
-                $('#valore_da').attr('required',true);
-                $('#valore_a').attr('required',true);
-
-
+                $('#rangeOperazione').show();
+                $('#rangeData').hide();
+                $('#maggioreImporto').hide();
+                $('#rangeOperazione_da').attr('value','201601000000000');
+                $('#rangeOperazione_a').attr('value','201601000000000');
+                $('#rangeOperazione_a').attr('min','201601000000000');
+                $('#rangeOperazione_da').attr('required',true);
+                $('#rangeOperazione_a').attr('required',true);
                 break;
             case '3':
-                $('#da_a').hide();
-                $('#maggiore_di').show();
-                $('#maggiore').attr('type','number');
+                $('#maggioreImporto').show();
+                $('#rangeOperazione').hide();
+                $('#rangeData').hide();
                 $('#maggiore').attr('required',true);
                 $('#maggiore').attr('min',0);
                 $('#valuta').attr('required',true);
@@ -86,20 +82,20 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('change','#valore_da', function(){
+    $(document).on('change','#rangeData_da', function(){
 
-        var valore= $('#valore_da').val();
-        $('#valore_a').val(valore);
-        $('#valore_a').attr('min',valore);
+        var valore= $('#rangeData_da').val();
+        $('#rangeData_a').val(valore);
+        $('#rangeData_a').attr('min',valore);
 
     });
 
 
-    $(document).on('keyup','#valore_da', function(){
+    $(document).on('keyup','#rangeOperazione_da', function(){
 
-        var valore= $('#valore_da').val();
-        $('#valore_a').val(valore);
-        $('#valore_a').attr('min',valore);
+        var valore= $('#rangeOperazione_da').val();
+        $('#rangeOperazione_a').val(valore);
+        $('#rangeOperazione_a').attr('min',valore);
 
 
     });
@@ -109,17 +105,17 @@ $(document).ready(function() {
 
 
     $(document).on('click','#cerca', function(){
-
+        $('#lista_operazioni').html('');
+        $('#risposta').html('');
         var where="";
        // alert(option);
         switch (option){
-            case '1':   where="data_op >= '"+$('#valore_da').val()+"' AND data_op <= '"+$('#valore_a').val()+"'";
-                      break;
-            case '2':  where="cod_op >= "+$('#valore_da').val()+" AND cod_op <= "+$('#valore_a').val();
-                    break;
-            case '3':
-                    where="importo_entrata >= "+$('#maggiore').val()+" AND fk_valuta_entrata = "+$('#valuta').val();
-                    break;
+            case '1': where="data_op BETWEEN '"+$('#rangeData_da').val()+"' AND  '"+($('#rangeData_a').val())+"'+ INTERVAL 1 DAY";
+                        break;
+            case '2': where="cod_op >= "+$('#rangeOperazione_da').val()+" AND cod_op <= "+$('#rangeOperazione_a').val();
+                        break;
+            case '3': where="importo_entrata >= "+$('#maggioreImporto_da').val()+" AND fk_valuta_entrata = "+$('#valuta').val();
+                        break;
         }
 
             $.ajax({
@@ -134,8 +130,8 @@ $(document).ready(function() {
                      if (myresponse.length>0) {
                          table = "<legend> Lista Operazioni </legend> <table  class='pure-table'> " +
                             "<thead> <tr><th>Numero operazione</th> <th>Data</th> <th>Valuta Entrata</th>  <th>Importo Entrata</th>" +
-                            " <th>Tasso</th> <th>Importo Uscita</th>" +
-                            " <th>Valuta Uscita</th> <th>Modifica</th> <th>Cancella</th>" +
+                            " <th>Valuta uscita</th> <th>Importo Uscita</th>" +
+                            " <th>Tasso</th> <th>Modifica</th> <th>Cancella</th>" +
                             "</tr> </thead> ";
 
                         for (var i = 0; i < myresponse.length; i++) {
@@ -155,9 +151,9 @@ $(document).ready(function() {
                                 "<td id='valuta_entrata" + id + "'>" + valuta_entrata + "</td>" +
                                 "<td id='importo_entrata" + id + "'>" + importo_entrata + "</td>" +
                                 "<td id='valuta_uscita" + id + "'>" + valuta_uscita + "</td>" +
-                                "<td id='tasso" + id + "'>" + tasso + "</td>" +
+                                "<td id='tasso" + id + "'>" + importo_uscita + "</td>" +
 
-                                "<td id='tipo_op" + id + "'>" + tipo_op + "</td>" +
+                                "<td id='tipo_op" + id + "'>" + tasso + "</td>" +
                                 "<td align='center'><img class='img_icon' src='../img/edit_icon.png'></td>" +
                                 "<td align='center'><a href='#'  onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
                                 "</tr>";
