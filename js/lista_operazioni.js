@@ -3,11 +3,12 @@
  */
 
 $(document).ready(function() {
+    var option;
     $('#da_a').hide();
     $('#maggiore_di').hide();
     $('#bottoni').hide();
     $(document).on('click','.scelta_ricerca', function(){
-        var option= $(this).val();
+        option= $(this).val();
 
         switch (option){
             case '1':
@@ -20,6 +21,7 @@ $(document).ready(function() {
                 $('#valore_a').attr('min',valore);
                 $('#valore_da').attr('required',true);
                 $('#valore_a').attr('required',true);
+
                 break;
             case '2':
                 $('#da_a').show();
@@ -33,6 +35,7 @@ $(document).ready(function() {
                 $('#valore_a').attr('min','201601000000000');
                 $('#valore_da').attr('required',true);
                 $('#valore_a').attr('required',true);
+
 
                 break;
             case '3':
@@ -75,9 +78,11 @@ $(document).ready(function() {
                         alert("Details: " + desc + "\nError:" + err);
                     }
                 });
+
                 break;
         }
         $('#bottoni').show();
+
     });
 
 
@@ -86,6 +91,7 @@ $(document).ready(function() {
         var valore= $('#valore_da').val();
         $('#valore_a').val(valore);
         $('#valore_a').attr('min',valore);
+
     });
 
 
@@ -94,44 +100,64 @@ $(document).ready(function() {
         var valore= $('#valore_da').val();
         $('#valore_a').val(valore);
         $('#valore_a').attr('min',valore);
+
+
     });
+
 
 
 
 
     $(document).on('click','#cerca', function(){
 
-
+        var where="";
+       // alert(option);
+        switch (option){
+            case '1':   where="data_op >= '"+$('#valore_da').val()+"' AND data_op <= '"+$('#valore_a').val()+"'";
+                      break;
+            case '2':  where="cod_op >= "+$('#valore_da').val()+" AND cod_op <= "+$('#valore_a').val();
+                    break;
+            case '3':
+                    where="importo_entrata >= "+$('#maggiore').val()+" AND fk_valuta_entrata = "+$('#valuta').val();
+                    break;
+        }
+        alert(where);
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "phpFunctions/lista_operazioni.php",
-                data: {},
+                data: {where_data: where},
                 success: function(data) {
 
                     var myresponse = $.parseJSON(data);
-/**
+
+
                      if (myresponse.length>0) {
                          table = "<legend> Lista Operazioni </legend> <table  class='pure-table'> " +
                             "<thead> <tr><th>Numero operazione</th> <th>Data</th> <th>Valuta Entrata</th>  <th>Importo Entrata</th>" +
                             " <th>Tasso</th> <th>Importo Uscita</th>" +
                             " <th>Valuta Uscita</th> <th>Modifica</th> <th>Cancella</th>" +
                             "</tr> </thead> ";
+
                         for (var i = 0; i < myresponse.length; i++) {
                             // alert(myresponse.length);/
                             id = myresponse[i].id;
-                            valutada = myresponse[i].data;
-                            valutaa = myresponse[i].valuta_entrata;
-                            tasso = myresponse[i].importo_entrata;
-                            valutaa = myresponse[i].valuta_uscita;
-                            tasso = myresponse[i].importo_uscita;
+                            data_op = myresponse[i].data_op;
+                            valuta_entrata = myresponse[i].valuta_entrata;
+                            importo_entrata = myresponse[i].importo_entrata;
+                            valuta_uscita = myresponse[i].valuta_uscita;
+                            importo_uscita = myresponse[i].importo_uscita;
                             tasso = myresponse[i].tasso;
-                            tasso = myresponse[i].cod_op;
-                            tasso = myresponse[i].tipo_op;
+                            cod_op = myresponse[i].cod_op;
+                            tipo_op = myresponse[i].tipo_op;
                             table += " <tr>" +
-                                "<td id='idtasso" + id + "'>" + id + "</td>" +
-                                "<td id='valuta_da" + id + "'>" + valutada + "</td>" +
-                                "<td id='valuta_a" + id + "'>" + valutaa + "</td>" +
+                                "<td id='cod_op" + id + "'>" + cod_op + "</td>" +
+                                "<td id='data_op" + id + "'>" + data_op + "</td>" +
+                                "<td id='valuta_entrata" + id + "'>" + valuta_entrata + "</td>" +
+                                "<td id='importo_entrata" + id + "'>" + importo_entrata + "</td>" +
+                                "<td id='valuta_uscita" + id + "'>" + valuta_uscita + "</td>" +
                                 "<td id='tasso" + id + "'>" + tasso + "</td>" +
+
+                                "<td id='tipo_op" + id + "'>" + tipo_op + "</td>" +
                                 "<td align='center'><img class='img_icon' src='../img/edit_icon.png'></td>" +
                                 "<td align='center'><a href='#'  onclick=window.open('delete_valuta.html?id="+id+"');><img class='img_icon' src='../img/delete_icon.png'></a></td>" +
                                 "</tr>";
@@ -146,7 +172,7 @@ $(document).ready(function() {
                     else{
                         $('#risposta').html('<h2>'+'Nessuna Operazione Presente'+'</h2>');
                     }
-**/
+
                 },
                 error: function(xhr, desc, err) {
                     //alert(xhr);
