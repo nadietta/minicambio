@@ -57,7 +57,9 @@
                     </div>
 
 
+                    <div class="pure-u-1 pure-u-md-1 doppio_cambio" id="label_da">
 
+                    </div>
                     <div class="pure-u-1 pure-u-md-1-3 form_operazione">
                         <label for="oggi">Data</label>
                         <input type="datetime" id="oggi" disabled value="" required>
@@ -74,24 +76,48 @@
 
                     <div class="pure-u-1 pure-u-md-1-2 form_operazione">
                         <label for="entrata">Importo Entrata</label>
-                        <input id="entrata" class="pure-u-23-24" type="number"  step="0.000001" min="0" required>
+                        <input id="entrata" class="pure-u-23-24" type="text"  pattern="[0-9]*,*[0-9]*$"  required>
                     </div>
                     <div class="pure-u-1 pure-u-md-1-2 form_operazione">
                         <label for="uscita">Importo Uscita</label>
                         <input id="uscita" class="pure-u-23-24" type="number"  step="0.000001" min="0" required readonly>
                     </div>
-                    <div class="pure-u-1 pure-u-md-1-3 form_operazione" >
+                    <div class="pure-u-1 pure-u-md-1 doppio_cambio" id="label_a">
+
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-3 doppio_cambio">
+                        <label for="numop_2">Num. Seconda Operazione</label>
+                        <input id="numop_2" class="pure-u-23-24" type="text" readonly required>
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-2  doppio_cambio" >
+                        <label for="tasso_2">Secondo Tasso</label>
+                        <input id="tasso_2"class="pure-u-23-24" type="text" >
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-2  doppio_cambio" >
+                        <label for="entrata_2">Importo Entrata</label>
+                        <input id="entrata_2" class="pure-u-23-24" type="number"  readonly  >
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-2  doppio_cambio" >
+                        <label for="uscita_2">Importo Uscita</label>
+                        <input id="uscita_2" class="pure-u-23-24" type="number"  step="0.000001" min="0" readonly>
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-3 form_operazione" hidden >
                         <label for="tipo_op">Tipo Operazione</label>
                         <input id="tipo_op" class="pure-u-23-24" type="text" required >
-                    </div>
-                    <div id="risposta">
-
-
                     </div>
 
                 </div>
 
-                <button type="submit" class="pure-button pure-button-primary">Continua</button>
+                <br>
+                <br>
+                <div class="pure-u-1 pure-u-md-4-5 form_operazione" id="bottoni" align="right" >
+                <button type="submit" id='salva' class="pure-button pure-button-primary">Salva</button>
+                <button type="botton" id='salva_stampa'class="pure-button pure-button-primary">Salva e Stampa</button>
+                <button type="botton" id='stampa'class="pure-button pure-button-primary">Stampa</button>
+                </div>
             </fieldset>
         </form>
 
