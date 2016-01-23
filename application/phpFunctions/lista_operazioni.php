@@ -10,7 +10,7 @@ include("../../connessione.php");
 $where=$_POST['where_data'];
 $risultato=array();
 
-$query ="SELECT pk_operazione,data_op, v1.descrizione, importo_entrata, v2.descrizione, importo_uscita, tasso, cod_op, tipo_operazione FROM operazioni, valute v1, valute v2
+$query ="SELECT pk_operazione,DATE_FORMAT(data_op,'%m/%d/%Y') as data_op, v1.descrizione, importo_entrata, v2.descrizione, importo_uscita, tasso, cod_op, tipo_operazione FROM operazioni, valute v1, valute v2
           WHERE fk_valuta_entrata = v1.pk_valuta AND  fk_valuta_uscita = v2.pk_valuta AND ".$where;
 $risultato['msg']=$query;
 

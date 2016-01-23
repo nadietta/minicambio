@@ -220,6 +220,10 @@ $(document).on('keyup','#entrata', function(){
 $(document).on('keyup','#tasso', function(){
     calcolaUscita ();
 });
+$(document).on('keyup','#tasso_2', function(){
+    calcolaUscitaCombinata ();
+});
+
 
 $(document).on('submit','#soldi_change', function(){
 

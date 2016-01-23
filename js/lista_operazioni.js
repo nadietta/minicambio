@@ -6,17 +6,19 @@ $(document).ready(function() {
     var option;
     $('#rangeData').hide();
     $('#rangeOperazione').hide();
-    $('#maggioreImporto').hide();
+    $('#maggioreImportoEntrata').hide();
+    $('#maggioreImportoUscita').hide();
     $('#bottoni').hide();
 
     $(document).on('click','.scelta_ricerca', function(){
         option= $(this).val();
-        alert(option);
+
         switch (option){
             case '1':
                 $('#rangeData').show();
                 $('#rangeOperazione').hide();
-                $('#maggioreImporto').hide();
+                $('#maggioreImportoEntrata').hide();
+                $('#maggioreImportoUscita').hide();
                 var valore= $('#rangeData_da').val();
                 $('#rangeData_a').val(valore);
                 $('#rangeData_a').attr('min',valore);
@@ -27,7 +29,8 @@ $(document).ready(function() {
             case '2':
                 $('#rangeOperazione').show();
                 $('#rangeData').hide();
-                $('#maggioreImporto').hide();
+                $('#maggioreImportoEntrata').hide();
+                $('#maggioreImportoUscita').hide();
                 $('#rangeOperazione_da').attr('value','201601000000000');
                 $('#rangeOperazione_a').attr('value','201601000000000');
                 $('#rangeOperazione_a').attr('min','201601000000000');
@@ -35,9 +38,10 @@ $(document).ready(function() {
                 $('#rangeOperazione_a').attr('required',true);
                 break;
             case '3':
-                $('#maggioreImporto').show();
+                $('#maggioreImportoEntrata').show();
                 $('#rangeOperazione').hide();
                 $('#rangeData').hide();
+                $('#maggioreImportoUscita').hide();
                 $('#maggiore').attr('required',true);
                 $('#maggiore').attr('min',0);
                 $('#valuta').attr('required',true);
@@ -62,6 +66,50 @@ $(document).ready(function() {
 
 
                             $('#valuta').html(voce_select);
+
+                        }
+                        else{
+                            msg += "<br>Nessuna Valuta Presente.";
+
+                        }
+                    },
+                    error: function(xhr, desc, err) {
+                        //alert(xhr);
+                        alert("Details: " + desc + "\nError:" + err);
+                    }
+                });
+
+                break;
+        case '4':
+
+                $('#maggioreImportoUscita').show();
+                $('#rangeOperazione').hide();
+                $('#rangeData').hide();
+                $('#maggioreImportoEntrata').hide();
+                $('#maggiore').attr('required',true);
+                $('#maggiore').attr('min',0);
+                $('#valuta').attr('required',true);
+                $.ajax({
+                    type: "GET",
+                    url: "phpFunctions/lista_valute.php",
+                    data: {},
+                    success: function(data) {
+                        var myresponse = $.parseJSON(data);
+                        if (myresponse.length>0) {
+                            voce_select="<option label='Scegli valuta'></option>";
+
+
+                            for (var i = 0; i <myresponse.length; i++) {
+                                id = myresponse[i].id;
+                                nome_valuta = myresponse[i].nome_valuta;
+                                simbolo_valuta = myresponse[i].simbolo_valuta;
+                                valuta=nome_valuta +" ("+ simbolo_valuta+")";
+                                voce_select += " <option value="+id+">"+valuta+"</option>";
+                            }
+
+
+
+                            $('#valuta_uscita').html(voce_select);
 
                         }
                         else{
@@ -108,7 +156,7 @@ $(document).ready(function() {
         $('#lista_operazioni').html('');
         $('#risposta').html('');
         var where="";
-       // alert(option);
+
         switch (option){
             case '1': where="data_op BETWEEN '"+$('#rangeData_da').val()+"' AND  '"+($('#rangeData_a').val())+"'+ INTERVAL 1 DAY";
                         break;
@@ -116,6 +164,9 @@ $(document).ready(function() {
                         break;
             case '3': where="importo_entrata >= "+$('#maggioreImporto_da').val()+" AND fk_valuta_entrata = "+$('#valuta').val();
                         break;
+            case '4': where="importo_uscita >= "+$('#maggioreImporto_a').val()+" AND fk_valuta_uscita = "+$('#valuta_uscita').val();
+                break;
+
         }
 
             $.ajax({
