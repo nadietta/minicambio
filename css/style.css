@@ -52,13 +52,35 @@ a:hover {
 }
 
 #wrapper {
-	overflow: hidden;
+	overflow: auto;
+    min-height: 620px;
 	background: #F1F2E9;
 }
 
 .container {
-	width: 1200px;
+	width: 90%;
 	margin: 0px auto;
+}
+
+/* Popup */
+
+.bodyPopup {
+    margin: 0;
+    padding: 0;
+    background: #fafbf2;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+    color: #8A8985;
+}
+
+.wrapperPopup {
+    overflow: auto;
+    background: #fafbf2;
+}
+
+.containerPopup {
+    width: 90%;
+    margin: 0px auto;
 }
 
 /* Header */
@@ -220,7 +242,7 @@ a:hover {
 }
 
 #menu a:hover, #menu .current_page_item a {
-	background: #6789dc;
+	background: #428bca;
 	text-decoration: none;
 	color: #FFFFFF;
 }
@@ -239,8 +261,14 @@ a:hover {
 
 #content {
 	float: left;
-	width: 752px;
+	width: 60%;
 	padding: 0px 0px 0px 0px;
+}
+
+#contentR {
+    float: right;
+    width: 70%;
+    padding: 0px 0px 0px 0px;
 }
 
 .post {
@@ -317,13 +345,21 @@ a:hover {
 
 #sidebar {
 	float: right;
-	width: 384px;
+	width: 30%;
 	margin: 0px;
 	padding: 0px 0px 0px 0px;
 	color: #787878;
 }
 
-#sidebar h2 {
+#sidebarL {
+    float: left;
+    width: 20%;
+    margin: 0px;
+    padding: 0px 0px 0px 0px;
+    color: #787878;
+}
+
+#sidebar h2,#sidebarL h2 {
 	margin: 0px 0px 30px 0px;
 	padding: 0px 0px 10px 0px;
 	border-bottom: 3px solid #E0E1D6;
@@ -332,11 +368,11 @@ a:hover {
 	color: #373737;
 }
 
-#sidebar a {
+#sidebar a,#sidebarL a {
 	border: none;
 }
 
-#sidebar a:hover {
+#sidebar a:hover,#sidebarL a:hover {
 	text-decoration: underline;
 }
 
@@ -535,4 +571,20 @@ a:hover {
 	overflow: hidden;
 	height: 50px;
 	background: url(images/img04.png) no-repeat center top;
+}
+
+.alignRight{
+    text-align: right;
+}
+
+.yMargin20{
+    margin: 20px 0;
+}
+
+.highlightedInput{
+    background: #ffff99 url(../img/alert.png) no-repeat 98% center;
+}
+
+.hidden{
+    display: none;
 }
