@@ -7,7 +7,7 @@
      *
      *
      */
-
+    //TODO: permette l'inserimento ad es. da euro a dollaro inserisce una nuova riga e mette tipo operazione 1
     $risultato = array();
 
     include "../../connessione.php";

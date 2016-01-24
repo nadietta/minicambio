@@ -87,7 +87,7 @@ function loadTassi(){
 
     tassiDiv += "<div>\n\
                         <button class='btn btnAddNewTas' \n\
-                            onclick=\"popupCenter('tassiWindow.php?idTas=&mode=Nuovo','Tassi', '500', '350');\">\n\
+                            onclick=\"popupCenter('tassiWindow.php?idTas=&mode=Nuovo','Tassi', '500', '420');\">\n\
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuovo Tasso\n\
                         </button>\n\
                     </div>";
@@ -111,7 +111,7 @@ function loadTassi(){
                                             <td class='tasValutaUscitaClass'>"+ tassi[i].valutaa +"</td>\n\
                                             <td class='tasTassoClass'>"+ tassi[i].tasso +"</td>\n\
                                             <td><button class='btn' \n\
-                                                    onclick=\"popupCenter('tassiWindow.php?idTas="+ tassi[i].id +"&mode=Modifica','Tassi', '500', '350');\">\n\
+                                                    onclick=\"popupCenter('tassiWindow.php?idTas="+ tassi[i].id +"&mode=Modifica','Tassi', '500', '420');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
@@ -156,11 +156,25 @@ function loadTassi(){
 
 $(document).ready(function() {
 
-    $(document).on("click", "#valute", function(){
+    $(document).on("click", "#valute", function(e){
+        e.preventDefault();
+        //TODO: farlo dal padre e unire le due funzioni
+        $("#valute").removeClass("active");
+        $("#tassi").removeClass("active");
+
+        $(this).addClass("active");
+
         loadValute();
     });
 
-    $(document).on("click", "#tassi", function(){
+    $(document).on("click", "#tassi", function(e){
+        e.preventDefault();
+        //TODO: farlo dal padre
+        $("#valute").removeClass("active");
+        $("#tassi").removeClass("active");
+
+        $(this).addClass("active");
+
         loadTassi();
     });
 

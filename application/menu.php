@@ -9,7 +9,7 @@
  $nome_pagina = basename($_SERVER['HTTP_REFERER']);
 
 ?>
-<link rel="icon" href="../img/biglietto_visita.PNG" type="image/gif" />
+<link rel="icon" href="../img/biglietto_visita.png" type="image/gif" />
 <div class="pure-menu pure-menu-horizontal">
     <a href="index.html" class="pure-menu-heading">miniCAMBIO S.a.g.l.</a>
     <ul class="pure-menu-list">

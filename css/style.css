@@ -59,7 +59,7 @@ a:hover {
 
 .container {
 	width: 90%;
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 /* Popup */
@@ -80,7 +80,7 @@ a:hover {
 
 .containerPopup {
     width: 90%;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 /* Header */
@@ -94,7 +94,7 @@ a:hover {
 	width: 960px;
 	height: 200px;
 	margin: 0 auto;
-	padding: 0px 20px;
+	padding: 0 20px;
 }
 
 /* Banner */
@@ -102,7 +102,7 @@ a:hover {
 #banner {
 	overflow: hidden;
 	height: 400px;
-	background: url(images/img04.jpg) no-repeat center bottom;
+	/*background: url(images/img04.jpg) no-repeat center bottom;*/
 }
 
 #banner .image-style {
@@ -120,7 +120,7 @@ a:hover {
 }
 
 #logo h1 {
-	padding: 50px 0px 0px 0px;
+	padding: 50px 0 0 0;
 	letter-spacing: -6px;
 	text-transform: none;
 	font-family: 'Dancing Script', cursive;
@@ -129,7 +129,7 @@ a:hover {
 
 #logo p {
 	margin-top: -20px;
-	padding: 0px 0px 0px 5px;
+	padding: 0 0 0 5px;
 	font-family: 'Oswald', sans-serif;
 	font-size: 20px;
 	font-weight: 300;
@@ -151,7 +151,7 @@ a:hover {
 
 #splash {
 	overflow: hidden;
-	padding: 0px 0px 50px 0px;
+	padding: 0 0 50px 0;
 	border-bottom: 1px dashed #E7E2DC;
 	letter-spacing: -3px;
 	text-align: center;
@@ -168,7 +168,7 @@ a:hover {
 	float: right;
 	width: 280px;
 	height: 60px;
-	padding: 20px 0px 0px 0px;
+	padding: 20px 0 0 0;
 }
 
 #search form {
@@ -216,7 +216,7 @@ a:hover {
 
 #menu ul {
 	margin: 0;
-	padding: 0px 0px 0px 0px;
+	padding: 0 0 0 0;
 	list-style: none;
 	line-height: normal;
 	text-align: center;
@@ -228,11 +228,10 @@ a:hover {
 
 #menu a {
 	display: block;
-	padding: 0px 30px;
+	padding: 0 30px;
 	line-height: 52px;
 	border: none;
 	text-decoration: none;
-	text-transform: lowercase;
 	text-align: center;
 	text-transform: uppercase;
 	font-family: 'Oswald', sans-serif;
@@ -262,13 +261,13 @@ a:hover {
 #content {
 	float: left;
 	width: 60%;
-	padding: 0px 0px 0px 0px;
+	padding: 0 0 0 0;
 }
 
 #contentR {
     float: right;
     width: 70%;
-    padding: 0px 0px 0px 0px;
+    padding: 0 0 0 0;
 }
 
 .post {
@@ -276,10 +275,10 @@ a:hover {
 }
 
 .post .title {
-	margin: 0px 0px 30px 0px;
-	padding: 0px 0px 10px 0px;
+	margin: 0 0 30px 0;
+	padding: 0 0 10px 0;
 	border-bottom: 3px solid #E0E1D6;
-	text-shadow: 1px 1px 0px #FFFFFF;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	font-size: 26px;
 	color: #373737;
 }
@@ -291,7 +290,7 @@ a:hover {
 
 .post .meta {
 	margin-bottom: 30px;
-	padding: 0px;
+	padding: 0;
 	text-align: left;
 	font-size: 16px;
 }
@@ -308,8 +307,7 @@ a:hover {
 }
 
 .post .entry {
-	padding: 0px 0px 20px 0px;
-	padding-bottom: 20px;
+	padding: 0 0 20px 0;
 	text-align: justify;
 }
 
@@ -323,9 +321,9 @@ a:hover {
 	float: left;
 	width: 88px;
 	height: 25px;
-	padding: 2px 0px 0px 0px;
+	padding: 2px 0 0 0;
 	margin-right: 10px;
-	background: url(images/img08.jpg) no-repeat left top;
+	/*background: url(images/img08.jpg) no-repeat left top;*/
 	text-align: center;
 	color: #FFFFFF;
 }
@@ -335,8 +333,8 @@ a:hover {
 	float: left;
 	width: 88px;
 	height: 25px;
-	padding: 2px 0px 0px 0px;
-	background: url(images/img08.jpg) no-repeat left top;
+	padding: 2px 0 0 0;
+	/*background: url(images/img08.jpg) no-repeat left top;*/
 	text-align: center;
 	color: #FFFFFF;
 }
@@ -346,24 +344,24 @@ a:hover {
 #sidebar {
 	float: right;
 	width: 30%;
-	margin: 0px;
-	padding: 0px 0px 0px 0px;
+	margin: 0;
+	padding: 0 0 0 0;
 	color: #787878;
 }
 
 #sidebarL {
     float: left;
     width: 20%;
-    margin: 0px;
-    padding: 0px 0px 0px 0px;
+    margin: 0;
+    padding: 0 0 0 0;
     color: #787878;
 }
 
 #sidebar h2,#sidebarL h2 {
-	margin: 0px 0px 30px 0px;
-	padding: 0px 0px 10px 0px;
+	margin: 0 0 30px 0;
+	padding: 0 0 10px 0;
 	border-bottom: 3px solid #E0E1D6;
-	text-shadow: 1px 1px 0px #FFFFFF;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	font-size: 26px;
 	color: #373737;
 }
@@ -401,7 +399,7 @@ a:hover {
 
 #footer-bg {
 	overflow: hidden;
-	padding: 70px 0px;
+	padding: 70px 0;
 	background: #E9EAE1;
 	border-top: 10px solid #E5E6DD;
 }
@@ -411,10 +409,10 @@ a:hover {
 }
 
 #footer-content h2 {
-	margin: 0px 0px 20px 0px;
-	padding: 0px 0px 10px 0px;
+	margin: 0 0 20px 0;
+	padding: 0 0 10px 0;
 	border-bottom: 3px solid #E0E1D6;
-	text-shadow: 1px 1px 0px #FFFFFF;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	font-size: 26px;
 	color: #373737;
 }
@@ -440,7 +438,7 @@ a:hover {
 #footer {
 	height: 40px;
 	margin: 0 auto;
-	padding: 0px 0px 0px 0px;
+	padding: 0 0 0 0;
 }
 
 #footer p {
@@ -448,7 +446,7 @@ a:hover {
 	padding-top: 10px;
 	line-height: normal;
 	text-align: center;
-	text-shadow: 1px 1px 0px #FFFFFF;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	color: #909090;
 }
 
@@ -465,38 +463,38 @@ a:hover {
 .box1 {
 	overflow: hidden;
 	height: 300px;
-	background: url(images/img04.jpg) no-repeat center bottom;
+	/*background: url(images/img04.jpg) no-repeat center bottom;*/
 }
 
 .list-style1 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 .list-style1 li {
-	padding: 7px 0px 7px 0px;
+	padding: 7px 0 7px 0;
 	border-top: 1px dashed #E7E2DC;
 }
 
 .list-style1 .first {
-	padding-top: 0px;
+	padding-top: 0;
 	border-top: none;
 }
 
 .list-style2 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 .list-style2 li {
-	padding: 7px 0px 7px 0px;
+	padding: 7px 0 7px 0;
 	border-top: 1px solid #E0E1D6;
 }
 
 .list-style2 a {
-	text-shadow: 1px 1px 0px #FFFFFF;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	color: #909090;
 }
 
@@ -506,7 +504,7 @@ a:hover {
 }
 
 .list-style2 .first {
-	padding-top: 0px;
+	padding-top: 0;
 	border-top: none;
 	background: none;
 }
@@ -516,14 +514,14 @@ a:hover {
 #banner {
 	overflow: hidden;
 	height: 450px;
-	background: url(images/img04.png) no-repeat center bottom;
+	/*background: url(images/img04.png) no-repeat center bottom;*/
 }
 
 /* Three Column Content */
 
 #three-column {
 	overflow: hidden;
-	padding: 10px 0px 50px 0px;
+	padding: 10px 0 50px 0;
 }
 
 #three-column #tbox1 {
@@ -547,7 +545,7 @@ a:hover {
 }
 
 .box-style h2 {
-	padding: 10px 0px;
+	padding: 10px 0;
 	letter-spacing: -1px;
 	font-size: 28px;
 	color: #FFFFFF;
@@ -570,7 +568,7 @@ a:hover {
 .divider {
 	overflow: hidden;
 	height: 50px;
-	background: url(images/img04.png) no-repeat center top;
+	/*background: url(images/img04.png) no-repeat center top;*/
 }
 
 .alignRight{
@@ -587,4 +585,20 @@ a:hover {
 
 .hidden{
     display: none;
+}
+
+.fieldsetLeft{
+    width: 80%;
+    float: left;
+}
+
+.fieldsetRight{
+    width: 20%;
+    height: 110px;
+    margin: 0 auto;
+    float: left;
+    overflow: hidden;
+    background: url(../img/refresh.png) no-repeat 30% 80%;
+    background-size: 70%;
+    cursor: pointer;
 }
