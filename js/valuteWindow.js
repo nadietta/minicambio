@@ -91,7 +91,6 @@ $(document).ready(function() {
             var mode = $('#mode').val();
             var valNome = $('#valNome').val();
             var valSimbolo = $('#valSimbolo').val();
-
             if (mode == 'Modifica'){
                 $.ajax({
                     type: "POST",

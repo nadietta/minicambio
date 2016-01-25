@@ -29,9 +29,16 @@ else{
 if (isset($nome_valuta) && isset($simbolo_valuta)){
     $query = mysqli_query($conn, "INSERT INTO `valute`(pk_valuta, descrizione, simbolo) VALUES (NULL, '$nome_valuta','$simbolo_valuta')");
     if(!mysqli_affected_rows($conn)){
-        $risultato['err']="Errore inserimento";
+
+        $risultato['err']="Errore inserimento".mysqli_errno($conn);
+        if(mysqli_errno($conn)=='1062'){
+            $risultato['err'].="Non è possibile inserire due volte la stessa valuta";
+
+        }
     }
+
 }
+
 echo json_encode($risultato);
 
 

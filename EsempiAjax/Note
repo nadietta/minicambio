@@ -5,7 +5,7 @@ Setup
 - Non deve essere possibile inserire un tasso che non coinvolga il franco
 - Controllare slashes e apici prima di scrivere sul db
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
-    (ne abbiamo parlato un pò già su whatzapp ma vedere meglio)
+    (ne abbiamo parlato un pò già su whatzapp ma vedere meglio) -- I VINCOLI UNIQUE SONO RISPETTATI MA NON STAMPA L'ALERT()
     Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente)
 -
 
@@ -14,8 +14,24 @@ Setup
 NOTE SARA)
 
 
+vincoli:
+
+ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);
+ALTER TABLE `valute` ADD UNIQUE(`descrizione`);
+ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
+"ALTER TABLE `operazioni` ADD UNIQUE(`cod_op`);
 
 
+    /** UPDATE per cancellazione operazione
+         * $query = mysqli_query($conn,
+            "UPDATE `operazioni` SET cod_op=cod_op-1 WHERE cod_op> $cod_op_delete AND
+         * SUBSTRING(cod_op,1,6) = SUBSTRING($cod_op_delete,1,6)
+                ");**/
+
+
+
+I vincoli funzionano tutti,
+non funziona invece la reazione del programma
 --------------------------------
 
 PER FRA

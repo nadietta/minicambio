@@ -32,8 +32,13 @@
         $risultato['msg']="Inserimento avvenuto con successo";
     }
     else {
-
         $risultato['msg']="Errore, riprovare";
+        if(mysqli_errno($conn)=='1062'){
+            $risultato['err'].="Non è possibile inserire due volte un tasso per le stesse valute";
+
+        }
+
+
 
     }
 

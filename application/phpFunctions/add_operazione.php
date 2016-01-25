@@ -33,6 +33,7 @@
                 ");
     if(mysqli_affected_rows($conn)){
         $risultato['msg']="Inserimento avvenuto con successo";
+
     }
     else {
 
