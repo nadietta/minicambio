@@ -1,7 +1,7 @@
 NOTE NADIA)
 
 Setup
-- Discutere vincoli sulla cancellazione di valute e tassi
+- Discutere vincoli sulla cancellazione di valute e tassi -- i vicoli lato DB sono gestiti/lato applicativo no
 - Non deve essere possibile inserire un tasso che non coinvolga il franco
 - Controllare slashes e apici prima di scrivere sul db
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
