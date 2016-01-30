@@ -156,6 +156,9 @@ function loadTassi(){
 
 $(document).ready(function() {
 
+   /* $('#valute').trigger('click');
+    alert("prova");*/
+
     $(document).on("click", "#valute", function(e){
         e.preventDefault();
         //TODO: farlo dal padre e unire le due funzioni
@@ -241,5 +244,7 @@ $(document).ready(function() {
         var tasId = $(e.relatedTarget).data('tas-id');
         $(e.currentTarget).find('#modalDiv').html(tasId);
     });
+
+    $('#valute').trigger('click');
 
 });

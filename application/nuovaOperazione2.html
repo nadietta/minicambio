@@ -17,7 +17,7 @@ Released   : 20121201
     <meta http-equiv="content-type" content="text/html; charset=utf-8" /><title>miniCAMBIO2 S.a.g.l.</title>
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/setup2.js"></script>
+    <script type="text/javascript" src="../js/nuovaOperazione2.js"></script>
 
     <link href="http://fonts.googleapis.com/css?family=Dancing+Script|Oswald" rel="stylesheet" type="text/css" />
 
@@ -31,22 +31,43 @@ Released   : 20121201
         <div id="menu" class="container">
             <ul>
                 <li><a href="index2.html">Homepage</a></li>
-                <li><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                <li class="current_page_item"><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
                 <li><a href="#">Lista Operazioni</a></li>
                 <li><a href="#">Report</a></li>
-                <li class="current_page_item"><a href="setup2.html">Setup</a></li>
+                <li><a href="setup2.html">Setup</a></li>
             </ul>
         </div>
     </div>
     <div id="page" class="container">
         <div id="sidebarL">
             <div>
-                <h2>Impostazioni</h2>
-                <ul class="nav nav-pills nav-stacked">
-                    <li id="valute" role="presentation"><a href="#">VALUTE</a></li>
-                    <li id="tassi" role="presentation"><a href="#">TASSI</a></li>
+                <h2>Nuova Operazione</h2>
+                <form id="nuovaOperazioneLeftForm" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="valutaEntrata">Valuta Entrata:</label>
+                            <div>
+                                <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
+                                    <!-- Opzioni Aggiunte dinamicamente-->
+                                </select>
+                            </div>
+                            <br>
+                            <div style="text-align: center;">
+                                <button type="button" id="invertiBtn" class="btn" disabled>
+                                    <span class='glyphicon glyphicon-refresh'></span>&nbsp;&nbsp;Inverti
+                                </button>
+                            </div>
+                            <label for="valutaUscita">Valuta Uscita:</label>
+                            <div>
+                                <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita" disabled>
+                                    <!-- Opzioni Aggiunte dinamicamente-->
+                                </select>
+                            </div>
+                            <div style="clear: both;">&nbsp;</div>
+                        </div>
+                    </fieldset>
 
-                </ul>
+                </form>
             </div>
         </div>
         <!-- end #sidebar -->
