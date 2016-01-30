@@ -120,13 +120,16 @@ $(document).ready(function() {
                     success: function(data)
                     {
                         var risultato = $.parseJSON(data);
-                        //Aggiungo la riga
-                        window.close();
-                        if (risultato.err){
-                            alert(risultato.err);
-                        }
-                        $("#valute", window.opener.document).trigger('click');
 
+                        if (risultato.errore){
+                            alert(risultato.messaggio);
+                            window.close();
+                        }
+                        else{
+                            //Aggiungo la riga
+                            window.close();
+                            $("#valute", window.opener.document).trigger('click');
+                        }
                     },
                     error: function(xhr, desc, err) {
                         alert("Errore");

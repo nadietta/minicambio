@@ -586,19 +586,3 @@ a:hover {
 .hidden{
     display: none;
 }
-
-.fieldsetLeft{
-    width: 80%;
-    float: left;
-}
-
-.fieldsetRight{
-    width: 20%;
-    height: 110px;
-    margin: 0 auto;
-    float: left;
-    overflow: hidden;
-    background: url(../img/refresh.png) no-repeat 30% 80%;
-    background-size: 70%;
-    cursor: pointer;
-}

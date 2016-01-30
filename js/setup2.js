@@ -187,13 +187,18 @@ $(document).ready(function() {
             data: {idVal: idVal},
             success: function(data)
             {
-                //Cancello la riga relativa
-                var killrowString = "trIdVal_" + idVal;
-                var killrow = $("#"+killrowString+"");
-                killrow.addClass("danger");
-                killrow.fadeOut(2000, function(){
-                    $(this).remove();
-                });
+                if (data == '1'){
+                    //Cancello la riga relativa
+                    var killrowString = "trIdVal_" + idVal;
+                    var killrow = $("#"+killrowString+"");
+                    killrow.addClass("danger");
+                    killrow.fadeOut(2000, function(){
+                        $(this).remove();
+                    });
+                }
+               else{
+                    alert("Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
+                }
             },
             error: function(xhr, desc, err) {
                 alert("Errore. Impossibile eliminare la Valuta Selezionata");
@@ -211,6 +216,7 @@ $(document).ready(function() {
             data: {idTas: idTas},
             success: function(data)
             {
+                //alert(data);
                 //Cancello la riga relativa
                 var killrowString = "trIdTas_" + idTas;
                 var killrow = $("#"+killrowString+"");

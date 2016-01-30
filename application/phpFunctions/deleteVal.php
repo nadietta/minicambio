@@ -23,3 +23,5 @@ if (isset($idVal)){
         die('Impossibile Aggiornare i dati' . mysqli_error());
     }
 }
+
+echo $retval;
