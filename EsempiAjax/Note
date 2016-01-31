@@ -12,6 +12,8 @@ Setup
 
 - Controllare db (forse non ho quello nuovo coi vincoli perchè mi permette di inserire due volte le valute)
 - Ricontrollare da applicazione se funzionano i vincoli
+- Ricontrollare ovunque campi Required
+- Siamo sicure di voler bloccare la data in inserimento nuova operazione? E se le inserisce nuove ma per un giorno passato o futuro?
 
 -------------------------------
 
