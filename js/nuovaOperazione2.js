@@ -78,7 +78,6 @@ function getValoriNuovaOperazione(){
                 $('#op2dataora').val(currentDateTime);
                 $("#op1tipoOp").val(1);
                 $("#op2tipoOp").val(0);
-                alert(data);
                 $("#op2operazione").val(myresponse.cod_op_2);
                 $("#op2tasso").val(myresponse.tasso_due);
             }

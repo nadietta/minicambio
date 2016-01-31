@@ -8,13 +8,13 @@
 
 include("../../connessione.php");
 $id_franco=1;
-$valuta_da="2";
-$valuta_a="19";
+//$valuta_da="2";
+//$valuta_a="19";
 $tasso="";
-//$valuta_da=$_POST['valuta_da'];
-//$valuta_a=$_POST['valuta_a'];
-$cod="201602";
-//$cod=$_POST['cod'];
+$valuta_da=$_POST['valuta_da'];
+$valuta_a=$_POST['valuta_a'];
+//$cod="201602";
+$cod=$_POST['cod'];
 $risultato=array();
 $tipo_op=-1;
 if($id_franco==$valuta_da){
@@ -114,4 +114,4 @@ else{
     $risultato['cod_op_2'] = $cod_2;
 
 $risultato['msg'] = 'ok';
-echo json_encode($risultato); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati
+echo json_encode($risultato); //se vuoi stampare ok non hai bisogno del json_encode, quello ï¿½ solo per passare dati strutturati
