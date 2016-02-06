@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Domestic
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121201
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" /><title>miniCAMBIO2 S.a.g.l.</title>
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/nuovaOperazione2.js"></script>
+
+    <link href="http://fonts.googleapis.com/css?family=Dancing+Script|Oswald" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="icon" href="../img/money_bag.png" type="image/gif" />
+</head>
+<body>
+<div id="wrapper">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li><a href="index2.html">Homepage</a></li>
+                <li class="current_page_item"><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                <li><a href="#">Lista Operazioni</a></li>
+                <li><a href="#">Report</a></li>
+                <li><a href="setup2.html">Setup</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="page" class="container">
+        <div id="sidebarL">
+            <div>
+                <h2>Nuova Operazione</h2>
+                <form id="nuovaOperazioneLeftForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="valutaEntrata" class="control-label">Valuta Entrata:</label>
+                            <div>
+                                <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
+                                    <!-- Opzioni Aggiunte dinamicamente-->
+                                </select>
+                            </div>
+                            <br>
+                            <div>
+                                <div style="text-align: center;">
+                                    <button type="button" id="invertiBtn" class="btn" disabled>
+                                        <span class='glyphicon glyphicon-refresh'></span>&nbsp;&nbsp;Inverti
+                                    </button>
+                                </div>
+                            </div>
+                            <label for="valutaUscita" class="control-label">Valuta Uscita:</label>
+                            <div>
+                                <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita" disabled>
+                                    <!-- Opzioni Aggiunte dinamicamente-->
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+        <!-- end #sidebar -->
+
+        <div id="contentR">
+            <div class="post">
+                <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
+                <div id="entryContainer" class="entry">
+
+                    <p>
+                        <div id="divOperazione1">
+
+                            <h3 id="titleOperazione1">DA VALUTA A VALUTA</h3>
+                            <input type="number" id="op1tipoOp" name="op1tipoOp" value="" readonly required hidden/>
+                            <br>
+
+                            <form id="formOperazione1">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="op1dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
+                                        <label for="op1operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
+                                        <label for="op1tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input  type="datetime" class="form-control" id="op1dataora" name="op1dataora" value="" readonly required/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" maxlength="15" class="form-control" id="op1operazione" name="op1operazione" readonly required value=""/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" step="0.000001" min="0" class="form-control" id="op1tasso" name="op1tasso" required value=""/>
+                                        </div>
+
+                                        <label for="op1entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
+                                        <label for="op1uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input type="number" step="0.001" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*(,|.)[0-9]*$" required value=""/>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input type="number" step="0.001" min="0" class="form-control" id="op1uscita" name="op1uscita" readonly required value=""/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </p>
+                    <br><br>
+                    <p>
+                        <div id="divOperazione2">
+                            <h3 id="titleOperazione2">DA VALUTA A VALUTA</h3>
+                            <input type="number" id="op2tipoOp" name="op2tipoOp" value="" readonly required hidden/>
+                            <br>
+
+                            <form id="formOperazione2">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="op2dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
+                                        <label for="op2operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
+                                        <label for="op2tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input  type="datetime" class="form-control" id="op2dataora" name="op2dataora" value="" readonly required/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" maxlength="15" class="form-control" id="op2operazione" name="op2operazione" readonly required value=""/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" step="0.000001" min="0" class="form-control" id="op2tasso" name="op2tasso" required value=""/>
+                                        </div>
+
+                                        <label for="op2entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
+                                        <label for="op2uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input type="number" step="0.001" min="0" class="form-control" id="op2entrata" name="op2entrata" readonly required value=""/>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input type="number" step="0.001" min="0" class="form-control" id="op2uscita" name="op2uscita" readonly required value=""/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </p>
+                    <input type="number" id="opTipoOp" name="opTipoOp" value="" readonly required hidden/>
+                </div>
+            </div>
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+        <!-- end #content -->
+        <div style="clear: both;">&nbsp;</div>
+
+    </div>
+    <!-- end #page -->
+
+</div>
+
+<div id="footer">
+    <p>© 2016 - Minicambio S.a.g.l. </p>
+</div>
+<!-- end #footer -->
+</body>
+</html>

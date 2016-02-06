@@ -8,11 +8,12 @@
 
 include("../../connessione.php");
 $id_franco=1;
-$valuta_da="";
-$valuta_a="";
+//$valuta_da="2";
+//$valuta_a="19";
 $tasso="";
 $valuta_da=$_POST['valuta_da'];
 $valuta_a=$_POST['valuta_a'];
+//$cod="201602";
 $cod=$_POST['cod'];
 $risultato=array();
 $tipo_op=-1;
@@ -37,7 +38,8 @@ if($tipo_op!='-1') {
 
         //  $risultato['tipo_op']=$row[1];
     }
-} else{
+}
+else{
 
     $query = "SELECT tassi.valore as tasso, tassi.tipo_operazione as tipo, descrizione as descrizione
               FROM tassi, valute
@@ -81,10 +83,13 @@ if($tipo_op!='-1') {
 
     if ($cod_r == null) {
 
-        $cod = (string)$cod . "000000001";
+        $defCod = $cod;
 
+        $cod = (string)$defCod . "000000001";
+        $cod_2 = (string)$defCod . "000000002";
 
-    } else {
+    }
+    else {
         //$cod=(($cod_r));
         $n = (intval($cod_2));
         $n++;
@@ -109,4 +114,4 @@ if($tipo_op!='-1') {
     $risultato['cod_op_2'] = $cod_2;
 
 $risultato['msg'] = 'ok';
-echo json_encode($risultato); //se vuoi stampare ok non hai bisogno del json_encode, quello è solo per passare dati strutturati
+echo json_encode($risultato); //se vuoi stampare ok non hai bisogno del json_encode, quello ï¿½ solo per passare dati strutturati

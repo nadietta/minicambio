@@ -7,7 +7,13 @@ Setup
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
     (ne abbiamo parlato un pò già su whatzapp ma vedere meglio) -- I VINCOLI UNIQUE SONO RISPETTATI MA NON STAMPA L'ALERT()
     Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente)
--
+- Impedicare modifica ed eliminazione del Franco. Come?
+- Deve essere possibile sempre modificare tassi e valute oppure no? Quali sono i vincoli? Discutere anche cancellazione.
+
+- Controllare db (forse non ho quello nuovo coi vincoli perchè mi permette di inserire due volte le valute)
+- Ricontrollare da applicazione se funzionano i vincoli
+- Ricontrollare ovunque campi Required
+- Siamo sicure di voler bloccare la data in inserimento nuova operazione? E se le inserisce nuove ma per un giorno passato o futuro?
 
 -------------------------------
 

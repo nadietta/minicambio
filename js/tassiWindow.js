@@ -99,12 +99,54 @@ $(document).ready(function() {
 
     $(document).on("change", "#valutaEntrata", function(){
         var selectedValutaEntrata = $(this).val();
+        var selectedValutaUscita = $('#valutaUscita').val();
+
+        $('#valutaUscita').prop('disabled',false);
+
+        $("#valutaUscita option[value]").prop('disabled',false);
         if (selectedValutaEntrata == '1'){
-            $("#valutaUscita option[value='"+selectedValutaEntrata+"']").prop('disabled',true);
+            $("#valutaUscita option[value='1']").prop('disabled',true);
+            if (selectedValutaUscita == '1'){
+                $("#valutaUscita option[value!='1']:first").prop('selected',true);
+            }
         }
         else{
-            //alert("non");
+            $("#valutaUscita option[value!='1']").prop('disabled',true);
+            $("#valutaUscita option[value='1']").prop('selected',true);
         }
+
+        var newselectedValutaEntrata = $(this).val();
+        var newselectedValutaUscita = $('#valutaUscita').val();
+
+        if (newselectedValutaEntrata && newselectedValutaUscita){
+            $('#invertiBtn').attr('disabled',false);
+        }
+        else{
+            $('#invertiBtn').attr('disabled',true);
+        }
+    });
+
+    $(document).on("change", "#valutaUscita", function(){
+        var selectedValutaEntrata = $(this).val();
+        var selectedValutaUscita = $('#valutaUscita').val();
+
+        if (selectedValutaEntrata && selectedValutaUscita){
+            $('#invertiBtn').attr('disabled',false);
+        }
+        else{
+            $('#invertiBtn').attr('disabled',true);
+        }
+    });
+
+    $(document).on("click", "#invertiBtn", function(){
+        var selectedValutaEntrata = $('#valutaEntrata').val();
+        var selectedValutaUscita = $('#valutaUscita').val();
+
+        $('#valutaEntrata').val(selectedValutaUscita);
+        $("#valutaUscita option[value]").prop('disabled',false);
+        $('#valutaUscita').val(selectedValutaEntrata);
+
+        $('#valutaEntrata').trigger('change');
     });
 
     //TODO: highlight sui select? Sistemare Highlights in generale anche su Valute. Input types anche
@@ -162,17 +204,21 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     url: "phpFunctions/add_tasso.php",
+                   // async: false,
                     data: {valuta_da : valEntrata, valuta_a : valUscita, tasso : valTasso},
                     success: function(data)
                     {
                         var risultato = $.parseJSON(data);
-                        //Aggiungo la riga
-                        window.close();
-                        if (risultato.err){
-                            alert(risultato.err);
-                        }
-                        $("#tassi", window.opener.document).trigger('click');
 
+                        if (risultato.errore){
+                            alert(risultato.messaggio);
+                            window.close();
+                        }
+                        else{
+                            //Aggiungo la riga
+                            window.close();
+                            $("#tassi", window.opener.document).trigger('click');
+                        }
                     },
                     error: function(xhr, desc, err) {
                         alert("Errore");

@@ -25,18 +25,37 @@ else{
     $simbolo_valuta = "";
 }
 
+$risultato['inserimento']=-1;
+$risultato['errore']='';
+$risultato['messaggio']='';
+
 //TODO: Controllare slashes e apici prima di scrivere sul db
 if (isset($nome_valuta) && isset($simbolo_valuta)){
     $query = mysqli_query($conn, "INSERT INTO `valute`(pk_valuta, descrizione, simbolo) VALUES (NULL, '$nome_valuta','$simbolo_valuta')");
-    if(!mysqli_affected_rows($conn)){
+    $inserimento = mysqli_affected_rows($conn);
 
-        $risultato['err']="Errore inserimento".mysqli_errno($conn);
-        if(mysqli_errno($conn)=='1062'){
-            $risultato['err'].="Non è possibile inserire due volte la stessa valuta";
+    $risultato['inserimento'] = $inserimento;
 
+    if($inserimento > 0){
+        $risultato['messaggio']="Inserimento avvenuto con successo";
+    }
+    else {
+        //$risultato['msg']="Errore, riprovare";
+        $errore = mysqli_errno($conn);
+        if($errore=='1062'){
+            $risultato['errore']="Impossibile inserire due volte la stessa Valuta";
+            $risultato['messaggio']="Valuta esistente, puoi modificarla cliccando Modifica";
+        }
+        else{
+            $risultato['errore']='Errore';
+            $risultato['messaggio']='Errore';
         }
     }
 
+}
+else{
+    $risultato['errore']='Errore variabili in Ingresso';
+    $risultato['messaggio']='Variabili Mancanti';
 }
 
 echo json_encode($risultato);

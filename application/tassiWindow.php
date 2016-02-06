@@ -49,21 +49,24 @@
                             <input class="hidden" id="mode" name="mode" value="<?php print $mode;?>">
 
                             <div class="form-group">
-                                <div class="fieldsetLeft">
-                                    <label for="valutaEntrata" class="col-sm-3 col-lg-3 control-label">Valuta Entrata:</label>
-                                    <div class="col-sm-8 col-lg-8">
-                                        <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
-                                            <!-- Opzioni Aggiunte dinamicamente-->
-                                        </select>
-                                    </div>
-                                    <label for="valutaUscita" class="col-sm-3 col-lg-3 control-label">Valuta Uscita:</label>
-                                    <div class="col-sm-8 col-lg-8">
-                                        <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita">
-                                            <!-- Opzioni Aggiunte dinamicamente-->
-                                        </select>
-                                    </div>
+                                <label for="valutaEntrata" class="col-sm-3 col-lg-3 control-label">Valuta Entrata:</label>
+                                <div class="col-sm-8 col-lg-8">
+                                    <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
+                                        <!-- Opzioni Aggiunte dinamicamente-->
+                                    </select>
                                 </div>
-                                <div class="fieldsetRight"></div>
+                                <br>
+                                <div style="text-align: center;">
+                                    <button type="button" id="invertiBtn" class="btn" disabled>
+                                        <span class='glyphicon glyphicon-refresh'></span>&nbsp;&nbsp;Inverti
+                                    </button>
+                                </div>
+                                <label for="valutaUscita" class="col-sm-3 col-lg-3 control-label">Valuta Uscita:</label>
+                                <div class="col-sm-8 col-lg-8">
+                                    <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita" disabled>
+                                        <!-- Opzioni Aggiunte dinamicamente-->
+                                    </select>
+                                </div>
                                 <div style="clear: both;">&nbsp;</div>
                                 <label for="tassoCambio" class="col-sm-3 col-lg-3 control-label">Tasso:</label>
                                 <div class="col-sm-8 col-lg-8">
