@@ -19,7 +19,7 @@ Setup
 
 NOTE SARA)
 
-
+I path assoluti per le librerie?
 vincoli:
 
 ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);

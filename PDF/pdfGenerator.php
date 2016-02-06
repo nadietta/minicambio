@@ -28,4 +28,4 @@ function htmltopdf($html, $filename, $paper, $orientation )
     $dompdf->stream($filename, array("Attachment" => 0));
 }
 
-htmltopdf(file_get_contents("esempioHTML.php"),"","A5","landscape");
+htmltopdf(file_get_contents("esempioHTML.html"),"","A5","landscape");
