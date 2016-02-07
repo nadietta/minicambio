@@ -73,6 +73,15 @@ function getValoriNuovaOperazione(){
             $("#op1operazione").val(myresponse.cod_op);
             $("#op1tasso").val(myresponse.tasso);
             if(myresponse.tipo_op=='-1'){
+                $('#formOperazione1 :input').attr('disabled', false);
+                $('#formOperazione2 :input').attr('disabled', false);
+                $('#divOperazione1').removeClass('customHidden');
+                $('#divOperazione2').removeClass('customHidden');
+                $('#newOpBottoni').removeClass('customHidden');
+
+                $("#op1entrata").val("");
+                $("#op1uscita").val("");
+
                 $('#titleOperazione1').html("da "+valuta_daDesc+" a Franco");
                 $('#titleOperazione2').html("da Franco a "+valuta_aDesc);
                 $('#op2dataora').val(currentDateTime);
@@ -82,7 +91,21 @@ function getValoriNuovaOperazione(){
                 $("#op2tasso").val(myresponse.tasso_due);
             }
             else{
+                $('#formOperazione1 :input').attr('disabled', false);
+                $('#formOperazione2 :input').attr('disabled', true);
+                $('#divOperazione1').removeClass('customHidden');
+                $('#divOperazione2').addClass('customHidden');
+                $('#newOpBottoni').removeClass('customHidden');
+
                 $('#titleOperazione1').html("da "+valuta_daDesc+" a "+valuta_aDesc);
+                $("#op1entrata").val("");
+                $("#op1uscita").val("");
+                $('#titleOperazione2').html("da valuta a valuta");
+                $('#op2dataora').val("");
+                $("#op2operazione").val("");
+                $("#op2tasso").val("");
+                $("#op2entrata").val("");
+                $("#op2uscita").val("");
                 $("#op1tipoOp").val(myresponse.tipo_op);
             }
         },
@@ -136,6 +159,10 @@ function calcolaUscita(){
 $(document).ready(function() {
 
     selectValute = getValute();
+
+    $('#formOperazione1 :input').attr('disabled', true);
+    $('#formOperazione2 :input').attr('disabled', true);
+
     $('#valutaEntrata').html(selectValute);
     $('#valutaUscita').html(selectValute);
 
@@ -203,6 +230,42 @@ $(document).ready(function() {
 
     $(document).on('keyup','#op1entrata', function(){
         calcolaUscita();
+    });
+
+    $(document).on('keyup','#op1tasso', function(){
+        calcolaUscita ();
+    });
+
+    $(document).on('keyup','#op2tasso', function(){
+        calcolaUscitaCombinata ();
+    });
+
+    $(document).on("submit", "#nuovaOperazioneForm", function(){
+        var formData = $("#nuovaOperazioneForm").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "phpFunctions/addOperazione.php",
+            data: {formData: formData},
+            async: false,
+            success: function(data) {
+                var risultato = $.parseJSON(data);
+                if (risultato.errore){
+                    alert(risultato.errore);
+                }
+                else{
+                    alert(risultato.messaggio);
+                    $('#menuNuovaOperazione').trigger('click');
+                }
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+
+        return false;
+
     });
 
 });

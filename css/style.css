@@ -579,10 +579,18 @@ a:hover {
     margin: 20px 0;
 }
 
+.xMargin20{
+    margin: 0 20px;
+}
+
 .highlightedInput{
     background: #ffff99 url(../img/alert.png) no-repeat 98% center;
 }
 
 .hidden{
     display: none;
+}
+
+.customHidden{
+	display: none;
 }

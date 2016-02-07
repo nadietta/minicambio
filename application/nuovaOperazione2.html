@@ -34,7 +34,7 @@ Released   : 20121201
         <div id="menu" class="container">
             <ul>
                 <li><a href="index2.html">Homepage</a></li>
-                <li class="current_page_item"><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                <li class="current_page_item" id="menuNuovaOperazione"><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
                 <li><a href="#">Lista Operazioni</a></li>
                 <li><a href="#">Report</a></li>
                 <li><a href="setup2.html">Setup</a></li>
@@ -42,53 +42,54 @@ Released   : 20121201
         </div>
     </div>
     <div id="page" class="container">
-        <div id="sidebarL">
-            <div>
-                <h2>Nuova Operazione</h2>
-                <form id="nuovaOperazioneLeftForm">
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="valutaEntrata" class="control-label">Valuta Entrata:</label>
-                            <div>
-                                <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
-                                    <!-- Opzioni Aggiunte dinamicamente-->
-                                </select>
-                            </div>
-                            <br>
-                            <div>
-                                <div style="text-align: center;">
-                                    <button type="button" id="invertiBtn" class="btn" disabled>
-                                        <span class='glyphicon glyphicon-refresh'></span>&nbsp;&nbsp;Inverti
-                                    </button>
+        <form id="nuovaOperazioneForm">
+            <div id="sidebarL">
+                <div>
+                    <h2>Nuova Operazione</h2>
+                    <div id="nuovaOperazioneLeftForm">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="valutaEntrata" class="control-label">Valuta Entrata:</label>
+                                <div>
+                                    <select class="form-control requiredInput" id="valutaEntrata" name="valutaEntrata">
+                                        <!-- Opzioni Aggiunte dinamicamente-->
+                                    </select>
+                                </div>
+                                <br>
+                                <div>
+                                    <div style="text-align: center;">
+                                        <button type="button" id="invertiBtn" class="btn" disabled>
+                                            <span class='glyphicon glyphicon-refresh'></span>&nbsp;&nbsp;Inverti
+                                        </button>
+                                    </div>
+                                </div>
+                                <label for="valutaUscita" class="control-label">Valuta Uscita:</label>
+                                <div>
+                                    <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita" disabled>
+                                        <!-- Opzioni Aggiunte dinamicamente-->
+                                    </select>
                                 </div>
                             </div>
-                            <label for="valutaUscita" class="control-label">Valuta Uscita:</label>
-                            <div>
-                                <select class="form-control requiredInput" id="valutaUscita" name="valutaUscita" disabled>
-                                    <!-- Opzioni Aggiunte dinamicamente-->
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
+                        </fieldset>
 
-                </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- end #sidebar -->
+            <!-- end #sidebar -->
 
-        <div id="contentR">
-            <div class="post">
-                <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
-                <div id="entryContainer" class="entry">
+            <div id="contentR">
+                <div class="post">
+                    <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
+                    <div id="entryContainer" class="entry">
 
-                    <p>
-                        <div id="divOperazione1">
+                        <p>
+                        <div id="divOperazione1" class="customHidden">
 
                             <h3 id="titleOperazione1">DA VALUTA A VALUTA</h3>
-                            <input type="number" id="op1tipoOp" name="op1tipoOp" value="" readonly required hidden/>
+                            <input type="number" class="customHidden" id="op1tipoOp" name="op1tipoOp" value="" readonly required/>
                             <br>
 
-                            <form id="formOperazione1">
+                            <div id="formOperazione1">
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="op1dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
@@ -114,18 +115,18 @@ Released   : 20121201
                                         </div>
                                     </div>
                                 </fieldset>
-                            </form>
+                            </div>
 
                         </div>
-                    </p>
-                    <br><br>
-                    <p>
-                        <div id="divOperazione2">
+                        </p>
+                        <br><br>
+                        <p>
+                        <div id="divOperazione2" class="customHidden">
                             <h3 id="titleOperazione2">DA VALUTA A VALUTA</h3>
-                            <input type="number" id="op2tipoOp" name="op2tipoOp" value="" readonly required hidden/>
+                            <input type="number" class="customHidden" id="op2tipoOp" name="op2tipoOp" value="" readonly required/>
                             <br>
 
-                            <form id="formOperazione2">
+                            <div id="formOperazione2">
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="op2dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
@@ -151,17 +152,28 @@ Released   : 20121201
                                         </div>
                                     </div>
                                 </fieldset>
-                            </form>
+                            </div>
 
                         </div>
-                    </p>
-                    <input type="number" id="opTipoOp" name="opTipoOp" value="" readonly required hidden/>
+                        </p>
+                        <input type="number" class="customHidden" id="opTipoOp" name="opTipoOp" value="" readonly required/>
+                        <br>
+
+                        <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
+                            <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva" value="Salva"/>
+                            <input type="button" class='btn btn-primary' id="newOpStampa" name="newOpStampa" value="Stampa"/>
+                            <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
+                        </div>
+
+                    </div>
                 </div>
+                <div style="clear: both;">&nbsp;</div>
             </div>
+            <!-- end #content -->
             <div style="clear: both;">&nbsp;</div>
-        </div>
-        <!-- end #content -->
-        <div style="clear: both;">&nbsp;</div>
+
+        </form>
+
 
     </div>
     <!-- end #page -->

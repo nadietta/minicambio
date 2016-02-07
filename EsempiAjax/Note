@@ -15,6 +15,9 @@ Setup
 - Ricontrollare ovunque campi Required
 - Siamo sicure di voler bloccare la data in inserimento nuova operazione? E se le inserisce nuove ma per un giorno passato o futuro?
 
+- Nella prima versione minicambio il tipoOp lo mette sempre a 1
+- Togliere il link esterni alle librerie utilizzate
+
 -------------------------------
 
 NOTE SARA)
