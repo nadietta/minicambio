@@ -242,6 +242,7 @@ $(document).ready(function() {
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var formData = $("#nuovaOperazioneForm").serialize();
+        var formDataCommit = false;
 
         $.ajax({
             type: "POST",
@@ -254,8 +255,9 @@ $(document).ready(function() {
                     alert(risultato.errore);
                 }
                 else{
-                    alert(risultato.messaggio);
-                    $('#menuNuovaOperazione').trigger('click');
+                    //alert(risultato.messaggio);
+                    //formDataCommit = true;
+                    location.reload();
                 }
             },
             error: function(xhr, desc, err) {
@@ -264,8 +266,7 @@ $(document).ready(function() {
             }
         });
 
-        return false;
-
+        return formDataCommit;
     });
 
 });
