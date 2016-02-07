@@ -14,7 +14,7 @@ body {
 	color: #8A8985;
 }
 
-h1, h2, h3 {
+h1, h2, h3{
 	margin: 0;
 	padding: 0;
 	text-transform: uppercase;
@@ -35,6 +35,11 @@ h3 {
 	font-size: 1.6em;
 }
 
+
+h4 {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+}
 p, ul, ol {
 	margin-top: 0;
 	line-height: 180%;
