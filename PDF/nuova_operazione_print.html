@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" /><title>miniCAMBIO2 S.a.g.l.</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="icon" href="../img/money_bag.png" type="image/gif" />
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebarL">
+        <img src="../img/biglietto_visita.PNG">
+    </div>
+    <div id="contentR">
+        <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
+    <fieldset>
+        <div class="form-group">
+            <label for="op1dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
+            <label for="op1operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
+            <label for="op1tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
+            <div class="col-sm-4 col-lg-4">
+                <input  type="datetime" class="form-control" id="op1dataora" name="op1dataora" value="data" readonly required/>
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <input type="number" maxlength="15" class="form-control" id="op1operazione" name="op1operazione" readonly required value="111"/>
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <input type="number" step="0.000001" min="0" class="form-control" id="op1tasso" name="op1tasso" required value="0.111"/>
+            </div>
+
+            <label for="op1entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
+            <label for="op1uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
+            <div class="col-sm-6 col-lg-6">
+                <input type="number" step="0.001" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*(,|.)[0-9]*$" required value="impentr"/>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <input type="number" step="0.001" min="0" class="form-control" id="op1uscita" name="op1uscita" readonly required value="impuscita"/>
+            </div>
+        </div>
+
+    </fieldset>
+    </div>
+</div>
+
+</body>
+</html>
