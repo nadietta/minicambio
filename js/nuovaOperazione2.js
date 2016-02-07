@@ -1,6 +1,14 @@
 /**
  * Created by Nadia on 30/01/2016.
  */
+
+
+
+function popupCenter(url, title, w, h) {
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/3)-(h/3);
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+}
 function getValute(){
     var selectValute = "";
 
@@ -268,5 +276,22 @@ $(document).ready(function() {
 
         return formDataCommit;
     });
+
+
+    $(document).on("click", "#newOpStampa", function(){
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var formDataCommit = false;
+        popupCenter("../PDF/nuova_op_print.php?"+formData);
+
+
+    });
+    $(document).on("click", "#newOpSalvaStampa", function(){
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var formDataCommit = false;
+        popupCenter("../PDF/nuova_op_print.php?"+formData);
+
+
+    });
+
 
 });
