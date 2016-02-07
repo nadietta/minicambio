@@ -158,7 +158,7 @@ $(document).ready(function() {
         var where="";
 
         switch (option){
-            case '1': where="data_op BETWEEN '"+$('#rangeData_da').val()+"' AND  '"+($('#rangeData_a').val())+"'+ INTERVAL 1 DAY";
+            case '1': where="data_op BETWEEN '"+$('#rangeData_da').val()+"' AND '"+$('#rangeData_a').val()+"'+ INTERVAL 1 DAY";
                         break;
             case '2': where="cod_op >= "+$('#rangeOperazione_da').val()+" AND cod_op <= "+$('#rangeOperazione_a').val();
                         break;
