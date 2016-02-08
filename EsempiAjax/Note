@@ -17,28 +17,20 @@ Setup
     E se le inserisce nuove ma per un giorno passato o futuro? Decidere questa cosa.
 
 - Nella prima versione minicambio il tipoOp lo mette sempre a 1,era voluto?
-- Togliere il link esterni alle librerie utilizzate
+- Tolti i link esterni alle librerie...resta il problema sul css locale di bootstrap. Perde i riferimenti ai glyphicons
+ (era http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css)
 
 -------------------------------
 
 NOTE SARA)
 
-I path assoluti per le librerie?
+
 vincoli:
 
 ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);
 ALTER TABLE `valute` ADD UNIQUE(`descrizione`);
 ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 "ALTER TABLE `operazioni` ADD UNIQUE(`cod_op`);
-
-
-    /** UPDATE per cancellazione operazione
-         * $query = mysqli_query($conn,
-            "UPDATE `operazioni` SET cod_op=cod_op-1 WHERE cod_op> $cod_op_delete AND
-         * SUBSTRING(cod_op,1,6) = SUBSTRING($cod_op_delete,1,6)
-                ");**/
-
-
 
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma

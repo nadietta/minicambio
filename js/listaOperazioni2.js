@@ -207,4 +207,40 @@ $(document).ready(function() {
         return false;
     });
 
+    $(document).on("click", "#btnOpDelete", function(){
+        var idOp = $('#modalDiv').html();
+
+        $.ajax({
+            type: "POST",
+            url: "phpFunctions/deleteOp.php",
+            data: {idOp: idOp},
+            success: function(data)
+            {
+                //Cancello la riga relativa
+                if (data){
+                    var killrowString = "trIdOp_" + idOp;
+                    var killrow = $("#"+killrowString+"");
+                    killrow.addClass("danger");
+                    killrow.fadeOut(2000, function(){
+                        $(this).remove();
+                        $('#listaOperazioniForm').trigger('submit');
+                    });
+                }
+                else{
+                    alert("Errore nella cancellazione");
+                }
+            },
+            error: function(xhr, desc, err) {
+                alert("Errore. Impossibile eliminare l'Operazione Selezionata");
+            }
+        });
+
+    });
+
+
+    $(document).on("show.bs.modal", ".opDelete-ConfirmDiv", function(e){
+        var opId = $(e.relatedTarget).data('op-id');
+        $(e.currentTarget).find('#modalDiv').html(opId);
+    });
+
 });

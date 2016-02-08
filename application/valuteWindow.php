@@ -29,11 +29,11 @@
         <title>Gestione Valute</title>
 
         <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/valuteWindow.js"></script>
 
-        <link href="http://fonts.googleapis.com/css?family=Dancing+Script|Oswald" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
         <link rel="icon" href="../img/money_bag.png" type="image/gif" />
     </head>
