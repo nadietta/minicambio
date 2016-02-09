@@ -87,6 +87,7 @@ $(document).ready(function() {
                                       ";
 
                     for (var i = 0; i <operazioni.length; i++) {
+                        //Se Cambia la data o le valute stampo il totale dell'ultimo giorno
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita ||
                             precData != operazioni[i].data_op) {
@@ -103,6 +104,7 @@ $(document).ready(function() {
                                     "</tr>";
                             }
                         }
+                        //Se Cambia il mese o le valute stampo il totale dell'ultimo mese
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita ||
                             mese_prec != operazioni[i].mese) {
@@ -123,6 +125,7 @@ $(document).ready(function() {
                                 " MESE: " + mese_corrente + " </h2></td ></tr>";
                             mese_prec = operazioni[i].mese;
                         }
+                        //Se cambiano le valute stampo la nuova intestazione
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita) {
                             precData = '';
@@ -153,7 +156,7 @@ $(document).ready(function() {
                                             <td class='opTassoClass'>" + operazioni[i].tasso + "</td>\n\   " +
                             "</tr>";
                     }
-
+                //per l'ultima riga stampo sia totale ultima data che totale mese
                     if(i==operazioni.length){
                                 operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
                                             <td class='opOperazioneClass'>TOTALE</td>\n\
