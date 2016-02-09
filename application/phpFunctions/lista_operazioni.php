@@ -14,7 +14,7 @@ $query ="SELECT pk_operazione,DATE_FORMAT(data_op,'%d/%m/%Y') as data_op, v1.des
           WHERE fk_valuta_entrata = v1.pk_valuta AND  fk_valuta_uscita = v2.pk_valuta AND ".$where;
 $risultato['msg']=$query;
 
-$results_db=mysqli_affected_rows($conn);
+//$results_db=mysqli_affected_rows($conn);
 $i=0;
 if ($result =  mysqli_query($conn,$query)) {
 

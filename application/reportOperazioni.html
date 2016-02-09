@@ -18,8 +18,9 @@ Released   : 20121201
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../js/reportOperazioni.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/listaOperazioni2.js"></script>
+
 
     <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
 
@@ -35,7 +36,7 @@ Released   : 20121201
             <ul>
                 <li><a href="index2.html">Homepage</a></li>
                 <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
-                <li class="current_page_item"><a href="listaOperazioni2.html">Lista Operazioni</a></li>
+                <li><a href="listaOperazioni2.html">Lista Operazioni</a></li>
                 <li class="current_page_item"><a href="reportOperazioni.html">Report</a></li>
                 <li><a href="setup2.html">Setup</a></li>
             </ul>
@@ -45,23 +46,12 @@ Released   : 20121201
         <form id="listaOperazioniForm">
             <div id="sidebarL">
                 <div>
-                    <h2>Tipo di Ricerca</h2>
-                    <div id="listaOperazioniRadio">
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="1">Intervallo Date</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="2">Intervallo Operazioni</label>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
+                    <h2>Intervallo Date</h2>
+
                     <p>
                         <div id="listaOperazioniValoriRadio">
 
-                            <div id="listaOperazioniValoriRadio1" class="listaOperazioniValoriRadioDiv customHidden">
+                            <div id="listaOperazioniValoriRadio1" class="listaOperazioniValoriRadioDiv">
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="da1" class="control-label">DA</label>
@@ -76,26 +66,8 @@ Released   : 20121201
                                 </fieldset>
                             </div>
 
-                            <div id="listaOperazioniValoriRadio2" class="listaOperazioniValoriRadioDiv customHidden">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label for="da2" class="control-label">DA</label>
-                                        <div>
-                                            <input type="number" maxlength="15" class="form-control" id="da2" name="da2" value="" required/>
-                                        </div>
-                                        <label for="a2" class="control-label">A</label>
-                                        <div>
-                                            <input type="number" maxlength="15" class="form-control" id="a2" name="a2" value="" required/>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
 
-
-
-
-
-                            <div id="listaOpSubmitDiv" class="alignRight customHidden">
+                            <div id="listaOpSubmitDiv" class="alignRight">
                                 <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
                             </div>
 

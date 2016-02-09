@@ -20,17 +20,22 @@ Setup
 - Tolti i link esterni alle librerie...resta il problema sul css locale di bootstrap. Perde i riferimenti ai glyphicons
  (era http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css)
 
+
+Lista operazioni:
+Sistemare picker, rendere la tabella ordinabile
+senti ma il datatime resta aperto anche se ho cliccato il giorno
+Controllare la risposta se non ci sono operazioni
 -------------------------------
 
 NOTE SARA)
-
-<<<<<<< Updated upstream
-
-=======
+Report:
+Sistemare scrolling
+testare accuratamente
+sistemare intestazioni delle stampe
+Sistemare time picker.
 I path assoluti per le librerie?
 
-Data da a la dasta a default come la da
->>>>>>> Stashed changes
+
 vincoli:
 
 ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);
