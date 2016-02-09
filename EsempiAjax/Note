@@ -24,7 +24,13 @@ Setup
 
 NOTE SARA)
 
+<<<<<<< Updated upstream
 
+=======
+I path assoluti per le librerie?
+
+Data da a la dasta a default come la da
+>>>>>>> Stashed changes
 vincoli:
 
 ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);

@@ -6,68 +6,26 @@
  * Time: 18:54
  */
 include("../connessione.php");
-
-
+$valuta_a1="";
+$valuta_a2="";
+$valuta_da1="";
+$valuta_da2="";
 if (isset($_GET['valutaEntrata'])){
     $valuta_da1 = $_GET['valutaEntrata'];
-    $query ="SELECT descrizione, simbolo FROM valute WHERE pk_valuta='$valuta_da1'";
-
-    if ($result =  mysqli_query($conn,$query)) {
-        if ($row = $result->fetch_row()) {
-            $descrizione_valuta_da1=$row[0];
-            $simbolo_valuta_da1=$row[1];
-
-        }
-    }
-}
-else{
-    $valuta_da1 = "";
-    $descrizione_valuta_da1="";
-    $simbolo_valuta_da1="";
 }
 if (isset($_GET['valutaUscita'])){
-    if ($_GET['opTipoOp'] == '-1') { $valuta_a1=1;
+    if ($_GET['opTipoOp'] == '-1') {
+        $valuta_a1=1;
         $valuta_da2 = 1;
         $valuta_a2= $_GET['valutaUscita'];
-        $query ="SELECT descrizione, simbolo FROM valute WHERE pk_valuta='$valuta_da2'";
-        if ($result =  mysqli_query($conn,$query)) {
-            if ($row = $result->fetch_row()) {
-                $descrizione_valuta_da2 = $row[0];
-                $simbolo_valuta_da2 = $row[1];
-
-            }
-        }else{
-        $descrizione_valuta_da2="";
-        $simbolo_valuta_da2="";}
-
-        $query ="SELECT descrizione, simbolo FROM valute WHERE pk_valuta='$valuta_a2'";
-        if ($result =  mysqli_query($conn,$query)) {
-            if ($row = $result->fetch_row()) {
-                $descrizione_valuta_a2 = $row[0];
-                $simbolo_valuta_a2 = $row[1];
-
-            }
-        }else{
-            $descrizione_valuta_a2="";
-            $simbolo_valuta_a2="";}
 
     }
-    else{ $valuta_a1 = $_GET['valutaUscita'];}
-
-    $query ="SELECT descrizione, simbolo FROM valute WHERE pk_valuta='$valuta_a1'";
-    if ($result =  mysqli_query($conn,$query)) {
-        if ($row = $result->fetch_row()) {
-            $descrizione_valuta_a1=$row[0];
-            $simbolo_valuta_a1=$row[1];
-
-        }
+    else{
+        $valuta_a1 = $_GET['valutaUscita'];
     }
+
 }
-else{
-    $valuta_a1 = "";
-    $descrizione_valuta_a1="";
-    $simbolo_valuta_a1="";
-}
+
 if (isset($_GET['op1tasso'])){
     $tasso1 = $_GET['op1tasso'];
 }
@@ -94,9 +52,17 @@ else{
     $data = "";
 }
 
+$valute=[];
+$query ="SELECT pk_valuta,descrizione, simbolo FROM valute WHERE pk_valuta IN('$valuta_da1','$valuta_da2','$valuta_a1','$valuta_a2')";
 
-
-
+if ($result =  mysqli_query($conn,$query)) {
+    while($row = $result->fetch_row()) {
+        $id=$row[0];
+        $valute[$id]=array();
+        $valute[$id]['descrizione']=$row[1];
+        $valute[$id]['simbolo']=$row[2];
+   }
+}
 
     $html="
     <!DOCTYPE html>
@@ -115,7 +81,7 @@ else{
     </div>
     <div style='background:transparent !important' class='container'>
     <div class='col-sm-4' >
-        <h3>OPERAZIONE Cambio Valuta DA:  $descrizione_valuta_da1 A  $descrizione_valuta_a1 </h3>
+        <h3>OPERAZIONE Cambio Valuta DA:  ".$valute[$valuta_da1]['descrizione']." A ". $valute[$valuta_a1]['descrizione'] ."</h3>
 
         <div class='panel'>
 
@@ -123,8 +89,8 @@ else{
                 <ul class='list-group'>
                     <li class='list-group-item'><h4> Data e Ora: <b>$data</b></h4></li>
                     <li class='list-group-item'><h4> Tasso Applicato:  <b>$tasso1</b></h4></li>
-                    <li class='list-group-item'><h4>Importo Entrata:  <b>$entrata1 $simbolo_valuta_da1</b></h4></li>
-                    <li class='list-group-item'><h4>Importo Uscita:  <b>$uscita1 $simbolo_valuta_a1</b></h4></li>
+                    <li class='list-group-item'><h4>Importo Entrata:  <b>$entrata1 ". $valute[$valuta_da1]['simbolo']."</b></h4></li>
+                    <li class='list-group-item'><h4>Importo Uscita:  <b>$uscita1 ".$valute[$valuta_a1]['simbolo']."</b></h4></li>
 
                 </ul>
             </div>
@@ -167,7 +133,7 @@ if ($_GET['opTipoOp'] == '-1') {
         </div>
          <div style='background:transparent !important' class='container'>
             <div class='col-sm-4' >
-                <h3>OPERAZIONE Cambio Valuta DA:  $descrizione_valuta_da2 A  $descrizione_valuta_a2 </h3>
+                <h3>OPERAZIONE Cambio Valuta DA: ". $valute[$valuta_da2]['descrizione']." A ".  $valute[$valuta_a2]['descrizione']." </h3>
 
                 <div class='panel'>
 
@@ -175,8 +141,8 @@ if ($_GET['opTipoOp'] == '-1') {
                         <ul class='list-group'>
                             <li class='list-group-item'><h4> Data e Ora: <b>$data</b></h4></li>
                             <li class='list-group-item'><h4> Tasso Applicato:  <b>$tasso2</b></h4></li>
-                            <li class='list-group-item'><h4>Importo Entrata:  <b>$entrata2 $simbolo_valuta_da2</b></h4></li>
-                            <li class='list-group-item'><h4>Importo Uscita:  <b>$uscita2 $simbolo_valuta_a2</b></h4></li>
+                            <li class='list-group-item'><h4>Importo Entrata:  <b>$entrata2 ".$valute[$valuta_da2]['simbolo']." </b></h4></li>
+                            <li class='list-group-item'><h4>Importo Uscita:  <b>$uscita2 ".$valute[$valuta_a2]['simbolo']."</b></h4></li>
 
                         </ul>
                     </div>
@@ -209,5 +175,20 @@ use Dompdf\Dompdf;
 // Render the HTML as PDF
     $dompdf->render();
 
+
+$dompdf->stream("", array("Attachment" => 0));
 // Output the generated PDF to Browser
+   // $pdf = $dompdf->output();
+   // $dompdf->stream("tmp",'');
+
+//exec ("""C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe' /t """.$pdf."");
+/**
+include_once "printer_connection.php";
+if($printer){
+
+    printer_write($printer, $pdf);
+    printer_close($ph);
+}else {
     $dompdf->stream("", array("Attachment" => 0));
+
+}**/

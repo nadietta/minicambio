@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Domestic
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121201
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" /><title>miniCAMBIO2 S.a.g.l.</title>
+    <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/listaOperazioni2.js"></script>
+
+    <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="icon" href="../img/money_bag.png" type="image/gif" />
+</head>
+<body>
+<div id="wrapper">
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li><a href="index2.html">Homepage</a></li>
+                <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                <li class="current_page_item"><a href="listaOperazioni2.html">Lista Operazioni</a></li>
+                <li class="current_page_item"><a href="reportOperazioni.html">Report</a></li>
+                <li><a href="setup2.html">Setup</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="page" class="container">
+        <form id="listaOperazioniForm">
+            <div id="sidebarL">
+                <div>
+                    <h2>Tipo di Ricerca</h2>
+                    <div id="listaOperazioniRadio">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="sceltaRadio" value="1">Intervallo Date</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="sceltaRadio" value="2">Intervallo Operazioni</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <p>
+                        <div id="listaOperazioniValoriRadio">
+
+                            <div id="listaOperazioniValoriRadio1" class="listaOperazioniValoriRadioDiv customHidden">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="da1" class="control-label">DA</label>
+                                        <div>
+                                            <input type="datetime" class="form-control" id="da1" name="da1" value="" placeholder="gg/mm/aaaa" required/>
+                                        </div>
+                                        <label for="a1" class="control-label">A</label>
+                                        <div>
+                                            <input type="datetime" class="form-control" id="a1" name="a1" value="" placeholder="gg/mm/aaaa" required/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div id="listaOperazioniValoriRadio2" class="listaOperazioniValoriRadioDiv customHidden">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="da2" class="control-label">DA</label>
+                                        <div>
+                                            <input type="number" maxlength="15" class="form-control" id="da2" name="da2" value="" required/>
+                                        </div>
+                                        <label for="a2" class="control-label">A</label>
+                                        <div>
+                                            <input type="number" maxlength="15" class="form-control" id="a2" name="a2" value="" required/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+
+
+
+                            <div id="listaOpSubmitDiv" class="alignRight customHidden">
+                                <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
+                            </div>
+
+                        </div>
+                    </p>
+
+                </div>
+            </div>
+        </form>
+        <!-- end #sidebar -->
+
+        <div id="contentR">
+            <div class="post">
+                <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
+                <div id="entryContainer" class="entry">
+                    <!-- Operazioni aggiunte dinamicamente -->
+                </div>
+            </div>
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+        <!-- end #content -->
+        <div style="clear: both;">&nbsp;</div>
+
+    </div>
+    <!-- end #page -->
+
+</div>
+
+<div id="footer">
+    <p>© 2016 - Minicambio S.a.g.l. </p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
