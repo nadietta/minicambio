@@ -9,6 +9,8 @@
 include("../../connessione.php");
 $where=$_POST['where_data'];
 $risultato=array();
+//per fare una sola query ad ogni riga associo la totale e media del giorno dell'operazione e totale e media del mese
+// La query e le sottoqueri sono raggruppate anche  per fk_valuta_entrata e fk_valuta_uscita dato che il report è per ogni coppia
 $query ="SELECT pk_operazione, ".
        "Date_format(o1.data_op, '%d/%m/%Y') AS data_op, ".
        "v1.descrizione,".
