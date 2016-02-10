@@ -1,5 +1,6 @@
 NOTE NADIA)
-
+install
+http://wkhtmltopdf.org/downloads.html
 Setup
 - Discutere vincoli sulla cancellazione di valute e tassi -- i vicoli lato DB sono gestiti/lato applicativo no
 - Non deve essere possibile inserire un tasso che non coinvolga il franco
