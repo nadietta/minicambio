@@ -79,6 +79,10 @@ $(document).ready(function() {
         timepicker: false
     });
 
+    $(document).on("change", ".dtp", function(){
+        $('.xdsoft_datetimepicker').hide();
+    });
+
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
         var checkedRadio = $(this).val();
         $('.listaOperazioniValoriRadioDiv').addClass('customHidden');

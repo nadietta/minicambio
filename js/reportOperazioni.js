@@ -52,7 +52,9 @@ $(document).ready(function() {
         timepicker: false
     });
 
-
+    $(document).on("change", ".dtp", function(){
+        $('.xdsoft_datetimepicker').hide();
+    });
 
     $(document).on("submit", "#listaOperazioniForm", function(){
         //TODO: paginazione risultati
