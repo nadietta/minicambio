@@ -129,7 +129,8 @@ $(document).ready(function() {
                             valuta_uscita_prec != operazioni[i].fk_uscita) {
                             precData = '';
                             mese_prec = '';
-                            precData = '';
+                           //
+                           // precData = '';
                             operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
                                 " DA  " + operazioni[i].valuta_entrata +" A "+ operazioni[i].valuta_uscita +"</h2></td ></tr>";
                             valuta_entrata_prec = operazioni[i].fk_entrata;
