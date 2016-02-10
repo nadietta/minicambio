@@ -67,7 +67,7 @@ $(document).ready(function() {
         var formattedDa1 = da1.substr(6,4)+"-"+da1.substr(3,2)+"-"+da1.substr(0,2);
         var a1 = $('#a1').val();
         var formattedA1 = a1.substr(6,4)+"-"+a1.substr(3,2)+"-"+a1.substr(0,2);
-        whereVar = "data_op BETWEEN '"+formattedDa1+"' AND '"+formattedA1+"'";
+        whereVar = "data_op BETWEEN '"+formattedDa1+"' AND '"+formattedA1+"'+ INTERVAL 1 DAY";
 
         $.ajax({
             type: "POST",
@@ -107,7 +107,7 @@ $(document).ready(function() {
                         //Se Cambia il mese o le valute stampo il totale dell'ultimo mese
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita ||
-                            mese_prec != operazioni[i].mese) {
+                            (mese_prec != operazioni[i].mese && mese_prec!='')) {
 
                             if (i != 0) {
                                 operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
@@ -116,35 +116,39 @@ $(document).ready(function() {
                                             <td class='opValutaEntrataClass'>" + operazioni[i - 1].valuta_entrata + "</td>\n\
                                             <td class='opImportoEntrataClass'>" + operazioni[i - 1].totale_entrata_mese + "</td>\n\
                                             <td class='opValutaUscitaClass'>" + operazioni[i - 1].valuta_uscita + "</td>\n\
-                                            <td class='opImportoUscitaClass'>" + operazioni[i - 1].totale_entrata_mese + "</td>\n\
+                                            <td class='opImportoUscitaClass'>" + operazioni[i - 1].totale_uscita_mese + "</td>\n\
                                             <td class='opTassoClass'>" + operazioni[i - 1].tasso_medio_mese + "</td>\n\   " +
                                     "</tr>";
                             }
-                            var mese_corrente = meseToString(operazioni[i].mese);
-                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
-                                " MESE: " + mese_corrente + " </h2></td ></tr>";
-                            mese_prec = operazioni[i].mese;
                         }
+
                         //Se cambiano le valute stampo la nuova intestazione
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita) {
                             precData = '';
-                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" + "  Da " + operazioni[i].valuta_entrata + " A " +
-                                operazioni[i].valuta_uscita + "</h2></td ></tr>";
-
-
-                            if (precData != operazioni[i].data_op) {
-                                operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
-                                    " Data  " + operazioni[i].data_op + "</h2></td ></tr><tr>"
-                                    + " <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
+                            mese_prec = '';
+                            precData = '';
+                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
+                                " DA  " + operazioni[i].valuta_entrata +" A "+ operazioni[i].valuta_uscita +"</h2></td ></tr>";
+                            valuta_entrata_prec = operazioni[i].fk_entrata;
+                            valuta_uscita_prec = operazioni[i].fk_uscita;
+                        }
+                        if(mese_prec!= operazioni[i].mese ) {
+                            var mese_corrente = meseToString(operazioni[i].mese);
+                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
+                                " MESE: " + mese_corrente + " </h2></td ></tr>";
+                            mese_prec = operazioni[i].mese;
+                            precData = '';
+                        }
+                        if (precData != operazioni[i].data_op) {
+                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
+                                " Data  " + operazioni[i].data_op + "</h2></td ></tr><tr>"
+                                + " <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
                                       <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
                                       <th>TASSO</th>\n\
                                   </tr>";
 
-                                precData = operazioni[i].data_op;
-                            }
-                            valuta_entrata_prec = operazioni[i].fk_entrata;
-                            valuta_uscita_prec = operazioni[i].fk_uscita;
+                            precData = operazioni[i].data_op;
                         }
                         operazioniDiv += "<tr id='trIdOp_" + operazioni[i].id + "'><td class='hidden'>" + operazioni[i].id + "</td>\n\
                                             <td class='opOperazioneClass'>" + operazioni[i].cod_op + "</td>\n\
@@ -173,7 +177,7 @@ $(document).ready(function() {
                                             <td class='opValutaEntrataClass'>"+ operazioni[i-1].valuta_entrata +"</td>\n\
                                             <td class='opImportoEntrataClass'>"+ operazioni[i-1].totale_entrata_mese +"</td>\n\
                                             <td class='opValutaUscitaClass'>"+ operazioni[i-1].valuta_uscita +"</td>\n\
-                                            <td class='opImportoUscitaClass'>"+ operazioni[i-1].totale_entrata_mese +"</td>\n\
+                                            <td class='opImportoUscitaClass'>"+ operazioni[i-1].totale_uscita_mese +"</td>\n\
                                             <td class='opTassoClass'>"+ operazioni[i-1].tasso_medio_mese +"</td>\n\   " +
                                     "</tr>";
 

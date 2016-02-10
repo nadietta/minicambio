@@ -27,7 +27,8 @@ $query ="SELECT pk_operazione, ".
        "o1.fk_valuta_uscita, ".
        "mese, ".
        "tot_entrata_mese, ".
-       "tot_uscita_mese ".
+       "tot_uscita_mese, ".
+       "tasso_medio_mese ".
 "FROM   operazioni o1, ".
        "valute v1, ".
        "valute v2, ".
@@ -62,7 +63,7 @@ $query ="SELECT pk_operazione, ".
        "AND mese = Month(o1.data_op) ".
        "AND sub_query2.fk_valuta_entrata = o1.fk_valuta_entrata ".
        "AND sub_query2.fk_valuta_uscita = o1.fk_valuta_uscita ".
-"ORDER  BY data_op DESC, o1.fk_valuta_entrata, o1.fk_valuta_uscita";
+"ORDER  BY o1.fk_valuta_entrata, o1.fk_valuta_uscita,  data_op DESC";
 
 
 //$results_db=mysqli_affected_rows($conn);
@@ -91,7 +92,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['mese']=$row[14];
         $risultato[$i]['totale_entrata_mese']=$row[15];
         $risultato[$i]['totale_uscita_mese']=$row[16];
-        $risultato[$i]['tasso_medio_mese']=$row[16];
+        $risultato[$i]['tasso_medio_mese']=$row[17];
         $i++;
 
    }
