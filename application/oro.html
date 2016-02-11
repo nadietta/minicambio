@@ -16,14 +16,16 @@ Released   : 20121201
     <meta name="description" content="" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" /><title>miniCAMBIO2 S.a.g.l.</title>
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/oro.js"></script>
+    <script type="text/javascript" src="../js/oro_old.js"></script>
 
     <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
-    <link rel="icon" href="../img/money_bag.png" type="image/gif" />
+    <link href="../css/styleOro.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="icon" href="../img/gold.png" type="image/gif" />
 </head>
 <body>
 <div id="wrapper">
@@ -49,15 +51,38 @@ Released   : 20121201
 
                 </ul>
             </div>
+            <br><br>
+
+            <div id="sceltaLista" customHidden>
+                <h2>Intervallo Date</h2>
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="da" class="control-label">DA</label>
+                            <div>
+                                <input type="datetime" class="form-control dtp" id="da" name="da" value="" placeholder="gg/mm/aaaa" required/>
+                            </div>
+                            <label for="a" class="control-label">A</label>
+                            <div>
+                                <input type="datetime" class="form-control dtp" id="a" name="a" value="" placeholder="gg/mm/aaaa" required/>
+                            </div>
+                        </div>
+                    </fieldset>
+                <div id="listaOpSubmitDiv" class="alignRight ">
+                    <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
+                </div>
+
+            </div>
+
         </div>
         <!-- end #sidebar -->
-
         <div id="contentR">
+        <div id="contentForm">
             <div class="post">
                 <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
                 <div id="entryContainer" class="entry"></div>
-            </div>
-            <div id="formOperazione" hide>
+
+            <div id="formOperazione" >
                 <fieldset>
                     <div class="form-group">
                         <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
@@ -89,14 +114,21 @@ Released   : 20121201
                     </div>
                 </fieldset>
                 <br>
-
+            </div>
                 <div id="newOpBottoni" class="alignRight xMargin20 ">
                     <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva" value="Salva"/>
                     <input type="button" class='btn btn-primary' id="newOpStampa" value="Stampa"/>
                     <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
                 </div>
             </div>
+        </div>
+        <div id="contentLista">
+            <div class="post">
+                <h2 id="entryContainerTitleLista" class="title">&nbsp;</h2>
+                <div id="entryContainerLista" class="entry"></div>
+            </div>
             <div style="clear: both;">&nbsp;</div>
+        </div>
         </div>
         <!-- end #content -->
         <div style="clear: both;">&nbsp;</div>

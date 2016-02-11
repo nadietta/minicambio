@@ -7,6 +7,7 @@ function popupCenter(url, title, w, h) {
     return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }
 
+
 function getCurrentDateTime(){
     var currentDateTime = "";
 
@@ -29,12 +30,18 @@ function getCurrentDateTime(){
     return currentDateTime;
 }
 
+
+
+
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
-    $(".formOperazione").show();
+    $("#contentForm").show();
+    $("#contentLista").hide();
+    $("#sceltaLista").hide();
     var currentDateTime = getCurrentDateTime();
     var cod = currentDateTime.substr(6, 4) + currentDateTime.substr(3, 2);
     $('#dataora').val(currentDateTime);
+    setNumOpOro();
 }
 
 function calcolaTotaleOro(){
@@ -46,29 +53,14 @@ function calcolaTotaleOro(){
 
 }
 
-$(document).on('keyup','#grammi', function(){
-    calcolaTotaleOro();
-});
-$(document).on('keyup','#prezzo', function(){
-    calcolaTotaleOro();
-});
-
-
-
-
-
-
-
-function loadOro(){
-    $("#entryContainerTitle").html("Lista Operazioni: ORO");
-    $("#entryContainer").html("");
-    var valuteDiv = "";
-
+function setNumOpOro(){
+    var lastOperazione = "";
     $.ajax({
         type: "GET",
         url: "phpFunctions/getLastOperazioneOro.php",
         success: function(data) {
-
+            lastOperazione= data;
+            $('#operazione').val(lastOperazione);
         },
         error: function(xhr, desc, err) {
             //alert(xhr);
@@ -76,11 +68,35 @@ function loadOro(){
         }
 
     });
+
 }
 
+function loadOpOro(){
+        $("#entryContainerTitleLista").html("Lista Operazioni: Oro");
+        $("#entryContainer").html("");
+        $("#contentForm").hide();
+        $("#contentLista").show();
+        $("#sceltaLista").show();
+        var oroDiv = "";
 
+}
 
 $(document).ready(function() {
+    $(document).on('keyup','#grammi', function(){
+        calcolaTotaleOro();
+    });
+    $(document).on('keyup','#prezzo', function(){
+        calcolaTotaleOro();
+    });
+
+
+
+    $(document).on("submit", "#formOperazione", function(){
+      alert('submit');
+    });
+
+
+
 
 
 
@@ -89,60 +105,20 @@ $(document).ready(function() {
         //TODO: farlo dal padre e unire le due funzioni
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
-
         $(this).addClass("active");
-
         newOpOro();
     });
 
-    $(document).on("click", "#lista_op", function(e){
+    $(document).on("click", "#lsita_op", function(e){
         e.preventDefault();
-        //TODO: farlo dal padre
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
-
         $(this).addClass("active");
-
-        loadTassi();
+        loadOpOro();
     });
-
-    $(document).on("click", "#btnValDelete", function(){
-        var idVal = $('#modalDiv').html();
-
-        $.ajax({
-            type: "POST",
-            url: "phpFunctions/deleteVal.php",
-            data: {idVal: idVal},
-            success: function(data)
-            {
-                if (data == '1'){
-                    //Cancello la riga relativa
-                    var killrowString = "trIdVal_" + idVal;
-                    var killrow = $("#"+killrowString+"");
-                    killrow.addClass("danger");
-                    killrow.fadeOut(2000, function(){
-                        $(this).remove();
-                    });
-                }
-               else{
-                    alert("Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
-                }
-            },
-            error: function(xhr, desc, err) {
-                alert("Errore. Impossibile eliminare la Valuta Selezionata");
-            }
-        });
-
-    });
-
-
-    $(document).on("show.bs.modal", ".valDelete-ConfirmDiv", function(e){
-        var valId = $(e.relatedTarget).data('val-id');
-        $(e.currentTarget).find('#modalDiv').html(valId);
-    });
-
 
 
     $('#nuova_op').trigger('click');
+
 
 });

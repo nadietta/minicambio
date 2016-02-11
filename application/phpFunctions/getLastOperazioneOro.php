@@ -8,7 +8,8 @@
 include("../../connessione.php");
 
 $query ="SELECT max(cod_op_oro) AS ultimaop FROM `operazioni_oro`";
-$result = mysqli_fetch_assoc(mysqli_query($conn, $query));
-$lastOp = $result['ultimaop'];
+if($result = mysqli_fetch_assoc(mysqli_query($conn, $query))) {
+    $lastOp = ($result['ultimaop']+1);
+} else 1;
 
 echo $lastOp;
