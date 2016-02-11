@@ -1,6 +1,12 @@
 /**
  * Created by Nadia on 07/02/2016.
  */
+function popupCenter(url, title, w, h) {
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/3)-(h/3);
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+}
+
 function getValute(){
     var selectValute = "";
 
@@ -167,8 +173,8 @@ $(document).ready(function() {
                                             <td class='opImportoUscitaClass'>"+ operazioni[i].importo_uscita +"</td>\n\
                                             <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
                                             <td><button class='btn' \n\
-                                                    onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"&mode=Modifica','Operazioni', '500', '420');\">\n\
-                                                    <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
+                                                    onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"','Operazioni', '500', '500');\">\n\
+                                                    <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modificaa\n\
                                                 </button>\n\
                                             </td>\n\
                                             <td><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
