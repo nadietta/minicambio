@@ -98,6 +98,7 @@ $(document).ready(function() {
         lang: 'it',
         format:	'd/m/Y',
         timepicker: false
+
     });
 
     $(document).on("change", ".dtp", function(){
@@ -134,7 +135,7 @@ $(document).ready(function() {
                                     <table id='tableListaOperazioni' class='table table-hover'>\n\
                                       <tr>\n\
                                           <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>GRAMMI</th>\n\
-                                          <th>KARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
+                                          <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
                                          \n\
                                       </tr>";
 
@@ -143,12 +144,12 @@ $(document).ready(function() {
                         operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
                                             <td class='opOperazioneClass'>"+ operazioni[i].cod_op_oro +"</td>\n\
                                             <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
-                                            <td class='opValutaEntrataClass'>"+ operazioni[i].grammi +" gr</td>\n\
-                                            <td class='opImportoEntrataClass'>"+ operazioni[i].karati +"</td>\n\
-                                            <td class='opValutaUscitaClass'>"+ operazioni[i].prezzo +"</td>\n\
-                                            <td class='opImportoUscitaClass'>"+ operazioni[i].totale +" CHF</td>\n\
+                                            <td class='opGrammiClass'>"+ operazioni[i].grammi +" gr</td>\n\
+                                            <td class='opCaratiClass'>"+ operazioni[i].carati +"</td>\n\
+                                            <td class='opPrezzoClass'>"+ operazioni[i].prezzo +" CHF</td>\n\
+                                            <td class='opTotaleClass'>"+ operazioni[i].totale +" CHF</td>\n\
                                             <td><button class='btn' \n\
-                                                    onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"&mode=Modifica','Operazioni', '500', '420');\">\n\
+                                                    onclick=\"popupCenter('oroWindow.php?idOp="+ operazioni[i].id +"&mode=Modifica','Operazioni', '500', '420');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\

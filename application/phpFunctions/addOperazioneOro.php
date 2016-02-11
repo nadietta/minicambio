@@ -27,13 +27,13 @@
         $risultato = unserializeForm($formData);
             $operazione = $risultato['operazione'];
             $grammi = $risultato['grammi'];
-            $karati = $risultato['karati'];
+            $carati = $risultato['carati'];
             $prezzo = $risultato['prezzo'];
             $franchi = $risultato['franchi'];
 
             $query = mysqli_query($conn,
-                "INSERT INTO `operazioni_oro`(pk_op_oro, cod_op_oro, grammi, karati, prezzo, totale)
-                  VALUES (NULL,$operazione,$grammi,$karati,$prezzo,$franchi);
+                "INSERT INTO `operazioni_oro`(pk_op_oro, cod_op_oro, grammi, carati, prezzo, totale)
+                  VALUES (NULL,$operazione,$grammi,$carati,$prezzo,$franchi);
                 ");
             if(mysqli_affected_rows($conn)){
                 $risultato['messaggio']="Inserimento avvenuto con successo";

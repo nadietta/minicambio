@@ -10,7 +10,7 @@ include("../../connessione.php");
 $where=$_POST['where_data'];
 $risultato=array();
 
-$query ="SELECT pk_op_oro,DATE_FORMAT(data_op,'%d/%m/%Y') as data_op, cod_op_oro, prezzo, karati, grammi, totale
+$query ="SELECT pk_op_oro,DATE_FORMAT(data_op,'%d/%m/%Y') as data_op, cod_op_oro, prezzo, carati, grammi, totale
           FROM operazioni_oro
           WHERE ".$where;
 $risultato['msg']=$query;
@@ -28,7 +28,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['data_op']=$row[1];
         $risultato[$i]['cod_op_oro']=$row[2];
         $risultato[$i]['prezzo']=$row[3];
-        $risultato[$i]['karati']=$row[4];
+        $risultato[$i]['carati']=$row[4];
         $risultato[$i]['grammi']=$row[5];
         $risultato[$i]['totale']=$row[5];
         $i++;
