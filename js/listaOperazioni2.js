@@ -198,7 +198,7 @@ $(document).ready(function() {
 
                 }
                 else{
-                    msg += "<br>Nessuna Operazione Presente.";
+                    msg = "<br>Nessuna Operazione Presente.";
                     $("#entryContainer").html(msg);
                 }
             },

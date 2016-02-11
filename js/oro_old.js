@@ -35,9 +35,10 @@ function getCurrentDateTime(){
 
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
-    $("#contentForm").show();
-    $("#contentLista").hide();
-    $("#sceltaLista").hide();
+    $("#formLista").addClass('customHidden');
+    $("#formOperazione").removeClass('customHidden');
+    $("#newOpBottoni").removeClass('customHidden');
+    $("#sceltaLista").addClass('customHidden');
     var currentDateTime = getCurrentDateTime();
     var cod = currentDateTime.substr(6, 4) + currentDateTime.substr(3, 2);
     $('#dataora').val(currentDateTime);
@@ -72,16 +73,38 @@ function setNumOpOro(){
 }
 
 function loadOpOro(){
-        $("#entryContainerTitleLista").html("Lista Operazioni: Oro");
+        $("#entryContainerTitle").html("Lista Operazioni: Oro");
         $("#entryContainer").html("");
-        $("#contentForm").hide();
-        $("#contentLista").show();
-        $("#sceltaLista").show();
+        $("#formOperazione").addClass('customHidden');
+        $("#newOpBottoni").addClass('customHidden');
+        $("#formLista").removeClass('customHidden');
+        $("#sceltaLista").removeClass('customHidden');
         var oroDiv = "";
+
+
 
 }
 
 $(document).ready(function() {
+
+
+    $('#da').datetimepicker({
+        lang: 'it',
+        format:	'd/m/Y',
+        timepicker: false
+    });
+
+    $('#a').datetimepicker({
+        lang: 'it',
+        format:	'd/m/Y',
+        timepicker: false
+    });
+
+    $(document).on("change", ".dtp", function(){
+        $('.xdsoft_datetimepicker').hide();
+    });
+
+
     $(document).on('keyup','#grammi', function(){
         calcolaTotaleOro();
     });
@@ -90,35 +113,170 @@ $(document).ready(function() {
     });
 
 
+    $(document).on("submit", "#caricaListaOperazioni", function(){
+        var da =$('#da').val();
+        var formattedDa = da.substr(6,4)+"-"+da.substr(3,2)+"-"+da.substr(0,2);
+        var a = $('#a').val();
+        var formattedA = a.substr(6,4)+"-"+a.substr(3,2)+"-"+a.substr(0,2);
+        whereVar = "data_op BETWEEN '"+formattedDa+"' AND '"+formattedA+"'+ INTERVAL 1 DAY ORDER BY cod_op_oro";
+        $("#formLista").html('');
 
-    $(document).on("submit", "#formOperazione", function(){
-      alert('submit');
+        $.ajax({
+            type: "POST",
+            url: "phpFunctions/lista_operazioni_oro.php",
+            async: false,
+            data: {where_data: whereVar},
+            success: function(data) {
+                var operazioni = $.parseJSON(data);
+                operazioniDiv='';
+                if (operazioni.length>0) {
+                    operazioniDiv += "<br>\n\
+                                    <table id='tableListaOperazioni' class='table table-hover'>\n\
+                                      <tr>\n\
+                                          <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>GRAMMI</th>\n\
+                                          <th>KARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
+                                         \n\
+                                      </tr>";
+
+                    for (var i = 0; i < operazioni.length; i++) {
+
+                        operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
+                                            <td class='opOperazioneClass'>"+ operazioni[i].cod_op_oro +"</td>\n\
+                                            <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
+                                            <td class='opValutaEntrataClass'>"+ operazioni[i].grammi +" gr</td>\n\
+                                            <td class='opImportoEntrataClass'>"+ operazioni[i].karati +"</td>\n\
+                                            <td class='opValutaUscitaClass'>"+ operazioni[i].prezzo +"</td>\n\
+                                            <td class='opImportoUscitaClass'>"+ operazioni[i].totale +" CHF</td>\n\
+                                            <td><button class='btn' \n\
+                                                    onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"&mode=Modifica','Operazioni', '500', '420');\">\n\
+                                                    <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
+                                                </button>\n\
+                                            </td>\n\
+                                            <td><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
+                                                    <span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Cancella\n\
+                                                </button>\n\
+                                            </td>\n\
+                                        </tr>";
+                    }
+                    operazioniDiv += "</table>";
+
+                    $("#formLista").html(operazioniDiv);
+
+                    $("#entryContainer").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
+                                    <div class='modal-dialog modal-sm'>\n\
+                                        <div class='modal-content'>\n\
+                                            <div class='modal-body'>Sei sicuro di voler cancellare questa Operazione?<br>\n\
+                                                L'operazione non pu&ograve; essere annullata.\n\
+                                                <div id='modalDiv' class='hidden'></div>\n\
+                                            </div>\n\
+                                            <div class='modal-footer'>\n\
+                                                <button type='button' data-dismiss='modal' class='btn'>Annulla</button>\n\
+                                                <button type='button' data-dismiss='modal' class='btn btn-primary' id='btnOpDelete'>Conferma</button>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                </div>");
+
+
+                }
+                else{
+
+                    msg = "<br>Nessuna Operazione Presente.";
+                    $("#formLista").html(msg);
+
+                }
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+
+        });
+        return false;
     });
 
 
+    $(document).on("click", "#btnOpDelete", function(){
+        var idOp = $('#modalDiv').html();
+
+          $.ajax({
+            type: "POST",
+            url: "phpFunctions/deleteOpOro.php",
+            data: {idOp: idOp},
+            success: function(data)
+            {
+
+                if (data==1){
+                    //Cancello la riga relativa
+                    var killrowString = "trIdOp_" + idOp;
+                    var killrow = $("#"+killrowString+"");
+                    killrow.addClass("danger");
+                    killrow.fadeOut(2000, function(){
+                        $(this).remove();
+                        $('#caricaListaOperazioni').trigger('submit');
+                    });
+                }
+                else{
+                    alert("Impossibile cancellare L'Operazione");
+                }
+            },
+            error: function(xhr, desc, err) {
+                alert("Errore. Impossibile eliminare L'Operazione");
+            }
+        });
+
+    });
+
+    $(document).on("submit", "#nuovaOperazioneForm", function(){
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var formDataCommit = false;
 
 
+        $.ajax({
+            type: "POST",
+            url: "phpFunctions/addOperazioneOro.php",
+            data: {formData: formData},
+            async: false,
+            success: function(data) {
+                var risultato = $.parseJSON(data);
+                if (risultato.errore){
+                    alert(risultato.errore);
+                }
+                else{
+                    //alert(risultato.messaggio);
+                    //formDataCommit = true;
+                    location.reload();
+                }
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
 
+        return formDataCommit;
+    });
 
     $(document).on("click", "#nuova_op", function(e){
         e.preventDefault();
-        //TODO: farlo dal padre e unire le due funzioni
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
         $(this).addClass("active");
         newOpOro();
     });
 
-    $(document).on("click", "#lsita_op", function(e){
+    $(document).on("click", "#lista_op", function(e){
         e.preventDefault();
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
         $(this).addClass("active");
         loadOpOro();
     });
-
+    $(document).on("show.bs.modal", ".opDelete-ConfirmDiv", function(e){
+        var opId = $(e.relatedTarget).data('op-id');
+        $(e.currentTarget).find('#modalDiv').html(opId);
+    });
 
     $('#nuova_op').trigger('click');
-
 
 });

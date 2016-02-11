@@ -24,6 +24,7 @@ Released   : 20121201
     <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
     <link href="../css/styleOro.css" rel="stylesheet" type="text/css" media="screen" />
     <link rel="icon" href="../img/gold.png" type="image/gif" />
 </head>
@@ -46,14 +47,15 @@ Released   : 20121201
             <div>
                 <h2>ORO</h2>
                 <ul class="nav nav-pills nav-stacked">
-                    <li id="nuova_op" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
-                    <li id="lsita_op" role="presentation"><a href="#">LISTA OPERAZIONI</a></li>
+                    <li id="nuova_op" class="active" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
+                    <li id="lista_op" role="presentation"><a href="#">LISTA OPERAZIONI</a></li>
 
                 </ul>
             </div>
             <br><br>
 
-            <div id="sceltaLista" customHidden>
+            <div id="sceltaLista" class="customHidden">
+                <form id="caricaListaOperazioni">
                 <h2>Intervallo Date</h2>
 
                     <fieldset>
@@ -71,64 +73,73 @@ Released   : 20121201
                 <div id="listaOpSubmitDiv" class="alignRight ">
                     <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
                 </div>
-
+            </form>
             </div>
 
         </div>
         <!-- end #sidebar -->
         <div id="contentR">
-        <div id="contentForm">
+        <div id="contentForm" >
             <div class="post">
                 <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
                 <div id="entryContainer" class="entry"></div>
 
-            <div id="formOperazione" >
-                <fieldset>
-                    <div class="form-group">
-                        <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
-                        <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
-                        <div class="col-sm-6 col-lg-6">
-                            <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
-                        </div>
-                        <div class="col-sm-6 col-lg-6">
-                            <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
-                        </div>
+                <div id="formOperazione" class="customHidden">
+                    <form id="nuovaOperazioneForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
+                            <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
+                            <div class="col-sm-6 col-lg-6">
+                                <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
+                            </div>
 
+                            <br>
+                            <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
+                            <label for="karati" class="col-sm-4 col-lg-4 control-label">Karati:</label>
+                            <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
+                            <div class="col-sm-4 col-lg-4">
+                                <input type="number" step="0.001" min="0" class="form-control" id="grammi" name="grammi"  required value=""/>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                                <input type="number" step="0.001" min="0" class="form-control" id="karati" name="karati"  required value=""/>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                                <input type="number" step="0.001" min="0" class="form-control" id="prezzo" name="prezzo" required value=""/>
+                            </div>
+                            <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
+                            <div class="col-sm-12 col-lg-12">
+                                <input type="number" step="0.001" min="0" class="form-control" id="franchi" name="franchi" readonly required value=""/>
+                            </div>
+                        </div>
+                    </fieldset>
                         <br>
-                        <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
-                        <label for="karati" class="col-sm-4 col-lg-4 control-label">Karati:</label>
-                        <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
-                        <div class="col-sm-4 col-lg-4">
-                            <input type="number" step="0.001" min="0" class="form-control" id="grammi" name="grammi"  required value=""/>
+                        <br>
+                        <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
+                            <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva" value="Salva"/>
+                            <input type="button" class='btn btn-primary' id="newOpStampa" value="Stampa"/>
+                            <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
                         </div>
-                        <div class="col-sm-4 col-lg-4">
-                            <input type="number" step="0.001" min="0" class="form-control" id="karati" name="karati"  required value=""/>
-                        </div>
-                        <div class="col-sm-4 col-lg-4">
-                            <input type="number" step="0.001" min="0" class="form-control" id="prezzo" name="prezzo" required value=""/>
-                        </div>
-                        <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
-                        <div class="col-sm-12 col-lg-12">
-                            <input type="number" step="0.001" min="0" class="form-control" id="franchi" name="franchi" readonly required value=""/>
-                        </div>
-                    </div>
-                </fieldset>
-                <br>
-            </div>
-                <div id="newOpBottoni" class="alignRight xMargin20 ">
-                    <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva" value="Salva"/>
-                    <input type="button" class='btn btn-primary' id="newOpStampa" value="Stampa"/>
-                    <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
+                    </form>
+
                 </div>
+
+
+
+
+
+                <div id="formLista" class="customHidden">
+
+                </div>
+
+
             </div>
         </div>
-        <div id="contentLista">
-            <div class="post">
-                <h2 id="entryContainerTitleLista" class="title">&nbsp;</h2>
-                <div id="entryContainerLista" class="entry"></div>
-            </div>
-            <div style="clear: both;">&nbsp;</div>
-        </div>
+
+
         </div>
         <!-- end #content -->
         <div style="clear: both;">&nbsp;</div>

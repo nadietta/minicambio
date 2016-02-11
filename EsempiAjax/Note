@@ -49,6 +49,12 @@ ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma
+
+
+
+VINCOLI ORO,
+RISPOSTA INSERIMENTO AVVENUTO CON SUCCESSO ORO
+MODIFICA OPERAZIONE ORO
 --------------------------------
 
 PER FRA
