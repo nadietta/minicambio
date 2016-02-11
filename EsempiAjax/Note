@@ -46,7 +46,7 @@ ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);
 ALTER TABLE `valute` ADD UNIQUE(`descrizione`);
 ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 "ALTER TABLE `operazioni` ADD UNIQUE(`cod_op`);
-
+"ALTER TABLE `operazioni_oro` ADD UNIQUE(`cod_op_oro`);
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma
 
@@ -54,7 +54,9 @@ non funziona invece la reazione del programma
 
 VINCOLI ORO,
 RISPOSTA INSERIMENTO AVVENUTO CON SUCCESSO ORO
-MODIFICA OPERAZIONE ORO
+
+SISTEMARE DATE
+SISTEMARE RISPOSTE SU NUOVA OPERAZIONE E OPERAZIONI MANCANTI
 --------------------------------
 
 PER FRA
