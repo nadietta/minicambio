@@ -5,7 +5,7 @@
  * Date: 15/01/2016
  * Time: 20:49
  */
-
+ini_set("error_reporting", 0);
 include("../../connessione.php");
 
 $query ="SELECT tassi.pk_tasso as id, v1.descrizione as VALUTADA, v2.descrizione as VALUTAA, tassi.valore as TASSO

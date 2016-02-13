@@ -7,7 +7,7 @@
      *
      *
      */
-
+    ini_set("error_reporting", 0);
     include "../../connessione.php";
     $formData = $_POST['formData'];
     $idFranco = '1';

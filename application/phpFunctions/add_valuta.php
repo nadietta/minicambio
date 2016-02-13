@@ -7,7 +7,7 @@
  *
  *
  */
-
+ini_set("error_reporting", 0);
 $risultato = array();
 include "../../connessione.php";
 

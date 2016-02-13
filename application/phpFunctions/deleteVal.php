@@ -5,6 +5,7 @@
  * Date: 23/01/2016
  * Time: 17:02
  */
+ini_set("error_reporting", 0);
 include "../../connessione.php";
 
 if (isset($_POST['idVal'])){
