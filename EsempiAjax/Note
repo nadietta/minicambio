@@ -2,13 +2,6 @@ NOTE NADIA)
 install
 http://wkhtmltopdf.org/downloads.html
 La transazione da errore in nuova Operazione (lato ajax var risultato = $.parseJSON(data); vuoto)
-table responsive? in oro ho usato
-
-.listaDiv{
-	height: 400px;
-	overflow-y: scroll;
-
-} per il DIV esterno alla tabella
 
 
 getlLastOperazione che succede se non ci sono operazioni?
@@ -44,7 +37,7 @@ Sistemare scrolling
 testare accuratamente
 sistemare intestazioni delle stampe
 Sistemare time picker.
-I path assoluti per le librerie?
+
 
 
 vincoli:
@@ -57,8 +50,8 @@ ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma
 
-
-
+addOperazione
+Controllare tutti gli alert
 VINCOLI ORO,
 RISPOSTA INSERIMENTO AVVENUTO CON SUCCESSO ORO
 

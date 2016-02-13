@@ -70,6 +70,7 @@ function stringToDate(_date,_format,_delimiter)
 
 $(document).ready(function() {
 
+    $('#info_utilizzo').fadeIn(3000);
     $('#listaOperazioniValoriRadio :input').attr('disabled', true);
 
     //TODO: controllare che la prima data sia antecedente alla seconda
@@ -91,6 +92,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
         $('#nessuna_op').fadeOut();
+        $('#info_utilizzo').fadeOut(1000);
         var checkedRadio = $(this).val();
         $('.listaOperazioniValoriRadioDiv').addClass('customHidden');
         $('#listaOperazioniValoriRadio :input').attr('disabled', true);
@@ -254,5 +256,6 @@ $(document).ready(function() {
         var opId = $(e.relatedTarget).data('op-id');
         $(e.currentTarget).find('#modalDiv').html(opId);
     });
+
 
 });

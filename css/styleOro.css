@@ -273,6 +273,8 @@ a:hover {
     float: right;
     width: 70%;
     padding: 0 0 0 0;
+	height: 500px;
+	overflow-y: scroll;
 }
 
 .post {
@@ -637,9 +639,4 @@ a:hover, a:focus {
 }
 .customHidden{
 	display: none;
-}
-.listaDiv{
-	height: 400px;
-	overflow-y: scroll;
-
 }

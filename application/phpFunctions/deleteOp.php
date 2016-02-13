@@ -25,7 +25,7 @@ if (isset($idOp)){
 
     if ($codOp){
 
-        mysqli_begin_transaction();
+        mysqli_begin_transaction($conn);
 
         $queryDelete = "DELETE FROM operazioni WHERE pk_operazione = '$idOp'";
         $queryUpdate = "UPDATE operazioni SET cod_op = cod_op-1 WHERE cod_op > '$codOp' AND SUBSTRING(cod_op,1,6) = SUBSTRING('$codOp',1,6)";
@@ -34,12 +34,12 @@ if (isset($idOp)){
         $retvalUpdate = mysqli_query($conn, $queryUpdate);
 
         if ($retvalDelete && $retvalUpdate){
-            mysqli_commit();
+            mysqli_commit($conn);
             $retval = true;
             $risultato['messaggio']="Cancellazione avvenuta con successo";
         }
         else{
-            mysqli_rollback();
+            mysqli_rollback($conn);
             $risultato['errore']="Errore, riprovare";
         }
     }

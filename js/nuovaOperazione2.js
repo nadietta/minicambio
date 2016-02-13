@@ -258,6 +258,7 @@ $(document).ready(function() {
             data: {formData: formData},
             async: false,
             success: function(data) {
+                alert(data);
                 var risultato = $.parseJSON(data);
                 if (risultato.errore){
 
@@ -266,13 +267,10 @@ $(document).ready(function() {
                     });
                 }
                 else{
-
-                    if(risultato.messaggio){
-                        alert('');
                         $('#successo').fadeIn(1500, function(){
                             location.reload();
                         });
-                    }}
+                    }
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);

@@ -226,7 +226,12 @@ $(document).ready(function() {
                     });
                 }
                 else{
-                    alert("Impossibile cancellare L'Operazione");
+
+                    $('#errore_cancellazione').fadeIn(2000, function(){
+                        $('#errore_cancellazione').fadeOut(1000);
+                    });
+
+
                 }
             },
             error: function(xhr, desc, err) {

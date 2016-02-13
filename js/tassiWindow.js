@@ -186,12 +186,24 @@ $(document).ready(function() {
                     url: "phpFunctions/updateTas.php",
                     data: {idTas: idTas, valTasso : valTasso},
                     success: function(data)
+
                     {
+                        var risultato = $.parseJSON(data);
+                        if (risultato.errore){
+                            $('#errore').html("<strong>Errore!</strong> "+risultato.errore);
+                            $('#errore').fadeIn(3000);
+                            isFormValid=false;
+
+                        }else{
                         //Aggiorno le informazioni anche sulla finestra chiamante
                         var updaterowString = "trIdTas_" + idTas;
                         var updaterow = $("#"+updaterowString+"", window.opener.document);
                         updaterow.find('.tasTassoClass').html(valTasso);
-                        window.close();
+                        $('#successo').html( "<strong>Successo!</strong> "+risultato.messaggio)
+                        $('#successo').fadeIn(2000, function(){
+                            window.close();
+                        });}
+
                     },
                     error: function(xhr, desc, err) {
                         //alert(xhr);
@@ -209,10 +221,12 @@ $(document).ready(function() {
                     success: function(data)
                     {
                         var risultato = $.parseJSON(data);
-
                         if (risultato.errore){
-                            alert(risultato.messaggio);
-                            window.close();
+
+                            $('#errore').html("<strong>Errore!</strong> "+risultato.messaggio);
+                            $('#errore').fadeIn(3000);
+                            isFormValid=false;
+
                         }
                         else{
                             //Aggiungo la riga

@@ -40,9 +40,11 @@
                  VALUES (NULL,$valuta_da,$entrata,$valuta_a,$uscita,$tasso,$num_op,$tipo_op);
                 ");
             if(mysqli_affected_rows($conn)){
+                $risultato = array();
                 $risultato['messaggio']="Inserimento avvenuto con successo";
             }
             else {
+                $risultato = array();
                 $risultato['errore']="Errore, riprovare";
             }
         }
@@ -79,10 +81,12 @@
 
             if ($query1 && $query2){
                  if(mysqli_commit($conn)){
+                     $risultato = array();
                      $risultato['messaggio']="Inserimento avvenuto con successo";
                  }
             }
             else{
+                $risultato = array();
                 mysqli_rollback($conn);
                 $risultato['errore']="Errore, riprovare";
             }
@@ -90,7 +94,7 @@
         }
     }
     else{
-        $risultato = array();
+
         $risultato['errore'] = "Errore dati Form";
     }
 

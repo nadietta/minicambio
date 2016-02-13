@@ -5,7 +5,7 @@
  * Date: 23/01/2016
  * Time: 14:02
  */
-
+ini_set("error_reporting", 0);
 if (isset($_REQUEST['msg'])){
     $msg = $_REQUEST['msg'];
 }

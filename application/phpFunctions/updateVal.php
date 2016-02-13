@@ -7,7 +7,7 @@
  */
 ini_set("error_reporting", 0);
 include("../../connessione.php");
-
+$risultato = array();
 if (isset($_POST['idVal'])){
     $idVal = $_POST['idVal'];
 }
@@ -37,7 +37,9 @@ if (isset($idVal) && isset($valNome) && isset($valSimbolo)){
 
     $retval = mysqli_query($conn, $query);
     if(! $retval ) {
-        die('Impossibile Aggiornare i dati' . mysqli_error());
-    }
-    echo "Updated data successfully\n";
+        $risultato['errore']='Impossibile aggiornare i dati';
+
+    } else{
+    $risultato['messaggio']='Aggiornamento avvenuto con successo';}
 }
+echo json_encode($risultato);

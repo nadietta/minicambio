@@ -98,12 +98,25 @@ $(document).ready(function() {
                     data: {idVal: idVal, valNome : valNome, valSimbolo : valSimbolo},
                     success: function(data)
                     {
+                        var risultato = $.parseJSON(data);
+                        if (risultato.errore){
+                            $('#errore').html("<strong>Errore!</strong> "+risultato.errore);
+                            $('#errore').fadeIn(3000);
+                            isFormValid=false;
+                            // alert(risultato.messaggio);
+                            // window.close();
+                        }else{
                         //Aggiorno le informazioni anche sulla finestra chiamante
                         var updaterowString = "trIdVal_" + idVal;
                         var updaterow = $("#"+updaterowString+"", window.opener.document);
                         updaterow.find('.valNomeClass').html(valNome);
                         updaterow.find('.valSimboloClass').html(valSimbolo);
-                        window.close();
+                            $('#successo').html( "<strong>Successo!</strong> "+risultato.messaggio)
+                            $('#successo').fadeIn(2000, function(){
+                                window.close();
+                            });
+                        }
+
                     },
                     error: function(xhr, desc, err) {
                         //alert(xhr);
@@ -122,8 +135,12 @@ $(document).ready(function() {
                         var risultato = $.parseJSON(data);
 
                         if (risultato.errore){
-                            alert(risultato.messaggio);
-                            window.close();
+
+                            $('#errore').html("<strong>Errore!</strong> "+risultato.messaggio);
+                            $('#errore').fadeIn(3000);
+                            isFormValid=false;
+                           // alert(risultato.messaggio);
+                           // window.close();
                         }
                         else{
                             //Aggiungo la riga

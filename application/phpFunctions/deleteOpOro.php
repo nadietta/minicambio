@@ -24,7 +24,7 @@ if (isset($idOp)){
 
     if ($codOp){
 
-        mysqli_begin_transaction();
+        mysqli_begin_transaction($conn);
 
         $queryDelete = "DELETE FROM operazioni_oro WHERE pk_op_oro = '$idOp'";
         $queryUpdate = "UPDATE operazioni_oro SET cod_op_oro = cod_op_oro-1 WHERE cod_op_oro > '$codOp'";
@@ -33,13 +33,13 @@ if (isset($idOp)){
         $retvalUpdate = mysqli_query($conn, $queryUpdate);
 
         if ($retvalDelete && $retvalUpdate){
-            mysqli_commit();
+            mysqli_commit($conn);
             $retval = true;
             $risultato['messaggio']="Cancellazione avvenuta con successo";
             mysqli_close($conn);
         }
         else{
-            mysqli_rollback();
+            mysqli_rollback($conn);
             $risultato['errore']="Errore, riprovare";
         }
     }

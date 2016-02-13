@@ -5,6 +5,7 @@
  * Date: 23/01/2016
  * Time: 14:02
  */
+ini_set("error_reporting", 0);
     include("../connessione.php");
 
     if (isset($_REQUEST['idTas'])){
@@ -42,6 +43,12 @@
             <div  id="page" class="containerPopup">
                 <div class="post">
                     <h2 class="title">Dettagli Tasso</h2>
+                    <div class="alert alert-danger customHidden" id="errore">
+
+                    </div>
+                    <div class='alert alert-success customHidden' id='successo'>
+
+                    </div>
                     <form id="tassiWindowForm" class="form-horizontal">
                         <fieldset>
 
