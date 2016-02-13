@@ -2,7 +2,7 @@ NOTE NADIA)
 install
 http://wkhtmltopdf.org/downloads.html
 La transazione da errore in nuova Operazione (lato ajax var risultato = $.parseJSON(data); vuoto)
-
+table responsive?
 getlLastOperazione che succede se non ci sono operazioni?
 Setup
 - Discutere vincoli sulla cancellazione di valute e tassi -- i vicoli lato DB sono gestiti/lato applicativo no
@@ -21,7 +21,7 @@ Setup
     E se le inserisce nuove ma per un giorno passato o futuro? Decidere questa cosa.
 
 - Tolti i link esterni alle librerie...resta il problema sul css locale di bootstrap. Perde i riferimenti ai glyphicons
- (era http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css)
+ (era http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css) --- RISOLTO
 
 
 Lista operazioni:

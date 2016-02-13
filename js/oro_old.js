@@ -123,6 +123,7 @@ $(document).ready(function() {
         var formattedA = a.substr(6,4)+"-"+a.substr(3,2)+"-"+a.substr(0,2);
         whereVar = "data_op BETWEEN '"+formattedDa+"' AND '"+formattedA+"'+ INTERVAL 1 DAY ORDER BY cod_op_oro";
         $("#formLista").html('');
+        $('#nessuna_op').fadeOut();
 
         $.ajax({
             type: "POST",
@@ -134,7 +135,7 @@ $(document).ready(function() {
                 operazioniDiv='';
                 if (operazioni.length>0) {
                     operazioniDiv += "<br>\n\
-                                    <table id='tableListaOperazioni' class='table table-hover'>\n\
+                                    <table id='tableListaOperazioni' class='table table-hover '>\n\
                                       <tr>\n\
                                           <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>GRAMMI</th>\n\
                                           <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\

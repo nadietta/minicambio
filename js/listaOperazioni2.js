@@ -123,7 +123,7 @@ $(document).ready(function() {
         $("#entryContainerTitle").html("Lista Operazioni");
         $("#entryContainer").html("");
         var operazioniDiv = "";
-
+        $('#nessuna_op').fadeOut();
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
         var whereVar= "";
 
