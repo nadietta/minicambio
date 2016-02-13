@@ -260,13 +260,19 @@ $(document).ready(function() {
             success: function(data) {
                 var risultato = $.parseJSON(data);
                 if (risultato.errore){
-                    alert(risultato.errore);
+
+                    $('#errore').fadeIn(2000, function(){
+                        location.reload();
+                    });
                 }
                 else{
-                    //alert(risultato.messaggio);
-                    //formDataCommit = true;
-                    location.reload();
-                }
+
+                    if(risultato.messaggio){
+                        alert('');
+                        $('#successo').fadeIn(1500, function(){
+                            location.reload();
+                        });
+                    }}
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
@@ -274,7 +280,7 @@ $(document).ready(function() {
             }
         });
 
-        return formDataCommit;
+        return false;
     });
 
 

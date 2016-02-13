@@ -101,8 +101,10 @@ $(document).ready(function() {
 
     });
 
+
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
+
     });
 
 
@@ -182,8 +184,13 @@ $(document).ready(function() {
                 }
                 else{
 
-                    msg = "<br>Nessuna Operazione Presente.";
-                    $("#formLista").html(msg);
+                  //  msg = "<br>Nessuna Operazione Presente.";
+                 //   $("#formLista").html(msg);
+                    $('#nessuna_op').fadeIn(2000, function(){
+
+                    });
+
+
 
                 }
             },
@@ -231,22 +238,28 @@ $(document).ready(function() {
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var formData = $("#nuovaOperazioneForm").serialize();
         var formDataCommit = false;
-
-
+        var msg='';
         $.ajax({
             type: "POST",
             url: "phpFunctions/addOperazioneOro.php",
             data: {formData: formData},
             async: false,
+
             success: function(data) {
                 var risultato = $.parseJSON(data);
                 if (risultato.errore){
-                    alert(risultato.errore);
+                    $('#errore').fadeIn(2000, function(){
+                        location.reload();
+                    });
                 }
                 else{
-                    //alert(risultato.messaggio);
+                    if(risultato.messaggio){
+                        $('#successo').fadeIn(1500, function(){
+                            location.reload();
+                        });
+                    }
                     //formDataCommit = true;
-                    location.reload();
+
                 }
             },
             error: function(xhr, desc, err) {
@@ -254,8 +267,7 @@ $(document).ready(function() {
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
-
-        return formDataCommit;
+        return false;
     });
 
     $(document).on("click", "#nuova_op", function(e){
@@ -263,6 +275,7 @@ $(document).ready(function() {
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
         $(this).addClass("active");
+        $('#nessuna_op').fadeOut();
         newOpOro();
     });
 

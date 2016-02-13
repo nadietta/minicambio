@@ -43,6 +43,7 @@ Released   : 20121201
         </div>
     </div>
     <div id="page" class="container">
+
         <form id="nuovaOperazioneForm">
             <div id="sidebarL">
                 <div>
@@ -79,8 +80,15 @@ Released   : 20121201
             <!-- end #sidebar -->
 
             <div id="contentR">
+
                 <div class="post">
                     <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
+                    <div class='alert alert-success customHidden' id='successo'>
+                        <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
+
+                    <div class="alert alert-danger customHidden" id="errore">
+                        <strong>Errore!</strong> durante l'inserimento.
+                    </div>
                     <div id="entryContainer" class="entry">
 
                         <p>

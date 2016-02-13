@@ -64,12 +64,13 @@
             $num_op2 = $risultato['op2operazione'];
             $tipo_op2 = $risultato['op2tipoOp'];
 
-            mysqli_begin_transaction();
+            mysqli_begin_transaction($conn);
 
             $query1 = mysqli_query($conn,
                 "INSERT INTO `operazioni`(pk_operazione, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
                  VALUES (NULL,$valuta_da1,$entrata1,$valuta_a1,$uscita1,$tasso1,$num_op1,$tipo_op1);
                 ");
+
 
             $query2 = mysqli_query($conn,
                 "INSERT INTO `operazioni`(pk_operazione, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
@@ -77,11 +78,12 @@
                 ");
 
             if ($query1 && $query2){
-                mysqli_commit();
-                $risultato['messaggio']="Inserimento avvenuto con successo";
+                 if(mysqli_commit($conn)){
+                     $risultato['messaggio']="Inserimento avvenuto con successo";
+                 }
             }
             else{
-                mysqli_rollback();
+                mysqli_rollback($conn);
                 $risultato['errore']="Errore, riprovare";
             }
 
@@ -92,4 +94,4 @@
         $risultato['errore'] = "Errore dati Form";
     }
 
-    echo json_encode($risultato);
+    return json_encode($risultato);

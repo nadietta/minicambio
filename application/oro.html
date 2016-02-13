@@ -30,6 +30,7 @@ Released   : 20121201
 </head>
 <body>
 <div id="wrapper">
+
     <div id="menu-wrapper">
         <div id="menu" class="container">
             <ul>
@@ -47,7 +48,7 @@ Released   : 20121201
             <div>
                 <h2>ORO</h2>
                 <ul class="nav nav-pills nav-stacked">
-                    <li id="nuova_op" class="active" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
+                    <li id="nuova_op" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
                     <li id="lista_op" role="presentation"><a href="#">LISTA OPERAZIONI</a></li>
 
                 </ul>
@@ -80,10 +81,17 @@ Released   : 20121201
         <!-- end #sidebar -->
         <div id="contentR">
         <div id="contentForm" >
+
+
             <div class="post">
                 <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
                 <div id="entryContainer" class="entry"></div>
+                <div class='alert alert-success customHidden' id='successo'>
+                    <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
 
+                <div class="alert alert-danger customHidden" id="errore">
+                    <strong>Errore!</strong> durante l'inserimento.
+                </div>
                 <div id="formOperazione" class="customHidden">
                     <form id="nuovaOperazioneForm">
                     <fieldset>
@@ -119,8 +127,8 @@ Released   : 20121201
                         <br>
                         <br>
                         <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
-                            <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva" value="Salva"/>
-                            <input type="button" class='btn btn-primary' id="newOpStampa" value="Stampa"/>
+                            <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva"  value="Salva"/>
+                            <input type="button" class='btn btn-primary'  id="newOpStampa" value="Stampa"/>
                             <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
                         </div>
                     </form>
@@ -128,8 +136,9 @@ Released   : 20121201
                 </div>
 
 
-
-
+                <div class="alert alert-info customHidden" id="nessuna_op">
+                    <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
+                </div>
 
                 <div id="formLista" class="customHidden">
 

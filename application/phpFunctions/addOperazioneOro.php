@@ -35,7 +35,7 @@
                 "INSERT INTO `operazioni_oro`(pk_op_oro, cod_op_oro, grammi, carati, prezzo, totale)
                   VALUES (NULL,$operazione,$grammi,$carati,$prezzo,$franchi);
                 ");
-            if(mysqli_affected_rows($conn)){
+            if($query){
                 $risultato['messaggio']="Inserimento avvenuto con successo";
             }
             else {

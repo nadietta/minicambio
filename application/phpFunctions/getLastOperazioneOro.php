@@ -5,6 +5,7 @@
  * Date: 07/02/2016
  * Time: 20:26
  */
+ini_set("error_reporting", 0);
 include("../../connessione.php");
 
 $query ="SELECT max(cod_op_oro) AS ultimaop FROM `operazioni_oro`";

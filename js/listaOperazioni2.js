@@ -90,6 +90,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
+        $('#nessuna_op').fadeOut();
         var checkedRadio = $(this).val();
         $('.listaOperazioniValoriRadioDiv').addClass('customHidden');
         $('#listaOperazioniValoriRadio :input').attr('disabled', true);
@@ -204,8 +205,9 @@ $(document).ready(function() {
 
                 }
                 else{
-                    msg = "<br>Nessuna Operazione Presente.";
-                    $("#entryContainer").html(msg);
+                    $('#nessuna_op').fadeIn(2000, function(){
+
+                    });
                 }
             },
             error: function(xhr, desc, err) {
