@@ -2,7 +2,15 @@ NOTE NADIA)
 install
 http://wkhtmltopdf.org/downloads.html
 La transazione da errore in nuova Operazione (lato ajax var risultato = $.parseJSON(data); vuoto)
-table responsive?
+table responsive? in oro ho usato
+
+.listaDiv{
+	height: 400px;
+	overflow-y: scroll;
+
+} per il DIV esterno alla tabella
+
+
 getlLastOperazione che succede se non ci sono operazioni?
 Setup
 - Discutere vincoli sulla cancellazione di valute e tassi -- i vicoli lato DB sono gestiti/lato applicativo no

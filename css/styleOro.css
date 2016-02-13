@@ -638,3 +638,8 @@ a:hover, a:focus {
 .customHidden{
 	display: none;
 }
+.listaDiv{
+	height: 400px;
+	overflow-y: scroll;
+
+}
