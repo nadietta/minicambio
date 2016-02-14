@@ -84,7 +84,7 @@ ini_set("error_reporting", 0);
                                 <div style="clear: both;">&nbsp;</div>
                                 <label for="tassoCambio" class="col-sm-3 col-lg-3 control-label">Tasso:</label>
                                 <div class="col-sm-8 col-lg-8">
-                                    <input type="number" step="0.0001"  pattern="[0-9]+.*[0-9]{0,4}$" min="0" class="form-control requiredInput" required id="tassoCambio" name="tassoCambio">
+                                    <input type="number" step="0.0001"  pattern="[0-9]+.*+,*[0-9]{0,4}$" min="0" class="form-control requiredInput" required id="tassoCambio" name="tassoCambio">
                                 </div>
                             </div>
                         </fieldset>
