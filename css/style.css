@@ -637,3 +637,9 @@ a:hover {
 	left: 370px;
 	cursor: pointer;
 }
+.alert-danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	width: 350px;
+}

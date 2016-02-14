@@ -191,7 +191,13 @@ $(document).ready(function() {
                         var risultato = $.parseJSON(data);
                         if (risultato.errore){
                             $('#errore').html("<strong>Errore!</strong> "+risultato.errore);
-                            $('#errore').fadeIn(3000);
+                            $("#mrw_overlay").fadeIn(500);
+                            $("#mrw_box").fadeIn(500);
+                            $("#mrw_close").click(function(){
+                                $("#mrw_box").fadeOut(500);
+                                $("#mrw_overlay").fadeOut(500);
+                            });
+
                             isFormValid=false;
 
                         }else{
@@ -237,8 +243,12 @@ $(document).ready(function() {
                         }
                         else{
                             //Aggiungo la riga
-                            window.close();
-                            $("#tassi", window.opener.document).trigger('click');
+                            $('#successo' ).html("<strong>Successo!</strong> "+risultato.messaggio);
+                            $("#successo").fadeIn(2000, function(){
+                                window.close();
+                                $("#tassi", window.opener.document).trigger('click');
+                            });
+
                         }
                     },
                     error: function(xhr, desc, err) {

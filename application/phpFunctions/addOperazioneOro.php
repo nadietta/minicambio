@@ -26,9 +26,9 @@
     {
         $risultato = unserializeForm($formData);
             $operazione = $risultato['operazione'];
-            $grammi = $risultato['grammi'];
+            $grammi = round($risultato['grammi'],4);
             $carati = $risultato['carati'];
-            $prezzo = $risultato['prezzo'];
+            $prezzo =  round($risultato['prezzo'],4);
             $franchi_arrotondamento = round($risultato['franchi'],2);
 
             $query = mysqli_query($conn,

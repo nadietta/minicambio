@@ -14,7 +14,7 @@ function loadValute(){
 
     valuteDiv += "<div>\n\
                         <button class='btn btnAddNewVal' \n\
-                            onclick=\"popupCenter('valuteWindow.php?idVal=&mode=Nuovo','Valute', '500', '350');\">\n\
+                            onclick=\"popupCenter('valuteWindow.php?idVal=&mode=Nuovo','Valute', '500', '500');\">\n\
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuova Valuta\n\
                         </button>\n\
                     </div>";
@@ -37,7 +37,7 @@ function loadValute(){
                                             <td class='valNomeClass'>"+ valute[i].nome_valuta +"</td>\n\
                                             <td class='valSimboloClass'>"+ valute[i].simbolo_valuta +"</td>\n\
                                             <td><button class='btn' \n\
-                                                    onclick=\"popupCenter('valuteWindow.php?idVal="+ valute[i].id +"&mode=Modifica','Valute', '500', '350');\">\n\
+                                                    onclick=\"popupCenter('valuteWindow.php?idVal="+ valute[i].id +"&mode=Modifica','Valute', '500', '500');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
@@ -156,6 +156,7 @@ function loadTassi(){
 
 $(document).ready(function() {
 
+
    /* $('#valute').trigger('click');
     alert("prova");*/
 
@@ -200,11 +201,27 @@ $(document).ready(function() {
                     });
                 }
                else{
-                    alert("Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
+
+                    $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
+                    $("#mrw_overlay").fadeIn(500);
+                    $("#mrw_box").fadeIn(500);
+                    $("#mrw_close").click(function(){
+                        $("#mrw_box").fadeOut(500);
+                        $("#mrw_overlay").fadeOut(500);
+                    });
+
+
                 }
             },
             error: function(xhr, desc, err) {
-                alert("Errore. Impossibile eliminare la Valuta Selezionata");
+                $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!");
+                $("#mrw_overlay").fadeIn(500);
+                $("#mrw_box").fadeIn(500);
+                $("#mrw_close").click(function(){
+                    $("#mrw_box").fadeOut(500);
+                    $("#mrw_overlay").fadeOut(500);
+                });
+
             }
         });
 
@@ -230,7 +247,15 @@ $(document).ready(function() {
                 });
             },
             error: function(xhr, desc, err) {
-                alert("Errore. Impossibile eliminare il Tasso Selezionato");
+                $('#errore').html("<strong>Errore!</strong> Errore. Impossibile eliminare il Tasso Selezionato");
+                $("#mrw_overlay").fadeIn(500);
+                $("#mrw_box").fadeIn(500);
+                $("#mrw_close").click(function(){
+                    $("#mrw_box").fadeOut(500);
+                    $("#mrw_overlay").fadeOut(500);
+                });
+
+
             }
         });
 
