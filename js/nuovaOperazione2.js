@@ -231,10 +231,10 @@ $(document).ready(function() {
         $('#valutaEntrata').trigger('change');
     });
 
-    $('#op1dataora').datetimepicker({
+    /*$('#op1dataora').datetimepicker({
         lang: 'it',
         format:	'd/m/Y H:i'
-    });
+    });*/
 
     $(document).on('keyup','#op1entrata', function(){
         calcolaUscita();
