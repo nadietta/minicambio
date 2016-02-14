@@ -258,7 +258,7 @@ a:hover {
 
 #page {
 	overflow: hidden;
-	padding: 20px 20px 40px 20px;
+	padding: 20px 20px 10px 20px;
 }
 
 /* Content */
@@ -273,8 +273,11 @@ a:hover {
     float: right;
     width: 75%;
     padding: 0 0 0 0;
-	height:400px;
-	overflow-y: scroll;
+}
+
+#entryContainer{
+    height:410px;
+    overflow-y: scroll;
 }
 
 .post {

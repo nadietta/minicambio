@@ -255,22 +255,21 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "phpFunctions/addOperazione.php",
-            data: {formData: formData},
             async: false,
+            data: {formData: formData},
             success: function(data) {
-                alert(data);
-                var risultato = $.parseJSON(data);
+               var risultato = $.parseJSON(data);
+                $("#entryContainer").html("");
                 if (risultato.errore){
-
                     $('#errore').fadeIn(2000, function(){
                         location.reload();
                     });
                 }
                 else{
-                        $('#successo').fadeIn(1500, function(){
-                            location.reload();
-                        });
-                    }
+                    $('#successo').fadeIn(1500, function(){
+                        location.reload();
+                    });
+                }
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
