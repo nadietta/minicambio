@@ -85,92 +85,96 @@ Released   : 20121201
 
                     <h2 id="entryContainerTitle" class="title">&nbsp;Operazione</h2>
 
-                    <div class='alert alert-success customHidden' id='successo'>
-                        <strong>Successo!</strong> Inserimento avvenuto con successo.
-                    </div>
-
-                    <div class="alert alert-danger customHidden" id="errore">
-                        <strong>Errore!</strong> durante l'inserimento.
-                    </div>
-
                     <div id="entryContainer" class="entry">
 
-                        <p>
-                        <div id="divOperazione1" class="customHidden" >
-
-                            <h3 id="titleOperazione1">DA VALUTA A VALUTA</h3>
-                            <input type="number" class="customHidden" id="op1tipoOp" name="op1tipoOp" value="" readonly required/>
-                            <br>
-
-                            <div id="formOperazione1">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label for="op1dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
-                                        <label for="op1operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
-                                        <label for="op1tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input  type="datetime" class="form-control" id="op1dataora" name="op1dataora" value="" readonly required/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" maxlength="15" class="form-control" id="op1operazione" name="op1operazione" readonly required value=""/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" step="0.000001" min="0" class="form-control" id="op1tasso" name="op1tasso" required value=""/>
-                                        </div>
-
-                                        <label for="op1entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
-                                        <label for="op1uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input type="number" step="0.001" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*(,|.)[0-9]*$" required value=""/>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input type="number" step="0.001" min="0" class="form-control" id="op1uscita" name="op1uscita" readonly required value=""/>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-
+                        <div class='alert alert-success customHidden' id='successo'>
+                            <strong>Successo!</strong> Inserimento avvenuto con successo.
                         </div>
-                        </p>
-                        <br><br>
-                        <p>
-                        <div id="divOperazione2" class="customHidden">
-                            <h3 id="titleOperazione2">DA VALUTA A VALUTA</h3>
-                            <input type="number" class="customHidden" id="op2tipoOp" name="op2tipoOp" value="" readonly required/>
-                            <br>
 
-                            <div id="formOperazione2">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label for="op2dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
-                                        <label for="op2operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
-                                        <label for="op2tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input  type="datetime" class="form-control" id="op2dataora" name="op2dataora" value="" readonly required/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" maxlength="15" class="form-control" id="op2operazione" name="op2operazione" readonly required value=""/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" step="0.000001" min="0" class="form-control" id="op2tasso" name="op2tasso" required value=""/>
-                                        </div>
-
-                                        <label for="op2entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
-                                        <label for="op2uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input type="number" step="0.001" min="0" class="form-control" id="op2entrata" name="op2entrata" readonly required value=""/>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input type="number" step="0.001" min="0" class="form-control" id="op2uscita" name="op2uscita" readonly required value=""/>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-
+                        <div class="alert alert-danger customHidden" id="errore">
+                            <strong>Errore!</strong> durante l'inserimento.
                         </div>
-                        </p>
-                        <input type="number" class="customHidden" id="opTipoOp" name="opTipoOp" value="" readonly required/>
-                        <br>
+
+                        <div id="scrollingContent">
+                            <p>
+                            <div id="divOperazione1" class="customHidden" >
+
+                                <h3 id="titleOperazione1">DA VALUTA A VALUTA</h3>
+                                <input type="number" class="customHidden" id="op1tipoOp" name="op1tipoOp" value="" readonly required/>
+                                <br>
+
+                                <div id="formOperazione1">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="op1dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
+                                            <label for="op1operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
+                                            <label for="op1tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input  type="datetime" class="form-control" id="op1dataora" name="op1dataora" value="" readonly required/>
+                                            </div>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input type="number" maxlength="15" class="form-control" id="op1operazione" name="op1operazione" readonly required value=""/>
+                                            </div>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input type="number" step="0.000001" min="0" class="form-control" id="op1tasso" name="op1tasso" required value=""/>
+                                            </div>
+
+                                            <label for="op1entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
+                                            <label for="op1uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
+                                            <div class="col-sm-6 col-lg-6">
+                                                <input type="number" step="0.001" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*(,|.)[0-9]*$" required value=""/>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6">
+                                                <input type="number" step="0.001" min="0" class="form-control" id="op1uscita" name="op1uscita" readonly required value=""/>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            </p>
+                            <br><br>
+                            <p>
+                            <div id="divOperazione2" class="customHidden">
+                                <h3 id="titleOperazione2">DA VALUTA A VALUTA</h3>
+                                <input type="number" class="customHidden" id="op2tipoOp" name="op2tipoOp" value="" readonly required/>
+                                <br>
+
+                                <div id="formOperazione2">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="op2dataora" class="col-sm-4 col-lg-4 control-label">Data e Ora:</label>
+                                            <label for="op2operazione" class="col-sm-4 col-lg-4 control-label">Numero Operazione:</label>
+                                            <label for="op2tasso" class="col-sm-4 col-lg-4 control-label">Tasso:</label>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input  type="datetime" class="form-control" id="op2dataora" name="op2dataora" value="" readonly required/>
+                                            </div>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input type="number" maxlength="15" class="form-control" id="op2operazione" name="op2operazione" readonly required value=""/>
+                                            </div>
+                                            <div class="col-sm-4 col-lg-4">
+                                                <input type="number" step="0.000001" min="0" class="form-control" id="op2tasso" name="op2tasso" required value=""/>
+                                            </div>
+
+                                            <label for="op2entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
+                                            <label for="op2uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
+                                            <div class="col-sm-6 col-lg-6">
+                                                <input type="number" step="0.001" min="0" class="form-control" id="op2entrata" name="op2entrata" readonly required value=""/>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6">
+                                                <input type="number" step="0.001" min="0" class="form-control" id="op2uscita" name="op2uscita" readonly required value=""/>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            </p>
+                            <input type="number" class="customHidden" id="opTipoOp" name="opTipoOp" value="" readonly required/>
+                            <br>
+                        </div>
+
+
 
                     </div>
 

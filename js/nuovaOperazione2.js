@@ -259,7 +259,7 @@ $(document).ready(function() {
             data: {formData: formData},
             success: function(data) {
                var risultato = $.parseJSON(data);
-                $("#entryContainer").html("");
+                $("#scrollingContent").html("");
                 if (risultato.errore){
                     $('#errore').fadeIn(2000, function(){
                         location.reload();
