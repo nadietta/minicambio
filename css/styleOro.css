@@ -273,10 +273,12 @@ a:hover {
     float: right;
     width: 70%;
     padding: 0 0 0 0;
-	height: 500px;
+
+}
+.formList{
+	height: 400px;
 	overflow-y: scroll;
 }
-
 .post {
 	overflow: hidden;
 }

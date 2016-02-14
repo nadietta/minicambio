@@ -39,16 +39,26 @@ ini_set("error_reporting", 0);
         <link rel="icon" href="../img/money_bag.png" type="image/gif" />
     </head>
     <body class="bodyPopup">
+
         <div class="wrapperPopup">
             <div  id="page" class="containerPopup">
                 <div class="post">
                     <h2 class="title">Dettagli Tasso</h2>
-                    <div class="alert alert-danger customHidden" id="errore">
+                    <div id="mrw_overlay"></div>
+                    <div id="mrw_box">
+                        <div id="mrw_close"><span class="glyphicon glyphicon-remove"></span></div>
+
+                            <div class="alert alert-danger" id="errore">
+
+                            </div>
+                            <div class='alert alert-success customHidden' id='successo'>
+
+                            </div>
 
                     </div>
-                    <div class='alert alert-success customHidden' id='successo'>
 
-                    </div>
+
+
                     <form id="tassiWindowForm" class="form-horizontal">
                         <fieldset>
 
@@ -109,6 +119,7 @@ ini_set("error_reporting", 0);
 
                             </div>
                         </div>
+
 
                     </form>
                 </div>

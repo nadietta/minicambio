@@ -224,7 +224,14 @@ $(document).ready(function() {
                         if (risultato.errore){
 
                             $('#errore').html("<strong>Errore!</strong> "+risultato.messaggio);
-                            $('#errore').fadeIn(3000);
+                            $("#mrw_overlay").fadeIn(500);
+                            $("#mrw_box").fadeIn(500);
+                            $("#mrw_close").click(function(){
+                                $("#mrw_box").fadeOut(500);
+                                $("#mrw_overlay").fadeOut(500);
+                            });
+
+                            //$('#errore').fadeIn(3000);
                             isFormValid=false;
 
                         }
@@ -248,5 +255,7 @@ $(document).ready(function() {
         return isFormValid;
 
     });
+
+
 
 });

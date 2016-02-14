@@ -601,3 +601,39 @@ a:hover {
 	display: none;
 }
 
+
+
+#mrw_overlay
+{
+	background:rgba(0, 0, 0, 0.88);
+	position: fixed;
+	display: none;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 98;
+	opacity: .9;
+	filter: alpha(opacity=90);
+	filter: "alpha(opacity=90)";
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+#mrw_box
+{
+	z-index: 99;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -170px;
+	margin-top: -204px;
+
+
+}
+#mrw_close
+{
+	position: absolute;
+	top: -15px;
+	left: 370px;
+	cursor: pointer;
+}
