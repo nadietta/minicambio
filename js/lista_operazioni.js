@@ -132,12 +132,23 @@ $(document).ready(function() {
 
     $(document).on('change','#rangeData_da', function(){
 
-        var valore= $('#rangeData_da').val();
-        $('#rangeData_a').val(valore);
-        $('#rangeData_a').attr('min',valore);
+        var valore= new Date($('#rangeData_da').val());
+        var valore_a = new Date($('#rangeData_a').val());
+        if(valore.getTime() > valore_a.getTime()){
+        $('#rangeData_a').val($('#rangeData_da').val());
+       }
+        $('#rangeData_a').attr('min',$('#rangeData_da').val());
+    });
+    $(document).on('change','#rangeData_a', function(){
+
+        var valore= new Date($('#rangeData_da').val());
+        var valore_a = new Date($('#rangeData_a').val());
+        if(valore_a.getTime() < valore.getTime()){
+            $('#rangeData_da').val($('#rangeData_a').val());
+         }
+        $('#rangeData_da').attr('max',$('#rangeData_a').val());
 
     });
-
 
     $(document).on('keyup','#rangeOperazione_da', function(){
 
