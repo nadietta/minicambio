@@ -26,10 +26,10 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['id']=$row[0];
         $risultato[$i]['data_op']=$row[1];
         $risultato[$i]['valuta_entrata']=$row[2];
-        $risultato[$i]['importo_entrata']=$row[3];
+        $risultato[$i]['importo_entrata']=number_format($row[3], 2, ',', '.');
         $risultato[$i]['valuta_uscita']=$row[4];
-        $risultato[$i]['importo_uscita']=$row[5];
-        $risultato[$i]['tasso']=$row[6];
+        $risultato[$i]['importo_uscita']=number_format($row[5], 2, ',', '.');
+        $risultato[$i]['tasso']=number_format($row[6], 4, ',', '.');
         $risultato[$i]['cod_op']=$row[7];
         $risultato[$i]['tipo_op']=$row[8];
         $i++;

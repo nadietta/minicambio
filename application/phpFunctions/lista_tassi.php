@@ -24,7 +24,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['id']=$row[0];
         $risultato[$i]['valutada']=$row[1];
         $risultato[$i]['valutaa']=$row[2];
-        $risultato[$i]['tasso']=$row[3];
+        $risultato[$i]['tasso']=number_format($row[3], 4, ',', '.');
         $i++;
 
     }

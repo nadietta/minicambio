@@ -27,10 +27,10 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['id']=$row[0];
         $risultato[$i]['data_op']=$row[1];
         $risultato[$i]['cod_op_oro']=$row[2];
-        $risultato[$i]['prezzo']=$row[3];
+        $risultato[$i]['prezzo']=number_format($row[3], 4, ',', '.');
         $risultato[$i]['carati']=$row[4];
         $risultato[$i]['grammi']=$row[5];
-        $risultato[$i]['totale']=$row[6];
+        $risultato[$i]['totale']=number_format($row[6], 2, ',', '.');
         $i++;
 
    }
