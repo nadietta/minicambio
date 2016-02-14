@@ -31,8 +31,6 @@ function getCurrentDateTime(){
 }
 
 
-
-
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
     $("#formLista").addClass('customHidden');
@@ -74,7 +72,7 @@ function setNumOpOro(){
 
 function loadOpOro(){
         $("#entryContainerTitle").html("Lista Operazioni: Oro");
-        $("#entryContainer").html("");
+        //$("#scrollingContent").html("");
         $("#formOperazione").addClass('customHidden');
         $("#newOpBottoni").addClass('customHidden');
         $("#formLista").removeClass('customHidden');
@@ -166,7 +164,7 @@ $(document).ready(function() {
 
                     $("#formLista").html(operazioniDiv);
 
-                    $("#entryContainer").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
+                    $("#formLista").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
                                     <div class='modal-dialog modal-sm'>\n\
                                         <div class='modal-content'>\n\
                                             <div class='modal-body'>Sei sicuro di voler cancellare questa Operazione?<br>\n\
@@ -184,15 +182,9 @@ $(document).ready(function() {
 
                 }
                 else{
-
                   //  msg = "<br>Nessuna Operazione Presente.";
                  //   $("#formLista").html(msg);
-                    $('#nessuna_op').fadeIn(2000, function(){
-
-                    });
-
-
-
+                    $('#nessuna_op').fadeIn(2000);
                 }
             },
             error: function(xhr, desc, err) {
@@ -226,9 +218,9 @@ $(document).ready(function() {
                     });
                 }
                 else{
-
+                    $("#scrollingContent").html("");
                     $('#errore_cancellazione').fadeIn(2000, function(){
-                        $('#errore_cancellazione').fadeOut(1000);
+                        location.reload();
                     });
 
 
@@ -253,6 +245,7 @@ $(document).ready(function() {
 
             success: function(data) {
                 var risultato = $.parseJSON(data);
+                $("#scrollingContent").html("");
                 if (risultato.errore){
                     $('#errore').fadeIn(2000, function(){
                         location.reload();
@@ -265,7 +258,6 @@ $(document).ready(function() {
                         });
                     }
                     //formDataCommit = true;
-
                 }
             },
             error: function(xhr, desc, err) {

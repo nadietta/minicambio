@@ -123,7 +123,7 @@ $(document).ready(function() {
         //TODO: paginazione risultati
         //TODO: filtri di ordinamento
         $("#entryContainerTitle").html("Lista Operazioni");
-        $("#entryContainer").html("");
+        $("#scrollingContent").html("");
         var operazioniDiv = "";
         $('#nessuna_op').fadeOut();
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
@@ -187,9 +187,9 @@ $(document).ready(function() {
                                         </tr>";
                     }
                     operazioniDiv += "</table>";
-                    $("#entryContainer").html(operazioniDiv);
+                    $("#scrollingContent").html(operazioniDiv);
 
-                    $("#entryContainer").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
+                    $("#scrollingContent").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
                                     <div class='modal-dialog modal-sm'>\n\
                                         <div class='modal-content'>\n\
                                             <div class='modal-body'>Sei sicuro di voler cancellare questa Operazione?<br>\n\
@@ -203,13 +203,9 @@ $(document).ready(function() {
                                         </div>\n\
                                     </div>\n\
                                 </div>");
-
-
                 }
                 else{
-                    $('#nessuna_op').fadeIn(2000, function(){
-
-                    });
+                    $('#nessuna_op').fadeIn(2000);
                 }
             },
             error: function(xhr, desc, err) {

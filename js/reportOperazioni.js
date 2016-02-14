@@ -60,8 +60,9 @@ $(document).ready(function() {
         //TODO: paginazione risultati
         //TODO: filtri di ordinamento
         $("#entryContainerTitle").html("Report Operazioni");
-        $("#entryContainer").html("");
+        $("#scrollingContent").html("");
         var operazioniDiv = "";
+        $('#nessuna_op').fadeOut();
 
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
         var whereVar= "";
@@ -187,12 +188,11 @@ $(document).ready(function() {
 
                     }
                     operazioniDiv += "</table>";
-                    $("#entryContainer").html(operazioniDiv);
+                    $("#scrollingContent").html(operazioniDiv);
 
                 }
                 else{
-                    msg += "<br>Nessuna Operazione Presente.";
-                    $("#entryContainer").html(msg);
+                    $('#nessuna_op').fadeIn(2000);
                 }
             },
             error: function(xhr, desc, err) {

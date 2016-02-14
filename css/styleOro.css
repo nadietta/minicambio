@@ -273,12 +273,13 @@ a:hover {
     float: right;
     width: 70%;
     padding: 0 0 0 0;
+}
 
+#entryContainer{
+    height:410px;
+    overflow-y: scroll;
 }
-.formList{
-	height: 400px;
-	overflow-y: scroll;
-}
+
 .post {
 	overflow: hidden;
 }

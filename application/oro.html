@@ -19,7 +19,7 @@ Released   : 20121201
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/oro_old.js"></script>
+    <script type="text/javascript" src="../js/oro.js"></script>
 
    <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -84,68 +84,70 @@ Released   : 20121201
 
             <div class="post">
                 <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
-                <div id="entryContainer" class="entry"></div>
-                <div class='alert alert-success customHidden' id='successo'>
-                    <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
+                <div id="entryContainer" class="entry">
 
-                <div class="alert alert-danger customHidden" id="errore">
-                    <strong>Errore!</strong> durante l'inserimento.
-                </div>
-                <div id="formOperazione" class="customHidden">
-                    <form id="nuovaOperazioneForm">
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
-                            <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
-                            <div class="col-sm-6 col-lg-6">
-                                <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
-                            </div>
-                            <div class="col-sm-6 col-lg-6">
-                                <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
-                            </div>
+                    <div class='alert alert-success customHidden' id='successo'>
+                        <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
 
-                            <br>
-                            <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
-                            <label for="carati" class="col-sm-4 col-lg-4 control-label">Carati:</label>
-                            <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
-                            <div class="col-sm-4 col-lg-4">
-                                <input type="number" step="0.0001" min="0" class="form-control" id="grammi" name="grammi"  pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <input type="number" step="0.00001" min="0" class="form-control" id="carati" name="carati"  required value=""/>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <input type="number" step="0.0001" min="0" class="form-control" id="prezzo" name="prezzo"   pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
-                            </div>
-                            <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
-                            <div class="col-sm-12 col-lg-12">
-                                <input type="number" step="0.01" min="0" class="form-control" id="franchi" name="franchi"  readonly required value=""/>
-                            </div>
+                    <div class="alert alert-danger customHidden" id="errore">
+                        <strong>Errore!</strong> durante l'inserimento.
+                    </div>
+
+                    <div class="alert alert-info customHidden" id="nessuna_op">
+                        <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
+                    </div>
+
+                    <div class="alert alert-danger customHidden" id="errore_cancellazione">
+                        <strong>Errore!</strong> Impossibile cancellare l'Operazione
+                    </div>
+
+                    <div id="scrollingContent">
+                        <div id="formOperazione" class="customHidden">
+                            <form id="nuovaOperazioneForm">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
+                                        <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6">
+                                            <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
+                                        </div>
+
+                                        <br>
+                                        <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
+                                        <label for="carati" class="col-sm-4 col-lg-4 control-label">Carati:</label>
+                                        <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" step="0.0001" min="0" class="form-control" id="grammi" name="grammi"  pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" step="0.00001" min="0" class="form-control" id="carati" name="carati"  required value=""/>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <input type="number" step="0.0001" min="0" class="form-control" id="prezzo" name="prezzo"   pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
+                                        </div>
+                                        <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
+                                        <div class="col-sm-12 col-lg-12">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="franchi" name="franchi"  readonly required value=""/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <br>
+                                <br>
+                                <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
+                                    <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva"  value="Salva"/>
+                                    <input type="button" class='btn btn-primary'  id="newOpStampa" value="Stampa"/>
+                                    <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
+                                </div>
+                            </form>
                         </div>
-                    </fieldset>
-                        <br>
-                        <br>
-                        <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
-                            <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva"  value="Salva"/>
-                            <input type="button" class='btn btn-primary'  id="newOpStampa" value="Stampa"/>
-                            <input type="button" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
-                        </div>
-                    </form>
 
+                        <div id="formLista" class="customHidden"></div>
+
+                    </div>
                 </div>
-
-
-                <div class="alert alert-info customHidden" id="nessuna_op">
-                    <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
-                </div>
-                <div class="alert alert-danger customHidden" id="errore_cancellazione">
-                    <strong>Errore!</strong> Impossibile cancellare l'Operazione
-                </div>
-
-                <div id="formLista" class="customHidden formList">
-
-                </div>
-
 
             </div>
         </div>
