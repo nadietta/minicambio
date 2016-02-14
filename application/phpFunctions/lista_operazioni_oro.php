@@ -30,7 +30,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['prezzo']=$row[3];
         $risultato[$i]['carati']=$row[4];
         $risultato[$i]['grammi']=$row[5];
-        $risultato[$i]['totale']=$row[5];
+        $risultato[$i]['totale']=$row[6];
         $i++;
 
    }

@@ -29,11 +29,11 @@
             $grammi = $risultato['grammi'];
             $carati = $risultato['carati'];
             $prezzo = $risultato['prezzo'];
-            $franchi = $risultato['franchi'];
+            $franchi_arrotondamento = round($risultato['franchi'],2);
 
             $query = mysqli_query($conn,
                 "INSERT INTO `operazioni_oro`(pk_op_oro, cod_op_oro, grammi, carati, prezzo, totale)
-                  VALUES (NULL,$operazione,$grammi,$carati,$prezzo,$franchi);
+                  VALUES (NULL,$operazione,$grammi,$carati,$prezzo,$franchi_arrotondamento);
                 ");
             if($query){
                 $risultato['messaggio']="Inserimento avvenuto con successo";
