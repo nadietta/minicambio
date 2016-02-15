@@ -134,11 +134,11 @@ $(document).ready(function() {
                 if (operazioni.length>0) {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover '>\n\
-                                      <tr>\n\
-                                          <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>GRAMMI</th>\n\
+                                     <thead><tr>\n\
+                                          <th class='hidden'>ID</th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
                                           <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
                                          \n\
-                                      </tr>";
+                                      </tr></thead> ";
 
                     for (var i = 0; i < operazioni.length; i++) {
 
@@ -180,6 +180,7 @@ $(document).ready(function() {
                                 </div>");
 
 
+
                 }
                 else{
                   //  msg = "<br>Nessuna Operazione Presente.";
@@ -192,6 +193,11 @@ $(document).ready(function() {
                 alert("Details: " + desc + "\nError:" + err);
             }
 
+        });
+        $("#tableListaOperazioni").tablesorter({
+            theme: 'blue',
+            // sort on the first column in ascending order
+            sortList: [0,0]
         });
         return false;
     });
