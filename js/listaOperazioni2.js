@@ -92,7 +92,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
         $('#nessuna_op').fadeOut();
-        $('#info_utilizzo').fadeOut(1000);
+        $('#info_utilizzo').hide();
         var checkedRadio = $(this).val();
         $('.listaOperazioniValoriRadioDiv').addClass('customHidden');
         $('#listaOperazioniValoriRadio :input').attr('disabled', true);
@@ -159,12 +159,12 @@ $(document).ready(function() {
                 if (operazioni.length>0) {
 
                     operazioniDiv += "<br>\n\
-                                    <table id='tableListaOperazioni' class='table table-hover'>\n\
-                                      <tr>\n\
+                                    <table id='tableListaOperazioni' class='table table-hover tablesorter'>\n\
+                                      <thead><tr>\n\
                                           <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
                                           <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
-                                          <th>TASSO</th>\n\
-                                      </tr>";
+                                          <th>TASSO&nbsp;&nbsp;&nbsp;</th>\n\
+                                      </tr></thead><tbody>";
 
                     for (var i = 0; i < operazioni.length; i++) {
                         operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
@@ -177,7 +177,7 @@ $(document).ready(function() {
                                             <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
                                             <td><button class='btn' \n\
                                                     onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"','Operazioni', '500', '500');\">\n\
-                                                    <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modificaa\n\
+                                                    <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
                                             <td><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
@@ -186,8 +186,10 @@ $(document).ready(function() {
                                             </td>\n\
                                         </tr>";
                     }
-                    operazioniDiv += "</table>";
+                    operazioniDiv += "</tbody></table>";
                     $("#scrollingContent").html(operazioniDiv);
+
+                    $("#tableListaOperazioni").trigger('update');
 
                     $("#scrollingContent").append("<div class='modal fade opDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
                                     <div class='modal-dialog modal-sm'>\n\
@@ -203,6 +205,9 @@ $(document).ready(function() {
                                         </div>\n\
                                     </div>\n\
                                 </div>");
+
+
+
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);
@@ -212,10 +217,15 @@ $(document).ready(function() {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
         });
         return false;
     });
+
+    $(document).on("update", "#tableListaOperazioni", function(){
+        $("#tableListaOperazioni").tablesorter();
+    });
+
+
 
     $(document).on("click", "#btnOpDelete", function(){
         var idOp = $('#modalDiv').html();
