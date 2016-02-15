@@ -5,6 +5,21 @@
  * Date: 06/02/2016
  * Time: 18:08
  */
+
+use mikehaertl\wkhtmlto\Pdf;
+
+
+// You can pass a filename, a HTML string or an URL to the constructor
+$pdf = new Pdf('<h2>test</h2>');
+
+// On some systems you may have to set the path to the wkhtmltopdf executable
+// $pdf->binary = 'C:\...';
+
+if (!$pdf->saveAs('./tmp.pdf')) {
+    echo $pdf->getError();
+}
+
+/**
 require_once '../dompdf/autoload.inc.php';
 
 
@@ -28,4 +43,4 @@ function htmltopdf($html, $filename, $paper, $orientation )
     $dompdf->stream($filename, array("Attachment" => 0));
 }
 
-htmltopdf(file_get_contents("esempioHTML.html"),"","A5","landscape");
+htmltopdf(file_get_contents("esempioHTML.html"),"","A5","landscape");**/
