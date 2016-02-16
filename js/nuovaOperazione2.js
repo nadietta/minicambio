@@ -283,8 +283,22 @@ $(document).ready(function() {
 
     $(document).on("click", "#newOpStampa", function(){
         var formData = $("#nuovaOperazioneForm").serialize();
+        var dataOp= $('#op1dataora').val();
         var formDataCommit = false;
-        popupCenter("../PDF/file_da_modello.php?"+formData);
+        $.ajax({
+            type: "POST",
+            url: "../PDF/file_da_modello.php",
+            async: false,
+            data: {formData: formData, dataOp: dataOp},
+            success: function(data) {
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+
 
 
     });
