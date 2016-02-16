@@ -646,3 +646,10 @@ a:hover {
 	border-color: #ebccd1;
 	width: 350px;
 }
+.img-print {
+	display: block;
+	width: 30%;
+	max-width: 50%;
+	align-content: center;
+	height: auto;
+}

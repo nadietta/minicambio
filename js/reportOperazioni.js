@@ -97,7 +97,7 @@ $(document).ready(function() {
                             if (i != 0) {
 
                                 operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
-                                            <td class='opOperazioneClass'>TOTALE</td>\n\
+                                            <td class='opOperazioneClass'>TOTALE GIORNO</td>\n\
                                             <td class='opDataClass'>" + operazioni[i - 1].data_op + "</td>\n\
                                             <td class='opValutaEntrataClass'>" + operazioni[i - 1].valuta_entrata + "</td>\n\
                                             <td class='opImportoEntrataClass'>" + operazioni[i - 1].totale_entrata + "</td>\n\
@@ -126,12 +126,11 @@ $(document).ready(function() {
                         }
 
                         //Se cambiano le valute stampo la nuova intestazione
+                        //INTESTAZIONI *********
                         if (valuta_entrata_prec != operazioni[i].fk_entrata ||
                             valuta_uscita_prec != operazioni[i].fk_uscita) {
                             precData = '';
                             mese_prec = '';
-                           //
-                           // precData = '';
                             operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
                                 " DA  " + operazioni[i].valuta_entrata +" A "+ operazioni[i].valuta_uscita +"</h2></td ></tr>";
                             valuta_entrata_prec = operazioni[i].fk_entrata;
@@ -154,6 +153,7 @@ $(document).ready(function() {
 
                             precData = operazioni[i].data_op;
                         }
+                        //INTESTAZIONI *********
                         operazioniDiv += "<tr id='trIdOp_" + operazioni[i].id + "'><td class='hidden'>" + operazioni[i].id + "</td>\n\
                                             <td class='opOperazioneClass'>" + operazioni[i].cod_op + "</td>\n\
                                             <td class='opDataClass'>" + operazioni[i].data_op + "</td>\n\

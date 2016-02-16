@@ -284,7 +284,7 @@ $(document).ready(function() {
     $(document).on("click", "#newOpStampa", function(){
         var formData = $("#nuovaOperazioneForm").serialize();
         var formDataCommit = false;
-        popupCenter("../PDF/nuova_op_print.php?"+formData);
+        popupCenter("../PDF/file_da_modello.php?"+formData);
 
 
     });
