@@ -292,6 +292,13 @@ $(document).ready(function() {
             data: {formData: formData, dataOp: dataOp},
             success: function(data) {
 
+                var risultato = $.parseJSON(data);
+                var size=(risultato.length);
+                for(var i=0; i<size; i++){
+                    window.open(risultato[i]);
+
+                }
+
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);

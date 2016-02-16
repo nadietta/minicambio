@@ -7,7 +7,7 @@
  */
 
 
-$name_printer="SEC30CDA79C6669";
+
 if($printer = printer_open($name_printer))
 {
     // Get file contents

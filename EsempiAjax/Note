@@ -38,7 +38,7 @@ sistemare intestazioni delle stampe
 
 
 vincoli:
-
+ALTER TABLE valute CONVERT TO  simbolo SET utf8 //per simbolo euro
 ALTER TABLE `tassi` ADD UNIQUE(`fk_valuta_entrata`,`fk_valuta_uscita`);
 ALTER TABLE `valute` ADD UNIQUE(`descrizione`);
 ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
@@ -47,10 +47,10 @@ ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma
 
-addOperazione
+addOperazione arrotondamento
 Controllare tutti gli alert
 VINCOLI ORO,
-RISPOSTA INSERIMENTO AVVENUTO CON SUCCESSO ORO
+
 
 SISTEMARE DATE
 SISTEMARE RISPOSTE SU NUOVA OPERAZIONE E OPERAZIONI MANCANTI
@@ -58,3 +58,6 @@ SISTEMARE RISPOSTE SU NUOVA OPERAZIONE E OPERAZIONI MANCANTI
 
 SORTER
 https://github.com/Mottie/tablesorter/wiki
+
+
+

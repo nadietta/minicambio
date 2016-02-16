@@ -46,13 +46,13 @@ if(isset($formData)) {
         $tasso1 = "";
     }
     if (isset($risultato['op1entrata'])) {
-        $entrata1 = $risultato['op1entrata'];
+        $entrata1 = round($risultato['op1entrata'],2);
     } else {
         $entrata1 = "";
     }
 
     if (isset($risultato['op1uscita'])) {
-        $uscita1 = $risultato['op1uscita'];
+        $uscita1 = round($risultato['op1uscita'],2);
     } else {
         $uscita1 = "";
     }
@@ -82,13 +82,13 @@ if(isset($formData)) {
             $tasso2 = "";
         }
         if (isset($risultato['op2entrata'])) {
-            $entrata2 = $risultato['op2entrata'];
+            $entrata2 = round($risultato['op2entrata'],2);
         } else {
             $entrata2 = "";
         }
 
         if (isset($risultato['op2uscita'])) {
-            $uscita2 = $risultato['op2uscita'];
+            $uscita2 = round($risultato['op2uscita'],2);
         } else {
             $uscita2 = "";
         }
@@ -118,25 +118,27 @@ for ($i = 1; $i <= $numOp; $i++) {
         file_put_contents( ${"Operazione" . $i}, $contenuto_html);
     }
 }
-
+$result=array();
 if($successo) {
-    $batfile = 'C:/wamp/www/minicambio/PDF/print_scontrini.bat';
+    $batfile = '../PDF/print_scontrini.bat';
     $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
     $data = "@echo off \n";
     for ($i = 1; $i <= $numOp; $i++) {
-        $data .= "C:\\wamp\\www\\minicambio\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
-                    ' C:/wamp/www/minicambio/PDF/Operazione'.$i.'.html' ." C:\\wamp\\www\\minicambio\\PDF\\pdf_generate\\scontrino$i.pdf \n";
-       //'C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe' /t ".${"Operazione" . $i};
+        $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
+                    ' ../PDF/Operazione'.$i.'.html' ."   ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";
+        $result[$i-1]='..\\PDF\\pdf_generate\\scontrino'.$i.'.pdf';
+       // $data.="\"C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe\" /t ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";
+
     }
 
     fwrite($handle, $data);
     fclose($handle);
 }
 
-    system($batfile);
+    exec("\"".$batfile."\"");
     for ($i = 1; $i <= $numOp; $i++){
-       unlink(  ${"Operazione" . $i});
+    unlink(  ${"Operazione" . $i});
     }
-    unlink($batfile);
+  unlink($batfile);
 
-
+echo json_encode($result);
