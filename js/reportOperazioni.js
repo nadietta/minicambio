@@ -96,14 +96,14 @@ $(document).ready(function() {
                             precData != operazioni[i].data_op) {
                             if (i != 0) {
 
-                                operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
-                                            <td class='opOperazioneClass'>TOTALE GIORNO</td>\n\
-                                            <td class='opDataClass'>" + operazioni[i - 1].data_op + "</td>\n\
-                                            <td class='opValutaEntrataClass'>" + operazioni[i - 1].valuta_entrata + "</td>\n\
-                                            <td class='opImportoEntrataClass'>" + operazioni[i - 1].totale_entrata + "</td>\n\
-                                            <td class='opValutaUscitaClass'>" + operazioni[i - 1].valuta_uscita + "</td>\n\
-                                            <td class='opImportoUscitaClass'>" + operazioni[i - 1].totale_uscita + "</td>\n\
-                                            <td class='opTassoClass'>" + operazioni[i - 1].tasso_medio_giorno + "</td>\n\   " +
+                                operazioniDiv += "<tr class='trTotaleReport' id='trIdOp_'><td class='hidden'></td>\n\
+                                            <td class='opOperazioneClass'><b>TOTALE GIORNO</b></td>\n\
+                                            <td class='opDataClass'><b>" + operazioni[i - 1].data_op + "</b></td>\n\
+                                            <td class='opValutaEntrataClass'><b>" + operazioni[i - 1].valuta_entrata + "</b></td>\n\
+                                            <td class='opImportoEntrataClass'><b>" + operazioni[i - 1].totale_entrata + "</b></td>\n\
+                                            <td class='opValutaUscitaClass'><b>" + operazioni[i - 1].valuta_uscita + "</b></td>\n\
+                                            <td class='opImportoUscitaClass'><b>" + operazioni[i - 1].totale_uscita + "</b></td>\n\
+                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_giorno + "</b></td>\n\   " +
                                     "</tr>";
                             }
                         }
@@ -113,14 +113,14 @@ $(document).ready(function() {
                             (mese_prec != operazioni[i].mese && mese_prec!='')) {
 
                             if (i != 0) {
-                                operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
-                                            <td class='opOperazioneClass'>TOTALE MESE</td>\n\
-                                            <td class='opDataClass'>" + mese_corrente + "</td>\n\
-                                            <td class='opValutaEntrataClass'>" + operazioni[i - 1].valuta_entrata + "</td>\n\
-                                            <td class='opImportoEntrataClass'>" + operazioni[i - 1].totale_entrata_mese + "</td>\n\
-                                            <td class='opValutaUscitaClass'>" + operazioni[i - 1].valuta_uscita + "</td>\n\
-                                            <td class='opImportoUscitaClass'>" + operazioni[i - 1].totale_uscita_mese + "</td>\n\
-                                            <td class='opTassoClass'>" + operazioni[i - 1].tasso_medio_mese + "</td>\n\   " +
+                                operazioniDiv += "<tr class='trTotaleReport' id='trIdOp_'><td class='hidden'></td>\n\
+                                            <td class='opOperazioneClass'><b>TOTALE MESE</b></td>\n\
+                                            <td class='opDataClass'><b>" + mese_corrente + "</b></td>\n\
+                                            <td class='opValutaEntrataClass'><b>" + operazioni[i - 1].valuta_entrata + "</b></td>\n\
+                                            <td class='opImportoEntrataClass'><b>" + operazioni[i - 1].totale_entrata_mese + "</b></td>\n\
+                                            <td class='opValutaUscitaClass'><b>" + operazioni[i - 1].valuta_uscita + "</b></td>\n\
+                                            <td class='opImportoUscitaClass'><b>" + operazioni[i - 1].totale_uscita_mese + "</b></td>\n\
+                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_mese + "</b></td>\n\   " +
                                     "</tr>";
                             }
                         }
@@ -131,21 +131,21 @@ $(document).ready(function() {
                             valuta_uscita_prec != operazioni[i].fk_uscita) {
                             precData = '';
                             mese_prec = '';
-                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
+                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='titleReportValute'>" +
                                 " DA  " + operazioni[i].valuta_entrata +" A "+ operazioni[i].valuta_uscita +"</h2></td ></tr>";
                             valuta_entrata_prec = operazioni[i].fk_entrata;
                             valuta_uscita_prec = operazioni[i].fk_uscita;
                         }
                         if(mese_prec!= operazioni[i].mese ) {
                             var mese_corrente = meseToString(operazioni[i].mese);
-                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
-                                " MESE: " + mese_corrente + " </h2></td ></tr>";
+                            operazioniDiv += "<tr> <td colspan='5'> <h3 class='titleReportMese'>" +
+                                " MESE: " + mese_corrente + " </h3></td ></tr>";
                             mese_prec = operazioni[i].mese;
                             precData = '';
                         }
                         if (precData != operazioni[i].data_op) {
-                            operazioniDiv += "<tr> <td colspan='5'> <h2 class='title'>" +
-                                " Data  " + operazioni[i].data_op + "</h2></td ></tr><tr>"
+                            operazioniDiv += "<tr> <td colspan='5'> <h3 class='titleReportGiorno'>"
+                                + operazioni[i].data_op + "</h3></td ></tr><tr class='trIntestazioneReport'>"
                                 + " <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
                                       <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
                                       <th>TASSO</th>\n\

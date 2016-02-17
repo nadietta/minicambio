@@ -11,6 +11,8 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Impedire modifica ed eliminazione del Franco. Come?
 - Ricontrollare da applicazione e db se funzionano i vincoli
 - Ricontrollare ovunque campi Required
+- html to pdf
+- Report: sistemare numero di cifre dopo la virgola
 
 DA FARE NADIA)
 - Sistemare campi Required in Setup Tassi e Valute, fare con html5 come modificaOperazione
@@ -18,13 +20,20 @@ DA FARE NADIA)
 - Report sistemare css
 - Sistemare picker dove serve
 - Tabella filtri oltre che ordinabile?
-- html to pdf
-
 
 DOMANDE PER SARA)
 - Transazione in nuova Operazione è ok Sà? Lo guardi tu?
 - In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto?
-- Controllare tutti gli step e arrotondamenti sia da interfacce che da db. Devono essere tutti coerenti sia tra le pagine che col db
+- Uniformare/controllare gli step e arrotondamenti sia da interfacce che da db. Devono essere tutti coerenti sia tra le pagine che col db
+
+17 FEB:
+- Ma nel report perchè ad esempio fa vedere prima febbraio e poi gennaio (per lo stesso cambio ad esempio)?
+    non dovrebbe essere il contrario? (ordine crescente?)
+- Puoi aggiungere l'anno accanto al mese nel Report? Così stampa tipo FEBBRAIO 2016 invece che solo FEBBRAIO
+- Il mio tablesorter su ListaOperazioni non ha più i pippoli dopo aver fatto la pull delle tue cose...puoi farlo tu come in Oro?
+    (io avevo aggiunto un css tablesorter pure...non so se ti serve ma credo di no...)
+
+
 
 
 -------------------------------

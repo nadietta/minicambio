@@ -321,6 +321,37 @@ a:hover {
 	text-align: justify;
 }
 
+.titleReportValute {
+    margin: 25px 0 0 0;
+    padding: 10px 0 0 0;
+    text-shadow: 3px 1px 0 #FFFFFF;
+    font-size: 26px;
+    color: #373737;
+}
+
+.titleReportMese {
+	margin: 20px 0 0 0;
+	padding: 0 0 5px 0;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	font-size: 20px;
+	color: #373737;
+}
+
+.titleReportGiorno {
+    margin: 10px 0 0 0;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    color: #373737;
+}
+
+.trIntestazioneReport{
+    background-color: #E9EAE1;
+    color: #191919;
+}
+
+.trTotaleReport{
+    background-color: #E9EAE1;
+}
+
 .links {
 	padding-top: 20px;
 	margin-bottom: 30px;
