@@ -166,23 +166,23 @@ $(document).ready(function() {
                     }
                 //per l'ultima riga stampo sia totale ultima data che totale mese
                     if(i==operazioni.length){
-                                operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
-                                            <td class='opOperazioneClass'>TOTALE</td>\n\
-                                            <td class='opDataClass'>"+ operazioni[i-1].data_op +"</td>\n\
-                                            <td class='opValutaEntrataClass'>"+ operazioni[i-1].valuta_entrata +"</td>\n\
-                                            <td class='opImportoEntrataClass'>"+ operazioni[i-1].totale_entrata +"</td>\n\
-                                            <td class='opValutaUscitaClass'>"+ operazioni[i-1].valuta_uscita +"</td>\n\
-                                            <td class='opImportoUscitaClass'>"+ operazioni[i-1].totale_uscita +"</td>\n\
-                                            <td class='opTassoClass'>"+ operazioni[i-1].tasso_medio_giorno +"</td>\n\   " +
+                                operazioniDiv += "<tr class='trTotaleReport' id='trIdOp_'><td class='hidden'></td>\n\
+                                            <td class='opOperazioneClass'><b>TOTALE</b></td>\n\
+                                            <td class='opDataClass'><b>"+ operazioni[i-1].data_op +"</b></td>\n\
+                                            <td class='opValutaEntrataClass'><b>"+ operazioni[i-1].valuta_entrata +"</b></td>\n\
+                                            <td class='opImportoEntrataClass'><b>"+ operazioni[i-1].totale_entrata +"</b></td>\n\
+                                            <td class='opValutaUscitaClass'><b>"+ operazioni[i-1].valuta_uscita +"</b></td>\n\
+                                            <td class='opImportoUscitaClass'><b>"+ operazioni[i-1].totale_uscita +"</b></td>\n\
+                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_giorno +"</b></td>\n\   " +
                                     "</tr>";
-                                operazioniDiv += "<tr id='trIdOp_'><td class='hidden'></td>\n\
-                                            <td class='opOperazioneClass'>TOTALE MESE</td>\n\
-                                            <td class='opDataClass'>"+ mese_corrente+"</td>\n\
-                                            <td class='opValutaEntrataClass'>"+ operazioni[i-1].valuta_entrata +"</td>\n\
-                                            <td class='opImportoEntrataClass'>"+ operazioni[i-1].totale_entrata_mese +"</td>\n\
-                                            <td class='opValutaUscitaClass'>"+ operazioni[i-1].valuta_uscita +"</td>\n\
-                                            <td class='opImportoUscitaClass'>"+ operazioni[i-1].totale_uscita_mese +"</td>\n\
-                                            <td class='opTassoClass'>"+ operazioni[i-1].tasso_medio_mese +"</td>\n\   " +
+                                operazioniDiv += "<tr class='trTotaleReport' id='trIdOp_'><td class='hidden'></td>\n\
+                                            <td class='opOperazioneClass'><b>TOTALE MESE</b></td>\n\
+                                            <td class='opDataClass'><b>"+ mese_corrente+"</b></td>\n\
+                                            <td class='opValutaEntrataClass'><b>"+ operazioni[i-1].valuta_entrata +"</b></td>\n\
+                                            <td class='opImportoEntrataClass'><b>"+ operazioni[i-1].totale_entrata_mese +"</b></td>\n\
+                                            <td class='opValutaUscitaClass'><b>"+ operazioni[i-1].valuta_uscita +"</b></td>\n\
+                                            <td class='opImportoUscitaClass'><b>"+ operazioni[i-1].totale_uscita_mese +"</b></td>\n\
+                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_mese +"</b></td>\n\   " +
                                     "</tr>";
 
 
