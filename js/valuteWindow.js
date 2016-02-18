@@ -36,149 +36,75 @@ $(document).ready(function() {
         var newButtons = "<button type='button' class='btn' onclick='window.close();'> \n\
                                                     <span class='glyphicon glyphicon-remove'></span>&nbsp;&nbsp;Annulla\n\
                                             </button>\n\
-                                            <button type='button' class='btn' id='btnValNuovo'> \n\
-                                                    <span class='glyphicon glyphicon-floppy-disk'></span>&nbsp;&nbsp;Salva\n\
-                                            </button>";
+                                            <input type='submit' class='btn btn-primary' id='valSubmit' name='valSubmit' value='Salva'/>";
         $('#valWindow_btns').html(newButtons);
     }
 
     //* ------------------------- */
 
-    //* ---------- Azioni del MODE Nuovo ----------------  */
-
-    $(document).on("click", "#btnValNuovo", function(){
-        $('#valuteWindowForm').trigger('submit');
-    });
-    //* ----------------------------------  */
-
-    //* ---------- Azioni del MODE Modifica ----------------  */
-
-    $(document).on("click", "#btnValSalva", function(){
-        $('#valuteWindowForm').trigger('submit');
-    });
-    //* ----------------------------------  */
-
-    $(document).on("input", "#valNome", function() {
-        if ($(this).hasClass("highlightedInput")){
-            $(this).removeClass("highlightedInput");
-        }
-    });
-
-    $(document).on("input", "#valSimbolo", function() {
-        if ($(this).hasClass("highlightedInput")){
-            $(this).removeClass("highlightedInput");
-        }
-    });
-
     $(document).on("submit", "#valuteWindowForm", function(e){
         e.preventDefault();
 
-        var isFormValid = true;
+        var idVal = $('#idVal').val();
+        var mode = $('#mode').val();
+        var valNome = $('#valNome').val();
+        var valSimbolo = $('#valSimbolo').val();
 
-        $(".requiredInput").each(function(){
-            if ($.trim($(this).val()).length == 0){
-                $(this).addClass("highlightedInput");
-                isFormValid = false;
-            }
-            else{
-                $(this).removeClass("highlightedInput");
-            }
-        });
-
-        if (isFormValid){
-            //alert("submit");
-            var idVal = $('#idVal').val();
-            var mode = $('#mode').val();
-            var valNome = $('#valNome').val();
-            var valSimbolo = $('#valSimbolo').val();
-            if (mode == 'Modifica'){
-                $.ajax({
-                    type: "POST",
-                    url: "phpFunctions/updateVal.php",
-                    data: {idVal: idVal, valNome : valNome, valSimbolo : valSimbolo},
-                    success: function(data)
-                    {
-                        var risultato = $.parseJSON(data);
-                        if (risultato.errore){
-
-                            $('#errore').html("<strong>Errore!</strong> "+risultato.errore);
-                            $("#mrw_overlay").fadeIn(500);
-                            $("#mrw_box").fadeIn(500);
-                            $("#mrw_close").click(function(){
-                                $("#mrw_box").fadeOut(500);
-                                $("#mrw_overlay").fadeOut(500);
-                            });
-                            isFormValid=false;
-                            // alert(risultato.messaggio);
-                            // window.close();
-                        }else{
-                        //Aggiorno le informazioni anche sulla finestra chiamante
-                        var updaterowString = "trIdVal_" + idVal;
-                        var updaterow = $("#"+updaterowString+"", window.opener.document);
-                        updaterow.find('.valNomeClass').html(valNome);
-                        updaterow.find('.valSimboloClass').html(valSimbolo);
-                            $('#successo').html( "<strong>Successo!</strong> "+risultato.messaggio)
-                            $('#successo').fadeIn(2000, function(){
-                                window.close();
-                            });
-                        }
-
-                    },
-                    error: function(xhr, desc, err) {
-                        //alert(xhr);
-                        //alert("Details: " + desc + "\nError:" + err);
-                        alert("Errore");
-                    }
-                });
-            }
-            else if (mode == 'Nuovo'){
-                $.ajax({
-                    type: "POST",
-                    url: "phpFunctions/add_valuta.php",
-                    data: {valNome : valNome, valSimbolo : valSimbolo},
-                    success: function(data)
-                    {
-                        var risultato = $.parseJSON(data);
-
-                        if (risultato.errore){
-
-                        $('#errore').html("<strong>Errore!</strong> "+risultato.messaggio);
-                        $("#mrw_overlay").fadeIn(500);
-                        $("#mrw_box").fadeIn(500);
-                        $("#mrw_close").click(function(){
-                            $("#mrw_box").fadeOut(500);
-                            $("#mrw_overlay").fadeOut(500);
+        if (mode == 'Modifica'){
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/updateVal.php",
+                data: {idVal: idVal, valNome : valNome, valSimbolo : valSimbolo},
+                success: function(data)
+                {
+                    var risultato = $.parseJSON(data);
+                    $("#valuteWindowForm").html("");
+                    if (risultato.errore){
+                        $('#errore').fadeIn(2000, function(){
+                            window.close();
                         });
-
-
-
-                            isFormValid=false;
-                           // alert(risultato.messaggio);
-                           // window.close();
                     }else{
-                            //Aggiungo la riga
-                            $('#successo' ).html("<strong>Successo!</strong> "+risultato.messaggio);
-                            $("#successo").fadeIn(2000, function(){
-                                window.close();
-                                $("#valute", window.opener.document).trigger('click');
-                                });
-
-
-
-                        }
-                    },
-                    error: function(xhr, desc, err) {
-                        alert("Errore");
+                        $('#successo').fadeIn(2000, function(){
+                            //Aggiorno le informazioni anche sulla finestra chiamante
+                            var updaterowString = "trIdVal_" + idVal;
+                            var updaterow = $("#"+updaterowString+"", window.opener.document);
+                            updaterow.find('.valNomeClass').html(valNome);
+                            updaterow.find('.valSimboloClass').html(valSimbolo);
+                            window.close();
+                        });
                     }
-                });
-            }
-
+                },
+                error: function(xhr, desc, err) {
+                    alert("Errore");
+                }
+            });
         }
-        else{
-            alert("Compila i campi evidenziati in giallo");
+        else if (mode == 'Nuovo'){
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/add_valuta.php",
+                data: {valNome : valNome, valSimbolo : valSimbolo},
+                success: function(data)
+                {
+                    var risultato = $.parseJSON(data);
+                    $("#valuteWindowForm").html("");
+                    if (risultato.errore){
+                        $('#errore').fadeIn(2000, function(){
+                            window.close();
+                        });
+                    }else{
+                        //Aggiungo la riga
+                        $('#successo').fadeIn(2000, function(){
+                            window.close();
+                            $("#valute", window.opener.document).trigger('click');
+                        });
+                    }
+                },
+                error: function(xhr, desc, err) {
+                    alert("Errore");
+                }
+            });
         }
-
-        return isFormValid;
 
     });
 

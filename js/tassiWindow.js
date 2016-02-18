@@ -12,13 +12,13 @@ function getValute(){
         success: function(data) {
             var valute = $.parseJSON(data);
             if (valute.length) {
-                selectValute += "<option selected disabled>Scegli Valuta</option>";
+                selectValute += "<option selected disabled value=''>Scegli Valuta</option>";
                 for (var i = 0; i < valute.length; i++) {
                     selectValute += "<option value='"+ valute[i].id +"'>"+ valute[i].nome_valuta +"</option>";
                 }
             }
             else{
-                selectValute += "<option selected disabled>Scegli Valuta</option>";
+                selectValute += "<option selected disabled value=''>Scegli Valuta</option>";
             }
         },
         error: function(xhr, desc, err) {
@@ -71,37 +71,24 @@ $(document).ready(function() {
         var newButtons = "<button type='button' class='btn' onclick='window.close();'> \n\
                                                     <span class='glyphicon glyphicon-remove'></span>&nbsp;&nbsp;Annulla\n\
                                             </button>\n\
-                                            <button type='button' class='btn' id='btnTasNuovo'> \n\
-                                                    <span class='glyphicon glyphicon-floppy-disk'></span>&nbsp;&nbsp;Salva\n\
-                                            </button>";
+                                            <input type='submit' class='btn btn-primary' id='tasSubmit' name='tasSubmit' value='Salva'/>";
         $('#tasWindow_btns').html(newButtons);
     }
     else if (mode == 'Modifica'){
+        $('#valutaEntrata').attr("required",false);
         $('#valutaEntrata').attr("disabled",true);
+        $('#valutaUscita').attr("required",false);
         $('#valutaUscita').attr("disabled",true);
     }
 
     //* ------------------------- */
-
-    //* ---------- Azioni del MODE Nuovo ----------------  */
-
-    $(document).on("click", "#btnTasNuovo", function(){
-        $('#tassiWindowForm').trigger('submit');
-    });
-    //* ----------------------------------  */
-
-    //* ---------- Azioni del MODE Modifica ----------------  */
-
-    $(document).on("click", "#btnTasSalva", function(){
-        $('#tassiWindowForm').trigger('submit');
-    });
-    //* ----------------------------------  */
 
     $(document).on("change", "#valutaEntrata", function(){
         var selectedValutaEntrata = $(this).val();
         var selectedValutaUscita = $('#valutaUscita').val();
 
         $('#valutaUscita').prop('disabled',false);
+        $('#valutaUscita').prop('required',true);
 
         $("#valutaUscita option[value]").prop('disabled',false);
         if (selectedValutaEntrata == '1'){
@@ -149,120 +136,71 @@ $(document).ready(function() {
         $('#valutaEntrata').trigger('change');
     });
 
-    //TODO: highlight sui select? Sistemare Highlights in generale anche su Valute. Input types anche
-    //TODO: requiredInput sulle Select per isFormValid??
-    $(document).on("input", "#tassoCambio", function() {
-        if ($(this).hasClass("highlightedInput")){
-            $(this).removeClass("highlightedInput");
-        }
-    });
-
     $(document).on("submit", "#tassiWindowForm", function(e){
         e.preventDefault();
 
-        var isFormValid = true;
+        var idTas = $('#idTas').val();
+        var mode = $('#mode').val();
+        var valEntrata = $('#valutaEntrata').val();
+        var valUscita = $('#valutaUscita').val();
+        var valTasso = $('#tassoCambio').val();
 
-        $(".requiredInput").each(function(){
-            if ($.trim($(this).val()).length == 0){
-                $(this).addClass("highlightedInput");
-                isFormValid = false;
-            }
-            else{
-                $(this).removeClass("highlightedInput");
-            }
-        });
-
-        if (isFormValid){
-            //alert("submit");
-            var idTas = $('#idTas').val();
-            var mode = $('#mode').val();
-            var valEntrata = $('#valutaEntrata').val();
-            var valUscita = $('#valutaUscita').val();
-            var valTasso = $('#tassoCambio').val();
-
-            if (mode == 'Modifica'){
-                $.ajax({
-                    type: "POST",
-                    url: "phpFunctions/updateTas.php",
-                    data: {idTas: idTas, valTasso : valTasso},
-                    success: function(data)
-
-                    {
-                        var risultato = $.parseJSON(data);
-                        if (risultato.errore){
-                            $('#errore').html("<strong>Errore!</strong> "+risultato.errore);
-                            $("#mrw_overlay").fadeIn(500);
-                            $("#mrw_box").fadeIn(500);
-                            $("#mrw_close").click(function(){
-                                $("#mrw_box").fadeOut(500);
-                                $("#mrw_overlay").fadeOut(500);
-                            });
-
-                            isFormValid=false;
-
-                        }else{
-                        //Aggiorno le informazioni anche sulla finestra chiamante
-                        var updaterowString = "trIdTas_" + idTas;
-                        var updaterow = $("#"+updaterowString+"", window.opener.document);
-                        updaterow.find('.tasTassoClass').html(valTasso);
-                        $('#successo').html( "<strong>Successo!</strong> "+risultato.messaggio)
+        if (mode == 'Modifica'){
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/updateTas.php",
+                data: {idTas: idTas, valTasso : valTasso},
+                success: function(data)
+                {
+                    var risultato = $.parseJSON(data);
+                    $("#tassiWindowForm").html("");
+                    if (risultato.errore){
+                        $('#errore').fadeIn(2000, function(){
+                            window.close();
+                        });
+                    }else{
+                        $('#successo').fadeIn(2000, function(){
+                            //Aggiorno le informazioni anche sulla finestra chiamante
+                            var updaterowString = "trIdTas_" + idTas;
+                            var updaterow = $("#"+updaterowString+"", window.opener.document);
+                            updaterow.find('.tasTassoClass').html(valTasso);
+                            window.close();
+                        });
+                    }
+                },
+                error: function(xhr, desc, err) {
+                    alert("Errore");
+                }
+            });
+        }
+        else if (mode == 'Nuovo'){
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/add_tasso.php",
+               // async: false,
+                data: {valuta_da : valEntrata, valuta_a : valUscita, tasso : valTasso},
+                success: function(data)
+                {
+                    var risultato = $.parseJSON(data);
+                    $("#tassiWindowForm").html("");
+                    if (risultato.errore){
+                        $('#errore').fadeIn(2000, function(){
+                            window.close();
+                        });
+                    }
+                    else{
+                        //Aggiungo la riga
                         $('#successo').fadeIn(2000, function(){
                             window.close();
-                        });}
-
-                    },
-                    error: function(xhr, desc, err) {
-                        //alert(xhr);
-                        //alert("Details: " + desc + "\nError:" + err);
-                        alert("Errore");
+                            $("#tassi", window.opener.document).trigger('click');
+                        });
                     }
-                });
-            }
-            else if (mode == 'Nuovo'){
-                $.ajax({
-                    type: "POST",
-                    url: "phpFunctions/add_tasso.php",
-                   // async: false,
-                    data: {valuta_da : valEntrata, valuta_a : valUscita, tasso : valTasso},
-                    success: function(data)
-                    {
-                        var risultato = $.parseJSON(data);
-                        if (risultato.errore){
-
-                            $('#errore').html("<strong>Errore!</strong> "+risultato.messaggio);
-                            $("#mrw_overlay").fadeIn(500);
-                            $("#mrw_box").fadeIn(500);
-                            $("#mrw_close").click(function(){
-                                $("#mrw_box").fadeOut(500);
-                                $("#mrw_overlay").fadeOut(500);
-                            });
-
-                            //$('#errore').fadeIn(3000);
-                            isFormValid=false;
-
-                        }
-                        else{
-                            //Aggiungo la riga
-                            $('#successo' ).html("<strong>Successo!</strong> "+risultato.messaggio);
-                            $("#successo").fadeIn(2000, function(){
-                                window.close();
-                                $("#tassi", window.opener.document).trigger('click');
-                            });
-
-                        }
-                    },
-                    error: function(xhr, desc, err) {
-                        alert("Errore");
-                    }
-                });
-            }
-
+                },
+                error: function(xhr, desc, err) {
+                    alert("Errore");
+                }
+            });
         }
-        else{
-            alert("Compila i campi evidenziati in giallo");
-        }
-
-        return isFormValid;
 
     });
 

@@ -43,30 +43,27 @@ ini_set("error_reporting", 0);
             <div  id="page" class="containerPopup">
                 <div class="post">
                     <h2 class="title">Dettagli Valuta</h2>
-                    <div id="mrw_overlay"></div>
-                    <div id="mrw_box">
-                        <div id="mrw_close"><span class="glyphicon glyphicon-remove"></span></div>
 
-                        <div class="alert alert-danger" id="errore">
-
-                        </div>
-
+                    <div class='alert alert-success customHidden' id='successo'>
+                        <strong>Successo!</strong> Dati inseriti con successo.
                     </div>
 
+                    <div class="alert alert-danger customHidden" id="errore">
+                        <strong>Errore!</strong> durante il salvataggio dei dati.
+                    </div>
 
                     <form id="valuteWindowForm" class="form-horizontal">
                         <fieldset>
-
                             <input class="hidden" id="idVal" name="idVal" value="<?php print $idVal;?>">
                             <input class="hidden" id="mode" name="mode" value="<?php print $mode;?>">
                             <div class="form-group">
                                 <label for="valNome" class="col-sm-3 col-lg-3 control-label">Nome Valuta:</label>
                                 <div class="col-sm-8 col-lg-8">
-                                    <input class="form-control requiredInput" id="valNome" name="valNome">
+                                    <input class="form-control" id="valNome" name="valNome" required>
                                 </div>
                                 <label for="valSimbolo" class="col-sm-3 col-lg-3 control-label">Simbolo Valuta:</label>
                                 <div class="col-sm-8 col-lg-8">
-                                    <input class="form-control requiredInput" id="valSimbolo" name="valSimbolo">
+                                    <input class="form-control" id="valSimbolo" name="valSimbolo" required>
                                 </div>
                             </div>
                         </fieldset>
@@ -75,37 +72,11 @@ ini_set("error_reporting", 0);
                             <button type="button" class="btn" onclick="window.close();">
                                 <span class='glyphicon glyphicon-remove'></span>&nbsp;&nbsp;Annulla
                             </button>
-                            <button type="button" class="btn" data-toggle="modal" data-target=".valWindow-confirmDiv">
-                                <span class='glyphicon glyphicon-floppy-disk'></span>&nbsp;&nbsp;Salva
-                            </button>
-                        </div>
-
-
-                        <!-- Small modal -->
-
-                        <div class="modal fade valWindow-confirmDiv" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        Sei sicuro?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" data-dismiss="modal" class="btn">Annulla</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="btnValSalva">Salva</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class='alert alert-success customHidden' id='successo'>
-
+                            <input type="submit" class='btn btn-primary' id="valSubmit" name="valSubmit" value="Salva"/>
                         </div>
 
                     </form>
                 </div>
-
-
             </div>
         </div>
     </body>
