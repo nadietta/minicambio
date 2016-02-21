@@ -19,16 +19,15 @@ $db_pass = '';
 $db_host = 'localhost';
 
 // Percorso completo del backup SQL
-$db_filename = '../BackupFiles/backup_database.sql';
+$db_filename = '../../BackupFiles/backup_database.sql';
 $copia_sito = exec('"../../BackupFiles/zip" -r '. '"'.$project_filename . '" "'. $project_dir.'"');
 
 // creo il backup del DB
-// assicuratevi che il percorso di mysqldup sia corretto
-
-$copia_db = exec('"../../../bin/mysql/mysql5.6.17/bin/mysqldump"  --database '.$db_nome . ' -u '. $db_user.' > "' . $db_filename.'"');
+// assicuratevi che il percorso di mysqldup sia corretto$p='"../../../bin/mysql/mysql5.6.17/bin/mysqldump"  --database '.$db_nome . ' -u '. $db_user.' > "' . $db_filename.'"';
+$copia_db = exec('"../../../../bin/mysql/mysql5.6.17/bin/mysqldump"  '.$db_nome . ' -u '. $db_user.' > "' . $db_filename.'"');
 
 // verifico che la creazione in locale dei backup abbia funzionato
-    if ($copia_sito) {
+    if ($copia_sito && $copia_db) {
         include "../../connessione.php";
         $query = mysqli_query($conn,
             "INSERT INTO `backup`(pk_backup)

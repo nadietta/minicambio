@@ -26,7 +26,8 @@ return res;
 $(document).ready(function(){
     var lastBackup=ultimo_backup();
     if(lastBackup){
-        $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
+
+        $('#info_ultimo_backup').html("<strong>Info!</strong> Ultimo Backup effettuato il: "+lastBackup);
         $('#info_ultimo_backup').fadeIn(3000);
     }else{  $('#nessun_backup').fadeIn(3000);
 
