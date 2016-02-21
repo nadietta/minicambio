@@ -9,10 +9,10 @@ function popupCenter(url, title, w, h) {
 
 function loadValute(){
     $("#entryContainerTitle").html("Valute");
-    $("#entryContainer").html("");
+    $("#scrollingContent").html("");
     var valuteDiv = "";
 
-    valuteDiv += "<div>\n\
+    valuteDiv += "<div id='divBtnAddNewVal'>\n\
                         <button class='btn btnAddNewVal' \n\
                             onclick=\"popupCenter('valuteWindow.php?idVal=&mode=Nuovo','Valute', '500', '500');\">\n\
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuova Valuta\n\
@@ -48,9 +48,9 @@ function loadValute(){
                                         </tr>";
                 }
                 valuteDiv += "</table>";
-                $("#entryContainer").html(valuteDiv);
+                $("#scrollingContent").html(valuteDiv);
 
-                $("#entryContainer").append("<div class='modal fade valDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
+                $("#scrollingContent").append("<div class='modal fade valDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
                                     <div class='modal-dialog modal-sm'>\n\
                                         <div class='modal-content'>\n\
                                             <div class='modal-body'>Sei sicuro di voler cancellare questa Valuta?<br>\n\
@@ -68,8 +68,8 @@ function loadValute(){
 
             }
             else{
-                msg += "<br>Nessuna Valuta Presente.";
-                $("#entryContainer").html(msg);
+                $('#nessuna_op').html("<strong>Attenzione!</strong> Nessuna Valuta Presente.");
+                $('#nessuna_op').show();
             }
         },
         error: function(xhr, desc, err) {
@@ -82,10 +82,10 @@ function loadValute(){
 
 function loadTassi(){
     $("#entryContainerTitle").html("Tassi");
-    $("#entryContainer").html("");
+    $("#scrollingContent").html("");
     var tassiDiv = "";
 
-    tassiDiv += "<div>\n\
+    tassiDiv += "<div id='divBtnAddNewTas'>\n\
                         <button class='btn btnAddNewTas' \n\
                             onclick=\"popupCenter('tassiWindow.php?idTas=&mode=Nuovo','Tassi', '500', '500');\">\n\
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuovo Tasso\n\
@@ -122,9 +122,9 @@ function loadTassi(){
                                         </tr>";
                 }
                 tassiDiv += "</table>";
-                $("#entryContainer").html(tassiDiv);
+                $("#scrollingContent").html(tassiDiv);
 
-                $("#entryContainer").append("<div class='modal fade tasDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
+                $("#scrollingContent").append("<div class='modal fade tasDelete-ConfirmDiv' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>\n\
                                     <div class='modal-dialog modal-sm'>\n\
                                         <div class='modal-content'>\n\
                                             <div class='modal-body'>Sei sicuro di voler cancellare questo Tasso?<br>\n\
@@ -142,8 +142,8 @@ function loadTassi(){
 
             }
             else{
-                msg += "<br>Nessun Tasso Presente.";
-                $("#entryContainer").html(msg);
+                $('#nessuna_op').html("<strong>Attenzione!</strong> Nessun Tasso Presente.");
+                $('#nessuna_op').show();
             }
         },
         error: function(xhr, desc, err) {
@@ -156,13 +156,11 @@ function loadTassi(){
 
 $(document).ready(function() {
 
-
-   /* $('#valute').trigger('click');
-    alert("prova");*/
-
     $(document).on("click", "#valute", function(e){
         e.preventDefault();
         //TODO: farlo dal padre e unire le due funzioni
+        $('#errore').hide();
+
         $("#valute").removeClass("active");
         $("#tassi").removeClass("active");
 
@@ -174,6 +172,8 @@ $(document).ready(function() {
     $(document).on("click", "#tassi", function(e){
         e.preventDefault();
         //TODO: farlo dal padre
+        $('#errore').hide();
+
         $("#valute").removeClass("active");
         $("#tassi").removeClass("active");
 
@@ -200,31 +200,26 @@ $(document).ready(function() {
                         $(this).remove();
                     });
                 }
-               else{
-
+                else{
+                    $("#tableValute").html("");
+                    $("#divBtnAddNewVal").html("");
                     $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
-                    $("#mrw_overlay").fadeIn(500);
-                    $("#mrw_box").fadeIn(500);
-                    $("#mrw_close").click(function(){
-                        $("#mrw_box").fadeOut(500);
-                        $("#mrw_overlay").fadeOut(500);
-                    });
-
-
+                    $('#errore').show();
+                    setTimeout(function(){
+                        $("#valute").trigger("click");
+                    }, 5000);
                 }
             },
             error: function(xhr, desc, err) {
-                $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!");
-                $("#mrw_overlay").fadeIn(500);
-                $("#mrw_box").fadeIn(500);
-                $("#mrw_close").click(function(){
-                    $("#mrw_box").fadeOut(500);
-                    $("#mrw_overlay").fadeOut(500);
-                });
-
+                $("#tableValute").html("");
+                $("#divBtnAddNewVal").html("");
+                $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!\n");
+                $('#errore').show();
+                setTimeout(function(){
+                    $("#valute").trigger("click");
+                }, 5000);
             }
         });
-
 
     });
 
@@ -238,24 +233,33 @@ $(document).ready(function() {
             success: function(data)
             {
                 //alert(data);
-                //Cancello la riga relativa
-                var killrowString = "trIdTas_" + idTas;
-                var killrow = $("#"+killrowString+"");
-                killrow.addClass("danger");
-                killrow.fadeOut(2000, function(){
-                    $(this).remove();
-                });
+                if (data == 1){
+                    //Cancello la riga relativa
+                    var killrowString = "trIdTas_" + idTas;
+                    var killrow = $("#"+killrowString+"");
+                    killrow.addClass("danger");
+                    killrow.fadeOut(2000, function(){
+                        $(this).remove();
+                    });
+                }
+                else{
+                    $("#tableTassi").html("");
+                    $("#divBtnAddNewTas").html("");
+                    $('#errore').html("<strong>Errore!</strong> Impossibile eliminare il Tasso!\nIl Tasso risulta utilizzato in almeno un'operazione.");
+                    $('#errore').show();
+                    setTimeout(function(){
+                        $("#tassi").trigger("click");
+                    }, 5000);
+                }
             },
             error: function(xhr, desc, err) {
+                $("#tableTassi").html("");
+                $("#divBtnAddNewTas").html("");
                 $('#errore').html("<strong>Errore!</strong> Errore. Impossibile eliminare il Tasso Selezionato");
-                $("#mrw_overlay").fadeIn(500);
-                $("#mrw_box").fadeIn(500);
-                $("#mrw_close").click(function(){
-                    $("#mrw_box").fadeOut(500);
-                    $("#mrw_overlay").fadeOut(500);
-                });
-
-
+                $('#errore').show();
+                setTimeout(function(){
+                    $("#tassi").trigger("click");
+                }, 5000);
             }
         });
 

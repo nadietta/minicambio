@@ -24,3 +24,5 @@ if (isset($idTas)){
         die('Impossibile Aggiornare i dati' . mysqli_error());
     }
 }
+
+echo $retval;

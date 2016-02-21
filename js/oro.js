@@ -89,13 +89,15 @@ $(document).ready(function() {
     $('#da').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
     });
 
     $('#a').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
 
     });
 

@@ -77,18 +77,26 @@ $(document).ready(function() {
     $('#da1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
     });
 
     $('#a1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
     });
 
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
     });
+
+    /*$(document).on("blur", "#da1", function(){
+        $('#a1').datepicker('destroy');
+        $('#a1').datepicker('option', { minDate: new Date(startDate),
+            maxDate: new Date(endDate) });
+    });*/
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
         $('#nessuna_op').fadeOut();

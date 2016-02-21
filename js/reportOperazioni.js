@@ -43,13 +43,15 @@ $(document).ready(function() {
     $('#da1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
     });
 
     $('#a1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
-        timepicker: false
+        timepicker: false,
+        scrollMonth: false
     });
 
     $(document).on("change", ".dtp", function(){
@@ -139,7 +141,7 @@ $(document).ready(function() {
                         if(mese_prec!= operazioni[i].mese ) {
                             var mese_corrente = meseToString(operazioni[i].mese);
                             operazioniDiv += "<tr> <td colspan='5'> <h3 class='titleReportMese'>" +
-                                " MESE: " + mese_corrente + " "+ operazioni[i].anno+" </h3></td ></tr>";
+                                 mese_corrente + " "+ operazioni[i].anno+" </h3></td ></tr>";
                             mese_prec = operazioni[i].mese;
                             precData = '';
                         }

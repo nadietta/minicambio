@@ -14,7 +14,13 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - html to pdf
 - Report: sistemare numero di cifre dopo la virgola
 - Report: non mancano i tasti di stampa?
-- mrw css se non servono su oro si possono cancellare
+- Esporta backup?
+
+PC)
+- mettere wamp che si apre automaticamente/togliere skype che si apre automaticamente
+- my sql dump su una cartella dropbox
+- percorso su desktop e preferiti. Chrome che si apre su quella pagina
+- alert su home
 
 DA FARE NADIA)
 FATTO - Sistemare campi Required in Setup Tassi e Valute, fare con html5 come modificaOperazione
@@ -22,20 +28,14 @@ FATTO - Sistemare gli alert dei popup di Setup Tassi e Valute, uniformare con gl
 FATTO - Report sistemare css
 - Sistemare picker dove serve
 - Tabella: fare filtri oltre che ordinabile?
+- Controllare cosa succede quando il db è vuoto
 
 DOMANDE PER SARA)
 - Transazione in nuova Operazione è ok Sà? Lo guardi tu?
 - In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto?
 - Uniformare/controllare gli step e arrotondamenti sia da interfacce che da db. Devono essere tutti coerenti sia tra le pagine che col db
 
-17 FEB:
-- Ma nel report perchè ad esempio fa vedere prima febbraio e poi gennaio (per lo stesso cambio ad esempio)?
-    non dovrebbe essere il contrario? (ordine crescente?)
-- Puoi aggiungere l'anno accanto al mese nel Report? Così stampa tipo FEBBRAIO 2016 invece che solo FEBBRAIO
-- Il mio tablesorter su ListaOperazioni non ha più i pippoli dopo aver fatto la pull delle tue cose...puoi farlo tu come in Oro?
-    (io avevo aggiunto un css tablesorter pure...non so se ti serve ma credo di no...)
-
-
+21 FEB)
 
 
 -------------------------------
