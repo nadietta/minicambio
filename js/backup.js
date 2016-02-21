@@ -34,6 +34,8 @@ $(document).ready(function(){
     }
 
     $(document).on("click","#esegui_backup", function(){
+        $("#esegui_backup").addClass('customHidden');
+        $('#caricamento').removeClass('CustomHidden');
         $.ajax({
             type:"GET",
             url: "phpFunctions/eseguiBackup.php",
@@ -51,6 +53,8 @@ $(document).ready(function(){
 
                     }
                 }
+                $("#esegui_backup").removeClass('customHidden');
+                $('#caricamento').addClass('CustomHidden');
 
             },
             error: function(xhr, desc, err) {
