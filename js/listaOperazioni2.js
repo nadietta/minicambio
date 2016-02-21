@@ -222,7 +222,11 @@ $(document).ready(function() {
     });
 
     $(document).on("update", "#tableListaOperazioni", function(){
-        $("#tableListaOperazioni").tablesorter();
+        $("#tableListaOperazioni").tablesorter({
+            theme: 'blue',
+            // sort on the first column in ascending order
+            sortList: [0,0]
+        });
     });
 
 
