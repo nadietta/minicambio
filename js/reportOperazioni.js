@@ -139,7 +139,7 @@ $(document).ready(function() {
                         if(mese_prec!= operazioni[i].mese ) {
                             var mese_corrente = meseToString(operazioni[i].mese);
                             operazioniDiv += "<tr> <td colspan='5'> <h3 class='titleReportMese'>" +
-                                " MESE: " + mese_corrente + " </h3></td ></tr>";
+                                " MESE: " + mese_corrente + " "+ operazioni[i].anno+" </h3></td ></tr>";
                             mese_prec = operazioni[i].mese;
                             precData = '';
                         }

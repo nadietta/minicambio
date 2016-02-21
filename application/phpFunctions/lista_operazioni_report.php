@@ -28,7 +28,8 @@ $query ="SELECT pk_operazione, ".
        "mese, ".
        "tot_entrata_mese, ".
        "tot_uscita_mese, ".
-       "tasso_medio_mese ".
+       "tasso_medio_mese, ".
+        "Year(data_op) AS ANNO ".
 "FROM   operazioni o1, ".
        "valute v1, ".
        "valute v2, ".
@@ -93,6 +94,7 @@ if ($result =  mysqli_query($conn,$query)) {
         $risultato[$i]['totale_entrata_mese']=$row[15];
         $risultato[$i]['totale_uscita_mese']=$row[16];
         $risultato[$i]['tasso_medio_mese']=$row[17];
+        $risultato[$i]['anno']=$row[18];
         $i++;
 
    }
