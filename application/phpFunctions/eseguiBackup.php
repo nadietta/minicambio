@@ -30,7 +30,6 @@ $copia_db = exec('"../../../bin/mysql/mysql5.6.17/bin/mysqldump"  --database '.$
 // verifico che la creazione in locale dei backup abbia funzionato
 if ($copia_sito) {
 
-
     include "../../connessione.php";
     $query = mysqli_query($conn,
         "INSERT INTO `backup`(pk_backup)
@@ -39,7 +38,7 @@ if ($copia_sito) {
     if(mysqli_affected_rows($conn)){
         $risultato['messaggio']="Inserimento avvenuto con successo";
     }
-        echo true;
-            }
+    echo true;
+}
 else {
-        echo false;}
+    echo false;}
