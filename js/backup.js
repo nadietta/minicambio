@@ -35,34 +35,33 @@ $(document).ready(function(){
 
     $(document).on("click","#esegui_backup", function(){
         $("#esegui_backup").addClass('customHidden');
-        $('#caricamento').removeClass('CustomHidden');
-        $.ajax({
-            type:"GET",
-            url: "phpFunctions/eseguiBackup.php",
-            async:false,
-            success: function(data){
-            var risultato= data;
-                if(risultato){
-                    var lastBackup=ultimo_backup();
+        $('#caricamento').removeClass('customHidden');
 
-                    if(lastBackup){
-                        $('#nessun_backup').fadeOut();
-                        $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
-                        $('#info_ultimo_backup').fadeIn(3000);
-                    }else{  $('#nessun_backup').fadeIn(3000);
+            $.ajax({
+                type:"GET",
+                url: "phpFunctions/eseguiBackup.php",
+                async:false,
+                success: function(data){
+                    var risultato= data;
+                    if(risultato){
+                        var lastBackup=ultimo_backup();
 
+                        if(lastBackup){
+                            $('#nessun_backup').fadeOut();
+                            $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
+                            $('#info_ultimo_backup').fadeIn(3000);
+                        }else{  $('#nessun_backup').fadeIn(3000);
+
+                        }
                     }
+
+                },
+                error: function(xhr, desc, err) {
+                    //alert(xhr);
+                    alert("Details: " + desc + "\nError:" + err);
                 }
-                $("#esegui_backup").removeClass('customHidden');
-                $('#caricamento').addClass('CustomHidden');
 
-            },
-            error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
-            }
-
-        });
+            });
 
 
 
