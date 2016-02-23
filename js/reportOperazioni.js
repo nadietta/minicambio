@@ -209,7 +209,6 @@ $(document).ready(function() {
     });
     $(document).on('click', '#Stampa', function(){
         var html= $('#scrollingContent').html();
-        alert(html);
         $.ajax({
             type: "POST",
             url: "../PDF/reportPrint.php",
@@ -230,7 +229,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '#Stampa', function(){
+    $(document).on('click', '#Salva', function(){
         var html= $('#scrollingContent').html();
         alert(html);
         $.ajax({
