@@ -9,6 +9,31 @@ function popupCenter(url, title, w, h) {
     var top = (screen.height/3)-(h/3);
     return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }
+function stampaNuovaOperazione(){
+    var formData = $("#nuovaOperazioneForm").serialize();
+    var dataOp= $('#op1dataora').val();
+    var formDataCommit = false;
+    $.ajax({
+        type: "POST",
+        url: "../PDF/file_da_modello.php",
+        async: false,
+        data: {formData: formData, dataOp: dataOp},
+        success: function(data) {
+
+            var risultato = $.parseJSON(data);
+            var size=(risultato.length);
+            for(var i=0; i<size; i++){
+                window.open(risultato[i]);
+
+            }
+
+        },
+        error: function(xhr, desc, err) {
+            //alert(xhr);
+            alert("Details: " + desc + "\nError:" + err);
+        }
+    });
+}
 function getValute(){
     var selectValute = "";
 
@@ -282,37 +307,11 @@ $(document).ready(function() {
 
 
     $(document).on("click", "#newOpStampa", function(){
-        var formData = $("#nuovaOperazioneForm").serialize();
-        var dataOp= $('#op1dataora').val();
-        var formDataCommit = false;
-        $.ajax({
-            type: "POST",
-            url: "../PDF/file_da_modello.php",
-            async: false,
-            data: {formData: formData, dataOp: dataOp},
-            success: function(data) {
-
-                var risultato = $.parseJSON(data);
-                var size=(risultato.length);
-                for(var i=0; i<size; i++){
-                    window.open(risultato[i]);
-
-                }
-
-            },
-            error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
-            }
-        });
-
-
+        stampaNuovaOperazione();
 
     });
     $(document).on("click", "#newOpSalvaStampa", function(){
-        var formData = $("#nuovaOperazioneForm").serialize();
-        var formDataCommit = false;
-        popupCenter("../PDF/nuova_op_print.php?"+formData);
+        stampaNuovaOperazione();
 
 
     });

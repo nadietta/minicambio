@@ -87,6 +87,29 @@ $(document).ready(function() {
         timepicker: false,
         scrollMonth: false
     });
+    $(document).on('click', '#Stampa', function(){
+        $('#formListaPrint').html($('#scrollingContent').html());
+        $('#formListaPrint').find('.bottonTable').remove();
+        var html= $('#formListaPrint').html();
+        $.ajax({
+            type: "POST",
+            url: "../PDF/listaOpPrint.php",
+            async: false,
+            data: {html: html},
+            success: function(data){
+
+                window.open(data);
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+
+        });
+
+
+    });
 
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
@@ -99,6 +122,7 @@ $(document).ready(function() {
     });*/
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
+        $('#ListaBotton').addClass('customHidden');
         $('#nessuna_op').fadeOut();
         $('#info_utilizzo').hide();
         var checkedRadio = $(this).val();
@@ -132,6 +156,7 @@ $(document).ready(function() {
         //TODO: filtri di ordinamento
         $("#entryContainerTitle").html("Lista Operazioni");
         $("#scrollingContent").html("");
+
         var operazioniDiv = "";
         $('#nessuna_op').fadeOut();
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
@@ -183,12 +208,12 @@ $(document).ready(function() {
                                             <td class='opValutaUscitaClass'>"+ operazioni[i].valuta_uscita +"</td>\n\
                                             <td class='opImportoUscitaClass'>"+ operazioni[i].importo_uscita +"</td>\n\
                                             <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
-                                            <td><button class='btn' \n\
+                                            <td class='bottonTable'><button class='btn' \n\
                                                     onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"','Operazioni', '500', '500');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
-                                            <td><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
+                                            <td class='bottonTable'><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
                                                     <span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Cancella\n\
                                                 </button>\n\
                                             </td>\n\
@@ -215,7 +240,7 @@ $(document).ready(function() {
                                 </div>");
 
 
-
+                $('#ListaBotton').removeClass('customHidden');
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);

@@ -37,7 +37,7 @@ function stringToDate(_date,_format,_delimiter)
 
 $(document).ready(function() {
 
-
+    $('#ListaBotton').addClass('customHidden');
 
     //TODO: controllare che la prima data sia antecedente alla seconda
     $('#da1').datetimepicker({
@@ -192,6 +192,7 @@ $(document).ready(function() {
                     operazioniDiv += "</table>";
                     $("#scrollingContent").html(operazioniDiv);
 
+                    $('#ListaBotton').removeClass('customHidden');
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);
@@ -205,6 +206,50 @@ $(document).ready(function() {
         });
 
         return false;
+    });
+    $(document).on('click', '#Stampa', function(){
+        var html= $('#scrollingContent').html();
+        alert(html);
+        $.ajax({
+            type: "POST",
+            url: "../PDF/reportPrint.php",
+            async: false,
+            data: {html: html},
+            success: function(data){
+
+                window.open(data);
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+
+        });
+
+
+    });
+
+    $(document).on('click', '#Stampa', function(){
+        var html= $('#scrollingContent').html();
+        alert(html);
+        $.ajax({
+            type: "POST",
+            url: "../PDF/reportPrint.php",
+            async: false,
+            data: {html: html},
+            success: function(data){
+             alert('da fare');
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+
+        });
+
+
     });
 
 

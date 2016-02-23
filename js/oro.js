@@ -7,6 +7,26 @@ function popupCenter(url, title, w, h) {
     return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }
 
+function stampaNuovaOperazione(){
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var dataOp= $('#dataora').val();
+        var formDataCommit = false;
+        $.ajax({
+            type: "POST",
+            url: "../PDF/file_da_modello_oro.php",
+            async: false,
+            data: {formData: formData, dataOp: dataOp},
+            success: function(data) {
+                window.open(data);
+
+
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+}
 
 function getCurrentDateTime(){
     var currentDateTime = "";
@@ -34,6 +54,7 @@ function getCurrentDateTime(){
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
     $("#formLista").addClass('customHidden');
+    $('#ListaOroBotton').addClass('customHidden');
     $("#formOperazione").removeClass('customHidden');
     $("#newOpBottoni").removeClass('customHidden');
     $("#sceltaLista").addClass('customHidden');
@@ -114,7 +135,37 @@ $(document).ready(function() {
     $(document).on('keyup','#prezzo', function(){
         calcolaTotaleOro();
     });
+    $(document).on('click', '#Stampa', function(){
+        $('#formListaPrint').html($('#formLista').html());
+        $('#formListaPrint').find('.bottonTable').remove();
+        var html= $('#formListaPrint').html();
+        $.ajax({
+           type: "POST",
+            url: "../PDF/listaOpOroPrint.php",
+            async: false,
+            data: {html: html},
+            success: function(data){
 
+                window.open(data);
+
+        },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+
+        });
+
+
+    });
+
+    $(document).on("click", "#newOpSalvaStampa", function(){
+        stampaNuovaOperazione();
+    });
+
+    $(document).on("click", "#newOpStampa", function(){
+        stampaNuovaOperazione();
+});
 
     $(document).on("submit", "#caricaListaOperazioni", function(){
         var da =$('#da').val();
@@ -151,12 +202,12 @@ $(document).ready(function() {
                                             <td class='opCaratiClass'>"+ operazioni[i].carati +"</td>\n\
                                             <td class='opPrezzoClass'>"+ operazioni[i].prezzo +" CHF</td>\n\
                                             <td class='opTotaleClass'>"+ operazioni[i].totale +" CHF</td>\n\
-                                            <td><button class='btn' \n\
+                                            <td class='bottonTable'><button class='btn' \n\
                                                     onclick=\"popupCenter('oroWindow.php?idOp="+ operazioni[i].id +"&mode=Modifica','Operazioni', '500', '420');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
-                                            <td><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
+                                            <td class='bottonTable'><button type='button' class='btn' data-toggle='modal' data-op-id='"+ operazioni[i].id +"' data-target='.opDelete-ConfirmDiv'> \n\
                                                     <span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Cancella\n\
                                                 </button>\n\
                                             </td>\n\
@@ -180,8 +231,7 @@ $(document).ready(function() {
                                         </div>\n\
                                     </div>\n\
                                 </div>");
-
-
+                    $('#ListaOroBotton').removeClass('customHidden');
 
                 }
                 else{
