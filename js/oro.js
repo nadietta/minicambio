@@ -1,11 +1,6 @@
 /**
  * Created by Nadia on 23/01/2016.
  */
-function popupCenter(url, title, w, h) {
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/3)-(h/3);
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}
 
 function stampaNuovaOperazione(){
         var formData = $("#nuovaOperazioneForm").serialize();
@@ -28,29 +23,6 @@ function stampaNuovaOperazione(){
         });
 }
 
-function getCurrentDateTime(){
-    var currentDateTime = "";
-
-    $.ajax({
-        type: "GET",
-        url: "phpFunctions/getCurrentDateTime.php",
-        async: false,
-        success: function(data) {
-            var risultato = $.parseJSON(data);
-            currentDateTime = risultato.mydate + " " + risultato.mytime;
-            //currentDateTime = data;
-
-        },
-        error: function(xhr, desc, err) {
-            //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
-        }
-    });
-
-    return currentDateTime;
-}
-
-
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
     $("#formLista").addClass('customHidden');
@@ -69,8 +41,6 @@ function calcolaTotaleOro(){
     var prezzo= $('#prezzo').val();
     var totale=grammi*prezzo;
     $('#franchi').val(totale);
-
-
 }
 
 function setNumOpOro(){
@@ -99,9 +69,6 @@ function loadOpOro(){
         $("#formLista").removeClass('customHidden');
         $("#sceltaLista").removeClass('customHidden');
         var oroDiv = "";
-
-
-
 }
 
 $(document).ready(function() {

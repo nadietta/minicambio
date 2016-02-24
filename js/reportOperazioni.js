@@ -2,61 +2,42 @@
  * Created by Nadia on 07/02/2016.
  */
 
-
-function meseToString(mese)
-{
-   switch (mese){
-       case '1': return "GENNAIO";
-       case '2': return "FEBBRAIO";
-       case '3': return "MARZO";
-       case '4': return "APRILE";
-       case '5': return "MAGGIO";
-       case '6': return "GIUGNO";
-       case '7': return "LUGLIO";
-       case '8': return "AGOSTO";
-       case '9': return "SETTEMBRE";
-       case '10': return "OTTOBRE";
-       case '11': return "NOVEMBRE";
-       case '12': return "DICEMBRE";
-   }
-    return mese;
-}
-function stringToDate(_date,_format,_delimiter)
-{
-    var formatLowerCase=_format.toLowerCase();
-    var formatItems=formatLowerCase.split(_delimiter);
-    var dateItems=_date.split(_delimiter);
-    var monthIndex=formatItems.indexOf("mm");
-    var dayIndex=formatItems.indexOf("dd");
-    var yearIndex=formatItems.indexOf("yyyy");
-    var month=parseInt(dateItems[monthIndex]);
-    month-=1;
-    var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
-    return formatedDate;
-}
-
 $(document).ready(function() {
 
     $('#ListaBotton').addClass('customHidden');
-
-    //TODO: controllare che la prima data sia antecedente alla seconda
-    $('#da1').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y',
-        timepicker: false,
-        scrollMonth: false
-    });
 
     $('#a1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
         timepicker: false,
-        scrollMonth: false
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function(dateStr){
+            $('#da1').datetimepicker({
+                maxDate: dateStr
+            });
+        }
+    });
+
+    $('#da1').datetimepicker({
+        lang: 'it',
+        format:	'd/m/Y',
+        timepicker: false,
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function(dateStr){
+            $('#a1').datetimepicker({
+                minDate: dateStr
+            });
+        }
     });
 
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
     });
+
+    $('#da1').val(dateToString(new Date()));
+    $('#a1').val(dateToString(new Date()));
 
     $(document).on("submit", "#listaOperazioniForm", function(){
         //TODO: paginazione risultati

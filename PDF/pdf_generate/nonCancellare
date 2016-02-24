@@ -1,0 +1,4 @@
+Non cancellare questo file.
+In questo modo è possibile, se si vuole, cancellare tutti i pdf ma è importante che rimanga la cartella.
+
+(Altrimenti una cartella vuota non viene cacata in git push e la stampa dà errore)

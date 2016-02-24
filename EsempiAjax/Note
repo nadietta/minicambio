@@ -15,6 +15,11 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Report: sistemare numero di cifre dopo la virgola
 - Report: non mancano i tasti di stampa?
 - Esporta backup?
+- Cancellazione multipla?
+- Stampa e salva per ora stampano e basta
+- Variabili d'ambiente path backup
+- Tasto loading backup si deve attivare subito
+- Guardare stampe per dare ok
 
 PC)
 - mettere wamp che si apre automaticamente/togliere skype che si apre automaticamente
@@ -29,6 +34,7 @@ FATTO - Report sistemare css
 - Sistemare picker dove serve
 - Tabella: fare filtri oltre che ordinabile?
 - Controllare cosa succede quando il db è vuoto
+- Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto
 
 DOMANDE PER SARA)
 - Transazione in nuova Operazione è ok Sà? Lo guardi tu?

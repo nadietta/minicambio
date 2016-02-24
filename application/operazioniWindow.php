@@ -25,6 +25,7 @@ ini_set("error_reporting", 0);
         <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/functions.js"></script>
         <script type="text/javascript" src="../js/operazioniWindow.js"></script>
 
         <link href="../css/Oswald.css" rel="stylesheet" type="text/css" />

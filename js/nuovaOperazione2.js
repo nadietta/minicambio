@@ -2,13 +2,6 @@
  * Created by Nadia on 30/01/2016.
  */
 
-
-
-function popupCenter(url, title, w, h) {
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/3)-(h/3);
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}
 function stampaNuovaOperazione(){
     var formData = $("#nuovaOperazioneForm").serialize();
     var dataOp= $('#op1dataora').val();
@@ -19,38 +12,10 @@ function stampaNuovaOperazione(){
         async: false,
         data: {formData: formData, dataOp: dataOp},
         success: function(data) {
-
             var risultato = $.parseJSON(data);
             var size=(risultato.length);
             for(var i=0; i<size; i++){
                 window.open(risultato[i]);
-
-            }
-
-        },
-        error: function(xhr, desc, err) {
-            //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
-        }
-    });
-}
-function getValute(){
-    var selectValute = "";
-
-    $.ajax({
-        type: "GET",
-        async: false,
-        url: "phpFunctions/lista_valute.php",
-        success: function(data) {
-            var valute = $.parseJSON(data);
-            if (valute.length) {
-                selectValute += "<option selected disabled>Scegli Valuta</option>";
-                for (var i = 0; i < valute.length; i++) {
-                    selectValute += "<option value='"+ valute[i].id +"'>"+ valute[i].nome_valuta +"</option>";
-                }
-            }
-            else{
-                selectValute += "<option selected disabled>Scegli Valuta</option>";
             }
         },
         error: function(xhr, desc, err) {
@@ -58,30 +23,6 @@ function getValute(){
             alert("Details: " + desc + "\nError:" + err);
         }
     });
-
-    return selectValute;
-}
-
-function getCurrentDateTime(){
-    var currentDateTime = "";
-
-    $.ajax({
-        type: "GET",
-        url: "phpFunctions/getCurrentDateTime.php",
-        async: false,
-        success: function(data) {
-            var risultato = $.parseJSON(data);
-            currentDateTime = risultato.mydate + " " + risultato.mytime;
-            //currentDateTime = data;
-
-        },
-        error: function(xhr, desc, err) {
-            //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
-        }
-    });
-
-    return currentDateTime;
 }
 
 function getValoriNuovaOperazione(){

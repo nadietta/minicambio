@@ -1,92 +1,46 @@
 /**
  * Created by Nadia on 07/02/2016.
  */
-function popupCenter(url, title, w, h) {
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/3)-(h/3);
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}
-
-function getValute(){
-    var selectValute = "";
-
-    $.ajax({
-        type: "GET",
-        async: false,
-        url: "phpFunctions/lista_valute.php",
-        success: function(data) {
-            var valute = $.parseJSON(data);
-            if (valute.length) {
-                selectValute += "<option selected disabled value=''>Scegli Valuta</option>";
-                for (var i = 0; i < valute.length; i++) {
-                    selectValute += "<option value='"+ valute[i].id +"'>"+ valute[i].nome_valuta +"</option>";
-                }
-            }
-            else{
-                selectValute += "<option selected disabled>Scegli Valuta</option>";
-            }
-        },
-        error: function(xhr, desc, err) {
-            //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
-        }
-    });
-
-    return selectValute;
-}
-
-function getLastOperazione(){
-    var lastOperazione = "";
-
-    $.ajax({
-        type: "GET",
-        async: false,
-        url: "phpFunctions/getLastOperazione.php",
-        success: function(data) {
-            lastOperazione = data;
-        },
-        error: function(xhr, desc, err) {
-            //alert(xhr);
-            alert("Details: " + desc + "\nError:" + err);
-        }
-    });
-
-    return lastOperazione;
-}
-
-function stringToDate(_date,_format,_delimiter)
-{
-    var formatLowerCase=_format.toLowerCase();
-    var formatItems=formatLowerCase.split(_delimiter);
-    var dateItems=_date.split(_delimiter);
-    var monthIndex=formatItems.indexOf("mm");
-    var dayIndex=formatItems.indexOf("dd");
-    var yearIndex=formatItems.indexOf("yyyy");
-    var month=parseInt(dateItems[monthIndex]);
-    month-=1;
-    var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
-    return formatedDate;
-}
 
 $(document).ready(function() {
 
     $('#info_utilizzo').fadeIn(3000);
     $('#listaOperazioniValoriRadio :input').attr('disabled', true);
 
-    //TODO: controllare che la prima data sia antecedente alla seconda
-    $('#da1').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y',
-        timepicker: false,
-        scrollMonth: false
-    });
-
     $('#a1').datetimepicker({
         lang: 'it',
         format:	'd/m/Y',
         timepicker: false,
-        scrollMonth: false
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function(dateStr){
+            $('#da1').datetimepicker({
+                maxDate: dateStr
+            });
+        }
     });
+
+    $('#da1').datetimepicker({
+        lang: 'it',
+        format:	'd/m/Y',
+        timepicker: false,
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function(dateStr){
+            $('#a1').datetimepicker({
+                minDate: dateStr
+            });
+        }
+    });
+
+    $('#da1').val(dateToString(new Date()));
+    $('#a1').val(dateToString(new Date()));
+
+    $(document).on("change", ".dtp", function(){
+        $('.xdsoft_datetimepicker').hide();
+    });
+
+
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#scrollingContent').html());
         $('#formListaPrint').find('.bottonTable').remove();
@@ -97,29 +51,14 @@ $(document).ready(function() {
             async: false,
             data: {html: html},
             success: function(data){
-
                 window.open(data);
-
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
         });
-
-
     });
-
-    $(document).on("change", ".dtp", function(){
-        $('.xdsoft_datetimepicker').hide();
-    });
-
-    /*$(document).on("blur", "#da1", function(){
-        $('#a1').datepicker('destroy');
-        $('#a1').datepicker('option', { minDate: new Date(startDate),
-            maxDate: new Date(endDate) });
-    });*/
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
         $('#ListaBotton').addClass('customHidden');

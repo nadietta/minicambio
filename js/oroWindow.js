@@ -7,9 +7,8 @@ function calcolaTotaleOro(){
     var prezzo= $('#prezzo').val();
     var totale=grammi*prezzo;
     $('#franchi').val(totale);
-
-
 }
+
 $(document).ready(function() {
 
     //* Campi da riempire in base a idVal presente o null */

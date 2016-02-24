@@ -2,14 +2,12 @@
  * Created by Sara on 21/02/2016.
  */
 
-
 function ultimo_backup(){
     var res;
     $.ajax({
         type: "GET",
         url: "phpFunctions/getLastBackup.php",
         async: false,
-
         success: function(data) {
             res=data;
             return data;
@@ -60,13 +58,8 @@ $(document).ready(function(){
                     //alert(xhr);
                     alert("Details: " + desc + "\nError:" + err);
                 }
-
             });
 
-
-
     });
-
-
 
 });
