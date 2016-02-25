@@ -155,7 +155,7 @@ $(document).ready(function() {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover '>\n\
                                      <thead><tr>\n\
-                                          <th class='hidden'>ID</th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
+                                          <th class='hidden'>ID</th><th></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
                                           <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
                                          \n\
                                       </tr></thead> ";
@@ -163,6 +163,7 @@ $(document).ready(function() {
                     for (var i = 0; i < operazioni.length; i++) {
 
                         operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
+                                           <td class='checkClass'><input type='checkbox' id="+operazioni[i].id +"></td>\n\
                                             <td class='opOperazioneClass'>"+ operazioni[i].cod_op_oro +"</td>\n\
                                             <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
                                             <td class='opGrammiClass'>"+ operazioni[i].grammi +" gr</td>\n\
@@ -213,8 +214,60 @@ $(document).ready(function() {
             }
 
         });
+        $(document).on('click','.checkClass',function(){
+            var nCheck=$( ".checkClass :checked").length;
+
+            if(nCheck==0){
+                $('#CancellaSelezione').addClass('customHidden');
+            } else{
+                $('#CancellaSelezione').removeClass('customHidden');}
+        });
+
+        $(document).on('click','#CancellaSelezione',function(){
+            $( ".checkClass :checked").each(function(){
+                var select = $(this);
+                var idOp = select.attr('id');
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "phpFunctions/deleteOpOro.php",
+                    data: {idOp: idOp},
+                    success: function(data)
+                    {
+
+                        if (data==1){
+                            //Cancello la riga relativa
+                            var killrowString = "trIdOp_" + idOp;
+                            var killrow = $("#"+killrowString+"");
+                            killrow.addClass("danger");
+                            killrow.fadeOut(2000, function(){
+                                $(this).remove();
+                                $('#caricaListaOperazioni').trigger('submit');
+                            });
+                        }
+                        else{
+                            $("#scrollingContent").html("");
+                            $('#errore_cancellazione').fadeIn(2000, function(){
+                                location.reload();
+                            });
+
+
+                        }
+                    },
+                    error: function(xhr, desc, err) {
+                        alert("Errore. Impossibile eliminare L'Operazione");
+                    }
+                });
+
+            });
+        });
         $("#tableListaOperazioni").tablesorter({
             theme: 'blue',
+            headers: {
+                1: {sorter: false}
+
+            },//headers
             // sort on the first column in ascending order
             sortList: [0,0]
         });
