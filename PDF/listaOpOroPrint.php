@@ -10,7 +10,7 @@ if (!copy($listaModel,$fileHtml )) {
 
     $contenuto_html = file_get_contents($fileHtml);
     $contenuto_html = str_replace("[DATA]", $data,   $contenuto_html);
-    $contenuto_html = str_replace("[TITOLO]", 'LISTA OPERAZIONI DI COMPRAVENDITA ORO ',   $contenuto_html);
+    $contenuto_html = str_replace("[TITOLO]", 'LISTA OPERAZIONI DI ACQUISTO ORO ',   $contenuto_html);
     $contenuto_html = str_replace("[LISTA]", $html,   $contenuto_html);
     file_put_contents($fileHtml, $contenuto_html);
 

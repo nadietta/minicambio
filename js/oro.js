@@ -3,6 +3,18 @@
  */
 
 function stampaNuovaOperazione(){
+
+        var inpObj = document.getElementById("grammi");
+        if (inpObj.checkValidity() == false ) {
+
+            return false;
+        }
+         inpObj = document.getElementById("prezzo");
+        if (inpObj.checkValidity() == false ) {
+
+            return false;
+        }
+
         var formData = $("#nuovaOperazioneForm").serialize();
         var dataOp= $('#dataora').val();
         var formDataCommit = false;

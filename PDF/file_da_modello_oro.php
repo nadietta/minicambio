@@ -64,7 +64,7 @@ $pdfFile='../PDF/pdf_generate/scontrino_oro.pdf';
 $batfile = '../PDF/print_scontrino_oro.bat';
 $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
 $data = "@echo off \n";
-$data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A4  ".
+$data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
     " $fileHtml  ..\\PDF\\pdf_generate\\scontrino_oro.pdf \n ";
 
 

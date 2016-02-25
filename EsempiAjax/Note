@@ -3,6 +3,7 @@ NOTE NADIA)
 http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
+- Controllare i campi required quando si clicca su altri bottoni non submit.
 - getlLastOperazione che succede se non ci sono operazioni? --Ho messo un alert e disabilitato i radio
 - Controllare slashes e apici prima di scrivere sul db
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
