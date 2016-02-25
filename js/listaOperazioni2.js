@@ -3,53 +3,51 @@
  */
 
 $(document).ready(function() {
+
     var lastOp = getLastOperazione();
 
     if(!lastOp){
-
         $('#listaOperazioniRadio').addClass('customHidden');
         $('#noOperazioni').fadeIn(1000);
-
-    }else {
+    }else{
         $('#listaOperazioniRadio').removeClass('customHidden');
         $('#noOperazioni').fadeOut(1000);
         $('#info_utilizzo').fadeIn(3000);
         $('#listaOperazioniValoriRadio :input').attr('disabled', true);
-
-        $('#a1').datetimepicker({
-            lang: 'it',
-            format: 'd/m/Y',
-            timepicker: false,
-            scrollMonth: false,
-            maxDate: new Date(),
-            onSelectDate: function (dateStr) {
-                $('#da1').datetimepicker({
-                    maxDate: dateStr
-                });
-            }
-        });
-
-        $('#da1').datetimepicker({
-            lang: 'it',
-            format: 'd/m/Y',
-            timepicker: false,
-            scrollMonth: false,
-            maxDate: new Date(),
-            onSelectDate: function (dateStr) {
-                $('#a1').datetimepicker({
-                    minDate: dateStr
-                });
-            }
-        });
-
-        $('#da1').val(dateToString(new Date()));
-        $('#a1').val(dateToString(new Date()));
-
     }
+
+    $('#a1').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y',
+        timepicker: false,
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function (dateStr) {
+            $('#da1').datetimepicker({
+                maxDate: dateStr
+            });
+        }
+    });
+
+    $('#da1').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y',
+        timepicker: false,
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function (dateStr) {
+            $('#a1').datetimepicker({
+                minDate: dateStr
+            });
+        }
+    });
+
+    $('#da1').val(dateToString(new Date()));
+    $('#a1').val(dateToString(new Date()));
+
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
     });
-
 
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#scrollingContent').html());

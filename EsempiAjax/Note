@@ -13,13 +13,17 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Ricontrollare da applicazione e db se funzionano i vincoli
 - Ricontrollare ovunque campi Required
 - Report: sistemare numero di cifre dopo la virgola
-- Report: non mancano i tasti di stampa? FATTO
 - Esporta backup?
 - Cancellazione multipla?
 - Stampa e salva per ora stampano e basta
 - Variabili d'ambiente path backup
 - Tasto loading backup si deve attivare subito
-- Guardare stampe per dare ok
+- Guardare stampe per dare ok?
+- da vedere a volte gli eventi sul keyup da fare anche change e blur
+- Bottone che scompare/compare deve essere disabilitato o no
+- Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta
+- css di oro bottone troppo attaccato guardare confronto con altri
+
 
 PC)
 - mettere wamp che si apre automaticamente/togliere skype che si apre automaticamente
@@ -30,6 +34,10 @@ PC)
 DA FARE NADIA)
 - Controllare cosa succede quando il db è vuoto
 - Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto
+- NuovaOp -> sistemare float ed espressioni regolari FATTO
+- Oro, i bottoni devono stare fuori. Controllare anche gli alert sullo scrolling etc
+
+
 
 DOMANDE PER SARA)
 - In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto? PRIMA.. MODIFICATA

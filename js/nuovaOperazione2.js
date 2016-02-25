@@ -90,18 +90,22 @@ function getValoriNuovaOperazione(){
     });
 }
 
+
 function calcolaUscitaCombinata(){
 
     var tasso = $('#op1tasso').val();
     var tasso_2 = $('#op2tasso').val();
     var entrata = $('#op1entrata').val();
     entrata=entrata.replace(',', '.' );
-    var uscita=entrata/tasso;
 
-    $('#op2entrata').val(uscita);
-    $('#op1uscita').val( uscita);
+    var uscita=entrata/tasso;
+    var uscitaFormat = uscita.toFixed(2);
+    $('#op2entrata').val(uscitaFormat);
+    $('#op1uscita').val(uscitaFormat);
+
     var uscita_2 = uscita*tasso_2;
-    $('#op2uscita').val(uscita_2);
+    var uscitaFormat_2 = uscita_2.toFixed(2);
+    $('#op2uscita').val(uscitaFormat_2);
 }
 
 function calcolaUscita(){
@@ -114,12 +118,13 @@ function calcolaUscita(){
     switch (tipo_operazione){
         case '0'://acquisto DB tipo_op=0 operazione
             uscita=entrata*tasso;
-            $('#op1uscita').val(uscita);
+            var uscitaFormat = uscita.toFixed(2);
+            $('#op1uscita').val(uscitaFormat);
             break;
         case '1'://vendita DB tipo_op=1 operazione
             uscita=entrata/tasso;
-            //alert(uscita);
-            $('#op1uscita').val(uscita);
+            var uscitaFormat = uscita.toFixed(2);
+            $('#op1uscita').val(uscitaFormat);
             break;
         case '-1':
             calcolaUscitaCombinata();
@@ -197,20 +202,15 @@ $(document).ready(function() {
         $('#valutaEntrata').trigger('change');
     });
 
-    /*$('#op1dataora').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y H:i'
-    });*/
-
-    $(document).on('keyup','#op1entrata', function(){
+    $(document).on('keyup blur change','#op1entrata', function(){
         calcolaUscita();
     });
 
-    $(document).on('keyup','#op1tasso', function(){
+    $(document).on('keyup blur change','#op1tasso', function(){
         calcolaUscita ();
     });
 
-    $(document).on('keyup','#op2tasso', function(){
+    $(document).on('keyup blur change','#op2tasso', function(){
         calcolaUscitaCombinata ();
     });
 

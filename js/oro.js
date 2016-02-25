@@ -82,22 +82,34 @@ function loadOpOro(){
 
 $(document).ready(function() {
 
+    $('#a').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y',
+        timepicker: false,
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function (dateStr) {
+            $('#da').datetimepicker({
+                maxDate: dateStr
+            });
+        }
+    });
 
     $('#da').datetimepicker({
         lang: 'it',
-        format:	'd/m/Y',
+        format: 'd/m/Y',
         timepicker: false,
-        scrollMonth: false
+        scrollMonth: false,
+        maxDate: new Date(),
+        onSelectDate: function (dateStr) {
+            $('#a').datetimepicker({
+                minDate: dateStr
+            });
+        }
     });
 
-    $('#a').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y',
-        timepicker: false,
-        scrollMonth: false
-
-    });
-
+    $('#da').val(dateToString(new Date()));
+    $('#a').val(dateToString(new Date()));
 
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();

@@ -118,13 +118,13 @@ Released   : 20121201
                                                 <input type="number" maxlength="15" class="form-control" id="op1operazione" name="op1operazione" readonly required value=""/>
                                             </div>
                                             <div class="col-sm-4 col-lg-4">
-                                                <input type="number" step="0.0001" min="0" class="form-control" id="op1tasso" name="op1tasso" required value=""/>
+                                                <input type="number" step="0.0001" min="0" class="form-control" id="op1tasso" name="op1tasso" pattern="^[0-9]*((,|\.)([0-9]{1,4}))*$" required value=""/>
                                             </div>
 
                                             <label for="op1entrata" class="col-sm-6 col-lg-6 control-label">Importo Entrata:</label>
                                             <label for="op1uscita" class="col-sm-6 col-lg-6 control-label">Importo Uscita:</label>
                                             <div class="col-sm-6 col-lg-6">
-                                                <input type="number" step="0.01" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*(,|.)[0-9]*$" required value=""/>
+                                                <input type="number" step="0.01" min="0" class="form-control" id="op1entrata" name="op1entrata" pattern="^[0-9]*((,|\.)([0-9]{1,2}))$" required value=""/>
                                             </div>
                                             <div class="col-sm-6 col-lg-6">
                                                 <input type="number" step="0.01" min="0" class="form-control" id="op1uscita" name="op1uscita" readonly required value=""/>
