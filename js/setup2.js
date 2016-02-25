@@ -26,9 +26,7 @@ function loadValute(){
                                       <tr>\n\
                                           <th class='hidden'>ID</th><th>NOME VALUTA</th><th>SIMBOLO VALUTA</th>\n\
                                       </tr>";
-
                 for (var i = 0; i < valute.length; i++) {
-
                     valuteDiv += "<tr id='trIdVal_"+ valute[i].id +"'><td class='hidden'>"+ valute[i].id +"</td>\n\
                                             <td class='valNomeClass'>"+ valute[i].nome_valuta +"</td>\n\
                                             <td class='valSimboloClass'>"+ valute[i].simbolo_valuta +"</td>";
@@ -44,7 +42,6 @@ function loadValute(){
                                             </td>\n\
                                         </tr>";
                     }
-
                 }
                 valuteDiv += "</table>";
                 $("#scrollingContent").html(valuteDiv);
@@ -63,8 +60,6 @@ function loadValute(){
                                         </div>\n\
                                     </div>\n\
                                 </div>");
-
-
             }
             else{
                 $('#nessuna_op').html("<strong>Attenzione!</strong> Nessuna Valuta Presente.");
@@ -137,8 +132,6 @@ function loadTassi(){
                                         </div>\n\
                                     </div>\n\
                                 </div>");
-
-
             }
             else{
                 $('#nessuna_op').html("<strong>Attenzione!</strong> Nessun Tasso Presente.");

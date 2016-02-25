@@ -13,8 +13,6 @@ function stampaNuovaOperazione(){
             data: {formData: formData, dataOp: dataOp},
             success: function(data) {
                 window.open(data);
-
-
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
@@ -56,7 +54,6 @@ function setNumOpOro(){
             //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
-
     });
 
 }
@@ -99,30 +96,31 @@ $(document).ready(function() {
     $(document).on('keyup','#grammi', function(){
         calcolaTotaleOro();
     });
+
+
     $(document).on('keyup','#prezzo', function(){
         calcolaTotaleOro();
     });
+
+
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#formLista').html());
         $('#formListaPrint').find('.bottonTable').remove();
         var html= $('#formListaPrint').html();
+
         $.ajax({
            type: "POST",
             url: "../PDF/listaOpOroPrint.php",
             async: false,
             data: {html: html},
             success: function(data){
-
                 window.open(data);
-
-        },
+            },
             error: function(xhr, desc, err) {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
         });
-
 
     });
 
@@ -132,7 +130,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#newOpStampa", function(){
         stampaNuovaOperazione();
-});
+    });
 
     $(document).on("submit", "#caricaListaOperazioni", function(){
         var da =$('#da').val();
@@ -200,7 +198,6 @@ $(document).ready(function() {
                                     </div>\n\
                                 </div>");
                     $('#ListaOroBotton').removeClass('customHidden');
-
                 }
                 else{
                   //  msg = "<br>Nessuna Operazione Presente.";
@@ -212,68 +209,63 @@ $(document).ready(function() {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
-        });
-        $(document).on('click','.checkClass',function(){
-            var nCheck=$( ".checkClass :checked").length;
-
-            if(nCheck==0){
-                $('#CancellaSelezione').addClass('customHidden');
-            } else{
-                $('#CancellaSelezione').removeClass('customHidden');}
         });
 
-        $(document).on('click','#CancellaSelezione',function(){
-            $( ".checkClass :checked").each(function(){
-                var select = $(this);
-                var idOp = select.attr('id');
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "phpFunctions/deleteOpOro.php",
-                    data: {idOp: idOp},
-                    success: function(data)
-                    {
-
-                        if (data==1){
-                            //Cancello la riga relativa
-                            var killrowString = "trIdOp_" + idOp;
-                            var killrow = $("#"+killrowString+"");
-                            killrow.addClass("danger");
-                            killrow.fadeOut(2000, function(){
-                                $(this).remove();
-                                $('#caricaListaOperazioni').trigger('submit');
-                            });
-                        }
-                        else{
-                            $("#scrollingContent").html("");
-                            $('#errore_cancellazione').fadeIn(2000, function(){
-                                location.reload();
-                            });
-
-
-                        }
-                    },
-                    error: function(xhr, desc, err) {
-                        alert("Errore. Impossibile eliminare L'Operazione");
-                    }
-                });
-
-            });
-        });
-        $("#tableListaOperazioni").tablesorter({
-            theme: 'blue',
-            headers: {
-                1: {sorter: false}
-
-            },//headers
-            // sort on the first column in ascending order
-            sortList: [0,0]
-        });
         return false;
     });
 
+
+    $(document).on('click','.checkClass',function(){
+        var nCheck=$( ".checkClass :checked").length;
+        if(nCheck==0){
+            $('#CancellaSelezione').addClass('customHidden');
+        } else{
+            $('#CancellaSelezione').removeClass('customHidden');}
+    });
+
+
+    $(document).on('click','#CancellaSelezione',function(){
+        $( ".checkClass :checked").each(function(){
+            var select = $(this);
+            var idOp = select.attr('id');
+
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/deleteOpOro.php",
+                data: {idOp: idOp},
+                success: function(data){
+                    if (data==1){
+                        //Cancello la riga relativa
+                        var killrowString = "trIdOp_" + idOp;
+                        var killrow = $("#"+killrowString+"");
+                        killrow.addClass("danger");
+                        killrow.fadeOut(2000, function(){
+                            $(this).remove();
+                            $('#caricaListaOperazioni').trigger('submit');
+                        });
+                    }
+                    else{
+                        $("#scrollingContent").html("");
+                        $('#errore_cancellazione').fadeIn(2000, function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function(xhr, desc, err) {
+                    alert("Errore. Impossibile eliminare L'Operazione");
+                }
+            });
+        });
+    });
+
+    $("#tableListaOperazioni").tablesorter({
+        theme: 'blue',
+        headers: {
+            1: {sorter: false}
+        },//headers
+        // sort on the first column in ascending order
+        sortList: [0,0]
+    });
 
     $(document).on("click", "#btnOpDelete", function(){
         var idOp = $('#modalDiv').html();
@@ -284,7 +276,6 @@ $(document).ready(function() {
             data: {idOp: idOp},
             success: function(data)
             {
-
                 if (data==1){
                     //Cancello la riga relativa
                     var killrowString = "trIdOp_" + idOp;
@@ -300,8 +291,6 @@ $(document).ready(function() {
                     $('#errore_cancellazione').fadeIn(2000, function(){
                         location.reload();
                     });
-
-
                 }
             },
             error: function(xhr, desc, err) {

@@ -108,6 +108,8 @@ $(document).ready(function() {
         } else{
         $('#CancellaSelezione').removeClass('customHidden');}
     });
+
+
     $(document).on('click','#CancellaSelezione',function(){
         $( ".checkClass :checked").each(function(){
             var select = $(this);
@@ -229,7 +231,6 @@ $(document).ready(function() {
                                     </div>\n\
                                 </div>");
 
-
                 $('#ListaBotton').removeClass('customHidden');
                 }
                 else{
@@ -255,7 +256,6 @@ $(document).ready(function() {
             sortList: [0,0]
         });
     });
-
 
 
     $(document).on("click", "#btnOpDelete", function(){
