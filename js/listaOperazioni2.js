@@ -54,6 +54,9 @@ $(document).ready(function() {
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#scrollingContent').html());
         $('#formListaPrint').find('.bottonTable').remove();
+        $('#formListaPrint').find('.check_th').remove();
+
+        $('#formListaPrint').find('.checkClass').remove();
         var html= $('#formListaPrint').html();
         $.ajax({
             type: "POST",
@@ -183,7 +186,7 @@ $(document).ready(function() {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover tablesorter'>\n\
                                       <thead><tr>\n\
-                                          <th class='hidden'>ID</th><th></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
                                           <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
                                           <th>TASSO&nbsp;&nbsp;&nbsp;</th>\n\
                                       </tr></thead><tbody>";
