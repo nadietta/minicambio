@@ -108,13 +108,17 @@ $(document).ready(function() {
         $('#formListaPrint').find('.bottonTable').remove();
         $('#formListaPrint').find('.check_th').remove();
         $('#formListaPrint').find('.checkClass').remove();
+        var data_da=$('#da').val();
+        var data_a =$('#a').val();
+        var data_stampa=data_da+" - "+ data_a;
+
         var html= $('#formListaPrint').html();
 
         $.ajax({
            type: "POST",
             url: "../PDF/listaOpOroPrint.php",
             async: false,
-            data: {html: html},
+            data: {html: html, data: data_stampa},
             success: function(data){
                 window.open(data);
             },

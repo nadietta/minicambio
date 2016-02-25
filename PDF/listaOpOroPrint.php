@@ -1,5 +1,6 @@
 <?php
 $html=$_POST['html'];
+$data=$_POST['data'];
 $fileHtml='../PDF/ListaOpOro.html';
 $listaModel = '../PDF/modello_lista.html';
 $sucesso=true;
@@ -8,6 +9,7 @@ if (!copy($listaModel,$fileHtml )) {
 } else{
 
     $contenuto_html = file_get_contents($fileHtml);
+    $contenuto_html = str_replace("[DATA]", $data,   $contenuto_html);
     $contenuto_html = str_replace("[TITOLO]", 'LISTA OPERAZIONI DI COMPRAVENDITA ORO ',   $contenuto_html);
     $contenuto_html = str_replace("[LISTA]", $html,   $contenuto_html);
     file_put_contents($fileHtml, $contenuto_html);
