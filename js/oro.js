@@ -106,6 +106,8 @@ $(document).ready(function() {
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#formLista').html());
         $('#formListaPrint').find('.bottonTable').remove();
+        $('#formListaPrint').find('.check_th').remove();
+        $('#formListaPrint').find('.checkClass').remove();
         var html= $('#formListaPrint').html();
 
         $.ajax({
@@ -153,7 +155,7 @@ $(document).ready(function() {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover '>\n\
                                      <thead><tr>\n\
-                                          <th class='hidden'>ID</th><th></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
                                           <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
                                          \n\
                                       </tr></thead> ";
