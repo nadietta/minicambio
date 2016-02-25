@@ -3,17 +3,16 @@ NOTE NADIA)
 http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
-- getlLastOperazione che succede se non ci sono operazioni?
+- getlLastOperazione che succede se non ci sono operazioni? --Ho messo un alert e disabilitato i radio
 - Controllare slashes e apici prima di scrivere sul db
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
     (ne abbiamo parlato un pò già su whatzapp ma vedere meglio) -- I VINCOLI UNIQUE SONO RISPETTATI MA NON STAMPA L'ALERT()
-    Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente)
-- Impedire modifica ed eliminazione del Franco. Come?
+    Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente) -- NON BASTEREBBE VA FATTO LATO APPLICATIVO
+- Impedire modifica ed eliminazione del Franco. Come?-- FATTO LATO APPLICATIVO
 - Ricontrollare da applicazione e db se funzionano i vincoli
 - Ricontrollare ovunque campi Required
-- html to pdf
 - Report: sistemare numero di cifre dopo la virgola
-- Report: non mancano i tasti di stampa?
+- Report: non mancano i tasti di stampa? FATTO
 - Esporta backup?
 - Cancellazione multipla?
 - Stampa e salva per ora stampano e basta
@@ -28,17 +27,11 @@ PC)
 - alert su home
 
 DA FARE NADIA)
-FATTO - Sistemare campi Required in Setup Tassi e Valute, fare con html5 come modificaOperazione
-FATTO - Sistemare gli alert dei popup di Setup Tassi e Valute, uniformare con gli altri (tipo modificaOperazione)
-FATTO - Report sistemare css
-- Sistemare picker dove serve
-- Tabella: fare filtri oltre che ordinabile?
 - Controllare cosa succede quando il db è vuoto
 - Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto
 
 DOMANDE PER SARA)
-- Transazione in nuova Operazione è ok Sà? Lo guardi tu?
-- In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto?
+- In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto? PRIMA.. MODIFICATA
 - Uniformare/controllare gli step e arrotondamenti sia da interfacce che da db. Devono essere tutti coerenti sia tra le pagine che col db
 
 21 FEB)
@@ -47,12 +40,6 @@ DOMANDE PER SARA)
 -------------------------------
 
 NOTE SARA)
-Report:
-Sistemare scrolling -- OK
-testare accuratamente
-sistemare intestazioni delle stampe
-
-
 
 vincoli:
 ALTER TABLE valute CONVERT TO  simbolo SET utf8 //per simbolo euro
@@ -64,9 +51,6 @@ ALTER TABLE `valute` ADD UNIQUE(`simbolo`);
 I vincoli funzionano tutti,
 non funziona invece la reazione del programma
 
-addOperazione arrotondamento
-Controllare tutti gli alert
-VINCOLI ORO,
 
 
 SISTEMARE DATE

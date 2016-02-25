@@ -9,7 +9,7 @@ ini_set("error_reporting", 0);
 include("../../connessione.php");
 
 $query ="SELECT max(cod_op) AS ultimaop FROM `operazioni`";
-$result = mysqli_fetch_assoc(mysqli_query($conn, $query));
-$lastOp = $result['ultimaop'];
+if($result = mysqli_fetch_assoc(mysqli_query($conn, $query))){
+$lastOp = $result['ultimaop'];} else $lastOp=-1;
 
 echo $lastOp;

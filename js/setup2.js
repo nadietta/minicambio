@@ -28,19 +28,23 @@ function loadValute(){
                                       </tr>";
 
                 for (var i = 0; i < valute.length; i++) {
+
                     valuteDiv += "<tr id='trIdVal_"+ valute[i].id +"'><td class='hidden'>"+ valute[i].id +"</td>\n\
                                             <td class='valNomeClass'>"+ valute[i].nome_valuta +"</td>\n\
-                                            <td class='valSimboloClass'>"+ valute[i].simbolo_valuta +"</td>\n\
-                                            <td><button class='btn' \n\
-                                                    onclick=\"popupCenter('valuteWindow.php?idVal="+ valute[i].id +"&mode=Modifica','Valute', '500', '500');\">\n\
+                                            <td class='valSimboloClass'>"+ valute[i].simbolo_valuta +"</td>";
+                    if(valute[i].id!=1) {
+                        valuteDiv += "<td><button class='btn' \n\
+                                                    onclick=\"popupCenter('valuteWindow.php?idVal=" + valute[i].id + "&mode=Modifica','Valute', '500', '500');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\
                                                 </button>\n\
                                             </td>\n\
-                                            <td><button type='button' class='btn' data-toggle='modal' data-val-id='"+ valute[i].id +"' data-target='.valDelete-ConfirmDiv'> \n\
+                                            <td><button type='button' class='btn' data-toggle='modal' data-val-id='" + valute[i].id + "' data-target='.valDelete-ConfirmDiv'> \n\
                                                     <span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Cancella\n\
                                                 </button>\n\
                                             </td>\n\
                                         </tr>";
+                    }
+
                 }
                 valuteDiv += "</table>";
                 $("#scrollingContent").html(valuteDiv);

@@ -3,39 +3,46 @@
  */
 
 $(document).ready(function() {
+    var lastOp = getLastOperazione();
+    if(lastOp=-1){
 
-    $('#info_utilizzo').fadeIn(3000);
-    $('#listaOperazioniValoriRadio :input').attr('disabled', true);
+        $('#listaOperazioniRadio').addClass('customHidden');
+        $('#noOperazioni').fadeIn(1000);
 
-    $('#a1').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y',
-        timepicker: false,
-        scrollMonth: false,
-        maxDate: new Date(),
-        onSelectDate: function(dateStr){
-            $('#da1').datetimepicker({
-                maxDate: dateStr
-            });
-        }
-    });
+    }else {
+        $('#info_utilizzo').fadeIn(3000);
+        $('#listaOperazioniValoriRadio :input').attr('disabled', true);
 
-    $('#da1').datetimepicker({
-        lang: 'it',
-        format:	'd/m/Y',
-        timepicker: false,
-        scrollMonth: false,
-        maxDate: new Date(),
-        onSelectDate: function(dateStr){
-            $('#a1').datetimepicker({
-                minDate: dateStr
-            });
-        }
-    });
+        $('#a1').datetimepicker({
+            lang: 'it',
+            format: 'd/m/Y',
+            timepicker: false,
+            scrollMonth: false,
+            maxDate: new Date(),
+            onSelectDate: function (dateStr) {
+                $('#da1').datetimepicker({
+                    maxDate: dateStr
+                });
+            }
+        });
 
-    $('#da1').val(dateToString(new Date()));
-    $('#a1').val(dateToString(new Date()));
+        $('#da1').datetimepicker({
+            lang: 'it',
+            format: 'd/m/Y',
+            timepicker: false,
+            scrollMonth: false,
+            maxDate: new Date(),
+            onSelectDate: function (dateStr) {
+                $('#a1').datetimepicker({
+                    minDate: dateStr
+                });
+            }
+        });
 
+        $('#da1').val(dateToString(new Date()));
+        $('#a1').val(dateToString(new Date()));
+
+    }
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
     });
