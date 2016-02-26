@@ -32,7 +32,8 @@ $(document).ready(function(){
     }
 
     $(document).on("click","#esegui_backup", function(){
-        $("#esegui_backup").addClass('customHidden');
+      //  $("#esegui_backup").prop('clicked',false);
+       // $("#esegui_backup").addClass('customHidden');
         $('#caricamento').removeClass('customHidden');
 
             $.ajax({
@@ -58,7 +59,9 @@ $(document).ready(function(){
                     //alert(xhr);
                     alert("Details: " + desc + "\nError:" + err);
                 }
+
             });
+
 
     });
 

@@ -3,20 +3,20 @@ NOTE NADIA)
 http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
-- Controllare i campi required quando si clicca su altri bottoni non submit. LO STO FACENDO
-- getlLastOperazione che succede se non ci sono operazioni? --Ho messo un alert e disabilitato i radio
+- Controllare i campi required quando si clicca su altri bottoni non submit. FATTO!
+- getlLastOperazione che succede se non ci sono operazioni? --Ho messo un alert e disabilitato i radio FATTO
 - Controllare slashes e apici prima di scrivere sul db
 - Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
     (ne abbiamo parlato un pò già su whatzapp ma vedere meglio) -- I VINCOLI UNIQUE SONO RISPETTATI MA NON STAMPA L'ALERT()
     Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente) -- NON BASTEREBBE VA FATTO LATO APPLICATIVO
 - Impedire modifica ed eliminazione del Franco. Come?-- FATTO LATO APPLICATIVO
 - Ricontrollare da applicazione e db se funzionano i vincoli
-- Ricontrollare ovunque campi Required
+- Ricontrollare ovunque campi Required FATTO
 - Report: sistemare numero di cifre dopo la virgola PENSO FATTO NEL MOMENTO IN CUI SI HA UN DB PULITO LATO CIFRE DOPO LA VIRGOLA
 - Esporta backup?
 - Cancellazione multipla? FATTO
 - Stampa e salva per ora stampano e basta FATTO
-- Variabili d'ambiente path backup
+- Variabili d'ambiente path backup e report
 - Tasto loading backup si deve attivare subito
 - Guardare stampe per dare ok?
 - da vedere a volte gli eventi sul keyup da fare anche change e blur

@@ -52,7 +52,7 @@ function salvaNuovaOperazione(){
             }
             else{
                 if(risultato.messaggio){
-                    $('#successo').fadeIn(1500, function(){
+                    $('#successo').fadeIn(5000, function(){
                         location.reload();
                     });
                 }

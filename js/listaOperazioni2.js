@@ -72,7 +72,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
-        $('#ListaBotton').addClass('customHidden');
+      //  $('#ListaBotton').addClass('customHidden');
         $('#nessuna_op').fadeOut();
         $('#info_utilizzo').hide();
         var checkedRadio = $(this).val();
