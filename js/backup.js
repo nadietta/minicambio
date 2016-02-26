@@ -32,6 +32,7 @@ $(document).ready(function(){
     }
 
     $(document).on("click","#esegui_backup", function(){
+
       //  $("#esegui_backup").prop('clicked',false);
        // $("#esegui_backup").addClass('customHidden');
         $('#caricamento').removeClass('customHidden');
