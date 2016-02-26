@@ -105,9 +105,9 @@ $(document).ready(function() {
         var nCheck=$( ".checkClass :checked").length;
 
         if(nCheck==0){
-            $('#CancellaSelezione').addClass('customHidden');
+            $('#CancellaSelezione').prop('disabled', true);
         } else{
-        $('#CancellaSelezione').removeClass('customHidden');}
+        $('#CancellaSelezione').prop('disabled', false);}
     });
 
 
@@ -214,6 +214,7 @@ $(document).ready(function() {
                     }
                     operazioniDiv += "</tbody></table>";
                     $("#scrollingContent").html(operazioniDiv);
+                    $('#ListaBotton').removeClass('customHidden');
 
                     $("#tableListaOperazioni").trigger('update');
 
@@ -232,7 +233,7 @@ $(document).ready(function() {
                                     </div>\n\
                                 </div>");
 
-                $('#ListaBotton').removeClass('customHidden');
+
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);

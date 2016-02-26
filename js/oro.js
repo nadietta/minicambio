@@ -32,7 +32,39 @@ function stampaNuovaOperazione(){
             }
         });
 }
+function salvaNuovaOperazione(){
+    var formData = $("#nuovaOperazioneForm").serialize();
+    var formDataCommit = false;
+    var msg='';
+    $.ajax({
+        type: "POST",
+        url: "phpFunctions/addOperazioneOro.php",
+        data: {formData: formData},
+        async: false,
 
+        success: function(data) {
+            var risultato = $.parseJSON(data);
+            $("#scrollingContent").html("");
+            if (risultato.errore){
+                $('#errore').fadeIn(2000, function(){
+                    location.reload();
+                });
+            }
+            else{
+                if(risultato.messaggio){
+                    $('#successo').fadeIn(1500, function(){
+                        location.reload();
+                    });
+                }
+                //formDataCommit = true;
+            }
+        },
+        error: function(xhr, desc, err) {
+            //alert(xhr);
+            alert("Details: " + desc + "\nError:" + err);
+        }
+    });
+}
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
     $("#formLista").addClass('customHidden');
@@ -154,13 +186,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on("click", "#newOpSalvaStampa", function(){
-        stampaNuovaOperazione();
-    });
 
-    $(document).on("click", "#newOpStampa", function(){
-        stampaNuovaOperazione();
-    });
 
     $(document).on("submit", "#caricaListaOperazioni", function(){
         var da =$('#da').val();
@@ -248,9 +274,9 @@ $(document).ready(function() {
     $(document).on('click','.checkClass',function(){
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
-            $('#CancellaSelezione').addClass('customHidden');
+            $('#CancellaSelezione').prop('disabled',true);
         } else{
-            $('#CancellaSelezione').removeClass('customHidden');}
+            $('#CancellaSelezione').prop('disabled', false);}
     });
 
 
@@ -331,37 +357,21 @@ $(document).ready(function() {
     });
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
-        var formData = $("#nuovaOperazioneForm").serialize();
-        var formDataCommit = false;
-        var msg='';
-        $.ajax({
-            type: "POST",
-            url: "phpFunctions/addOperazioneOro.php",
-            data: {formData: formData},
-            async: false,
+        var btn= $(this).find("input[type=submit]:focus").prop('id');
+        switch(btn){
+            case 'newOpSalva':
+                salvaNuovaOperazione();
+                break;
+            case 'newOpStampa':
+                stampaNuovaOperazione();
+                break;
+            case 'newOpSalvaStampa':
+                stampaNuovaOperazione();
+                salvaNuovaOperazione();
+                break;
 
-            success: function(data) {
-                var risultato = $.parseJSON(data);
-                $("#scrollingContent").html("");
-                if (risultato.errore){
-                    $('#errore').fadeIn(2000, function(){
-                        location.reload();
-                    });
-                }
-                else{
-                    if(risultato.messaggio){
-                        $('#successo').fadeIn(1500, function(){
-                            location.reload();
-                        });
-                    }
-                    //formDataCommit = true;
-                }
-            },
-            error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
-            }
-        });
+        }
+
         return false;
     });
 

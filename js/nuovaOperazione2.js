@@ -24,7 +24,36 @@ function stampaNuovaOperazione(){
         }
     });
 }
+function salvaNuovaOperazione(){
+    var formData = $("#nuovaOperazioneForm").serialize();
+    var formDataCommit = false;
 
+    $.ajax({
+        type: "POST",
+        url: "phpFunctions/addOperazione.php",
+        async: false,
+        data: {formData: formData},
+        success: function(data) {
+            var risultato = $.parseJSON(data);
+            $("#scrollingContent").html("");
+            if (risultato.errore){
+                $('#errore').fadeIn(2000, function(){
+                    location.reload();
+                });
+            }
+            else{
+                $('#successo').fadeIn(3500, function(){
+                    location.reload();
+                });
+            }
+        },
+        error: function(xhr, desc, err) {
+            //alert(xhr);
+            alert("Details: " + desc + "\nError:" + err);
+        }
+    });
+
+}
 function getValoriNuovaOperazione(){
     var valuta_da = $('#valutaEntrata').val();
     var valuta_daDesc = $('#valutaEntrata option:selected').html();
@@ -215,47 +244,24 @@ $(document).ready(function() {
     });
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
-        var formData = $("#nuovaOperazioneForm").serialize();
-        var formDataCommit = false;
+        var btn= $(this).find("input[type=submit]:focus").prop('id');
+        switch(btn){
+            case 'newOpSalva':
+                salvaNuovaOperazione();
+                break;
+            case 'newOpStampa':
+                stampaNuovaOperazione();
+                break;
+            case 'newOpSalvaStampa':
+                stampaNuovaOperazione();
+                salvaNuovaOperazione();
+                break;
 
-        $.ajax({
-            type: "POST",
-            url: "phpFunctions/addOperazione.php",
-            async: false,
-            data: {formData: formData},
-            success: function(data) {
-               var risultato = $.parseJSON(data);
-                $("#scrollingContent").html("");
-                if (risultato.errore){
-                    $('#errore').fadeIn(2000, function(){
-                        location.reload();
-                    });
-                }
-                else{
-                    $('#successo').fadeIn(1500, function(){
-                        location.reload();
-                    });
-                }
-            },
-            error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
-            }
-        });
-
+        }
         return false;
-    });
-
-
-    $(document).on("click", "#newOpStampa", function(){
-        stampaNuovaOperazione();
 
     });
-    $(document).on("click", "#newOpSalvaStampa", function(){
-        stampaNuovaOperazione();
 
-
-    });
 
 
 });
