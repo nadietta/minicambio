@@ -216,14 +216,18 @@ $(document).ready(function() {
 
     $(document).on('click', '#Salva', function(){
         var html= $('#scrollingContent').html();
-        alert(html);
+        var data_da=$('#da1').val();
+        var data_a=$('#a1').val();
+        var data_stampa=data_da +" - "+data_a;
+
         $.ajax({
             type: "POST",
             url: "../PDF/reportPrint.php",
             async: false,
-            data: {html: html},
+            data: {html: html, data:data_stampa},
             success: function(data){
-             alert('da fare');
+            $('#scarica').attr('href',data);
+            $('#scarica').trigger('click');
 
             },
             error: function(xhr, desc, err) {
