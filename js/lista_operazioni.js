@@ -138,6 +138,7 @@ $(document).ready(function() {
         $('#rangeData_a').val($('#rangeData_da').val());
        }
         $('#rangeData_a').attr('min',$('#rangeData_da').val());
+        $('#rangeData_da').attr('max',$('#rangeData_da').val());
     });
     $(document).on('change','#rangeData_a', function(){
 

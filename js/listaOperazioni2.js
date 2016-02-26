@@ -53,14 +53,14 @@ $(document).ready(function() {
         $('#formListaPrint').html($('#scrollingContent').html());
         $('#formListaPrint').find('.bottonTable').remove();
         $('#formListaPrint').find('.check_th').remove();
-
         $('#formListaPrint').find('.checkClass').remove();
+        var data=$('#da1').val()+' - '+ $('#a1').val();
         var html= $('#formListaPrint').html();
         $.ajax({
             type: "POST",
             url: "../PDF/listaOpPrint.php",
             async: false,
-            data: {html: html},
+            data: {html: html, data: data},
             success: function(data){
                 window.open(data);
             },
