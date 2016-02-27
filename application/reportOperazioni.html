@@ -28,30 +28,32 @@ Released   : 20121201
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/stickyFooter.css" rel="stylesheet" type="text/css" media="screen" />
     <link rel="icon" href="../img/money_bag.png" type="image/gif" />
 </head>
 <body>
 <div id="wrapper">
-    <div id="menu-wrapper">
-        <div id="menu" class="container">
-            <ul>
-                <li><a href="index2.html">Homepage</a></li>
-                <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
-                <li><a href="listaOperazioni2.html">Lista Operazioni</a></li>
-                <li class="current_page_item"><a href="reportOperazioni.html">Report</a></li>
-                <li><a href="setup2.html">Setup</a></li>
-                <li><a href="oro.html">Oro</a></li>
-                <li><a href="backup.html">Backup</a></li>
-            </ul>
+    <div id="main">
+        <div id="menu-wrapper">
+            <div id="menu" class="container">
+                <ul>
+                    <li><a href="index2.html">Homepage</a></li>
+                    <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                    <li><a href="listaOperazioni2.html">Lista Operazioni</a></li>
+                    <li class="current_page_item"><a href="reportOperazioni.html">Report</a></li>
+                    <li><a href="setup2.html">Setup</a></li>
+                    <li><a href="oro.html">Oro</a></li>
+                    <li><a href="backup.html">Backup</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div id="page" class="container">
-        <form id="listaOperazioniForm">
-            <div id="sidebarL">
-                <div>
-                    <h2>Intervallo Date</h2>
+        <div id="page" class="container">
+            <form id="listaOperazioniForm">
+                <div id="sidebarL">
+                    <div>
+                        <h2>Intervallo Date</h2>
 
-                    <p>
+                        <p>
                         <div id="listaOperazioniValoriRadio">
 
                             <div id="listaOperazioniValoriRadio1" class="listaOperazioniValoriRadioDiv">
@@ -75,45 +77,47 @@ Released   : 20121201
                             </div>
 
                         </div>
-                    </p>
+                        </p>
 
+                    </div>
                 </div>
-            </div>
-        </form>
-        <!-- end #sidebar -->
+            </form>
+            <!-- end #sidebar -->
 
-        <div id="contentR">
-            <div class="post">
-                <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
-                <div id="formLista" class=" listaDiv table-responsive">
+            <div id="contentR">
+                <div class="post">
+                    <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
+                    <div id="formLista" class=" listaDiv table-responsive">
 
-                    <div id="entryContainer" class="entry listaDiv">
+                        <div id="entryContainerWidth" class="entry">
+                            <div id="entryContainer" class="entry listaDiv">
 
-                        <div class="alert alert-info customHidden" id="nessuna_op">
-                            <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
-                        </div>
+                                <div class="alert alert-info customHidden" id="nessuna_op">
+                                    <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
+                                </div>
 
-                        <div id="scrollingContent">
-                            <!-- Operazioni aggiunte dinamicamente -->
+                                <div id="scrollingContent">
+                                    <!-- Operazioni aggiunte dinamicamente -->
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
 
+                    <div id="ListaBotton" class="alignRight xMargin20 customHidden">
+                        <input type="button" class='btn btn-primary' id="Salva" name="Salva" value="Salva"/>
+                        <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
+                    </div>
+                    <a id='scarica' href="" downolad="report"></a>
                 </div>
-                <div id="ListaBotton" class="alignRight xMargin20 customHidden">
-                    <input type="button" class='btn btn-primary' id="Salva" name="Salva" value="Salva"/>
-                    <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
-                </div>
-                <a id='scarica' href="" downolad="report"></a>
             </div>
+            <!-- end #content -->
             <div style="clear: both;">&nbsp;</div>
-        </div>
-        <!-- end #content -->
-        <div style="clear: both;">&nbsp;</div>
 
+        </div>
     </div>
     <!-- end #page -->
-
 </div>
 
 <div id="footer">

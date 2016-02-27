@@ -4,8 +4,12 @@ Design by TEMPLATED
 http://templated.co
 Released for free under the Creative Commons Attribution License
 */
+html {
+	height: 100%;
+}
 
 body {
+    min-height: 100%;
 	margin: 0;
 	padding: 0;
 	background: #E5E6DD;
@@ -382,93 +386,6 @@ a:hover {
 
 #sidebar a:hover,#sidebarL a:hover {
 	text-decoration: underline;
-}
-
-/* Calendar */
-
-#calendar {
-}
-
-#calendar_wrap {
-	padding: 20px;
-}
-
-#calendar table {
-	width: 100%;
-}
-
-#calendar tbody td {
-	text-align: center;
-}
-
-
-#calendar #next {
-	text-align: right;
-}
-
-/* Three Column Footer Content */
-
-#footer-bg {
-	overflow: hidden;
-	padding: 70px 0;
-	background: #E9EAE1;
-	border-top: 10px solid #E5E6DD;
-}
-
-#footer-content {
-	color: #C59C9C;
-}
-
-#footer-content h2 {
-	margin: 0 0 20px 0;
-	padding: 0 0 10px 0;
-	border-bottom: 3px solid #E0E1D6;
-	text-shadow: 1px 1px 0 #FFFFFF;
-	font-size: 26px;
-	color: #373737;
-}
-
-#column1 {
-	float: left;
-	width: 384px;
-	margin-right: 20px;
-}
-
-#column2 {
-	float: left;
-	width: 384px;
-}
-
-#column3 {
-	float: right;
-	width: 384px;
-}
-
-/* Footer */
-
-#footer {
-	height: 40px;
-	margin: 0 auto;
-	padding: 0 0 0 0;
-}
-
-#footer p {
-	margin: 0;
-	padding-top: 10px;
-	line-height: normal;
-	text-align: center;
-	text-shadow: 1px 1px 0 #FFFFFF;
-	color: #909090;
-}
-
-#footer a {
-	text-decoration: underline;
-	color: #909090;
-}
-
-#footer a:hover {
-	text-decoration: none;
-	color: #383838;
 }
 
 .box1 {
