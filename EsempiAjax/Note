@@ -37,6 +37,8 @@ PC)
 - my sql dump su una cartella dropbox
 - percorso su desktop e preferiti. Chrome che si apre su quella pagina
 - alert su home
+-unlink dei file dopo averli aperti da jquery
+-paginazione report
 
 DA FARE NADIA)
 - Controllare cosa succede quando il db è vuoto
@@ -46,7 +48,7 @@ DA FARE NADIA)
 - path ambiente per il backup e per estrai report lo deve mettere in download
 - loading backup fare meglio
 - la stampa deve aprirsi su un popup
-- ATTENZIONE LA VALUTA DA ERRORE DA DB ANCHE SE USATA IN UNA NUOVA OPERAZIONE ( QUINDI CORREGGO IL MESSAGGIO)
+
 
 
 
