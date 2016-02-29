@@ -11,14 +11,13 @@ function ultimo_backup(){
         success: function(data) {
             res=data;
             return data;
-
         },
         error: function(xhr, desc, err) {
             //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
     });
-return res;
+    return res;
 }
 
 $(document).ready(function(){
@@ -31,7 +30,8 @@ $(document).ready(function(){
 
     }
 
-    $(document).on("click","#esegui_backup", function(){
+    $(document).on("click","#esegui_backup", function(e){
+        e.preventDefault();
 
       //  $("#esegui_backup").prop('clicked',false);
        // $("#esegui_backup").addClass('customHidden');

@@ -38,6 +38,14 @@ PC)
 - percorso su desktop e preferiti. Chrome che si apre su quella pagina
 - alert su home
 
+------------------------------------------------
+IMPORTANTE BACKUP!!!
+- Vai su httpd.conf di Apache (da me è sotto C:\wamp\bin\apache\apache2.4.9\conf),
+lo apri e in fondo al file aggiungi questa riga (col tuo path utente del pc):
+    SetEnv userProfilePath "c:/Users/Nadia/"
+ Poi salvi e fai restart di wamp.
+ ------------------------------------------------
+
 DA FARE NADIA)
 - Controllare cosa succede quando il db è vuoto
 - Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto FATTO!
