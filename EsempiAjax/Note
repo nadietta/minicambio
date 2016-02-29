@@ -5,7 +5,7 @@ http://wkhtmltopdf.org/downloads.html
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - ricontrollare le stampe e se possibile unlink dei file
 - Simboli Euro
-- arrotondamento report
+- arrotondamento report va visto lato db se nuova operazione inserisce effettivamente 2 cifre dopo la virgola FATTO!
 
 -Testare layout e stampe dopo aver messo il programma come scrociatoia dal desktpo (altri strumento-> aggiungi al desktop  ->apri come finestra
 - Controllare i campi required quando si clicca su altri bottoni non submit. FATTO!
@@ -28,7 +28,8 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta
 - css di oro bottone troppo attaccato guardare confronto con altri
 
-- nel backup.zip dovrebbe mettere i dati? capire (NADIA) come funziona. Cosa è il file zip.exe?
+- nel backup.zip dovrebbe mettere i dati? capire (NADIA) come funziona. Cosa è il file zip.exe? è un file per zippare perché
+altrimenti non mi andava ma diredi di scaricare solo .sql ed elimiare il file zip.exe
 
 
 PC)
@@ -39,24 +40,15 @@ PC)
 
 DA FARE NADIA)
 - Controllare cosa succede quando il db è vuoto
-- Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto
+- Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto FATTO!
 - NuovaOp -> sistemare float ed espressioni regolari FATTO
 - Oro, i bottoni devono stare fuori. Controllare anche gli alert sullo scrolling etc
-
-- css
 - path ambiente per il backup e per estrai report lo deve mettere in download
 - loading backup fare meglio
 - la stampa deve aprirsi su un popup
+- ATTENZIONE LA VALUTA DA ERRORE DA DB ANCHE SE USATA IN UNA NUOVA OPERAZIONE ( QUINDI CORREGGO IL MESSAGGIO)
 
 
-DOMANDE PER SARA)
-- In Nuova Operazione, lo step degli importi è diverso se operazione singola o doppia. Quale quello giusto? PRIMA.. MODIFICATA
-- Uniformare/controllare gli step e arrotondamenti sia da interfacce che da db. Devono essere tutti coerenti sia tra le pagine che col db
-
-21 FEB)
-
-
--------------------------------
 
 NOTE SARA)
 

@@ -35,15 +35,17 @@ function salvaNuovaOperazione(){
         data: {formData: formData},
         success: function(data) {
             var risultato = $.parseJSON(data);
-            $("#scrollingContent").html("");
+          //  $("#scrollingContent").html("");
             if (risultato.errore){
                 $('#errore').fadeIn(2000, function(){
                     location.reload();
                 });
             }
             else{
-                $('#successo').fadeIn(3500, function(){
-                    location.reload();
+                $('#successo').fadeIn(1000, function(){
+                    getValoriNuovaOperazione();
+                   // location.reload();
+                 //   opLoad();
                 });
             }
         },
@@ -92,6 +94,8 @@ function getValoriNuovaOperazione(){
                 $("#op2tipoOp").val(0);
                 $("#op2operazione").val(myresponse.cod_op_2);
                 $("#op2tasso").val(myresponse.tasso_due);
+                $("#op2entrata").val("");
+                $("#op2uscita").val("");
             }
             else{
                 $('#formOperazione1 :input').attr('disabled', false);
@@ -126,7 +130,6 @@ function calcolaUscitaCombinata(){
     var tasso_2 = $('#op2tasso').val();
     var entrata = $('#op1entrata').val();
     entrata=entrata.replace(',', '.' );
-
     var uscita=entrata/tasso;
     var uscitaFormat = uscita.toFixed(2);
     $('#op2entrata').val(uscitaFormat);
@@ -162,22 +165,21 @@ function calcolaUscita(){
     }
 
 }
-
+function opLoad(){
+    selectValute = getValute();
+    $('#formOperazione1 :input').attr('disabled', true);
+    $('#formOperazione2 :input').attr('disabled', true);
+    $('#valutaEntrata').html(selectValute);
+    $('#valutaUscita').html(selectValute);
+}
 
 $(document).ready(function() {
 
-    selectValute = getValute();
-
-    $('#formOperazione1 :input').attr('disabled', true);
-    $('#formOperazione2 :input').attr('disabled', true);
-
-    $('#valutaEntrata').html(selectValute);
-    $('#valutaUscita').html(selectValute);
+    opLoad();
 
     $(document).on("change", "#valutaEntrata", function(){
         var selectedValutaEntrata = $(this).val();
         var selectedValutaUscita = $('#valutaUscita').val();
-
         $('#valutaUscita').prop('disabled',false);
         $("#valutaUscita option[value]").prop('disabled',false);
         $("#valutaUscita option[value='"+selectedValutaEntrata+"']").prop('disabled',true);
@@ -214,7 +216,6 @@ $(document).ready(function() {
     $(document).on("click", "#invertiBtn", function(){
         var selectedValutaEntrata = $('#valutaEntrata').val();
         var selectedValutaUscita = $('#valutaUscita').val();
-
         $("#op1tasso").val('');
         $("#opTipoOp").val('');
         $("#op1tipoOp").val('');
@@ -223,11 +224,9 @@ $(document).ready(function() {
         $('#op1uscita').val('');
         $('#op2entrata').val('');
         $('#op2uscita').val('');
-
         $('#valutaEntrata').val(selectedValutaUscita);
         $("#valutaUscita option[value]").prop('disabled',false);
         $('#valutaUscita').val(selectedValutaEntrata);
-
         $('#valutaEntrata').trigger('change');
     });
 

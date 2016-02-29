@@ -187,9 +187,8 @@ $(document).ready(function() {
                                     <table id='tableListaOperazioni' class='table table-hover tablesorter'>\n\
                                       <thead><tr>\n\
                                           <th class='hidden'>ID</th><th class='check_th'></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
-                                          <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
-                                          <th>TASSO&nbsp;&nbsp;&nbsp;</th>\n\
-                                      </tr></thead><tbody>";
+                                          <th>IMPORTO ENTRATA</th><th>TASSO&nbsp;&nbsp;&nbsp;</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
+                                       </tr></thead><tbody>";
 
                     for (var i = 0; i < operazioni.length; i++) {
                         operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
@@ -198,9 +197,9 @@ $(document).ready(function() {
                                             <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
                                             <td class='opValutaEntrataClass'>"+ operazioni[i].valuta_entrata +"</td>\n\
                                             <td class='opImportoEntrataClass'>"+ operazioni[i].importo_entrata +"</td>\n\
+                                            <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
                                             <td class='opValutaUscitaClass'>"+ operazioni[i].valuta_uscita +"</td>\n\
                                             <td class='opImportoUscitaClass'>"+ operazioni[i].importo_uscita +"</td>\n\
-                                            <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
                                             <td class='bottonTable'><button class='btn' \n\
                                                     onclick=\"popupCenter('operazioniWindow.php?idOp="+ operazioni[i].id +"','Operazioni', '500', '500');\">\n\
                                                     <span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Modifica\n\

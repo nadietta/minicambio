@@ -19,6 +19,7 @@ else{
 if (isset($idVal)){
     $query = "DELETE FROM VALUTE WHERE pk_valuta = '$idVal'";
 
+
     $retval = mysqli_query($conn, $query);
     if(! $retval ) {
         die('Impossibile Aggiornare i dati' . mysqli_error());

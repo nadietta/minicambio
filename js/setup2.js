@@ -3,6 +3,7 @@
  */
 
 function loadValute(){
+    $('#nessuna_op').hide();
     $("#entryContainerTitle").html("Valute");
     $("#scrollingContent").html("");
     var valuteDiv = "";
@@ -13,6 +14,7 @@ function loadValute(){
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuova Valuta\n\
                         </button>\n\
                     </div>";
+    $("#scrollingContent").html(valuteDiv);
 
     $.ajax({
         type: "GET",
@@ -62,8 +64,8 @@ function loadValute(){
                                 </div>");
             }
             else{
-                $('#nessuna_op').html("<strong>Attenzione!</strong> Nessuna Valuta Presente.");
-                $('#nessuna_op').show();
+                $("#scrollingContent").append('<br><br><div id="msg" class="alert alert-info customHidden"><strong>Attenzione!</strong> Non esistono Valute</div>');
+                $("#msg").fadeIn(1000);
             }
         },
         error: function(xhr, desc, err) {
@@ -77,6 +79,7 @@ function loadValute(){
 function loadTassi(){
     $("#entryContainerTitle").html("Tassi");
     $("#scrollingContent").html("");
+    $('#nessuna_op').hide();
     var tassiDiv = "";
 
     tassiDiv += "<div id='divBtnAddNewTas'>\n\
@@ -85,7 +88,7 @@ function loadTassi(){
                             <span class='glyphicon glyphicon-plus'></span>&nbsp;&nbsp;Nuovo Tasso\n\
                         </button>\n\
                     </div>";
-
+    $("#scrollingContent").html(tassiDiv);
     $.ajax({
         type: "GET",
         url: "phpFunctions/lista_tassi.php",
@@ -134,8 +137,8 @@ function loadTassi(){
                                 </div>");
             }
             else{
-                $('#nessuna_op').html("<strong>Attenzione!</strong> Nessun Tasso Presente.");
-                $('#nessuna_op').show();
+                $("#scrollingContent").append('<br><br><div id="msg" class="alert alert-info customHidden"><strong>Attenzione!</strong> Non esistono Tassi</div>');
+                $("#msg").fadeIn(1000);
             }
         },
         error: function(xhr, desc, err) {
@@ -195,7 +198,7 @@ $(document).ready(function() {
                 else{
                     $("#tableValute").html("");
                     $("#divBtnAddNewVal").html("");
-                    $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata in almeno un Tasso.");
+                    $('#errore').html("<strong>Errore!</strong> Impossibile cancellare Valuta!\nLa Valuta risulta utilizzata.");
                     $('#errore').show();
                     setTimeout(function(){
                         $("#valute").trigger("click");
@@ -237,7 +240,7 @@ $(document).ready(function() {
                 else{
                     $("#tableTassi").html("");
                     $("#divBtnAddNewTas").html("");
-                    $('#errore').html("<strong>Errore!</strong> Impossibile eliminare il Tasso!\nIl Tasso risulta utilizzato in almeno un'operazione.");
+                    $('#errore').html("<strong>Errore!</strong> Impossibile eliminare il Tasso!\nIl Tasso.");
                     $('#errore').show();
                     setTimeout(function(){
                         $("#tassi").trigger("click");

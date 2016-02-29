@@ -84,10 +84,10 @@ $(document).ready(function() {
                                             <td class='opDataClass'><b>" + operazioni[i - 1].data_op + "</b></td>\n\
                                             <td class='opValutaEntrataClass'><b>" + operazioni[i - 1].valuta_entrata + "</b></td>\n\
                                             <td class='opImportoEntrataClass'><b>" + operazioni[i - 1].totale_entrata + "</b></td>\n\
+                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_giorno + "</b></td>\n\
                                             <td class='opValutaUscitaClass'><b>" + operazioni[i - 1].valuta_uscita + "</b></td>\n\
                                             <td class='opImportoUscitaClass'><b>" + operazioni[i - 1].totale_uscita + "</b></td>\n\
-                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_giorno + "</b></td>\n\   " +
-                                    "</tr>";
+                                             </tr>";
                             }
                         }
                         //Se Cambia il mese o le valute stampo il totale dell'ultimo mese
@@ -101,10 +101,10 @@ $(document).ready(function() {
                                             <td class='opDataClass'><b>" + mese_corrente + "</b></td>\n\
                                             <td class='opValutaEntrataClass'><b>" + operazioni[i - 1].valuta_entrata + "</b></td>\n\
                                             <td class='opImportoEntrataClass'><b>" + operazioni[i - 1].totale_entrata_mese + "</b></td>\n\
+                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_mese + "</b></td>\n\
                                             <td class='opValutaUscitaClass'><b>" + operazioni[i - 1].valuta_uscita + "</b></td>\n\
                                             <td class='opImportoUscitaClass'><b>" + operazioni[i - 1].totale_uscita_mese + "</b></td>\n\
-                                            <td class='opTassoClass'><b>" + operazioni[i - 1].tasso_medio_mese + "</b></td>\n\   " +
-                                    "</tr>";
+                                    </tr>";
                             }
                         }
 
@@ -130,9 +130,8 @@ $(document).ready(function() {
                             operazioniDiv += "<tr> <td colspan='5'> <h3 class='titleReportGiorno'>"
                                 + operazioni[i].data_op + "</h3></td ></tr><tr class='trIntestazioneReport'>"
                                 + " <th class='hidden'>ID</th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
-                                      <th>IMPORTO ENTRATA</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
-                                      <th>TASSO</th>\n\
-                                  </tr>";
+                                      <th>IMPORTO ENTRATA</th><th>TASSO</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
+                            </tr>";
 
                             precData = operazioni[i].data_op;
                         }
@@ -142,10 +141,10 @@ $(document).ready(function() {
                                             <td class='opDataClass'>" + operazioni[i].data_op + "</td>\n\
                                             <td class='opValutaEntrataClass'>" + operazioni[i].valuta_entrata + "</td>\n\
                                             <td class='opImportoEntrataClass'>" + operazioni[i].importo_entrata + "</td>\n\
+                                            <td class='opTassoClass'>" + operazioni[i].tasso + "</td>\n\
                                             <td class='opValutaUscitaClass'>" + operazioni[i].valuta_uscita + "</td>\n\
                                             <td class='opImportoUscitaClass'>" + operazioni[i].importo_uscita + "</td>\n\
-                                            <td class='opTassoClass'>" + operazioni[i].tasso + "</td>\n\   " +
-                            "</tr>";
+                                             </tr>";
                     }
                 //per l'ultima riga stampo sia totale ultima data che totale mese
                     if(i==operazioni.length){
@@ -154,19 +153,19 @@ $(document).ready(function() {
                                             <td class='opDataClass'><b>"+ operazioni[i-1].data_op +"</b></td>\n\
                                             <td class='opValutaEntrataClass'><b>"+ operazioni[i-1].valuta_entrata +"</b></td>\n\
                                             <td class='opImportoEntrataClass'><b>"+ operazioni[i-1].totale_entrata +"</b></td>\n\
+                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_giorno +"</b></td>\n\
                                             <td class='opValutaUscitaClass'><b>"+ operazioni[i-1].valuta_uscita +"</b></td>\n\
                                             <td class='opImportoUscitaClass'><b>"+ operazioni[i-1].totale_uscita +"</b></td>\n\
-                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_giorno +"</b></td>\n\   " +
-                                    "</tr>";
+                                            </tr>";
                                 operazioniDiv += "<tr class='trTotaleReport' id='trIdOp_'><td class='hidden'></td>\n\
                                             <td class='opOperazioneClass'><b>TOTALE MESE</b></td>\n\
                                             <td class='opDataClass'><b>"+ mese_corrente+"</b></td>\n\
                                             <td class='opValutaEntrataClass'><b>"+ operazioni[i-1].valuta_entrata +"</b></td>\n\
                                             <td class='opImportoEntrataClass'><b>"+ operazioni[i-1].totale_entrata_mese +"</b></td>\n\
+                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_mese +"</b></td>\n\
                                             <td class='opValutaUscitaClass'><b>"+ operazioni[i-1].valuta_uscita +"</b></td>\n\
                                             <td class='opImportoUscitaClass'><b>"+ operazioni[i-1].totale_uscita_mese +"</b></td>\n\
-                                            <td class='opTassoClass'><b>"+ operazioni[i-1].tasso_medio_mese +"</b></td>\n\   " +
-                                    "</tr>";
+                                     </tr>";
 
 
                     }
