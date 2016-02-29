@@ -176,6 +176,9 @@ function opLoad(){
 $(document).ready(function() {
 
     opLoad();
+    $(document).on("click",'body', function(){
+        $('#successo').fadeOut(1000);
+    });
 
     $(document).on("change", "#valutaEntrata", function(){
         var selectedValutaEntrata = $(this).val();
