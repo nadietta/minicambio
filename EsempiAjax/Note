@@ -3,6 +3,9 @@ NOTE NADIA)
 http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
+- ricontrollare le stampe e se possibile unlink dei file
+- Simboli Euro
+- arrotondamento report
 
 -Testare layout e stampe dopo aver messo il programma come scrociatoia dal desktpo (altri strumento-> aggiungi al desktop  ->apri come finestra
 - Controllare i campi required quando si clicca su altri bottoni non submit. FATTO!
@@ -13,16 +16,15 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
     Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente) -- NON BASTEREBBE VA FATTO LATO APPLICATIVO
 - Impedire modifica ed eliminazione del Franco. Come?-- FATTO LATO APPLICATIVO
 - Ricontrollare da applicazione e db se funzionano i vincoli
-- Ricontrollare ovunque campi Required FATTO
+
 - Report: sistemare numero di cifre dopo la virgola PENSO FATTO NEL MOMENTO IN CUI SI HA UN DB PULITO LATO CIFRE DOPO LA VIRGOLA
 - Esporta backup?
-- Cancellazione multipla? FATTO
-- Stampa e salva per ora stampano e basta FATTO
+
 - Variabili d'ambiente path backup e report
 - Tasto loading backup si deve attivare subito
 - Guardare stampe per dare ok?
 - da vedere a volte gli eventi sul keyup da fare anche change e blur
-- Bottone che scompare/compare deve essere disabilitato o no FATTO!!
+
 - Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta
 - css di oro bottone troppo attaccato guardare confronto con altri
 
