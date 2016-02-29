@@ -27,152 +27,155 @@ Released   : 20121201
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
     <link href="../css/styleOro.css" rel="stylesheet" type="text/css" media="screen" />
-
+    <link href="../css/stickyFooter.css" rel="stylesheet" type="text/css" media="screen" />
     <link rel="icon" href="../img/gold.png" type="image/gif" />
     <link rel="stylesheet" href="../css/theme.blue.css">
 
 </head>
 <body>
 <div id="wrapper">
-
-    <div id="menu-wrapper">
-        <div id="menu" class="container">
-            <ul>
-                <li><a href="index2.html">Homepage</a></li>
-                <li><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
-                <li><a href="listaOperazioni2.html">Lista Operazioni</a></li>
-                <li><a href="reportOperazioni.html">Report</a></li>
-                <li><a href="setup2.html">Setup</a></li>
-                <li  class="current_page_item"><a href="oro.html">Oro</a></li>
-                <li><a href="backup.html">Backup</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="page" class="container">
-        <div id="sidebarL">
-            <div>
-                <h2>ORO</h2>
-                <ul class="nav nav-pills nav-stacked">
-                    <li id="nuova_op" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
-                    <li id="lista_op" role="presentation"><a href="#">LISTA OPERAZIONI</a></li>
-
+    <div id="main">
+        <div id="menu-wrapper">
+            <div id="menu" class="container">
+                <ul>
+                    <li><a href="index2.html">Homepage</a></li>
+                    <li><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                    <li><a href="listaOperazioni2.html">Lista Operazioni</a></li>
+                    <li><a href="reportOperazioni.html">Report</a></li>
+                    <li><a href="setup2.html">Setup</a></li>
+                    <li  class="current_page_item"><a href="oro.html">Oro</a></li>
+                    <li><a href="backup.html">Backup</a></li>
                 </ul>
             </div>
-            <br><br>
-
-            <div id="sceltaLista" class="customHidden">
-                <form id="caricaListaOperazioni">
-                <h2>Intervallo Date</h2>
-
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="da" class="control-label">DA</label>
-                            <div>
-                                <input type="datetime" class="form-control dtp" id="da" name="da" value="" placeholder="gg/mm/aaaa" required/>
-                            </div>
-                            <label for="a" class="control-label">A</label>
-                            <div>
-                                <input type="datetime" class="form-control dtp" id="a" name="a" value="" placeholder="gg/mm/aaaa" required/>
-                            </div>
-                        </div>
-                    </fieldset>
-                <div id="listaOpSubmitDiv" class="alignRight ">
-                    <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
-                </div>
-            </form>
-            </div>
-
         </div>
-        <!-- end #sidebar -->
-        <div id="contentR">
-        <div id="contentForm" >
+        <div id="page" class="container">
+            <div id="sidebarL">
+                <div>
+                    <h2>ORO</h2>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li id="nuova_op" role="presentation"><a href="#">NUOVA OPERAZIONE</a></li>
+                        <li id="lista_op" role="presentation"><a href="#">LISTA OPERAZIONI</a></li>
 
+                    </ul>
+                </div>
+                <br><br>
 
-            <div class="post">
-                <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
-                <div id="entryContainer" class="entry">
+                <div id="sceltaLista" class="customHidden">
+                    <form id="caricaListaOperazioni">
+                        <h2>Intervallo Date</h2>
 
-                    <div class='alert alert-success customHidden' id='successo'>
-                        <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
-
-                    <div class="alert alert-danger customHidden" id="errore">
-                        <strong>Errore!</strong> durante l'inserimento.
-                    </div>
-
-                    <div class="alert alert-info customHidden" id="nessuna_op">
-                        <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
-                    </div>
-
-                    <div class="alert alert-danger customHidden" id="errore_cancellazione">
-                        <strong>Errore!</strong> Impossibile cancellare l'Operazione
-                    </div>
-
-                    <div id="scrollingContent">
-                        <div id="formOperazione" class="customHidden">
-                            <form id="nuovaOperazioneForm">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
-                                        <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-6">
-                                            <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
-                                        </div>
-
-                                        <br>
-                                        <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
-                                        <label for="carati" class="col-sm-4 col-lg-4 control-label">Carati:</label>
-                                        <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" step="0.0001" min="0" class="form-control" id="grammi" name="grammi"  pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" step="0.00001" min="0" class="form-control" id="carati" name="carati"  value=""/>
-                                        </div>
-                                        <div class="col-sm-4 col-lg-4">
-                                            <input type="number" step="0.0001" min="0" class="form-control" id="prezzo" name="prezzo"   pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
-                                        </div>
-                                        <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
-                                        <div class="col-sm-12 col-lg-12">
-                                            <input type="number" step="0.01" min="0" class="form-control" id="franchi" name="franchi"  readonly required value=""/>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <br>
-                                <br>
-                                <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
-                                    <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva"  value="Salva"/>
-                                    <input type="submit" class='btn btn-primary'  id="newOpStampa" value="Stampa"/>
-                                    <input type="submit" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="da" class="control-label">DA</label>
+                                <div>
+                                    <input type="datetime" class="form-control dtp" id="da" name="da" value="" placeholder="gg/mm/aaaa" required/>
                                 </div>
-                            </form>
+                                <label for="a" class="control-label">A</label>
+                                <div>
+                                    <input type="datetime" class="form-control dtp" id="a" name="a" value="" placeholder="gg/mm/aaaa" required/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div id="listaOpSubmitDiv" class="alignRight ">
+                            <input type="submit" class='btn btn-primary' id="listaOpSubmit" name="listaOpSubmit" value="Cerca"/>
                         </div>
-
-                        <div id="formLista" class="customHidden"></div>
-
-                    </div>
-                    <div id="formListaPrint" class="customHidden"></div>
-
-                </div>
-                <div id="ListaOroBotton" class="alignRight xMargin20 customHidden">
-                    <input type="button" class='btn btn-primary' disabled id="CancellaSelezione" name="CancellaSelezione" value="Cancella Selezionati"/>
-
-                    <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
+                    </form>
                 </div>
 
             </div>
+            <!-- end #sidebar -->
+            <div id="contentR">
+                <div id="contentForm" >
+
+
+                    <div class="post">
+                        <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
+                        <div id="entryContainerWidth" class="entry">
+                            <div id="entryContainer" class="entry">
+
+                                <div class='alert alert-success customHidden' id='successo'>
+                                    <strong>Successo!</strong> Inserimento avvenuto con successo. </div>
+
+                                <div class="alert alert-danger customHidden" id="errore">
+                                    <strong>Errore!</strong> durante l'inserimento.
+                                </div>
+
+                                <div class="alert alert-info customHidden" id="nessuna_op">
+                                    <strong>Attenzione!</strong> Non esistono operazioni per il periodo indicato.
+                                </div>
+
+                                <div class="alert alert-danger customHidden" id="errore_cancellazione">
+                                    <strong>Errore!</strong> Impossibile cancellare l'Operazione
+                                </div>
+
+                                <div id="scrollingContent">
+                                    <div id="formOperazione" class="customHidden">
+                                        <form id="nuovaOperazioneForm">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label for="dataora" class="col-sm-6 col-lg-6 control-label">Data e Ora:</label>
+                                                    <label for="operazione" class="col-sm-6 col-lg-6 control-label">Numero Operazione:</label>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <input  type="datetime" class="form-control" id="dataora" name="dataora" value="" readonly required/>
+                                                    </div>
+                                                    <div class="col-sm-6 col-lg-6">
+                                                        <input type="number" maxlength="15" class="form-control" id="operazione" name="operazione" readonly required value=""/>
+                                                    </div>
+
+                                                    <br>
+                                                    <label for="grammi" class="col-sm-4 col-lg-4 control-label">Grammi:</label>
+                                                    <label for="carati" class="col-sm-4 col-lg-4 control-label">Carati:</label>
+                                                    <label for="prezzo" class="col-sm-4 col-lg-4 control-label">Prezzo (CHF):</label>
+                                                    <div class="col-sm-4 col-lg-4">
+                                                        <input type="number" step="0.0001" min="0" class="form-control" id="grammi" name="grammi"  pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
+                                                    </div>
+                                                    <div class="col-sm-4 col-lg-4">
+                                                        <input type="number" step="0.00001" min="0" class="form-control" id="carati" name="carati"  value=""/>
+                                                    </div>
+                                                    <div class="col-sm-4 col-lg-4">
+                                                        <input type="number" step="0.0001" min="0" class="form-control" id="prezzo" name="prezzo"   pattern="[0-9]+.*+,*[0-9]{0,4}$" required value=""/>
+                                                    </div>
+                                                    <label for="franchi" class="col-sm-12 col-lg-12 control-label">Totale Franchi:</label>
+                                                    <div class="col-sm-12 col-lg-12">
+                                                        <input type="number" step="0.01" min="0" class="form-control" id="franchi" name="franchi"  readonly required value=""/>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <br>
+                                            <br>
+                                            <div id="newOpBottoni" class="alignRight xMargin20 customHidden">
+                                                <input type="submit" class='btn btn-primary' id="newOpSalva" name="newOpSalva"  value="Salva"/>
+                                                <input type="submit" class='btn btn-primary'  id="newOpStampa" value="Stampa"/>
+                                                <input type="submit" class='btn btn-primary' id="newOpSalvaStampa" name="newOpSalvaStampa" value="Salva e Stampa"/>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div id="formLista" class="customHidden"></div>
+
+                                </div>
+                                <div id="formListaPrint" class="customHidden"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ListaOroBotton" class="alignRight xMargin20 customHidden">
+                            <input type="button" class='btn btn-primary' disabled id="CancellaSelezione" name="CancellaSelezione" value="Cancella Selezionati"/>
+
+                            <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- end #content -->
+            <div style="clear: both;">&nbsp;</div>
+
         </div>
-
-
-        </div>
-        <!-- end #content -->
-        <div style="clear: both;">&nbsp;</div>
-
     </div>
     <!-- end #page -->
-
 </div>
 
 <div id="footer">

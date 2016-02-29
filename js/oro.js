@@ -46,15 +46,17 @@ function salvaNuovaOperazione(){
             var risultato = $.parseJSON(data);
             $("#scrollingContent").html("");
             if (risultato.errore){
-                $('#errore').fadeIn(2000, function(){
-                    location.reload();
-                });
+                $('#errore').fadeIn(2000);
+                    setTimeout(function(){
+                        location.reload();
+                }, 3000);
             }
             else{
                 if(risultato.messaggio){
-                    $('#successo').fadeIn(5000, function(){
+                    $('#successo').fadeIn(2000);
+                    setTimeout(function(){
                         location.reload();
-                    });
+                    }, 3000);
                 }
                 //formDataCommit = true;
             }
@@ -186,8 +188,6 @@ $(document).ready(function() {
 
     });
 
-
-
     $(document).on("submit", "#caricaListaOperazioni", function(){
         var da =$('#da').val();
         var formattedDa = da.substr(6,4)+"-"+da.substr(3,2)+"-"+da.substr(0,2);
@@ -302,9 +302,10 @@ $(document).ready(function() {
                     }
                     else{
                         $("#scrollingContent").html("");
-                        $('#errore_cancellazione').fadeIn(2000, function(){
-                            location.reload();
-                        });
+                        $('#errore_cancellazione').fadeIn(2000);
+                            setTimeout(function(){
+                                location.reload();
+                        }, 3000);
                     }
                 },
                 error: function(xhr, desc, err) {
@@ -344,9 +345,10 @@ $(document).ready(function() {
                 }
                 else{
                     $("#scrollingContent").html("");
-                    $('#errore_cancellazione').fadeIn(2000, function(){
-                        location.reload();
-                    });
+                    $('#errore_cancellazione').fadeIn(2000);
+                        setTimeout(function(){
+                            location.reload();
+                    }, 3000);
                 }
             },
             error: function(xhr, desc, err) {
@@ -369,9 +371,7 @@ $(document).ready(function() {
                 stampaNuovaOperazione();
                 salvaNuovaOperazione();
                 break;
-
         }
-
         return false;
     });
 

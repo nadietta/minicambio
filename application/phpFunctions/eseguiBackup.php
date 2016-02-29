@@ -7,10 +7,10 @@
  */
 
 // Cartella del sito da backuppare
-$project_dir = '../../../minicambio';
+$project_dir = getenv('DOCUMENT_ROOT') . '/minicambio';
 
 // Percorso completo dell'archivio compresso del sito
-$project_filename = '../../BackupFiles/backup.zip';
+$project_filename = getenv('DOCUMENT_ROOT') . '/minicambio/BackupFiles/backup.zip';
 
 // Database
 $db_nome = 'minicambio';
@@ -19,7 +19,8 @@ $db_pass = '';
 $db_host = 'localhost';
 
 // Percorso completo del backup SQL
-$db_filename = '../../BackupFiles/backup_database.sql';
+$db_filename = getenv('DOCUMENT_ROOT') . '/minicambio/BackupFiles/backup_database.sql';
+//$copia_sito = exec('%WWW%../../BackupFiles/zip -r '. '"'.$project_filename . '" "'. $project_dir.'"');
 $copia_sito = exec('"../../BackupFiles/zip" -r '. '"'.$project_filename . '" "'. $project_dir.'"');
 
 // creo il backup del DB

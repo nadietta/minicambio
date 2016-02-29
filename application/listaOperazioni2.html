@@ -29,48 +29,50 @@ Released   : 20121201
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/stickyFooter.css" rel="stylesheet" type="text/css" media="screen" />
     <link rel="icon" href="../img/money_bag.png" type="image/gif" />
 </head>
 
 <body>
 <div id="wrapper">
-    <div id="menu-wrapper">
-        <div id="menu" class="container">
-            <ul>
-                <li><a href="index2.html">Homepage</a></li>
-                <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
-                <li class="current_page_item"><a href="listaOperazioni2.html">Lista Operazioni</a></li>
-                <li><a href="reportOperazioni.html">Report</a></li>
-                <li><a href="setup2.html">Setup</a></li>
-                <li><a href="oro.html">Oro</a></li>
-                <li><a href="backup.html">Backup</a></li>
-            </ul>
+    <div id="main">
+        <div id="menu-wrapper">
+            <div id="menu" class="container">
+                <ul>
+                    <li><a href="index2.html">Homepage</a></li>
+                    <li ><a href="nuovaOperazione2.html">Nuova Operazione</a></li>
+                    <li class="current_page_item"><a href="listaOperazioni2.html">Lista Operazioni</a></li>
+                    <li><a href="reportOperazioni.html">Report</a></li>
+                    <li><a href="setup2.html">Setup</a></li>
+                    <li><a href="oro.html">Oro</a></li>
+                    <li><a href="backup.html">Backup</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div id="page" class="container">
-        <form id="listaOperazioniForm">
-            <div id="sidebarL">
-                <div>
-                    <h2>Tipo di Ricerca</h2>
-                    <div id="listaOperazioniRadio">
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="1">Intervallo Date</label>
+        <div id="page" class="container">
+            <form id="listaOperazioniForm">
+                <div id="sidebarL">
+                    <div>
+                        <h2>Tipo di Ricerca</h2>
+                        <div id="listaOperazioniRadio">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sceltaRadio" value="1">Intervallo Date</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="sceltaRadio" value="2">Intervallo Operazioni</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="sceltaRadio" value="3">Importo Entrata</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="sceltaRadio" value="4">Importo Uscita</label>
+                                    </div>
                                 </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="2">Intervallo Operazioni</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="3">Importo Entrata</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sceltaRadio" value="4">Importo Uscita</label>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <p>
+                            </fieldset>
+                        </div>
+                        <p>
                         <div id="listaOperazioniValoriRadio">
 
                             <div id="listaOperazioniValoriRadio1" class="listaOperazioniValoriRadioDiv customHidden">
@@ -142,54 +144,52 @@ Released   : 20121201
                             </div>
 
                         </div>
-                    </p>
+                        </p>
+
+                    </div>
+                </div>
+            </form>
+            <!-- end #sidebar -->
+
+            <div id="contentR">
+
+                <div class="post">
+                    <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
+                    <div id="entryContainerWidth" class="entry">
+                        <div id="entryContainer" class="entry">
+
+                            <div class="alert alert-info customHidden" id="nessuna_op">
+                                <strong>Attenzione!</strong> Non esistono operazioni per il criterio selezionato.
+                            </div>
+
+                            <div class="alert alert-info customHidden" id="info_utilizzo">
+                                Selezionare il criterio di ricerca.
+                            </div>
+                            <div class="alert alert-warning customHidden" id="noOperazioni">
+                                Attenzione non sono presenti operazioni.
+                            </div>
+                            <div id="scrollingContent">
+                                <!-- Operazioni aggiunte dinamicamente -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="formListaPrint" class="customHidden"></div>
+                    <div id="ListaBotton" class="alignRight xMargin20 customHidden">
+                        <input type="button" class='btn btn-primary' disabled id="CancellaSelezione" name="Cancella" value="Cancella Selezionati"/>
+                        <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
+                    </div>
 
                 </div>
+
             </div>
-        </form>
-        <!-- end #sidebar -->
-
-        <div id="contentR">
-
-            <div class="post">
-                <h2 id="entryContainerTitle" class="title">&nbsp;</h2>
-
-                <div id="entryContainer" class="entry">
-
-                    <div class="alert alert-info customHidden" id="nessuna_op">
-                        <strong>Attenzione!</strong> Non esistono operazioni per il criterio selezionato.
-                    </div>
-
-                    <div class="alert alert-info customHidden" id="info_utilizzo">
-                        Selezionare il criterio di ricerca.
-                    </div>
-                    <div class="alert alert-warning customHidden" id="noOperazioni">
-                        Attenzione non sono presenti operazioni.
-                    </div>
-                    <div id="scrollingContent">
-                        <!-- Operazioni aggiunte dinamicamente -->
-                    </div>
-
-
-                </div>
-
-                <div id="formListaPrint" class="customHidden"></div>
-                <div id="ListaBotton" class="alignRight xMargin20 customHidden">
-                    <input type="button" class='btn btn-primary' disabled id="CancellaSelezione" name="Cancella" value="Cancella Selezionati"/>
-                    <input type="button" class='btn btn-primary' id="Stampa" name="Stampa" value="Stampa"/>
-                </div>
-
-            </div>
-
-
+            <!-- end #content -->
             <div style="clear: both;">&nbsp;</div>
-        </div>
-        <!-- end #content -->
-        <div style="clear: both;">&nbsp;</div>
 
+        </div>
     </div>
     <!-- end #page -->
-
 </div>
 
 <div id="footer">

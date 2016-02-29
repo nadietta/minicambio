@@ -28,6 +28,8 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta
 - css di oro bottone troppo attaccato guardare confronto con altri
 
+- nel backup.zip dovrebbe mettere i dati? capire (NADIA) come funziona. Cosa è il file zip.exe?
+
 
 PC)
 - mettere wamp che si apre automaticamente/togliere skype che si apre automaticamente
@@ -41,6 +43,10 @@ DA FARE NADIA)
 - NuovaOp -> sistemare float ed espressioni regolari FATTO
 - Oro, i bottoni devono stare fuori. Controllare anche gli alert sullo scrolling etc
 
+- css
+- path ambiente per il backup e per estrai report lo deve mettere in download
+- loading backup fare meglio
+- la stampa deve aprirsi su un popup
 
 
 DOMANDE PER SARA)
