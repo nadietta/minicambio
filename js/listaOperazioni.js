@@ -62,7 +62,8 @@ $(document).ready(function() {
             async: false,
             data: {html: html, data: data},
             success: function(data){
-                window.open(data);
+                popupCenter(data,'stampa', '500', '900');
+
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);

@@ -199,8 +199,8 @@ $(document).ready(function() {
             async: false,
             data: {html: html, data:data_stampa},
             success: function(data){
+            popupCenter(data,'stampa', '500', '900');
 
-                window.open(data);
 
             },
             error: function(xhr, desc, err) {

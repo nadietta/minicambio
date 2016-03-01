@@ -15,14 +15,18 @@ function stampaNuovaOperazione(){
             var risultato = $.parseJSON(data);
             var size=(risultato.length);
             for(var i=0; i<size; i++){
-                window.open(risultato[i]);
+
+                popupCenter(risultato[i],'stampa'+i, '500', '900');
+
             }
         },
         error: function(xhr, desc, err) {
             //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
+
     });
+    return false;
 }
 function salvaNuovaOperazione(){
     var formData = $("#nuovaOperazioneForm").serialize();
@@ -42,11 +46,16 @@ function salvaNuovaOperazione(){
                 });
             }
             else{
-                $('#successo').fadeIn(1000, function(){
-                    getValoriNuovaOperazione();
+
+                $('#successo').fadeIn(3000, function(){
+
+                    $('#successo').fadeOut();
+
                    // location.reload();
                  //   opLoad();
                 });
+                getValoriNuovaOperazione();
+
             }
         },
         error: function(xhr, desc, err) {

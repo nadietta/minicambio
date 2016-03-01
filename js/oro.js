@@ -24,7 +24,7 @@ function stampaNuovaOperazione(){
             async: false,
             data: {formData: formData, dataOp: dataOp},
             success: function(data) {
-                window.open(data);
+                popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
@@ -44,7 +44,7 @@ function salvaNuovaOperazione(){
 
         success: function(data) {
             var risultato = $.parseJSON(data);
-            $("#scrollingContent").html("");
+           // $("#scrollingContent").html("");
             if (risultato.errore){
                 $('#errore').fadeIn(2000);
                     setTimeout(function(){
@@ -53,10 +53,14 @@ function salvaNuovaOperazione(){
             }
             else{
                 if(risultato.messaggio){
-                    $('#successo').fadeIn(2000);
-                    setTimeout(function(){
-                        location.reload();
-                    }, 3000);
+                    $('#successo').fadeIn(2000, function(){
+                        $('#successo').fadeOut();
+                    });
+                    newOpOro();
+                    $('#grammi').val('');
+                    $('#prezzo').val('');
+                    $('#carati').val('');
+                    $('#franchi').val('');
                 }
                 //formDataCommit = true;
             }
@@ -66,6 +70,7 @@ function salvaNuovaOperazione(){
             alert("Details: " + desc + "\nError:" + err);
         }
     });
+    return false;
 }
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
@@ -105,6 +110,7 @@ function setNumOpOro(){
 }
 
 function loadOpOro(){
+
         $("#entryContainerTitle").html("Lista Operazioni: Oro");
         //$("#scrollingContent").html("");
         $("#formOperazione").addClass('customHidden');
@@ -151,12 +157,12 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('keyup','#grammi', function(){
+    $(document).on('keyup blur change','#grammi', function(){
         calcolaTotaleOro();
     });
 
 
-    $(document).on('keyup','#prezzo', function(){
+    $(document).on('keyup blur change','#prezzo', function(){
         calcolaTotaleOro();
     });
 
@@ -178,7 +184,7 @@ $(document).ready(function() {
             async: false,
             data: {html: html, data: data_stampa},
             success: function(data){
-                window.open(data);
+                popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
@@ -386,6 +392,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#lista_op", function(e){
         e.preventDefault();
+        $('#successo').fadeOut();
         $("#nuova_op").removeClass("active");
         $("#lista_op").removeClass("active");
         $(this).addClass("active");

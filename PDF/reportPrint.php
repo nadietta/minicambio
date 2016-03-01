@@ -4,6 +4,8 @@ $data=$_POST['data'];
 $fileHtml='../PDF/report.html';
 $listaModel = '../PDF/modello_lista.html';
 $sucesso=true;
+if (file_exists('../PDF/pdf_generate/report.pdf'))
+    unlink('../PDF/pdf_generate/report.pdf');
 if (!copy($listaModel,$fileHtml )) {
     $successo=false;
 } else{

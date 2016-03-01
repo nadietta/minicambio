@@ -3,34 +3,11 @@ NOTE NADIA)
 http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
-- ricontrollare le stampe e se possibile unlink dei file
-- Simboli Euro
-- arrotondamento report va visto lato db se nuova operazione inserisce effettivamente 2 cifre dopo la virgola FATTO!
-
--Testare layout e stampe dopo aver messo il programma come scrociatoia dal desktpo (altri strumento-> aggiungi al desktop  ->apri come finestra
-- Controllare i campi required quando si clicca su altri bottoni non submit. FATTO!
-- getlLastOperazione che succede se non ci sono operazioni? --Ho messo un alert e disabilitato i radio FATTO
-- Controllare slashes e apici prima di scrivere sul db
-- Introdurre l'obbligo dell'esistenza della valuta Franco nel db (e il fatto che non si possa modificare o cancellare in nessun modo)
-    (ne abbiamo parlato un pò già su whatzapp ma vedere meglio) -- I VINCOLI UNIQUE SONO RISPETTATI MA NON STAMPA L'ALERT()
-    Se l'id di Franco non è 1 sputtana tutto. Colonna ValutaPrincipale booleano (propongo assolutamente) -- NON BASTEREBBE VA FATTO LATO APPLICATIVO
-- Impedire modifica ed eliminazione del Franco. Come?-- FATTO LATO APPLICATIVO
-- Ricontrollare da applicazione e db se funzionano i vincoli
-
-- Report: sistemare numero di cifre dopo la virgola PENSO FATTO NEL MOMENTO IN CUI SI HA UN DB PULITO LATO CIFRE DOPO LA VIRGOLA
-- Esporta backup?
-
-- Variabili d'ambiente path backup e report
-- Tasto loading backup si deve attivare subito
-- Guardare stampe per dare ok?
-- da vedere a volte gli eventi sul keyup da fare anche change e blur
-
-- Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta
-- css di oro bottone troppo attaccato guardare confronto con altri
-
-- nel backup.zip dovrebbe mettere i dati? capire (NADIA) come funziona. Cosa è il file zip.exe? è un file per zippare perché
-altrimenti non mi andava ma diredi di scaricare solo .sql ed elimiare il file zip.exe
-
+- Controllare slashes e apici prima di scrivere sul db! HO PROVATO A INSERIRE CARATTERI SPECIALI E MI SEMBRA SIA OK
+-Variabili d'ambiente path backup e report
+- Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta FATTO!
+- Controllare cosa succede quando il db è vuoto LO FA SARA ;)
+- loading backup fare meglio
 
 PC)
 - mettere wamp che si apre automaticamente/togliere skype che si apre automaticamente
@@ -47,18 +24,6 @@ lo apri e in fondo al file aggiungi questa riga (col tuo path utente del pc):
     SetEnv userProfilePath "c:/Users/Nadia/"
  Poi salvi e fai restart di wamp.
  ------------------------------------------------
-
-DA FARE NADIA)
-- Controllare cosa succede quando il db è vuoto
-- Il bottone di nuova valuta/tasso deve comparire anche se il db è vuoto FATTO!
-- NuovaOp -> sistemare float ed espressioni regolari FATTO
-- Oro, i bottoni devono stare fuori. Controllare anche gli alert sullo scrolling etc
-- path ambiente per il backup e per estrai report lo deve mettere in download
-- loading backup fare meglio
-- la stampa deve aprirsi su un popup
-- Sistemare alert piccoli tipo cancella valuta non cancellabile
-
-
 
 
 NOTE SARA)

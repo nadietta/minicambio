@@ -70,7 +70,7 @@ if(isset($formData)) {
             $id = $row[0];
             $valute[$id] = array();
             $valute[$id]['descrizione'] = $row[1];
-            $valute[$id]['simbolo'] = $row[2];
+            $valute[$id]['simbolo'] = htmlEntities($row[2]);
         }
     }
 
@@ -97,7 +97,10 @@ if(isset($formData)) {
 }
 $successo=true;
 $scontrinoModel = '../PDF/modello_scontrino.html';
-
+if (file_exists('../PDF/pdf_generate/scontrino1.pdf'))
+unlink('../PDF/pdf_generate/scontrino1.pdf');
+if (file_exists('../PDF/pdf_generate/scontrino2.pdf'))
+unlink('../PDF/pdf_generate/scontrino2.pdf');
 for ($i = 1; $i <= $numOp; $i++) {
 
     ${"Operazione" . $i} = '../PDF/Operazione' . $i . '.html';
@@ -124,6 +127,7 @@ if($successo) {
     $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
     $data = "@echo off \n";
     for ($i = 1; $i <= $numOp; $i++) {
+
         $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
                     ' ../PDF/Operazione'.$i.'.html' ."   ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";
         $result[$i-1]='..\\PDF\\pdf_generate\\scontrino'.$i.'.pdf';

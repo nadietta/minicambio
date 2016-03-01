@@ -45,7 +45,8 @@ if (isset($_POST['dataOp'])) {
 
 $scontrinoModel = '../PDF/modello_scontrino_oro.html';
 $fileHtml='../PDF/NuovaOpOro.html';
-
+if (file_exists('../PDF/pdf_generate/scontrino_oro.pdf'))
+    unlink('../PDF/pdf_generate/scontrino_oro.pdf');
 $sucesso=true;
 if (!copy($scontrinoModel,$fileHtml )) {
     $successo=false;
