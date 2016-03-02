@@ -215,7 +215,7 @@ $(document).ready(function() {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover '>\n\
                                      <thead><tr>\n\
-                                          <th class='hidden'>ID</th><th class='check_th'></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'><input type='checkbox' id='seltutte'></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
                                           <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
                                          \n\
                                       </tr></thead> ";
@@ -277,12 +277,28 @@ $(document).ready(function() {
     });
 
 
+
     $(document).on('click','.checkClass',function(){
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
             $('#CancellaSelezione').prop('disabled',true);
         } else{
             $('#CancellaSelezione').prop('disabled', false);}
+    });
+
+    $(document).on('click','#seltutte',function(){
+        var nCheck=$( ".checkClass :checked").length;
+
+        if(nCheck==0){
+            $('#CancellaSelezione').prop('disabled',false);
+            $( ".checkClass").each(function(){
+               $(this).find("[type=checkbox]").attr('checked',true);
+            });
+        } else{
+            $( ".checkClass").each(function(){
+                $(this).find("[type=checkbox]").attr('checked',false);
+            });
+            $('#CancellaSelezione').prop('disabled', true);}
     });
 
 
@@ -294,6 +310,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 url: "phpFunctions/deleteOpOro.php",
+                async:false,
                 data: {idOp: idOp},
                 success: function(data){
                     if (data==1){

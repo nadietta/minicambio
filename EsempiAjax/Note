@@ -4,8 +4,6 @@ http://wkhtmltopdf.org/downloads.html
 
 DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Controllare slashes e apici prima di scrivere sul db! HO PROVATO A INSERIRE CARATTERI SPECIALI E MI SEMBRA SIA OK
--Variabili d'ambiente path backup e report
-- Controllare se ci sono altri listener finiti per sbaglio dentro altri listener a loro volta FATTO!
 - Controllare cosa succede quando il db è vuoto LO FA SARA ;)
 - loading backup fare meglio
 
@@ -14,8 +12,7 @@ PC)
 - my sql dump su una cartella dropbox
 - percorso su desktop e preferiti. Chrome che si apre su quella pagina
 - alert su home
--unlink dei file dopo averli aperti da jquery
--paginazione report
+
 
 ------------------------------------------------
 IMPORTANTE BACKUP!!!

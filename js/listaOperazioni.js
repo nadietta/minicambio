@@ -119,6 +119,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 url: "phpFunctions/deleteOp.php",
+                async: false,
                 data: {idOp: idOp},
                 success: function(data)
                 {
@@ -187,7 +188,7 @@ $(document).ready(function() {
                     operazioniDiv += "<br>\n\
                                     <table id='tableListaOperazioni' class='table table-hover tablesorter'>\n\
                                       <thead><tr>\n\
-                                          <th class='hidden'>ID</th><th class='check_th'></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'><input type='checkbox' id='seltutte'></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
                                           <th>IMPORTO ENTRATA</th><th>TASSO&nbsp;&nbsp;&nbsp;</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
                                        </tr></thead><tbody>";
 
@@ -245,6 +246,21 @@ $(document).ready(function() {
             }
         });
         return false;
+    });
+
+    $(document).on('check','#seltutte',function(){
+
+        var nCheck=$( ".checkClass :checked").length;
+        if(nCheck==0){
+            $('#CancellaSelezione').prop('disabled',false);
+            $( ".checkClass").each(function(){
+                $(this).find("[type=checkbox]").attr('checked',true);
+            });
+        } else{
+            $( ".checkClass").each(function(){
+                $(this).find("[type=checkbox]").attr('checked',false);
+            });
+            $('#CancellaSelezione').prop('disabled', true);}
     });
 
     $(document).on("update", "#tableListaOperazioni", function(){

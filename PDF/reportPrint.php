@@ -21,7 +21,7 @@ if (!copy($listaModel,$fileHtml )) {
     $batfile = '../PDF/print_lista.bat';
     $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
     $data = "@echo off \n";
-     $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A4  ".
+     $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --footer-center \"Pag. [page] di [topage]\" --page-size A4 ".
                     " $fileHtml  ..\\PDF\\pdf_generate\\report.pdf \n ";
 
 
