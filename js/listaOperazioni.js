@@ -248,7 +248,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $(document).on('check','#seltutte',function(){
+    $(document).on('click','#seltutte',function(){
 
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
