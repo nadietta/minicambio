@@ -559,6 +559,10 @@ a:hover {
 	display: none;
 }
 
+.loading{
+    background: url(../img/loading-course.gif) no-repeat center center;
+}
+
 .alert-danger {
 	color: #a94442;
 	background-color: #f2dede;

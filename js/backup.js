@@ -21,47 +21,47 @@ function ultimo_backup(){
 }
 
 $(document).ready(function(){
+
     var lastBackup=ultimo_backup();
     if(lastBackup){
-
         $('#info_ultimo_backup').html("<strong>Info!</strong> Ultimo Backup effettuato il: "+lastBackup);
         $('#info_ultimo_backup').fadeIn(3000);
-    }else{  $('#nessun_backup').fadeIn(3000);
-
+    }else{
+        $('#nessun_backup').fadeIn(3000);
     }
 
     $(document).on("click","#esegui_backup", function(e){
         e.preventDefault();
+        $('#entryContainer').addClass("loading");
 
-      //  $("#esegui_backup").prop('clicked',false);
-       // $("#esegui_backup").addClass('customHidden');
-        $('#caricamento').removeClass('customHidden');
+        $.ajax({
+            type:"GET",
+            url: "phpFunctions/eseguiBackup.php",
+            async:false,
+            success: function(data){
+                var risultato= data;
+                if(risultato){
+                    var lastBackup=ultimo_backup();
+                    $('#entryContainer').removeClass("loading");
 
-            $.ajax({
-                type:"GET",
-                url: "phpFunctions/eseguiBackup.php",
-                async:false,
-                success: function(data){
-                    var risultato= data;
-                    if(risultato){
-                        var lastBackup=ultimo_backup();
-
-                        if(lastBackup){
-                            $('#nessun_backup').fadeOut();
-                            $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
-                            $('#info_ultimo_backup').fadeIn(3000);
-                        }else{  $('#nessun_backup').fadeIn(3000);
-
-                        }
+                    if(lastBackup){
+                        $('#nessun_backup').fadeOut();
+                        $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
+                        $('#info_ultimo_backup').fadeIn(3000);
+                    }else{
+                        $('#nessun_backup').fadeIn(3000);
                     }
-
-                },
-                error: function(xhr, desc, err) {
-                    //alert(xhr);
-                    alert("Details: " + desc + "\nError:" + err);
                 }
 
-            });
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+        }
 
 
     });
