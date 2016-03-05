@@ -13,15 +13,9 @@ function stampaNuovaOperazione(){
         data: {formData: formData, dataOp: dataOp},
         success: function(data) {
             var risultato = $.parseJSON(data);
-            var size=(risultato.length);
-            for(var i=0; i<size; i++){
-
-                popupCenter(risultato[i],'stampa'+i, '500', '900');
-
-            }
+            popupCenter(risultato.pdfurl,'stampa', '500', '900');
         },
         error: function(xhr, desc, err) {
-            //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
 

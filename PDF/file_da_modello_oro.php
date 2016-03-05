@@ -3,7 +3,6 @@ include("../connessione.php");
 
 $formData = $_POST['formData'];
 
-
 $risultato = array();
 $risultato['messaggio'] = "";
 $risultato['errore'] = "";
@@ -51,15 +50,13 @@ $sucesso=true;
 if (!copy($scontrinoModel,$fileHtml )) {
     $successo=false;
 } else{
-
     $contenuto_html = file_get_contents($fileHtml);
     $contenuto_html = str_replace("[DATA]", $data,   $contenuto_html);
-    $contenuto_html = str_replace("[PREZZO]", $prezzo,   $contenuto_html);
+    $contenuto_html = str_replace("[PREZZO]", number_format($prezzo, 4, ',', '.'),   $contenuto_html);
     $contenuto_html = str_replace("[CARATI]", $carati,   $contenuto_html);
-    $contenuto_html = str_replace("[GRAMMI]", $grammi,   $contenuto_html);
-    $contenuto_html = str_replace("[FRANCHI]", $franchi,   $contenuto_html);
+    $contenuto_html = str_replace("[GRAMMI]", number_format($grammi, 4, ',', '.'), $contenuto_html);
+    $contenuto_html = str_replace("[FRANCHI]", number_format($franchi, 2, ',', '.'),   $contenuto_html);
     file_put_contents($fileHtml, $contenuto_html);
-
 }
 $pdfFile='../PDF/pdf_generate/scontrino_oro.pdf';
 $batfile = '../PDF/print_scontrino_oro.bat';
@@ -68,12 +65,10 @@ $data = "@echo off \n";
 $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
     " $fileHtml  ..\\PDF\\pdf_generate\\scontrino_oro.pdf \n ";
 
-
 fwrite($handle, $data);
 fclose($handle);
 exec("\"".$batfile."\"");
 unlink( $fileHtml);
 unlink( $batfile);
-
 
 echo $pdfFile;

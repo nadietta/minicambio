@@ -37,7 +37,6 @@ if(isset($formData)) {
         } else {
             $valuta_a1 = $risultato['valutaUscita'];
         }
-
     }
 
     if (isset($risultato['op1tasso'])) {
@@ -96,53 +95,65 @@ if(isset($formData)) {
     }
 }
 $successo=true;
-$scontrinoModel = '../PDF/modello_scontrino.html';
-if (file_exists('../PDF/pdf_generate/scontrino1.pdf'))
-unlink('../PDF/pdf_generate/scontrino1.pdf');
-if (file_exists('../PDF/pdf_generate/scontrino2.pdf'))
-unlink('../PDF/pdf_generate/scontrino2.pdf');
-for ($i = 1; $i <= $numOp; $i++) {
+if ($numOp == 1){
+    $scontrinoModel = '../PDF/modello_scontrino.html';
+}
+else{
+    $scontrinoModel = '../PDF/modello_scontrino_doppio.html';
+}
 
-    ${"Operazione" . $i} = '../PDF/Operazione' . $i . '.html';
+if (file_exists('../PDF/pdf_generate/scontrino.pdf'))
+unlink('../PDF/pdf_generate/scontrino.pdf');
 
-    if (!copy($scontrinoModel, ${"Operazione" . $i})) {
+    $Operazione = '../PDF/Operazione.html';
+
+    if (!copy($scontrinoModel, $Operazione)) {
        $successo=false;
 
     } else {
-        $valuta_da = ${"valuta_da" . $i};
-        $valuta_a = ${"valuta_a" . $i};
-        $contenuto_html = file_get_contents(${"Operazione" . $i});
+        $valuta_da = $valuta_da1;
+        $valuta_a = $valuta_a1;
+        $contenuto_html = file_get_contents($Operazione);
         $contenuto_html = str_replace("[ENTRATA_NOME_VALUTA]", $valute[$valuta_da]['descrizione'],   $contenuto_html);
         $contenuto_html = str_replace("[USCITA_NOME_VALUTA]", $valute[$valuta_a]['descrizione'],  $contenuto_html);
         $contenuto_html = str_replace("[DATA]", $data,   $contenuto_html);
-        $contenuto_html = str_replace("[TASSO_APPLICATO]", ${"tasso" . $i},  $contenuto_html);
-        $contenuto_html = str_replace("[ENTRATA]", ${"entrata" . $i} . " " . $valute[$valuta_da]['simbolo'],   $contenuto_html);
-        $contenuto_html = str_replace("[USCITA]", ${"uscita" . $i} . " " . $valute[$valuta_a]['simbolo'],  $contenuto_html);
-        file_put_contents( ${"Operazione" . $i}, $contenuto_html);
+        $contenuto_html = str_replace("[TASSO_APPLICATO]",number_format($tasso1, 4, ',', '.'),  $contenuto_html);
+        $contenuto_html = str_replace("[ENTRATA]", number_format($entrata1, 2, ',', '.'). " " . $valute[$valuta_da]['simbolo'],   $contenuto_html);
+        $contenuto_html = str_replace("[USCITA]", number_format($uscita1, 2, ',', '.'). " " . $valute[$valuta_a]['simbolo'],  $contenuto_html);
+
+        if ($numOp == 2){
+            $valuta_da = $valuta_da2;
+            $valuta_a = $valuta_a2;
+            $contenuto_html = str_replace("[ENTRATA_NOME_VALUTA2]", $valute[$valuta_da]['descrizione'],   $contenuto_html);
+            $contenuto_html = str_replace("[USCITA_NOME_VALUTA2]", $valute[$valuta_a]['descrizione'],  $contenuto_html);
+            $contenuto_html = str_replace("[DATA2]", $data,   $contenuto_html);
+            $contenuto_html = str_replace("[TASSO_APPLICATO2]", number_format($tasso2, 4, ',', '.'),  $contenuto_html);
+            $contenuto_html = str_replace("[ENTRATA2]", number_format($entrata2, 2, ',', '.') . " " . $valute[$valuta_da]['simbolo'],   $contenuto_html);
+            $contenuto_html = str_replace("[USCITA2]", number_format($uscita2, 2, ',', '.') . " " . $valute[$valuta_a]['simbolo'],  $contenuto_html);
+        }
+        file_put_contents( $Operazione, $contenuto_html);
     }
-}
+
 $result=array();
+
+$result['pdfurl'] = '';
 if($successo) {
     $batfile = '../PDF/print_scontrini.bat';
     $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
     $data = "@echo off \n";
-    for ($i = 1; $i <= $numOp; $i++) {
 
         $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
-                    ' ../PDF/Operazione'.$i.'.html' ."   ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";
-        $result[$i-1]='..\\PDF\\pdf_generate\\scontrino'.$i.'.pdf';
+                    ' ../PDF/Operazione.html' ."   ..\\PDF\\pdf_generate\\scontrino.pdf \n";
+        $result['pdfurl']='..\\PDF\\pdf_generate\\scontrino.pdf';
        // $data.="\"C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe\" /t ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";
 
-    }
 
     fwrite($handle, $data);
     fclose($handle);
 }
 
-    exec("\"".$batfile."\"");
-    for ($i = 1; $i <= $numOp; $i++){
-    unlink(  ${"Operazione" . $i});
-    }
-  unlink($batfile);
+exec("\"".$batfile."\"");
+unlink($Operazione);
+unlink($batfile);
 
 echo json_encode($result);

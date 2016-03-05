@@ -250,7 +250,7 @@ $(document).ready(function() {
 
     $(document).on('click','#seltutte',function(){
 
-        var nCheck=$( ".checkClass :checked").length;
+        var nCheck=$(".checkClass :checked").length;
         if(nCheck==0){
             $('#CancellaSelezione').prop('disabled',false);
             $( ".checkClass").each(function(){
