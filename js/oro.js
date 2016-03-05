@@ -89,7 +89,7 @@ function calcolaTotaleOro(){
     var grammi= $('#grammi').val();
     var prezzo= $('#prezzo').val();
     var totale=grammi*prezzo;
-    $('#franchi').val(totale);
+    $('#franchi').val(totale.toFixed(2));
 }
 
 function setNumOpOro(){
@@ -287,16 +287,18 @@ $(document).ready(function() {
     });
 
     $(document).on('click','#seltutte',function(){
-        var nCheck=$( ".checkClass :checked").length;
+        var nCheck=$( "#seltutte").is( ":checked" );
 
-        if(nCheck==0){
+        if(nCheck){
             $('#CancellaSelezione').prop('disabled',false);
-            $( ".checkClass").each(function(){
-               $(this).find("[type=checkbox]").attr('checked',true);
+            $( ".checkClass").find('[type=checkbox]').each(function(){
+                this.checked = true;
             });
+
         } else{
-            $( ".checkClass").each(function(){
-                $(this).find("[type=checkbox]").attr('checked',false);
+
+            $( ".checkClass").find('[type=checkbox]').each(function(){
+                this.checked = false;
             });
             $('#CancellaSelezione').prop('disabled', true);}
     });
