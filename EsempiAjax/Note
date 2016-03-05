@@ -6,7 +6,8 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Controllare slashes e apici prima di scrivere sul db! HO PROVATO A INSERIRE CARATTERI SPECIALI E MI SEMBRA SIA OK
 - Controllare cosa succede quando il db è vuoto LO FA SARA ;)
 - oro: numeri virgola nell'input Totale Franchi
-- Loading  Report e lista op
+- Loading manca solo sulla stampa di listaOro: succede che se sei già passato da listaOro e poi torni a nuova e inserisci una nuova, poi
+    se torni a listaOperazioni (oro) non si aggiorna...devi cliccare "cerca" per farlo aggiornare
 - Scroll table con head fissa
 
 

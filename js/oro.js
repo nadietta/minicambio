@@ -2,38 +2,36 @@
  * Created by Nadia on 23/01/2016.
  */
 
-function stampaNuovaOperazione(){
-
-        var inpObj = document.getElementById("grammi");
-        if (inpObj.checkValidity() == false ) {
-
-            return false;
-        }
-         inpObj = document.getElementById("prezzo");
-        if (inpObj.checkValidity() == false ) {
-
-            return false;
-        }
-
-        var formData = $("#nuovaOperazioneForm").serialize();
-        var dataOp= $('#dataora').val();
-        var formDataCommit = false;
-        $.ajax({
-            type: "POST",
-            url: "../PDF/file_da_modello_oro.php",
-            async: false,
-            data: {formData: formData, dataOp: dataOp},
-            success: function(data) {
-                popupCenter(data,'stampa', '500', '900');
-            },
-            error: function(xhr, desc, err) {
-                //alert(xhr);
-                alert("Details: " + desc + "\nError:" + err);
+function stampaNuovaOperazione(formData, dataOp, html){
+    /*if (inpObj1.checkValidity() == false){
+        return false;
+    }
+    if (inpObj2.checkValidity() == false){
+        return false;
+    }*/
+    $.ajax({
+        type: "POST",
+        url: "../PDF/file_da_modello_oro.php",
+        async: false,
+        data: {formData: formData, dataOp: dataOp},
+        success: function(data) {
+            if ($('#entryContainer').hasClass('loadingOro')){
+                $('#entryContainer').removeClass("loadingOro");
             }
-        });
+            popupCenter(data,'stampa', '500', '900');
+            $('#scrollingContent').html(html);
+            $.each(formData.split('&'), function (index, elem) {
+                var vals = elem.split('=');
+                $("[name='" + vals[0] + "']").val(decodeURIComponent(vals[1].replace(/\+/g, ' ')));
+            });
+        },
+        error: function(xhr, desc, err) {
+            alert("Details: " + desc + "\nError:" + err);
+        }
+    });
+
 }
-function salvaNuovaOperazione(){
-    var formData = $("#nuovaOperazioneForm").serialize();
+function salvaNuovaOperazione(formData, html){
     var formDataCommit = false;
     var msg='';
     $.ajax({
@@ -41,10 +39,11 @@ function salvaNuovaOperazione(){
         url: "phpFunctions/addOperazioneOro.php",
         data: {formData: formData},
         async: false,
-
         success: function(data) {
             var risultato = $.parseJSON(data);
-           // $("#scrollingContent").html("");
+            if ($('#entryContainer').hasClass('loadingOro')){
+                $('#entryContainer').removeClass("loadingOro");
+            }
             if (risultato.errore){
                 $('#errore').fadeIn(2000);
                     setTimeout(function(){
@@ -53,20 +52,20 @@ function salvaNuovaOperazione(){
             }
             else{
                 if(risultato.messaggio){
-                    $('#successo').fadeIn(2000, function(){
+                    $('#successo').fadeIn(2000);
+                    setTimeout(function(){
                         $('#successo').fadeOut();
-                    });
+                    }, 2000);
+                    $('#scrollingContent').html(html);
                     newOpOro();
                     $('#grammi').val('');
                     $('#prezzo').val('');
                     $('#carati').val('');
                     $('#franchi').val('');
                 }
-                //formDataCommit = true;
             }
         },
         error: function(xhr, desc, err) {
-            //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
     });
@@ -102,7 +101,6 @@ function setNumOpOro(){
             $('#operazione').val(lastOperazione);
         },
         error: function(xhr, desc, err) {
-            //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
     });
@@ -110,14 +108,13 @@ function setNumOpOro(){
 }
 
 function loadOpOro(){
-
-        $("#entryContainerTitle").html("Lista Operazioni: Oro");
-        //$("#scrollingContent").html("");
-        $("#formOperazione").addClass('customHidden');
-        $("#newOpBottoni").addClass('customHidden');
-        $("#formLista").removeClass('customHidden');
-        $("#sceltaLista").removeClass('customHidden');
-        var oroDiv = "";
+    $("#entryContainerTitle").html("Lista Operazioni: Oro");
+    //$("#scrollingContent").html("");
+    $("#formOperazione").addClass('customHidden');
+    $("#newOpBottoni").addClass('customHidden');
+    $("#formLista").removeClass('customHidden');
+    $("#sceltaLista").removeClass('customHidden');
+    var oroDiv = "";
 }
 
 $(document).ready(function() {
@@ -187,7 +184,6 @@ $(document).ready(function() {
                 popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
-                //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
@@ -262,13 +258,10 @@ $(document).ready(function() {
                     $('#ListaOroBotton').removeClass('customHidden');
                 }
                 else{
-                  //  msg = "<br>Nessuna Operazione Presente.";
-                 //   $("#formLista").html(msg);
                     $('#nessuna_op').fadeIn(2000);
                 }
             },
             error: function(xhr, desc, err) {
-                //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
@@ -383,18 +376,33 @@ $(document).ready(function() {
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var btn= $(this).find("input[type=submit]:focus").prop('id');
+        var html= $('#scrollingContent').html();
+
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var dataOp= $('#dataora').val();
+        var inpObj1 = $('#grammi').val();
+        var inpObj2 = $('#prezzo').val();
+
+        $("#scrollingContent").html("");
+        $('#entryContainer').addClass("loadingOro");
+        $('.alert').fadeOut();
+
         switch(btn){
             case 'newOpSalva':
-                salvaNuovaOperazione();
+                salvaNuovaOperazione(formData, html);
                 break;
             case 'newOpStampa':
-                stampaNuovaOperazione();
+                stampaNuovaOperazione(formData, dataOp, html);
                 break;
             case 'newOpSalvaStampa':
-                stampaNuovaOperazione();
-                salvaNuovaOperazione();
+                stampaNuovaOperazione(formData, dataOp, html);
+                salvaNuovaOperazione(formData, html);
                 break;
         }
+        if ($('#entryContainer').hasClass('loadingOro')){
+            $('#entryContainer').removeClass("loadingOro");
+        }
+
         return false;
     });
 
@@ -415,6 +423,7 @@ $(document).ready(function() {
         $(this).addClass("active");
         loadOpOro();
     });
+
     $(document).on("show.bs.modal", ".opDelete-ConfirmDiv", function(e){
         var opId = $(e.relatedTarget).data('op-id');
         $(e.currentTarget).find('#modalDiv').html(opId);

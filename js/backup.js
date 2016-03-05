@@ -63,8 +63,6 @@ $(document).ready(function(){
         if ($('#entryContainer').hasClass('loading')){
             $('#entryContainer').removeClass("loading");
         }
-
-
     });
 
 });

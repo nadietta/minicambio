@@ -2,10 +2,8 @@
  * Created by Nadia on 30/01/2016.
  */
 
-function stampaNuovaOperazione(){
-    var formData = $("#nuovaOperazioneForm").serialize();
-    var dataOp= $('#op1dataora').val();
-    var formDataCommit = false;
+function stampaNuovaOperazione(formData, dataOp, html){
+
     $.ajax({
         type: "POST",
         url: "../PDF/file_da_modello.php",
@@ -13,7 +11,15 @@ function stampaNuovaOperazione(){
         data: {formData: formData, dataOp: dataOp},
         success: function(data) {
             var risultato = $.parseJSON(data);
+            if ($('#entryContainer').hasClass('loading')){
+                $('#entryContainer').removeClass("loading");
+            }
             popupCenter(risultato.pdfurl,'stampa', '500', '900');
+            $('#scrollingContent').html(html);
+            $.each(formData.split('&'), function (index, elem) {
+                var vals = elem.split('=');
+                $("[name='" + vals[0] + "']").val(decodeURIComponent(vals[1].replace(/\+/g, ' ')));
+            });
         },
         error: function(xhr, desc, err) {
             alert("Details: " + desc + "\nError:" + err);
@@ -22,9 +28,7 @@ function stampaNuovaOperazione(){
     });
     return false;
 }
-function salvaNuovaOperazione(){
-    var formData = $("#nuovaOperazioneForm").serialize();
-    var formDataCommit = false;
+function salvaNuovaOperazione(formData, html){
 
     $.ajax({
         type: "POST",
@@ -33,27 +37,25 @@ function salvaNuovaOperazione(){
         data: {formData: formData},
         success: function(data) {
             var risultato = $.parseJSON(data);
-          //  $("#scrollingContent").html("");
+            if ($('#entryContainer').hasClass('loading')){
+                $('#entryContainer').removeClass("loading");
+            }
             if (risultato.errore){
-                $('#errore').fadeIn(2000, function(){
+                $('#errore').fadeIn(2000);
+                setTimeout(function(){
                     location.reload();
-                });
+                }, 3000);
             }
             else{
-
-                $('#successo').fadeIn(3000, function(){
-
+                $('#successo').fadeIn(2000);
+                setTimeout(function(){
                     $('#successo').fadeOut();
-
-                   // location.reload();
-                 //   opLoad();
-                });
+                }, 3000);
+                $('#scrollingContent').html(html);
                 getValoriNuovaOperazione();
-
             }
         },
         error: function(xhr, desc, err) {
-            //alert(xhr);
             alert("Details: " + desc + "\nError:" + err);
         }
     });
@@ -250,21 +252,32 @@ $(document).ready(function() {
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var btn= $(this).find("input[type=submit]:focus").prop('id');
+        var html= $('#scrollingContent').html();
+
+        var formData = $("#nuovaOperazioneForm").serialize();
+        var dataOp= $('#op1dataora').val();
+
+        $("#scrollingContent").html("");
+        $('#entryContainer').addClass("loading");
+        $('.alert').fadeOut();
+
         switch(btn){
             case 'newOpSalva':
-                salvaNuovaOperazione();
+                salvaNuovaOperazione(formData, html);
                 break;
             case 'newOpStampa':
-                stampaNuovaOperazione();
+                stampaNuovaOperazione(formData, dataOp, html);
                 break;
             case 'newOpSalvaStampa':
-                stampaNuovaOperazione();
-                salvaNuovaOperazione();
+                stampaNuovaOperazione(formData, dataOp, html);
+                salvaNuovaOperazione(formData, html);
                 break;
-
         }
-        return false;
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+        }
 
+        return false;
     });
 
 

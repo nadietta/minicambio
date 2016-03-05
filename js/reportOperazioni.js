@@ -40,12 +40,13 @@ $(document).ready(function() {
     $('#a1').val(dateToString(new Date()));
 
     $(document).on("submit", "#listaOperazioniForm", function(){
-        //TODO: paginazione risultati
         //TODO: filtri di ordinamento
-        $("#entryContainerTitle").html("Report Operazioni");
         $("#scrollingContent").html("");
+        $('#entryContainer').addClass("loading");
+        $('.alert').fadeOut();
+
+        $("#entryContainerTitle").html("Report Operazioni");
         var operazioniDiv = "";
-        $('#nessuna_op').fadeOut();
 
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
         var whereVar= "";
@@ -170,12 +171,14 @@ $(document).ready(function() {
 
                     }
                     operazioniDiv += "</table>";
-                    $("#scrollingContent").html(operazioniDiv);
 
+                    $('#entryContainer').removeClass("loading");
+                    $("#scrollingContent").html(operazioniDiv);
                     $('#ListaBotton').removeClass('customHidden');
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);
+                    $('#entryContainer').removeClass("loading");
                 }
             },
             error: function(xhr, desc, err) {
@@ -184,14 +187,21 @@ $(document).ready(function() {
             }
 
         });
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+        }
 
         return false;
     });
+
     $(document).on('click', '#Stampa', function(){
         var html= $('#scrollingContent').html();
         var data_da=$('#da1').val();
         var data_a=$('#a1').val();
         var data_stampa=data_da +" - "+data_a;
+
+        $('#scrollingContent').html("");
+        $('#entryContainer').addClass("loading");
 
         $.ajax({
             type: "POST",
@@ -199,21 +209,22 @@ $(document).ready(function() {
             async: false,
             data: {html: html, data:data_stampa},
             success: function(data){
-            popupCenter(data,'stampa', '500', '900');
-
-
+                $('#entryContainer').removeClass("loading");
+                $('#scrollingContent').html(html);
+                popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
         });
-
-
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+            $('#scrollingContent').html(html);
+        }
     });
 
-    $(document).on('click', '#Salva', function(){
+    /*$(document).on('click', '#Salva', function(){
         var html= $('#scrollingContent').html();
         var data_da=$('#da1').val();
         var data_a=$('#a1').val();
@@ -233,11 +244,9 @@ $(document).ready(function() {
                 //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
-
         });
 
-
-    });
+    });*/
 
 
 });
