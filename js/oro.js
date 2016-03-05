@@ -276,8 +276,6 @@ $(document).ready(function() {
         return false;
     });
 
-
-
     $(document).on('click','.checkClass',function(){
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
@@ -294,13 +292,13 @@ $(document).ready(function() {
             $( ".checkClass").find('[type=checkbox]').each(function(){
                 this.checked = true;
             });
-
-        } else{
-
+        }
+        else{
             $( ".checkClass").find('[type=checkbox]').each(function(){
                 this.checked = false;
             });
-            $('#CancellaSelezione').prop('disabled', true);}
+            $('#CancellaSelezione').prop('disabled', true);
+        }
     });
 
 

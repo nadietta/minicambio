@@ -33,6 +33,7 @@ $(document).ready(function(){
     $(document).on("click","#esegui_backup", function(e){
         e.preventDefault();
         $('#entryContainer').addClass("loading");
+        $('.alert').hide();
 
         $.ajax({
             type:"GET",
@@ -42,15 +43,15 @@ $(document).ready(function(){
                 var risultato= data;
                 if(risultato){
                     var lastBackup=ultimo_backup();
-                    $('#entryContainer').removeClass("loading");
 
                     if(lastBackup){
-                        $('#nessun_backup').fadeOut();
+                        //$('#nessun_backup').fadeOut();
                         $('#info_ultimo_backup').html('<strong>Info!</strong> Ultimo Backup effettuato il: '+lastBackup);
                         $('#info_ultimo_backup').fadeIn(3000);
                     }else{
                         $('#nessun_backup').fadeIn(3000);
                     }
+                    $('#entryContainer').removeClass("loading");
                 }
 
             },

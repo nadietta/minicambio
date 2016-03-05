@@ -248,19 +248,29 @@ $(document).ready(function() {
         return false;
     });
 
-    $(document).on('click','#seltutte',function(){
-
-        var nCheck=$(".checkClass :checked").length;
+    $(document).on('click','.checkClass',function(){
+        var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
-            $('#CancellaSelezione').prop('disabled',false);
-            $( ".checkClass").each(function(){
-                $(this).find("[type=checkbox]").attr('checked',true);
-            });
+            $('#CancellaSelezione').prop('disabled',true);
         } else{
-            $( ".checkClass").each(function(){
-                $(this).find("[type=checkbox]").attr('checked',false);
+            $('#CancellaSelezione').prop('disabled', false);}
+    });
+
+    $(document).on('click','#seltutte',function(){
+        var nCheck=$(this).is(":checked");
+
+        if(nCheck){
+            $('#CancellaSelezione').prop('disabled',false);
+            $( ".checkClass").find('[type=checkbox]').each(function(){
+                this.checked = true;
             });
-            $('#CancellaSelezione').prop('disabled', true);}
+        }
+        else{
+            $( ".checkClass").find('[type=checkbox]').each(function(){
+                this.checked = false;
+            });
+            $('#CancellaSelezione').prop('disabled', true);
+        }
     });
 
     $(document).on("update", "#tableListaOperazioni", function(){
