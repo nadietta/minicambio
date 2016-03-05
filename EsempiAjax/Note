@@ -9,6 +9,7 @@ DA VEDERE/FARE INSIEME O CHI CI ARRIVA PRIMA)
 - Loading manca solo sulla stampa di listaOro: succede che se sei già passato da listaOro e poi torni a nuova e inserisci una nuova, poi
     se torni a listaOperazioni (oro) non si aggiorna...devi cliccare "cerca" per farlo aggiornare
 - Scroll table con head fissa
+- cercare se sono rimasti alert, console.log e TODO sparsi
 
 
 PC)

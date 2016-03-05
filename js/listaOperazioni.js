@@ -50,26 +50,35 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#Stampa', function(){
-        $('#formListaPrint').html($('#scrollingContent').html());
+        var htmlScrollingContent = $('#scrollingContent').html();
+        $('#formListaPrint').html(htmlScrollingContent);
         $('#formListaPrint').find('.bottonTable').remove();
         $('#formListaPrint').find('.check_th').remove();
         $('#formListaPrint').find('.checkClass').remove();
         var data=$('#da1').val()+' - '+ $('#a1').val();
         var html= $('#formListaPrint').html();
+
+        $('#scrollingContent').html("");
+        $('#entryContainer').addClass("loading");
+
         $.ajax({
             type: "POST",
             url: "../PDF/listaOpPrint.php",
             async: false,
             data: {html: html, data: data},
             success: function(data){
+                $('#entryContainer').removeClass("loading");
+                $('#scrollingContent').html(htmlScrollingContent);
                 popupCenter(data,'stampa', '500', '900');
-
             },
             error: function(xhr, desc, err) {
-                //alert(xhr);
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+            $('#scrollingContent').html(htmlScrollingContent);
+        }
     });
 
     $(document).on("click", "#listaOperazioniRadio input:radio", function(){
@@ -148,11 +157,13 @@ $(document).ready(function() {
     $(document).on("submit", "#listaOperazioniForm", function(){
         //TODO: paginazione risultati
         //TODO: filtri di ordinamento
+        //TODO: header deve restare sempre, scrolling solo su tabella
         $("#entryContainerTitle").html("Lista Operazioni");
         $("#scrollingContent").html("");
+        $('#entryContainer').addClass("loading");
+        $('.alert').fadeOut();
 
         var operazioniDiv = "";
-        $('#nessuna_op').fadeOut();
         var checkedRadio = $("input[name='sceltaRadio']:checked").val();
         var whereVar= "";
 
@@ -214,6 +225,8 @@ $(document).ready(function() {
                                         </tr>";
                     }
                     operazioniDiv += "</tbody></table>";
+
+                    $('#entryContainer').removeClass("loading");
                     $("#scrollingContent").html(operazioniDiv);
                     $('#ListaBotton').removeClass('customHidden');
 
@@ -238,6 +251,7 @@ $(document).ready(function() {
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);
+                    $('#entryContainer').removeClass("loading");
                 }
             },
             error: function(xhr, desc, err) {
@@ -245,6 +259,11 @@ $(document).ready(function() {
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
+
+        if ($('#entryContainer').hasClass('loading')){
+            $('#entryContainer').removeClass("loading");
+        }
+
         return false;
     });
 
