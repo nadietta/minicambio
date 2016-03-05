@@ -281,8 +281,9 @@ a:hover {
 
 #entryContainer{
     height:410px;
-    overflow-y: scroll;
+   overflow-y: scroll;
 }
+
 
 .post {
 	overflow: hidden;
