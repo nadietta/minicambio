@@ -29,7 +29,7 @@ $risultato['inserimento']=-1;
 $risultato['errore']='';
 $risultato['messaggio']='';
 
-//TODO: Controllare slashes e apici prima di scrivere sul db
+
 if (isset($nome_valuta) && isset($simbolo_valuta)){
     $query = mysqli_query($conn, "INSERT INTO `valute`(pk_valuta, descrizione, simbolo) VALUES (NULL, '$nome_valuta','$simbolo_valuta')");
     $inserimento = mysqli_affected_rows($conn);

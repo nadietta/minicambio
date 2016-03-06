@@ -36,7 +36,7 @@ else{
     $uscitaOperazione = "";
 }
 
-//TODO: Controllare slashes e apici prima di scrivere sul db
+
 
 if (isset($idOp) && isset($tassoOperazione) && isset($entrataOperazione) && isset($uscitaOperazione)){
     $query ="UPDATE OPERAZIONI SET importo_entrata = '$entrataOperazione', importo_uscita = '$uscitaOperazione', tasso = '$tassoOperazione'

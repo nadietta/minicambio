@@ -256,6 +256,16 @@ $(document).ready(function() {
                                     </div>\n\
                                 </div>");
                     $('#ListaOroBotton').removeClass('customHidden');
+
+                    $("#tableListaOperazioni").tablesorter({
+                        theme: 'blue',
+                        headers: {
+                            1: {sorter: false}
+                        },//headers
+                        // sort on the first column in ascending order
+                        sortList: [0,0]
+                    });
+
                 }
                 else{
                     $('#nessuna_op').fadeIn(2000);
@@ -329,15 +339,6 @@ $(document).ready(function() {
                 }
             });
         });
-    });
-
-    $("#tableListaOperazioni").tablesorter({
-        theme: 'blue',
-        headers: {
-            1: {sorter: false}
-        },//headers
-        // sort on the first column in ascending order
-        sortList: [0,0]
     });
 
     $(document).on("click", "#btnOpDelete", function(){

@@ -155,9 +155,7 @@ $(document).ready(function() {
     });
 
     $(document).on("submit", "#listaOperazioniForm", function(){
-        //TODO: paginazione risultati
-        //TODO: filtri di ordinamento
-        //TODO: header deve restare sempre, scrolling solo su tabella
+
         $("#entryContainerTitle").html("Lista Operazioni");
         $("#scrollingContent").html("");
         $('#entryContainer').addClass("loading");

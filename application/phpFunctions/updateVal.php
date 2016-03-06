@@ -29,7 +29,7 @@ else{
     $valSimbolo = "";
 }
 
-//TODO: Controllare slashes e apici prima di scrivere sul db
+
 
 if (isset($idVal) && isset($valNome) && isset($valSimbolo)){
     $query ="UPDATE VALUTE SET descrizione = '$valNome', simbolo = '$valSimbolo'
