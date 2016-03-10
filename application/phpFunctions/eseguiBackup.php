@@ -22,7 +22,7 @@ $db_pass = '';
 $db_host = 'localhost';
 
 // Percorso completo del backup SQL
-$db_filename = $userDir . '\Downloads\BackupFiles\backup_database.sql';
+$db_filename = $userDir . '\Downloads\BackupFiles\\' . date('Y-m-d') . '_' . time() . '_' . 'backupDB.sql';
 
 //Creo la cartella se non esiste
 if (!is_dir($userDir . '\Downloads\BackupFiles')) {
