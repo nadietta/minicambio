@@ -21,7 +21,7 @@ $db_user = 'root';
 $db_pass = '';
 $db_host = 'localhost';
 
-// Percorso completo del backup SQL
+// Percorso completo del backup SQL. Il file ha nome con data e timestamp
 $db_filename = $userDir . '\Downloads\BackupFiles\\' . date('Y-m-d') . '_' . time() . '_' . 'backupDB.sql';
 
 //Creo la cartella se non esiste
