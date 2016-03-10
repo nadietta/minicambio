@@ -22,7 +22,7 @@ else{
     $valTasso = "";
 }
 
-//TODO: Controllare slashes e apici prima di scrivere sul db
+
 
 if (isset($idTas) && isset($valTasso)){
     $query ="UPDATE TASSI SET valore = '$valTasso'

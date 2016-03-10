@@ -51,7 +51,6 @@ if(isset($formData))
         }
     }
     else{
-        //TODO: fare una transazione per l'operazione doppia
         $valuta_da1 = $risultato['valutaEntrata'];
         $entrata1 = $risultato['op1entrata'];
         $valuta_a1 = $idFranco;

@@ -40,7 +40,7 @@ $(document).ready(function() {
     $('#a1').val(dateToString(new Date()));
 
     $(document).on("submit", "#listaOperazioniForm", function(){
-        //TODO: filtri di ordinamento
+
         $("#scrollingContent").html("");
         $('#entryContainer').addClass("loading");
         $('.alert').fadeOut();

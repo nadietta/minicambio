@@ -3,9 +3,9 @@
  */
 $(document).ready(function() {
 $(document).on('submit','#delete_valuta', function(){
-    alert('');
+
     var id = $.url.attr('id')
-   alert(id);
+
     /**
 
     $.ajax({
