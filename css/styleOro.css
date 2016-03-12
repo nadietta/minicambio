@@ -60,6 +60,12 @@ a {
 a:hover {
 }
 
+.form-control[readonly], fieldset[disabled] .form-control {
+	cursor: pointer;
+	background-color: #eee;
+	opacity: 1;
+}
+
 #wrapper {
 	overflow: auto;
     min-height: 620px;
@@ -262,7 +268,7 @@ a:hover {
 
 #page {
 	overflow: hidden;
-	padding: 20px 20px 0 20px;
+	padding: 20px 0 0 0;
 }
 
 /* Content */
@@ -280,7 +286,7 @@ a:hover {
 }
 
 #entryContainer{
-    height:410px;
+    height:600px;
    overflow-y: scroll;
 }
 
