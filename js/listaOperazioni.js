@@ -45,6 +45,11 @@ $(document).ready(function() {
     $('#da1').val(dateToString(new Date()));
     $('#a1').val(dateToString(new Date()));
 
+    /*$(document).on("hover", ".dtp", function(){
+        console.log("hover");
+        //$(this).css('cursor', 'pointer');
+    });
+*/
     $(document).on("change", ".dtp", function(){
         $('.xdsoft_datetimepicker').hide();
     });

@@ -69,6 +69,12 @@ a {
 a:hover {
 }
 
+.form-control[readonly], fieldset[disabled] .form-control {
+    cursor: pointer;
+    background-color: #eee;
+    opacity: 1;
+}
+
 #wrapper {
 	overflow: auto;
     min-height: 620px;
