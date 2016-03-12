@@ -1,1 +1,0 @@
-C:\wamp\www\minicambio\..\..\bin\mysql\mysql5.6.17\bin\mysqldump  minicambio -u root > c:\Users\Nadia\Downloads\BackupFiles\2016-03-10_1457648967_backupDB.sql 2>&1
