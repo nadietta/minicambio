@@ -217,7 +217,8 @@ $(document).ready(function() {
             success: function(data){
                 $('#entryContainer').removeClass("loading");
                 $('#scrollingContent').html(html);
-                popupCenter(data,'stampa', '500', '900');
+                var nomepopup='stampa'+$.now();
+                popupCenter(data,nomepopup, '500', '900');
             },
             error: function(xhr, desc, err) {
                 //alert(xhr);
