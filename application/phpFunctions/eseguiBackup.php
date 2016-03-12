@@ -54,6 +54,7 @@ if (!$return2){//if (!$return1 && !$return2) {
             ");
     if(mysqli_affected_rows($conn)){
         $risultato['messaggio']="Inserimento avvenuto con successo";
+        unlink($batfileDb);
     }
     echo true;
 }
