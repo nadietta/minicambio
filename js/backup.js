@@ -30,6 +30,12 @@ $(document).ready(function(){
         $('#nessun_backup').fadeIn(3000);
     }
 
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
     $(document).on("click","#esegui_backup", function(e){
         e.preventDefault();
         $('#entryContainer').addClass("loading");

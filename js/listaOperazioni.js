@@ -49,6 +49,12 @@ $(document).ready(function() {
         $('.xdsoft_datetimepicker').hide();
     });
 
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
     $(document).on('click', '#Stampa', function(){
         var htmlScrollingContent = $('#scrollingContent').html();
         $('#formListaPrint').html(htmlScrollingContent);

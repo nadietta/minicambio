@@ -39,6 +39,12 @@ $(document).ready(function() {
     $('#da1').val(dateToString(new Date()));
     $('#a1').val(dateToString(new Date()));
 
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
     $(document).on("submit", "#listaOperazioniForm", function(){
 
         $("#scrollingContent").html("");

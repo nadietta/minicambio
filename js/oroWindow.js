@@ -43,7 +43,11 @@ $(document).ready(function() {
 
     }
 
-
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
 
     $(document).on("click", "#btnValSalva", function(){
         $('#nuovaOperazioneForm').trigger('submit');

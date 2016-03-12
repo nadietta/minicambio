@@ -12,11 +12,13 @@ function calcolaUscita(){
     switch (tipo_operazione){
         case '0'://acquisto DB tipo_op=0 operazione
             uscita=entrata*tasso;
-            $('#uscitaOperazione').val(uscita);
+            var uscitaFormat = uscita.toFixed(2);
+            $('#uscitaOperazione').val(uscitaFormat);
             break;
         case '1'://vendita DB tipo_op=1 operazione
-            uscita=entrata/tasso;
-            $('#uscitaOperazione').val(uscita);
+            uscita=entrata*tasso;
+            var uscitaFormat = uscita.toFixed(2);
+            $('#uscitaOperazione').val(uscitaFormat);
             break;
     }
 
@@ -56,6 +58,12 @@ $(document).ready(function() {
 
     $(document).on('keyup','#entrataOperazione', function(){
         calcolaUscita();
+    });
+
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
     });
 
     $(document).on("submit", "#operazioniWindowForm", function(e){

@@ -163,6 +163,11 @@ $(document).ready(function() {
         calcolaTotaleOro();
     });
 
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
 
     $(document).on('click', '#Stampa', function(){
         $('#formListaPrint').html($('#formLista').html());

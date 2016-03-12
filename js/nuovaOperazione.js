@@ -185,6 +185,12 @@ $(document).ready(function() {
         $('#successo').fadeOut(1000);
     });
 
+    $(document).on("keypress",'body', function(e){
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
     $(document).on("change", "#valutaEntrata", function(){
         var selectedValutaEntrata = $(this).val();
         var selectedValutaUscita = $('#valutaUscita').val();
