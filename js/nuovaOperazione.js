@@ -10,12 +10,13 @@ function stampaNuovaOperazione(formData, dataOp, html){
         async: false,
         data: {formData: formData, dataOp: dataOp},
         success: function(data) {
+
             var risultato = $.parseJSON(data);
             if ($('#entryContainer').hasClass('loading')){
                 $('#entryContainer').removeClass("loading");
             }
-            var nomepopup='stampa'+$.now();
-            popupCenter(risultato.pdfurl,nomepopup, '500', '900');
+             popupCenter(risultato.pdfurl,'stampa', '500', '900');
+
             $('#scrollingContent').html(html);
             $.each(formData.split('&'), function (index, elem) {
                 var vals = elem.split('=');

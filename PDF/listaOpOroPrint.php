@@ -1,4 +1,5 @@
 <?php
+ini_set("error_reporting", 0);
 $html=$_POST['html'];
 $data=$_POST['data'];
 $fileHtml='../PDF/ListaOpOro.html';

@@ -1,5 +1,6 @@
 <?php
 include("../connessione.php");
+//ini_set("error_reporting", 0);
 $valuta_a1="";
 $valuta_a2="";
 $valuta_da1="";
@@ -102,8 +103,10 @@ else{
     $scontrinoModel = '../PDF/modello_scontrino_doppio.html';
 }
 
-if (file_exists('../PDF/pdf_generate/scontrino.pdf'))
-unlink('../PDF/pdf_generate/scontrino.pdf');
+if (file_exists('../PDF/pdf_generate/scontrino.pdf')){
+    unlink('../PDF/pdf_generate/scontrino.pdf');
+}
+
 
     $Operazione = '../PDF/Operazione.html';
 
@@ -142,7 +145,7 @@ if($successo) {
     $handle = fopen($batfile, 'w') or die('Cannot open file:  ' . $batfile);
     $data = "@echo off \n";
 
-        $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5  ".
+        $data .= "..\\PDF\\wkhtmltopdf\\bin\\wkhtmltopdf.exe  --page-size A5 ".
                     ' ../PDF/Operazione.html' ."   ..\\PDF\\pdf_generate\\scontrino.pdf \n";
         $result['pdfurl']='..\\PDF\\pdf_generate\\scontrino.pdf';
        // $data.="\"C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe\" /t ..\\PDF\\pdf_generate\\scontrino$i.pdf \n";

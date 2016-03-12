@@ -18,8 +18,8 @@ function stampaNuovaOperazione(formData, dataOp, html){
             if ($('#entryContainer').hasClass('loadingOro')){
                 $('#entryContainer').removeClass("loadingOro");
             }
-            var nomepopup='stampa'+$.now();
-            popupCenter(data,nomepopup, '500', '900');
+
+            popupCenter(data,'stampa', '500', '900');
             $('#scrollingContent').html(html);
             $.each(formData.split('&'), function (index, elem) {
                 var vals = elem.split('=');
@@ -187,8 +187,8 @@ $(document).ready(function() {
             async: false,
             data: {html: html, data: data_stampa},
             success: function(data){
-                var nomepopup='stampa'+$.now();
-                popupCenter(data,nomepopup, '500', '900');
+
+                popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
                 alert("Details: " + desc + "\nError:" + err);

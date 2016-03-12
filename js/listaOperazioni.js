@@ -75,8 +75,7 @@ $(document).ready(function() {
             success: function(data){
                 $('#entryContainer').removeClass("loading");
                 $('#scrollingContent').html(htmlScrollingContent);
-                var nomepopup='stampa'+$.now();
-                popupCenter(data,nomepopup, '500', '900');
+                popupCenter(data,'stampa', '500', '900');
             },
             error: function(xhr, desc, err) {
                 alert("Details: " + desc + "\nError:" + err);

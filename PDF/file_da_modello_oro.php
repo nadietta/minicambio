@@ -1,6 +1,6 @@
 <?php
 include("../connessione.php");
-
+ini_set("error_reporting", 0);
 $formData = $_POST['formData'];
 
 $risultato = array();
