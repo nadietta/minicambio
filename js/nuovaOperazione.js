@@ -135,7 +135,7 @@ function calcolaUscitaCombinata(){
     var tasso_2 = $('#op2tasso').val();
     var entrata = $('#op1entrata').val();
     entrata=entrata.replace(',', '.' );
-    var uscita=entrata/tasso;
+    var uscita=entrata*tasso;
     var uscitaFormat = uscita.toFixed(2);
     $('#op2entrata').val(uscitaFormat);
     $('#op1uscita').val(uscitaFormat);
@@ -159,7 +159,7 @@ function calcolaUscita(){
             $('#op1uscita').val(uscitaFormat);
             break;
         case '1'://vendita DB tipo_op=1 operazione
-            uscita=entrata/tasso;
+            uscita=entrata*tasso;
             var uscitaFormat = uscita.toFixed(2);
             $('#op1uscita').val(uscitaFormat);
             break;
