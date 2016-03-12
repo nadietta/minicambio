@@ -1,1 +1,0 @@
-C:\Users\Public\..\Nadia\Downloads\BackupFiles\zip -r C:\Users\Public\..\Nadia\Downloads\BackupFiles\backup.zip C:\wamp\www\minicambio 2>&1
