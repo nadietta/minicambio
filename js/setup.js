@@ -276,6 +276,6 @@ $(document).ready(function() {
         $(e.currentTarget).find('#modalDiv').html(tasId);
     });
 
-    $('#valute').trigger('click');
+    $('#tassi').trigger('click');
 
 });
