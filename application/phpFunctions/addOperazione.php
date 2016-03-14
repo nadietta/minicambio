@@ -39,14 +39,24 @@ if(isset($formData))
         $num_op = $risultato['op1operazione'];
         $tipo_op = $risultato['op1tipoOp'];
 
+        $data = DateTime::createFromFormat('d/m/Y H:i', $_POST['data']);
+        $timestamp=$data->format('Y-m-d H:i');
+        mysqli_begin_transaction($conn);
+        $queryUpdate = "UPDATE operazioni SET cod_op = cod_op+1 WHERE cod_op >='$num_op' AND SUBSTRING(cod_op,1,6) = SUBSTRING('$num_op',1,6)ORDER BY cod_op DESC";
+
+        $query2 = mysqli_query($conn,$queryUpdate);
         $query = mysqli_query($conn,
-            "INSERT INTO `operazioni`(pk_operazione, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
-             VALUES (NULL,$valuta_da,$entrata,$valuta_a,$uscita,$tasso,$num_op,$tipo_op);
+            "INSERT INTO `operazioni`(pk_operazione,data_op, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
+             VALUES (NULL,'$timestamp',$valuta_da,$entrata,$valuta_a,$uscita,$tasso,$num_op,$tipo_op);
             ");
-        if(mysqli_affected_rows($conn)){
+
+
+        if($query and $query2){
+            mysqli_commit($conn);
             $risultato['messaggio']="Inserimento avvenuto con successo";
         }
         else {
+            mysqli_rollback($conn);
             $risultato['errore']="Errore, riprovare";
         }
     }
@@ -59,6 +69,8 @@ if(isset($formData))
         $num_op1 = $risultato['op1operazione'];
         $tipo_op1 = $risultato['op1tipoOp'];
 
+        $data = DateTime::createFromFormat('d/m/Y H:i', $_POST['data']);
+        $timestamp=$data->format('Y-m-d H:i');
         $valuta_da2 = $idFranco;
         $entrata2 = $risultato['op2entrata'];
         $valuta_a2 = $risultato['valutaUscita'];
@@ -69,18 +81,23 @@ if(isset($formData))
 
         mysqli_begin_transaction($conn);
 
+        $queryUpdate = "UPDATE operazioni SET cod_op = cod_op+2 WHERE cod_op >='$num_op1' AND SUBSTRING(cod_op,1,6) = SUBSTRING('$num_op1',1,6)ORDER BY cod_op DESC";
+        $query3 = mysqli_query($conn,$queryUpdate);
         $query1 = mysqli_query($conn,
-            "INSERT INTO `operazioni`(pk_operazione, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
-             VALUES (NULL,$valuta_da1,$entrata1,$valuta_a1,$uscita1,$tasso1,$num_op1,$tipo_op1);
+            "INSERT INTO `operazioni`(pk_operazione,data_op, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
+             VALUES (NULL,'$timestamp',$valuta_da1,$entrata1,$valuta_a1,$uscita1,$tasso1,$num_op1,$tipo_op1);
             ");
+        $qu= "INSERT INTO `operazioni`(pk_operazione,data_op, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
+             VALUES (NULL,'$timestamp',$valuta_da1,$entrata1,$valuta_a1,$uscita1,$tasso1,$num_op1,$tipo_op1);
+            ";
 
 
         $query2 = mysqli_query($conn,
-            "INSERT INTO `operazioni`(pk_operazione, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
-             VALUES (NULL,$valuta_da2,$entrata2,$valuta_a2,$uscita2,$tasso2,$num_op2,$tipo_op2);
+            "INSERT INTO `operazioni`(pk_operazione,data_op, fk_valuta_entrata, importo_entrata, fk_valuta_uscita, importo_uscita, tasso, cod_op, tipo_operazione)
+             VALUES (NULL,'$timestamp',$valuta_da2,$entrata2,$valuta_a2,$uscita2,$tasso2,$num_op2,$tipo_op2);
             ");
 
-        if ($query1 && $query2){
+        if ($query1 && $query2 && $query3){
              if(mysqli_commit($conn)){
                  $risultato['messaggio']="Inserimento avvenuto con successo";
              }

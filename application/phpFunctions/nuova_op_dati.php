@@ -72,10 +72,12 @@ else{
 
 }
 
+    $data = DateTime::createFromFormat('d/m/Y H:i', $_POST['data']);
+    $timestamp=$data->format('Y-m-d H:i');
     $query_cod = " SELECT cod_op, SUBSTRING(cod_op,7,9) as cod_2
               FROM operazioni
-              WHERE SUBSTRING(cod_op,1,6) = '$cod'
-              ORDER BY pk_operazione DESC LIMIT 1";
+              WHERE SUBSTRING(cod_op,1,6) = '$cod' and data_op<='$timestamp'
+              ORDER BY cod_op DESC LIMIT 1";
     $result_2 = mysqli_query($conn, $query_cod);
     $row_2 = $result_2->fetch_row();
     $cod_r = $row_2['0'];

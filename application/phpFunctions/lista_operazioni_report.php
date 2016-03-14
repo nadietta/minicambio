@@ -64,7 +64,7 @@ $query ="SELECT pk_operazione, ".
        "AND mese = Month(o1.data_op) ".
        "AND sub_query2.fk_valuta_entrata = o1.fk_valuta_entrata ".
        "AND sub_query2.fk_valuta_uscita = o1.fk_valuta_uscita ".
-"ORDER  BY o1.fk_valuta_entrata, o1.fk_valuta_uscita, mese, data_op ASC";
+"ORDER  BY o1.fk_valuta_entrata, o1.fk_valuta_uscita, mese, data_op, cod_op ASC";
 
 
 //$results_db=mysqli_affected_rows($conn);

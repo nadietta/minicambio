@@ -155,12 +155,12 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('keyup blur change','#grammi', function(){
+    $(document).on('keyup blur change mousewheel','#grammi', function(){
         calcolaTotaleOro();
     });
 
 
-    $(document).on('keyup blur change','#prezzo', function(){
+    $(document).on('keyup blur change mousewheel','#prezzo', function(){
         calcolaTotaleOro();
     });
 

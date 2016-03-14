@@ -30,13 +30,13 @@ function stampaNuovaOperazione(formData, dataOp, html){
     });
     return false;
 }
-function salvaNuovaOperazione(formData, html){
+function salvaNuovaOperazione(formData,data, html){
 
     $.ajax({
         type: "POST",
         url: "phpFunctions/addOperazione.php",
         async: false,
-        data: {formData: formData},
+        data: {formData: formData,data: data},
         success: function(data) {
             var risultato = $.parseJSON(data);
             if ($('#entryContainer').hasClass('loading')){
@@ -54,7 +54,16 @@ function salvaNuovaOperazione(formData, html){
                     $('#successo').fadeOut();
                 }, 3000);
                 $('#scrollingContent').html(html);
-                getValoriNuovaOperazione();
+                getValoriNuovaOperazione(null);
+                $('#op1dataora').datetimepicker({
+                    lang: 'it',
+                    format: 'd/m/Y H:i',
+                    timepicker: true,
+                    scrollMonth: false,
+                    maxDate: new Date()
+
+                });
+
             }
         },
         error: function(xhr, desc, err) {
@@ -63,12 +72,15 @@ function salvaNuovaOperazione(formData, html){
     });
 
 }
-function getValoriNuovaOperazione(){
+function getValoriNuovaOperazione(currentDateTime){
+
     var valuta_da = $('#valutaEntrata').val();
     var valuta_daDesc = $('#valutaEntrata option:selected').html();
     var valuta_a = $('#valutaUscita').val();
     var valuta_aDesc = $('#valutaUscita option:selected').html();
-    var currentDateTime = getCurrentDateTime();
+    var parametro=currentDateTime;
+    if(currentDateTime==null){
+    var currentDateTime = getCurrentDateTime();}
     var cod = currentDateTime.substr(6, 4) + currentDateTime.substr(3, 2);
 
     $('#op1dataora').val(currentDateTime);
@@ -76,34 +88,36 @@ function getValoriNuovaOperazione(){
     $.ajax({
         type: "POST",
         url: "phpFunctions/nuova_op_dati.php",
-        data: {valuta_da: valuta_da, valuta_a: valuta_a, cod: cod},
+        data: {valuta_da: valuta_da, valuta_a: valuta_a, cod: cod, data:currentDateTime},
         success: function(data) {
             var myresponse = $.parseJSON(data);
 
             $("#opTipoOp").val(myresponse.tipo_op);
-
             $("#op1operazione").val(myresponse.cod_op);
-            $("#op1tasso").val(myresponse.tasso);
+            if(parametro==null) {
+            $("#op1tasso").val(myresponse.tasso);}
             if(myresponse.tipo_op=='-1'){
                 $('#formOperazione1 :input').attr('disabled', false);
                 $('#formOperazione2 :input').attr('disabled', false);
                 $('#divOperazione1').removeClass('customHidden');
                 $('#divOperazione2').removeClass('customHidden');
                 $('#newOpBottoni').removeClass('customHidden');
-
-                $("#op1entrata").val("");
-                $("#op1uscita").val("");
-
+                if(parametro==null) {
+                    $("#op1entrata").val("");
+                    $("#op1uscita").val("");
+                }
                 $('#titleOperazione1').html("da "+valuta_daDesc+" a Franco");
                 $('#titleOperazione2').html("da Franco a "+valuta_aDesc);
                 $('#op2dataora').val(currentDateTime);
                 $("#op1tipoOp").val(1);
                 $("#op2tipoOp").val(0);
                 $("#op2operazione").val(myresponse.cod_op_2);
+                if(parametro==null) {
                 $("#op2tasso").val(myresponse.tasso_due);
-                $("#op2entrata").val("");
-                $("#op2uscita").val("");
-            }
+                    $("#op2entrata").val("");
+                    $("#op2uscita").val("");
+                }
+                }
             else{
                 $('#formOperazione1 :input').attr('disabled', false);
                 $('#formOperazione2 :input').attr('disabled', true);
@@ -112,8 +126,9 @@ function getValoriNuovaOperazione(){
                 $('#newOpBottoni').removeClass('customHidden');
 
                 $('#titleOperazione1').html("da "+valuta_daDesc+" a "+valuta_aDesc);
+                if(parametro==null){
                 $("#op1entrata").val("");
-                $("#op1uscita").val("");
+                $("#op1uscita").val("");}
                 $('#titleOperazione2').html("da valuta a valuta");
                 $('#op2dataora').val("");
                 $("#op2operazione").val("");
@@ -208,7 +223,7 @@ $(document).ready(function() {
 
         if (newselectedValutaEntrata && newselectedValutaUscita){
             $('#invertiBtn').attr('disabled',false);
-            getValoriNuovaOperazione();
+            getValoriNuovaOperazione(null);
         }
         else{
             $('#invertiBtn').attr('disabled',true);
@@ -222,7 +237,7 @@ $(document).ready(function() {
 
         if (selectedValutaEntrata && selectedValutaUscita){
             $('#invertiBtn').attr('disabled',false);
-            getValoriNuovaOperazione();
+            getValoriNuovaOperazione(null);
         }
         else{
             $('#invertiBtn').attr('disabled',true);
@@ -246,22 +261,22 @@ $(document).ready(function() {
         $('#valutaEntrata').trigger('change');
     });
 
-    $(document).on('keyup blur change','#op1entrata', function(){
+    $(document).on('keyup blur change mousewheel','#op1entrata', function(){
         calcolaUscita();
     });
 
-    $(document).on('keyup blur change','#op1tasso', function(){
+    $(document).on('keyup blur change mousewheel','#op1tasso', function(){
         calcolaUscita ();
     });
 
-    $(document).on('keyup blur change','#op2tasso', function(){
+    $(document).on('keyup blur change mousewheel','#op2tasso', function(){
         calcolaUscitaCombinata ();
     });
 
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var btn= $(this).find("input[type=submit]:focus").prop('id');
         var html= $('#scrollingContent').html();
-
+        var dataop=$('#op1dataora').val();
         var formData = $("#nuovaOperazioneForm").serialize();
         var dataOp= $('#op1dataora').val();
 
@@ -271,10 +286,10 @@ $(document).ready(function() {
 
         switch(btn){
             case 'newOpSalva':
-                salvaNuovaOperazione(formData, html);
+                salvaNuovaOperazione(formData,dataop, html);
                 break;
             case 'newOpStampa':
-                stampaNuovaOperazione(formData, dataOp, html);
+                stampaNuovaOperazione(formData, dataOp,dataop, html);
                 break;
             case 'newOpSalvaStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
@@ -287,6 +302,19 @@ $(document).ready(function() {
 
         return false;
     });
+    $(document).on(' change','#op1dataora', function(){
+      $("#op2dataora").val($(this).val());
+        getValoriNuovaOperazione($(this).val());
+    });
+    $('#op1dataora').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y H:i',
+        timepicker: true,
+        scrollMonth: false,
+        maxDate: new Date()
+
+    });
+
 
 
 
