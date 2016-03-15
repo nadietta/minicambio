@@ -32,13 +32,13 @@ function stampaNuovaOperazione(formData, dataOp, html){
     });
 
 }
-function salvaNuovaOperazione(formData, html){
+function salvaNuovaOperazione(formData, dataOp,html){
     var formDataCommit = false;
     var msg='';
     $.ajax({
         type: "POST",
         url: "phpFunctions/addOperazioneOro.php",
-        data: {formData: formData},
+        data: {formData: formData, dataop:dataOp},
         async: false,
         success: function(data) {
             var risultato = $.parseJSON(data);
@@ -75,6 +75,7 @@ function salvaNuovaOperazione(formData, html){
 function newOpOro(){
     $("#entryContainerTitle").html("Nuova Operazione: ORO");
     $("#formLista").addClass('customHidden');
+    $("#formLista").html('');
     $('#ListaOroBotton').addClass('customHidden');
     $("#formOperazione").removeClass('customHidden');
     $("#newOpBottoni").removeClass('customHidden');
@@ -94,8 +95,10 @@ function calcolaTotaleOro(){
 
 function setNumOpOro(){
     var lastOperazione = "";
+    var datascelta=$('#dataora').val();
     $.ajax({
-        type: "GET",
+        type: "POST",
+        data: {datascelta:datascelta},
         url: "phpFunctions/getLastOperazioneOro.php",
         success: function(data) {
             lastOperazione= data;
@@ -132,6 +135,12 @@ $(document).ready(function() {
             });
         }
     });
+    $('#dataora').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y H:i',
+        scrollMonth: false,
+        maxDate: new Date()
+    });
 
     $('#da').datetimepicker({
         lang: 'it',
@@ -162,6 +171,9 @@ $(document).ready(function() {
 
     $(document).on('keyup blur change mousewheel','#prezzo', function(){
         calcolaTotaleOro();
+    });
+    $(document).on('change','#dataora', function(){
+        setNumOpOro();
     });
 
     $(document).on("keypress",'body', function(e){
@@ -394,17 +406,16 @@ $(document).ready(function() {
         $("#scrollingContent").html("");
         $('#entryContainer').addClass("loadingOro");
         $('.alert').fadeOut();
-
         switch(btn){
             case 'newOpSalva':
-                salvaNuovaOperazione(formData, html);
+                salvaNuovaOperazione(formData,dataOp, html);
                 break;
             case 'newOpStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
                 break;
             case 'newOpSalvaStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
-                salvaNuovaOperazione(formData, html);
+                salvaNuovaOperazione(formData,dataOp, html);
                 break;
         }
         if ($('#entryContainer').hasClass('loadingOro')){

@@ -30,15 +30,20 @@
             $carati = $risultato['carati'];
             $prezzo =  round($risultato['prezzo'],4);
             $franchi_arrotondamento = round($risultato['franchi'],2);
-
+            $data = DateTime::createFromFormat('d/m/Y H:i', $_POST['dataop']);
+            $timestamp=$data->format('Y-m-d H:i');
+            mysqli_begin_transaction($conn);
+            $query2 = mysqli_query($conn, "UPDATE `operazioni_oro` SET cod_op_oro = cod_op_oro+1 WHERE cod_op_oro >=$operazione ORDER BY cod_op_oro DESC");
             $query = mysqli_query($conn,
-                "INSERT INTO `operazioni_oro`(pk_op_oro, cod_op_oro, grammi, carati, prezzo, totale)
-                  VALUES (NULL,$operazione,$grammi,$carati,$prezzo,$franchi_arrotondamento);
+                "INSERT INTO `operazioni_oro`(pk_op_oro,data_op, cod_op_oro, grammi, carati, prezzo, totale)
+                  VALUES (NULL,'$timestamp',$operazione,$grammi,$carati,$prezzo,$franchi_arrotondamento);
                 ");
-            if($query){
+            if($query && $query2){
+                mysqli_commit($conn);
                 $risultato['messaggio']="Inserimento avvenuto con successo";
             }
             else {
+                mysqli_rollback($conn);
                 $risultato['errore']="Errore, riprovare";
 
 
