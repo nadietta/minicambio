@@ -66,7 +66,24 @@ $(document).ready(function() {
         $('#formListaPrint').find('.bottonTable').remove();
         $('#formListaPrint').find('.check_th').remove();
         $('#formListaPrint').find('.checkClass').remove();
-        var data=$('#da1').val()+' - '+ $('#a1').val();
+
+        var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
+
+        switch (sceltaRadio){
+            case '1':
+                data = "Date: " + $('#da1').val()+' - '+ $('#a1').val();
+                break;
+            case '2':
+                data = "Op: " + $('#da2').val()+' - '+ $('#a2').val();
+                break;
+            case '3':
+                data = "Entrata almeno: " + $('#da3').val()+' ['+ $('#valuta3').text() + ']';
+                break;
+            case '4':
+                data = "Uscita almeno: " + $('#da4').val()+' ['+ $('#valuta4').text() + ']';
+                break;
+        }
+
         var html= $('#formListaPrint').html();
 
         $('#scrollingContent').html("");
@@ -127,8 +144,11 @@ $(document).ready(function() {
 
         if(nCheck==0){
             $('#CancellaSelezione').prop('disabled', true);
+            $('#StampaSelezione').prop('disabled', true);
         } else{
-        $('#CancellaSelezione').prop('disabled', false);}
+            $('#CancellaSelezione').prop('disabled', false);
+            $('#StampaSelezione').prop('disabled', false);
+        }
     });
 
 
@@ -163,6 +183,104 @@ $(document).ready(function() {
             });
 
         });
+    });
+
+    $(document).on('click','#StampaSelezione',function(){
+        //var checkedLista = new Array();
+        var whereVar = "pk_operazione IN (";
+
+        $( ".checkClass :checked").each(function(){
+            //console.log($(this).closest("tr").find("td:lt(4)"));
+            var select = $(this);
+            var idOp = select.attr('id');
+            //checkedLista.push(idOp);
+            whereVar += '\''+idOp+'\''+',';
+        });
+
+        whereVar = whereVar.substring(0,whereVar.length - 1);
+        whereVar += ')';
+        var operazioniDiv = "";
+
+        $.ajax({
+            type: "POST",
+            url: "phpFunctions/lista_operazioni.php",
+            async: false,
+            data: {where_data: whereVar},
+            success: function(data) {
+                var operazioni = $.parseJSON(data);
+                if (operazioni.length>0) {
+
+                    operazioniDiv += "<br>\n\
+                                    <table id='tableListaOperazioni' class='table table-hover tablesorter'>\n\
+                                      <thead><tr>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'><input type='checkbox' id='seltutte'></th><th>OPERAZIONE</th><th>DATA</th><th>VALUTA ENTRATA</th>\n\
+                                          <th>IMPORTO ENTRATA</th><th>TASSO&nbsp;&nbsp;&nbsp;</th><th>VALUTA USCITA</th><th>IMPORTO USCITA</th>\n\
+                                       </tr></thead><tbody>";
+
+                    for (var i = 0; i < operazioni.length; i++) {
+                        operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
+                                            <td class='checkClass'><input type='checkbox' id="+operazioni[i].id +"></td>\n\
+                                            <td class='opOperazioneClass'>"+ operazioni[i].cod_op +"</td>\n\
+                                            <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
+                                            <td class='opValutaEntrataClass'>"+ operazioni[i].valuta_entrata +"</td>\n\
+                                            <td class='opImportoEntrataClass'>"+ operazioni[i].importo_entrata +"</td>\n\
+                                            <td class='opTassoClass'>"+ operazioni[i].tasso +"</td>\n\
+                                            <td class='opValutaUscitaClass'>"+ operazioni[i].valuta_uscita +"</td>\n\
+                                            <td class='opImportoUscitaClass'>"+ operazioni[i].importo_uscita +"</td>\n\
+                                        </tr>";
+                    }
+                    operazioniDiv += "</tbody></table>";
+
+                    var htmlScrollingContent = operazioniDiv;
+                    $('#formListaPrint').html(htmlScrollingContent);
+                    $('#formListaPrint').find('.bottonTable').remove();
+                    $('#formListaPrint').find('.check_th').remove();
+                    $('#formListaPrint').find('.checkClass').remove();
+
+                    var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
+
+                    switch (sceltaRadio){
+                        case '1':
+                            data2 = "Date: " + $('#da1').val()+' - '+ $('#a1').val();
+                            break;
+                        case '2':
+                            data2 = "Op: " + $('#da2').val()+' - '+ $('#a2').val();
+                            break;
+                        case '3':
+                            data2 = "Entrata almeno: " + $('#da3').val()+' ['+ $('#valuta3').text() + ']';
+                            break;
+                        case '4':
+                            data2 = "Uscita almeno: " + $('#da4').val()+' ['+ $('#valuta4').text() + ']';
+                            break;
+                    }
+
+                    var html= $('#formListaPrint').html();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../PDF/listaOpPrint.php",
+                        async: false,
+                        data: {html: html, data: data2},
+                        success: function(data2){
+                            popupCenter(data2,'stampa', '500', '900');
+                        },
+                        error: function(xhr, desc, err) {
+                            alert("Details: " + desc + "\nError:" + err);
+                        }
+                    });
+
+                }
+                else{
+                    //TODO: con gli alert colorati
+                    alert("Nessuna Operazione Selezionata");
+                }
+            },
+            error: function(xhr, desc, err) {
+                //alert(xhr);
+                alert("Details: " + desc + "\nError:" + err);
+            }
+        });
+
     });
 
     $(document).on("submit", "#listaOperazioniForm", function(){
@@ -280,8 +398,11 @@ $(document).ready(function() {
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
             $('#CancellaSelezione').prop('disabled',true);
+            $('#StampaSelezione').prop('disabled',true);
         } else{
-            $('#CancellaSelezione').prop('disabled', false);}
+            $('#CancellaSelezione').prop('disabled', false);
+            $('#StampaSelezione').prop('disabled', false);
+        }
     });
 
     $(document).on('click','#seltutte',function(){
@@ -289,6 +410,7 @@ $(document).ready(function() {
 
         if(nCheck){
             $('#CancellaSelezione').prop('disabled',false);
+            $('#StampaSelezione').prop('disabled',false);
             $( ".checkClass").find('[type=checkbox]').each(function(){
                 this.checked = true;
             });
@@ -298,6 +420,7 @@ $(document).ready(function() {
                 this.checked = false;
             });
             $('#CancellaSelezione').prop('disabled', true);
+            $('#StampaSelezione').prop('disabled', true);
         }
     });
 

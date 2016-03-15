@@ -15,7 +15,7 @@ function popupCenter(url, title, w, h) {
     var top = (screen.height/3)-(h/3);**/
     var timestamp=$.now();
     var win= window.open(url, title+''+timestamp, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-    console.log(""+url+", title+''+timestamp, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left");
+    //console.log(""+url+", title+''+timestamp, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left");
     return win;
 }
 
