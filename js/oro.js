@@ -82,6 +82,12 @@ function newOpOro(){
     $("#sceltaLista").addClass('customHidden');
     var currentDateTime = getCurrentDateTime();
     var cod = currentDateTime.substr(6, 4) + currentDateTime.substr(3, 2);
+    $('#dataora').datetimepicker({
+        lang: 'it',
+        format: 'd/m/Y H:i',
+        scrollMonth: false,
+        maxDate: new Date()
+    });
     $('#dataora').val(currentDateTime);
     setNumOpOro();
 }
@@ -183,30 +189,50 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#Stampa', function(){
-        $('#formListaPrint').html($('#formLista').html());
-        $('#formListaPrint').find('.bottonTable').remove();
-        $('#formListaPrint').find('.check_th').remove();
-        $('#formListaPrint').find('.checkClass').remove();
-        var data_da=$('#da').val();
-        var data_a =$('#a').val();
-        var data_stampa=data_da+" - "+ data_a;
+        var num=$('tr').find('.checkClass').size();
+        if(num>1) {
+            $('#formListaPrint').html($('#formLista').html());
+            $('#formListaPrint').find('.bottonTable').remove();
+            $('#formListaPrint').find('.check_th').remove();
+            $('#formListaPrint').find('.checkClass').remove();
+            var data_da = $('#da').val();
+            var data_a = $('#a').val();
+            var data_stampa = data_da + " - " + data_a;
 
-        var html= $('#formListaPrint').html();
+            var html = $('#formListaPrint').html();
 
-        $.ajax({
-           type: "POST",
-            url: "../PDF/listaOpOroPrint.php",
-            async: false,
-            data: {html: html, data: data_stampa},
-            success: function(data){
+            $.ajax({
+                type: "POST",
+                url: "../PDF/listaOpOroPrint.php",
+                async: false,
+                data: {html: html, data: data_stampa},
+                success: function (data) {
 
-                popupCenter(data,'stampa', '500', '900');
-            },
-            error: function(xhr, desc, err) {
-                alert("Details: " + desc + "\nError:" + err);
-            }
-        });
+                    popupCenter(data, 'stampa', '500', '900');
+                },
+                error: function (xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+        }
+        if(num==1){
 
+            var id= $( ".checkClass").find('[type=checkbox]').attr('id');
+            $.ajax({
+                type: "POST",
+                url: "../PDF/file_da_modello_oro_singola_op.php",
+                async: false,
+                data: {id:id},
+                success: function(data){
+                    popupCenter(data,'stampa', '500', '900');
+
+                },
+                error: function(xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+
+        }
     });
 
     $(document).on("submit", "#caricaListaOperazioni", function(){
@@ -302,8 +328,10 @@ $(document).ready(function() {
         var nCheck=$( ".checkClass :checked").length;
         if(nCheck==0){
             $('#CancellaSelezione').prop('disabled',true);
+            $('#StampaSelezione').prop('disabled', true);
         } else{
-            $('#CancellaSelezione').prop('disabled', false);}
+            $('#CancellaSelezione').prop('disabled', false);
+            $('#StampaSelezione').prop('disabled', false);}
     });
 
     $(document).on('click','#seltutte',function(){
@@ -311,6 +339,7 @@ $(document).ready(function() {
 
         if(nCheck){
             $('#CancellaSelezione').prop('disabled',false);
+            $('#StampaSelezione').prop('disabled', false);
             $( ".checkClass").find('[type=checkbox]').each(function(){
                 this.checked = true;
             });
@@ -320,7 +349,120 @@ $(document).ready(function() {
                 this.checked = false;
             });
             $('#CancellaSelezione').prop('disabled', true);
+            $('#StampaSelezione').prop('disabled', true);
         }
+    });
+
+
+
+    $(document).on('click','#StampaSelezione',function(){
+
+        var whereVar = "pk_op_oro IN (";
+        var num=0;
+        $( ".checkClass :checked").each(function(){
+            //console.log($(this).closest("tr").find("td:lt(4)"));
+            var select = $(this);
+            var idOp = select.attr('id');
+            //checkedLista.push(idOp);
+            whereVar += '\''+idOp+'\''+',';
+            num++;
+        });
+
+        whereVar = whereVar.substring(0,whereVar.length - 1);
+        whereVar += ')';
+        var operazioniDiv = "";
+
+        if(num>1){
+            $.ajax({
+                type: "POST",
+                url: "phpFunctions/lista_operazioni_oro.php",
+                async: false,
+                data: {where_data: whereVar},
+                success: function(data) {
+                    var operazioni = $.parseJSON(data);
+                    if (operazioni.length>0) {
+                        operazioniDiv += "<br>\n\
+                                    <table id='tableListaOperazioni' class='table table-hover '>\n\
+                                     <thead><tr>\n\
+                                          <th class='hidden'>ID</th><th class='check_th'><input type='checkbox' id='seltutte'></th><th>OPERAZIONE</th><th class='shortDate dateFormat-ddmmyyyy'>DATA</th><th>GRAMMI</th>\n\
+                                          <th>CARATI</th><th>PREZZO</th><th>TOTALE (CHF)</th>\n\
+                                         \n\
+                                      </tr></thead> ";
+
+                        for (var i = 0; i < operazioni.length; i++) {
+
+                            operazioniDiv += "<tr id='trIdOp_"+ operazioni[i].id +"'><td class='hidden'>"+ operazioni[i].id +"</td>\n\
+                                           <td class='checkClass'><input type='checkbox' id="+operazioni[i].id +"></td>\n\
+                                            <td class='opOperazioneClass'>"+ operazioni[i].cod_op_oro +"</td>\n\
+                                            <td class='opDataClass'>"+ operazioni[i].data_op +"</td>\n\
+                                            <td class='opGrammiClass'>"+ operazioni[i].grammi +" gr</td>\n\
+                                            <td class='opCaratiClass'>"+ operazioni[i].carati +"</td>\n\
+                                            <td class='opPrezzoClass'>"+ operazioni[i].prezzo +" CHF</td>\n\
+                                            <td class='opTotaleClass'>"+ operazioni[i].totale +" CHF</td>\n\
+                                        </tr>";
+                        }
+                        operazioniDiv += "</tbody></table>";
+
+                        var htmlScrollingContent = operazioniDiv;
+                        $('#formListaPrint').html(htmlScrollingContent);
+                        $('#formListaPrint').find('.bottonTable').remove();
+                        $('#formListaPrint').find('.check_th').remove();
+                        $('#formListaPrint').find('.checkClass').remove();
+
+                        var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
+
+                        var data_da=$('#da').val();
+                        var data_a =$('#a').val();
+                        var data_stampa=data_da+" - "+ data_a;
+
+                        var html= $('#formListaPrint').html();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "../PDF/listaOpOroPrint.php",
+                            async: false,
+                            data: {html: html, data: data_stampa},
+                            success: function(data){
+
+                                popupCenter(data,'stampa', '500', '900');
+                            },
+                            error: function(xhr, desc, err) {
+                                alert("Details: " + desc + "\nError:" + err);
+                            }
+                        });
+
+
+                    }
+                    else{
+                        //TODO: con gli alert colorati
+                        alert("Nessuna Operazione Selezionata");
+                    }
+                },
+                error: function(xhr, desc, err) {
+                    //alert(xhr);
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+        }
+        if(num==1){
+
+            var id= $( ".checkClass :checked").attr('id');
+            $.ajax({
+                type: "POST",
+                url: "../PDF/file_da_modello_oro_singola_op.php",
+                async: false,
+                data: {id:id},
+                success: function(data){
+                    popupCenter(data,'stampa', '500', '900');
+
+                },
+                error: function(xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+
+        }
+
     });
 
 

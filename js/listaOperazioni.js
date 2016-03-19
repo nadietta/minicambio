@@ -61,48 +61,70 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#Stampa', function(){
-        var htmlScrollingContent = $('#scrollingContent').html();
-        $('#formListaPrint').html(htmlScrollingContent);
-        $('#formListaPrint').find('.bottonTable').remove();
-        $('#formListaPrint').find('.check_th').remove();
-        $('#formListaPrint').find('.checkClass').remove();
+        var num=$('tr').find('.checkClass').size();
+        if(num>1) {
+            var htmlScrollingContent = $('#scrollingContent').html();
+            $('#formListaPrint').html(htmlScrollingContent);
+            $('#formListaPrint').find('.bottonTable').remove();
+            $('#formListaPrint').find('.check_th').remove();
+            $('#formListaPrint').find('.checkClass').remove();
 
-        var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
+            var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
 
-        switch (sceltaRadio){
-            case '1':
-                data = "Date: " + $('#da1').val()+' - '+ $('#a1').val();
-                break;
-            case '2':
-                data = "Op: " + $('#da2').val()+' - '+ $('#a2').val();
-                break;
-            case '3':
-                data = "Entrata almeno: " + $('#da3').val()+' ['+ $('#valuta3').text() + ']';
-                break;
-            case '4':
-                data = "Uscita almeno: " + $('#da4').val()+' ['+ $('#valuta4').text() + ']';
-                break;
+            switch (sceltaRadio) {
+                case '1':
+                    data = "Date: " + $('#da1').val() + ' - ' + $('#a1').val();
+                    break;
+                case '2':
+                    data = "Op: " + $('#da2').val() + ' - ' + $('#a2').val();
+                    break;
+                case '3':
+                    data = "Entrata almeno: " + $('#da3').val() + ' [' + $('#valuta3').text() + ']';
+                    break;
+                case '4':
+                    data = "Uscita almeno: " + $('#da4').val() + ' [' + $('#valuta4').text() + ']';
+                    break;
+            }
+
+            var html = $('#formListaPrint').html();
+
+            $('#scrollingContent').html("");
+            $('#entryContainer').addClass("loading");
+
+            $.ajax({
+                type: "POST",
+                url: "../PDF/listaOpPrint.php",
+                async: false,
+                data: {html: html, data: data},
+                success: function (data) {
+                    $('#entryContainer').removeClass("loading");
+                    $('#scrollingContent').html(htmlScrollingContent);
+                    popupCenter(data, 'stampa', '500', '900');
+                },
+                error: function (xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+
         }
 
-        var html= $('#formListaPrint').html();
+        if(num==1){
+            var id= $( ".checkClass").find('[type=checkbox]').attr('id');
+            $.ajax({
+                type: "POST",
+                url: "../PDF/file_da_modello_singola_op.php",
+                async: false,
+                data: {id:id},
+                success: function(data){
+                    popupCenter(data,'stampa', '500', '900');
 
-        $('#scrollingContent').html("");
-        $('#entryContainer').addClass("loading");
+                },
+                error: function(xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
 
-        $.ajax({
-            type: "POST",
-            url: "../PDF/listaOpPrint.php",
-            async: false,
-            data: {html: html, data: data},
-            success: function(data){
-                $('#entryContainer').removeClass("loading");
-                $('#scrollingContent').html(htmlScrollingContent);
-                popupCenter(data,'stampa', '500', '900');
-            },
-            error: function(xhr, desc, err) {
-                alert("Details: " + desc + "\nError:" + err);
-            }
-        });
+        }
         if ($('#entryContainer').hasClass('loading')){
             $('#entryContainer').removeClass("loading");
             $('#scrollingContent').html(htmlScrollingContent);
@@ -121,6 +143,8 @@ $(document).ready(function() {
         $('#listaOperazioniValoriRadio'+checkedRadio).removeClass('customHidden');
         $('#listaOpSubmitDiv :input').attr('disabled', false);
         $('#listaOpSubmitDiv').removeClass('customHidden');
+        $('#CancellaSelezione').prop('disabled',true);
+        $('#StampaSelezione').prop('disabled',true);
 
         switch (checkedRadio){
             case '2':
@@ -188,19 +212,20 @@ $(document).ready(function() {
     $(document).on('click','#StampaSelezione',function(){
         //var checkedLista = new Array();
         var whereVar = "pk_operazione IN (";
-
+        var num=0;
         $( ".checkClass :checked").each(function(){
             //console.log($(this).closest("tr").find("td:lt(4)"));
             var select = $(this);
             var idOp = select.attr('id');
             //checkedLista.push(idOp);
             whereVar += '\''+idOp+'\''+',';
+            num++;
         });
 
         whereVar = whereVar.substring(0,whereVar.length - 1);
         whereVar += ')';
         var operazioniDiv = "";
-
+        if(num>1){
         $.ajax({
             type: "POST",
             url: "phpFunctions/lista_operazioni.php",
@@ -269,6 +294,7 @@ $(document).ready(function() {
                         }
                     });
 
+
                 }
                 else{
                     //TODO: con gli alert colorati
@@ -280,6 +306,24 @@ $(document).ready(function() {
                 alert("Details: " + desc + "\nError:" + err);
             }
         });
+        }
+        if(num==1){
+            var id= $( ".checkClass :checked").attr('id');
+            $.ajax({
+                type: "POST",
+                url: "../PDF/file_da_modello_singola_op.php",
+                async: false,
+                data: {id:id},
+                success: function(data){
+                    popupCenter(data,'stampa', '500', '900');
+
+                },
+                error: function(xhr, desc, err) {
+                    alert("Details: " + desc + "\nError:" + err);
+                }
+            });
+
+        }
 
     });
 
