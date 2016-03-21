@@ -24,6 +24,14 @@ PC)
 - percorso su desktop e preferiti. Chrome che si apre su quella pagina
 
 
+--------
+
+20 MARZO
+
+- Nuova Operazione: Tasto Stampa. Clicco Stampa e pdf ok, ma sulla pagina scompare tutto e ci viene solo una scritta con data e ora e bisogna aggiornare la pagina per riavere i campi. Il tasto Stampa dovrebbe lasciare tutto invariato (anche i campi riempiti) se non ricordo male.
+- Nuova Operazione: Tasto Salve e Stampa non funziona. Non dà più il messaggio di successo e dopo la comparsa del pdf la pagina risulta vuota. L'operazione non viene memorizzata.
+- Lista Operazioni (questa è una cazzata invece): secondo me nel caso in cui si selezionano solo alcune operazioni da stampare, nel pdf non ci dovrebbe venire il criterio nel titolo (esempio: scelgo di visualizzare per Intervallo Operazioni, nel pdf anche se sto visualizzando solo 3 operazioni mi dice nel titolo che sono tutte. Stessa cosa per gli altri criteri.) - Stessa cosa vale per Oro.
+
 
 ------------------------------------------------
 IMPORTANTE BACKUP!!!
