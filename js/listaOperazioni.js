@@ -263,19 +263,19 @@ $(document).ready(function() {
                     $('#formListaPrint').find('.checkClass').remove();
 
                     var sceltaRadio = $('input[name=sceltaRadio]:checked').val();
-
+                    data2="Stampa di alcune operazioni selezionate scelte tra          ";
                     switch (sceltaRadio){
                         case '1':
-                            data2 = "Date: " + $('#da1').val()+' - '+ $('#a1').val();
+                            data2 += "Date: " + $('#da1').val()+' - '+ $('#a1').val();
                             break;
                         case '2':
-                            data2 = "Op: " + $('#da2').val()+' - '+ $('#a2').val();
+                            data2 += "Op: " + $('#da2').val()+' - '+ $('#a2').val();
                             break;
                         case '3':
-                            data2 = "Entrata almeno: " + $('#da3').val()+' ['+ $('#valuta3').text() + ']';
+                            data2 += "Entrata almeno: " + $('#da3').val()+' ['+ $('#valuta3').text() + ']';
                             break;
                         case '4':
-                            data2 = "Uscita almeno: " + $('#da4').val()+' ['+ $('#valuta4').text() + ']';
+                            data2 += "Uscita almeno: " + $('#da4').val()+' ['+ $('#valuta4').text() + ']';
                             break;
                     }
 

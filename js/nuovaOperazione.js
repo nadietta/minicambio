@@ -55,14 +55,7 @@ function salvaNuovaOperazione(formData,data, html){
                 }, 3000);
                 $('#scrollingContent').html(html);
                 getValoriNuovaOperazione(null);
-                $('#op1dataora').datetimepicker({
-                    lang: 'it',
-                    format: 'd/m/Y H:i',
-                    timepicker: true,
-                    scrollMonth: false,
-                    maxDate: new Date()
 
-                });
 
             }
         },
@@ -289,13 +282,21 @@ $(document).ready(function() {
                 salvaNuovaOperazione(formData,dataop, html);
                 break;
             case 'newOpStampa':
-                stampaNuovaOperazione(formData, dataOp,dataop, html);
+                stampaNuovaOperazione(formData, dataOp, html);
                 break;
             case 'newOpSalvaStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
-                salvaNuovaOperazione(formData, html);
+                salvaNuovaOperazione(formData, dataOp, html);
                 break;
         }
+        $('#op1dataora').datetimepicker({
+            lang: 'it',
+            format: 'd/m/Y H:i',
+            timepicker: true,
+            scrollMonth: false,
+            maxDate: new Date()
+
+        });
         if ($('#entryContainer').hasClass('loading')){
             $('#entryContainer').removeClass("loading");
         }
@@ -306,6 +307,7 @@ $(document).ready(function() {
       $("#op2dataora").val($(this).val());
         getValoriNuovaOperazione($(this).val());
     });
+
     $('#op1dataora').datetimepicker({
         lang: 'it',
         format: 'd/m/Y H:i',
@@ -316,6 +318,8 @@ $(document).ready(function() {
     });
 
 
-
+    $(document).on("change", ".dtp", function(){
+        $('.xdsoft_datetimepicker').hide();
+    });
 
 });

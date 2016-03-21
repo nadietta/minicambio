@@ -29,6 +29,7 @@ function stampaNuovaOperazione(formData, dataOp, html){
         error: function(xhr, desc, err) {
             alert("Details: " + desc + "\nError:" + err);
         }
+
     });
 
 }
@@ -52,18 +53,15 @@ function salvaNuovaOperazione(formData, dataOp,html){
                 }, 3000);
             }
             else{
-                if(risultato.messaggio){
-                    $('#successo').fadeIn(2000);
-                    setTimeout(function(){
-                        $('#successo').fadeOut();
-                    }, 2000);
-                    $('#scrollingContent').html(html);
-                    newOpOro();
-                    $('#grammi').val('');
-                    $('#prezzo').val('');
-                    $('#carati').val('');
-                    $('#franchi').val('');
-                }
+                $('#successo').fadeIn(2000);
+                setTimeout(function(){
+                    $('#successo').fadeOut();
+                }, 3000);
+
+               $('#scrollingContent').html(html);
+                newOpOro();
+
+
             }
         },
         error: function(xhr, desc, err) {
@@ -82,12 +80,6 @@ function newOpOro(){
     $("#sceltaLista").addClass('customHidden');
     var currentDateTime = getCurrentDateTime();
     var cod = currentDateTime.substr(6, 4) + currentDateTime.substr(3, 2);
-    $('#dataora').datetimepicker({
-        lang: 'it',
-        format: 'd/m/Y H:i',
-        scrollMonth: false,
-        maxDate: new Date()
-    });
     $('#dataora').val(currentDateTime);
     setNumOpOro();
 }
@@ -104,6 +96,7 @@ function setNumOpOro(){
     var datascelta=$('#dataora').val();
     $.ajax({
         type: "POST",
+        async: false,
         data: {datascelta:datascelta},
         url: "phpFunctions/getLastOperazioneOro.php",
         success: function(data) {
@@ -128,6 +121,7 @@ function loadOpOro(){
 }
 
 $(document).ready(function() {
+
 
     $('#a').datetimepicker({
         lang: 'it',
@@ -413,7 +407,7 @@ $(document).ready(function() {
 
                         var data_da=$('#da').val();
                         var data_a =$('#a').val();
-                        var data_stampa=data_da+" - "+ data_a;
+                        var data_stampa="Stampa di alcune operazioni selezionate scelte tra Date: "+data_da+" - "+ data_a;
 
                         var html= $('#formListaPrint').html();
 
@@ -462,6 +456,7 @@ $(document).ready(function() {
             });
 
         }
+
 
     });
 
@@ -539,7 +534,6 @@ $(document).ready(function() {
     $(document).on("submit", "#nuovaOperazioneForm", function(){
         var btn= $(this).find("input[type=submit]:focus").prop('id');
         var html= $('#scrollingContent').html();
-
         var formData = $("#nuovaOperazioneForm").serialize();
         var dataOp= $('#dataora').val();
         var inpObj1 = $('#grammi').val();
@@ -548,18 +542,29 @@ $(document).ready(function() {
         $("#scrollingContent").html("");
         $('#entryContainer').addClass("loadingOro");
         $('.alert').fadeOut();
+
         switch(btn){
             case 'newOpSalva':
                 salvaNuovaOperazione(formData,dataOp, html);
+                return false;
                 break;
             case 'newOpStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
+                return false;
                 break;
             case 'newOpSalvaStampa':
                 stampaNuovaOperazione(formData, dataOp, html);
                 salvaNuovaOperazione(formData,dataOp, html);
+                return false;
                 break;
         }
+        $('#dataora').datetimepicker({
+            lang: 'it',
+            format: 'd/m/Y H:i',
+            scrollMonth: false,
+            maxDate: new Date()
+        });
+        $('#dataora').val(currentDateTime);
         if ($('#entryContainer').hasClass('loadingOro')){
             $('#entryContainer').removeClass("loadingOro");
         }
